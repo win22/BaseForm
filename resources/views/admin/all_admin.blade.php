@@ -17,7 +17,7 @@
 </div>
 
 <div class="col-md-12">
-    <div class="card card-plain">
+    <div class="card">
         <div class="row card-header card-header-info">
             <div class="col-md-8">
                 <h4 class="card-title ">Utilisateurs  <i class="material-icons oraI">supervised_user_circle</i></h4>

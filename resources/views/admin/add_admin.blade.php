@@ -109,9 +109,12 @@
                     <div class="row">
 
                     </div>
+                    <button type="submit" id="md." class="btn btn-danger pull-right">
+                        <i class="material-icons">cancel</i>
+                        Annuler </button>&nbsp;
                     <button type="submit" id="md." class="btn btn-success pull-right">
                         <i class="material-icons">check</i>
-                        Creer </button>
+                        Creer  </button>
                     <div class="clearfix"></div>
                 </form>
             </div>

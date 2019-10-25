@@ -4607,7 +4607,7 @@ tbody.collapse.show {
   padding: 1.25rem;
 }
 .card-body:hover {
-  box-shadow: 0 14px 26px -12px rgba(1, 135, 218, 0.47)
+  box-shadow: 0 14px 26px -12px rgba(43, 47, 50, 0.85)
 }
 
 .card-title {
@@ -14511,7 +14511,9 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   overflow: auto;
   width: 260px;
   z-index: 4;
+
   padding-bottom: 30px;
+  background-color: #064b44;
 }
 
 .sidebar .sidebar-wrapper .dropdown .dropdown-backdrop {
@@ -14604,13 +14606,13 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .sidebar .nav li .dropdown-menu a:hover,
 .sidebar .nav li .dropdown-menu a:focus,
 .sidebar .nav li.active>[data-toggle="collapse"] {
-  background-color: rgba(200, 200, 200, 0.2);
+  background-color: rgba(251, 248, 255, 0.22);
   color: #3C4858;
   box-shadow: none;
 }
 
 .sidebar .nav li.active>[data-toggle="collapse"] i {
-  color: #a9afbb;
+  color: white;
 }
 
 .sidebar .nav li.active>a,
@@ -14639,6 +14641,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   margin: 0;
   line-height: 30px;
   font-family: Loma;
+  color: white;
   position: relative;
   display: block;
   height: auto;
@@ -14648,6 +14651,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .sidebar .nav i {
   font-size: 24px;
   float: left;
+  color: white;
   margin-right: 15px;
   line-height: 30px;
   width: 30px;
@@ -14696,6 +14700,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   display: block;
   position: relative;
   z-index: 4;
+  background-color: white;
 }
 
 .sidebar .logo:after {
@@ -14717,9 +14722,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .sidebar .logo .simple-text {
-  text-transform: uppercase;
+
   padding: 5px 0px;
-  display: inline-block;
   font-size: 18px;
   color: #3C4858;
   white-space: nowrap;
@@ -14738,6 +14742,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   width: 61px;
   float: left;
   overflow: hidden;
+
 }
 
 .sidebar .logo-tim img {
@@ -14892,6 +14897,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .main-panel>.content {
   margin-top: 70px;
+  background-image: url("/backend/img/blur.jpg");
   padding: 30px 15px;
   min-height: calc(100vh - 123px);
 }
@@ -18836,10 +18842,84 @@ Copyright (c) 2015 Daniel Eden
     right: 0;
 }
 
+.userI
+{
+  background-color: #ff9800;
+  border-radius: 20px;
+  color: #fff;
+
+}
+
+.of
+{
+  background-color: #4caf50;
+  border-radius: 20px;
+  color: #fff;
+}
+
+
+.EU
+{
+  background-color: red;
+  border-radius: 20px;
+  color: #fff;
+}
+
+.EI
+{
+  background-color: blue;
+  border-radius: 20px;
+  color: #fff;
+}
+
+.itr
+{
+  background-color: deeppink;
+  border-radius: 20px;
+  color: #fff;
+}
+
+.EI
+{
+  background-color: blue;
+  border-radius: 20px;
+  color: #fff;
+}
+
+.formi
+{
+  background-color: red;
+  border-radius: 20px;
+  color: #fff;
+}
+
+.formt
+{
+  background-color: green;
+  border-radius: 20px;
+  color: #fff;
+}
+.evenI
+{
+  background-color: #ff9800;
+  border-radius: 20px;
+  color: #fff;
+}
+.evenI
+{
+  background-color: #ff9800;
+  border-radius: 20px;
+  color: #fff;
+}
 
 
 
-
+.maseCenter
+{
+  background-color: #00c451;
+  color: white;
+  height: 10px;
+}
 
 
 

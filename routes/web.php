@@ -120,3 +120,13 @@ Route::get('/searchEven', 'EvenementController@search');
 Route::get('/delete-even/{even_id}', 'EvenementController@delete_even');
 Route::get('/edit-even/{even_id}', 'EvenementController@edit_even');
 Route::post('/update-even/{even_id}', 'EvenementController@update_even');
+
+
+//Route pour la gestion des documentations
+Route::get('/add-doc', 'DocumentController@index');
+Route::post('/save-doc', 'DocumentController@save_doc');
+Route::get('/all-doc',  'DocumentController@all_doc');
+Route::get('/searchDoc', 'DocumentController@search');
+Route::get('/delete-doc/{doc_id}', 'DocumentController@delete_doc');
+Route::get('/edit-doc/{doc_id}', 'DocumentController@edit_doc');
+Route::post('/update-doc/{even_id}', 'DocumentController@update_doc');

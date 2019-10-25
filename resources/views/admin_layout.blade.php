@@ -21,16 +21,15 @@
 
 <body class="">
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-background-color="purple" data-image="{{ URL::to('backend/img/sidebar-1.jpg')}}">
+    <div class="sidebar" data-color="purple" data-background-color="" data-image="{{ URL::to('backend/img/blur.jpg')}}">
         <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo">
-            <a class="simple-text logo-normal">
-                BaseForm
-            </a>
+            <img src="{{ URL::to('backend/img/Logo-MASE-SNEGAL-sn.png') }}" style="width: 120px; padding-left: 20px">
+
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
@@ -44,21 +43,21 @@
 
                 <li class="nav-item {{ request()->is('all-admin','add-admin')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-admin','add-admin')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="material-icons oraI">supervised_user_circle</i>
+                        <i class="material-icons userI">supervised_user_circle</i>
                         <p class="menu-title">Utilisateurs</p>
                     </a>
                     <div class="collapse {{ request()->is('all-admin','add-admin')? 'show' : '' }}" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item {{ request()->is('all-admin')? 'active' : '' }} ">
                                 <a class="nav-link" href="{{URL::to('/all-admin')}}">
-                                    <i class="material-icons">view_list</i>
-                                    <span>Listes des utilisateurs</span>
+                                    <i class="material-icons ">view_list</i>
+                                    <span class="text-white">Listes des utilisateurs</span>
                                 </a>
                             </li>
                             <li class="nav-item {{ request()->is('add-admin')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-admin')}}">
                                     <i class="material-icons">playlist_add</i>
-                                    <span>Ajouter un Utilisateur</span>
+                                    <span class="text-white">Ajouter un Utilisateur</span>
                                 </a>
                             </li>
                         </ul>
@@ -66,7 +65,7 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-of','add-of')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-of','add-of')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
-                        <i class="material-icons greenI">bubble_chart</i>
+                        <i class="material-icons of">bubble_chart</i>
                         <p class="menu-title">Organisme de Formation</p>
                     </a>
                     <div class="collapse {{ request()->is('all-of','add-of')? 'show' : '' }}" id="ui-basic2">
@@ -74,13 +73,13 @@
                             <li class="nav-item {{ request()->is('all-of')? 'active' : '' }} ">
                                 <a class="nav-link" href="{{URL::to('/all-of')}}">
                                     <i class="material-icons">view_list</i>
-                                    <span>Listes des OF</span>
+                                    <span class="text-white">Listes des OF</span>
                                 </a>
                             </li>
                             <li class="nav-item {{ request()->is('add-of')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-of')}}">
                                     <i class="material-icons">playlist_add</i>
-                                    <span>Ajouter un OF</span>
+                                    <span class="text-white">Ajouter un OF</span>
                                 </a>
                             </li>
                         </ul>
@@ -96,13 +95,13 @@
                             <li class="nav-item {{ request()->is('all-eu')? 'active' : '' }} ">
                                 <a class="nav-link" href="{{URL::to('/all-eu')}}">
                                     <i class="material-icons">view_list</i>
-                                    <span>Listes des E.U</span>
+                                    <span class="text-white">Listes des E.U</span>
                                 </a>
                             </li>
                             <li class="nav-item {{ request()->is('add-eu')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-eu')}}">
                                     <i class="material-icons">playlist_add</i>
-                                    <span>Ajouter une E.U</span>
+                                    <span class="text-white">Ajouter une E.U</span>
                                 </a>
                             </li>
                         </ul>
@@ -118,13 +117,13 @@
                             <li class="nav-item {{ request()->is('all-ei')? 'active' : '' }} ">
                                 <a class="nav-link" href="{{URL::to('/all-ei')}}">
                                     <i class="material-icons">view_list</i>
-                                    <span>Listes des E.I</span>
+                                    <span class="text-white">Listes des E.I</span>
                                 </a>
                             </li>
                             <li class="nav-item {{ request()->is('add-ei')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-ei')}}">
                                     <i class="material-icons">playlist_add</i>
-                                    <span>Ajouter une E.I</span>
+                                    <span class="text-white">Ajouter une E.I</span>
                                 </a>
                             </li>
                         </ul>
@@ -132,7 +131,7 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-itv','add-itv')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-itv','add-itv')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic5" aria-expanded="false" aria-controls="ui-basic5">
-                        <i class="fa fa-user-circle-o"></i>
+                        <i class="fa fa-user-circle-o itr"></i>
                         <p class="menu-title">Intervenants</p>
                     </a>
                     <div class="collapse {{ request()->is('all-itv','add-itv')? 'show' : '' }}" id="ui-basic5">
@@ -140,13 +139,13 @@
                             <li class="nav-item {{ request()->is('all-itv')? 'active' : '' }} ">
                                 <a class="nav-link" href="{{URL::to('/all-itv')}}">
                                     <i class="material-icons">view_list</i>
-                                    <span>Listes des intervenants</span>
+                                    <span class="text-white">Listes des intervenants</span>
                                 </a>
                             </li>
                             <li class="nav-item {{ request()->is('add-itv')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-itv')}}">
                                     <i class="material-icons">playlist_add</i>
-                                    <span>Ajouter un intervenant</span>
+                                    <span class="text-white">Ajouter un intervenant</span>
                                 </a>
                             </li>
                         </ul>
@@ -154,7 +153,7 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-form','add-form')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-form','add-form')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic6" aria-expanded="false" aria-controls="ui-basic6">
-                        <i class="fa fa-users"></i>
+                        <i class="fa fa-users formi"></i>
                         <p class="menu-title">Formateur</p>
                     </a>
                     <div class="collapse {{ request()->is('all-form','add-form')? 'show' : '' }}" id="ui-basic6">
@@ -162,13 +161,13 @@
                             <li class="nav-item {{ request()->is('all-form')? 'active' : '' }} ">
                                 <a class="nav-link" href="{{URL::to('/all-form')}}">
                                     <i class="material-icons">view_list</i>
-                                    <span>Listes des Formateurs</span>
+                                    <span class="text-white">Listes des Formateurs</span>
                                 </a>
                             </li>
                             <li class="nav-item {{ request()->is('add-form')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-form')}}">
                                     <i class="material-icons">playlist_add</i>
-                                    <span>Ajouter un Formateur</span>
+                                    <span class="text-white">Ajouter un Formateur</span>
                                 </a>
                             </li>
                         </ul>
@@ -176,7 +175,7 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-formt','add-formt')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-formt','add-formt')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic7" aria-expanded="false" aria-controls="ui-basic7">
-                        <i class="fa fa-graduation-cap"></i>
+                        <i class="fa fa-graduation-cap formt"></i>
                         <p class="menu-title">Gestion de formation</p>
                     </a>
                     <div class="collapse {{ request()->is('all-formt','add-formt')? 'show' : '' }}" id="ui-basic7">
@@ -184,13 +183,13 @@
                             <li class="nav-item {{ request()->is('all-formt')? 'active' : '' }} ">
                                 <a class="nav-link" href="{{URL::to('/all-formt')}}">
                                     <i class="material-icons">view_list</i>
-                                    <span>Listes des formations</span>
+                                    <span class="text-white">Listes des formations</span>
                                 </a>
                             </li>
                             <li class="nav-item {{ request()->is('add-formt')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-formt')}}">
                                     <i class="material-icons">playlist_add</i>
-                                    <span>Ajouter une formation</span>
+                                    <span class="text-white">Ajouter une formation</span>
                                 </a>
                             </li>
                         </ul>
@@ -198,7 +197,7 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-even','add-even')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-even','add-even')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic8" aria-expanded="false" aria-controls="ui-basic8">
-                        <i class="fa fa-calendar"></i>
+                        <i class="fa fa-calendar evenI"></i>
                         <p class="menu-title">Gestion des évenements</p>
                     </a>
                     <div class="collapse {{ request()->is('all-even','add-even')? 'show' : '' }}" id="ui-basic8">
@@ -206,20 +205,40 @@
                             <li class="nav-item {{ request()->is('all-even')? 'active' : '' }} ">
                                 <a class="nav-link" href="{{URL::to('/all-even')}}">
                                     <i class="material-icons">view_list</i>
-                                    <span>Listes des évenements</span>
+                                    <span class="text-white">Listes des évenements</span>
                                 </a>
                             </li>
                             <li class="nav-item {{ request()->is('add-even')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-even')}}">
                                     <i class="material-icons">playlist_add</i>
-                                    <span>Ajouter un  évenement</span>
+                                    <span class="text-white">Ajouter un  évenement</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
-
-
+                <li class="nav-item {{ request()->is('all-doc','add-doc')? 'active' : '' }}">
+                    <a class="nav-link {{ request()->is('all-doc','add-doc')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic9" aria-expanded="false" aria-controls="ui-basic9">
+                        <i class="fa fa-book"></i>
+                        <p class="menu-title">Gestion documentation</p>
+                    </a>
+                    <div class="collapse {{ request()->is('all-doc','add-doc')? 'show' : '' }}" id="ui-basic9">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item {{ request()->is('all-doc')? 'active' : '' }} ">
+                                <a class="nav-link" href="{{URL::to('/all-doc')}}">
+                                    <i class="material-icons">view_list</i>
+                                    <span class="text-white">Listes des documents</span>
+                                </a>
+                            </li>
+                            <li class="nav-item {{ request()->is('add-doc')? 'active' : '' }}">
+                                <a class="nav-link" href="{{URL::to('/add-doc')}}">
+                                    <i class="material-icons">playlist_add</i>
+                                    <span class="text-white">Ajouter un document</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
             </ul>
         </div>
@@ -228,7 +247,11 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
             <div class="container-fluid">
+                <a class="simple-text logo-normal">
+                    BaseForm
+                </a>
                 <div class="navbar-wrapper">
+                         | Login name:
                     <a class="navbar-brand col-sm-3 text-success" href="#pablo">{{  Session::get('admin_structure') }}
                     </a>
                 </div>
@@ -286,8 +309,23 @@
             </div>
 
         </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="float-left ">
+                    <ul>
+                        <li>
+                            <a class="text-success" href="https://www.mase-senegal.com/">
+                              Ameliorer la performance sse
+                            </a>
+                        </li>
 
+                    </ul>
+                </nav>
+
+            </div>
+        </footer>
     </div>
+
 </div>
 
 <!--   Core JS Files   -->
@@ -593,6 +631,15 @@
         var alert = $('#alert9');
         if(alert.length > 0){
             alert.hide().delay(5900).slideDown(730);
+
+        }
+    })
+</script>
+<script>
+    jQuery(function ($) {
+        var alert = $('#alert10');
+        if(alert.length > 0){
+            alert.hide().delay(6800).slideDown(730);
 
         }
     })

@@ -25,8 +25,8 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-info">
-                <h4 class="card-title">Organisme de formation <i class="material-icons greenI">bubble_chart</i></h4>
-                <p class="card-category">Modifier un Organisme de Formation</p>
+                <h4 class="card-title">Formateur <i class="material-icons greenI">bubble_chart</i></h4>
+                <p class="card-category">Modifier un formateur</p>
             </div>
             <div class="card-body">
                 <form enctype="multipart/form-data" action="{{ url('/update-of',$of_info->of_id)}}" method="post">
@@ -107,7 +107,9 @@
                             @endif
                         </div>
                     </div>
-
+                    <button type="submit" id="md." class="btn btn-danger pull-right">
+                        <i class="material-icons">cancel</i>
+                        Annuler </button>&nbsp;
                     <button type="submit" id="md." class="btn btn-success pull-right">
                         <i class="material-icons">check</i>
                         Modifier </button>
