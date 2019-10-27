@@ -33,6 +33,9 @@ Route::get('/searchUser', 'AdminController@search');
 Route::get('/unactive-admin/{admin_id}', 'AdminController@unactive_admin');
 Route::get('/active-admin/{admin_id}', 'AdminController@active_admin');
 Route::get('/edit-admin/{admin_id}', 'AdminController@edit_admin');
+Route::get('/edit-admin-profil/{admin_id}', 'AdminController@admin_edit_pro');
+Route::post('/profil-admin-update/{admin_id}', 'AdminController@update_pass');
+
 Route::get('/delete-admin/{admin_id}', 'AdminController@delete_admin');
 
 Route::post('/save-admin', 'AdminController@save_admin');
@@ -43,7 +46,7 @@ Route::post('/update-admin/{admin_id}', 'AdminController@update_admin');
 Route::get('/add-of', 'OfController@index');
 Route::post('/save-of', 'OfController@save_of');
 
-Route::get('/search', 'OfController@search');
+Route::get('/searchOf', 'OfController@search');
 
 Route::get('/all-of', 'OfController@all_of');
 Route::get('/unactive-of/{of_id}', 'OfController@unactive_of');
@@ -129,4 +132,4 @@ Route::get('/all-doc',  'DocumentController@all_doc');
 Route::get('/searchDoc', 'DocumentController@search');
 Route::get('/delete-doc/{doc_id}', 'DocumentController@delete_doc');
 Route::get('/edit-doc/{doc_id}', 'DocumentController@edit_doc');
-Route::post('/update-doc/{even_id}', 'DocumentController@update_doc');
+Route::post('/update-doc/{doc_id}', 'DocumentController@update_doc');

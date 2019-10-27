@@ -59,11 +59,10 @@
                     <tbody>
                     @foreach ( $all_even_info as $v_even)
                     <tr>
-                        </td>
                         <td class="center">{{ $v_even->even_name }}</td>
                         <td class="center">{{ $v_even->even_date }}</td>
-                        <td class="center">{{ $v_even->even_description }}</td>
-                        <td class="center">{{ $v_even->created_at }}</td>
+                        <td  class="center">{{ $v_even->even_description }}</td>
+                        <td  class="center">{{ $v_even->created_at }}</td>
                         <td>
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-even/'.
                                  $v_even->even_id)}}">

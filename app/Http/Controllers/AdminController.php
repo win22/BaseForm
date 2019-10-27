@@ -179,7 +179,7 @@ class AdminController extends Controller
         $this->AdminAuthCheck();
         request()->validate([
             'admin_structure' => ['required'],
-            'admin_email' => ['required', 'unique:tbl_admin'],
+            'admin_email' => ['required'],
             'admin_role' => ['required'],
             'admin_structure' => ['required'],
             'admin_phone' => ['required'],
@@ -218,7 +218,35 @@ class AdminController extends Controller
     }
 
 
+    public function admin_edit_pro( $admin_id)
+    {
+        $this->AdminAuthCheck();
+        $admin_info = DB::table('tbl_admin')
+            ->where('admin_id', $admin_id)
+            ->first();
 
+        $admin_info = view('admin.admin_profil')->with('admin_info', $admin_info);
+        return View('admin_layout')
+            ->with('admin.all_admin', $admin_info);
+
+    }
+
+
+    public function update_pass(Request $request, $admin_id)
+    {
+        request() -> validate([
+            'password' => ['required', 'confirmed', 'min:8'],
+            'password_confirmation' => ['required'],
+        ]);
+        $data = array();
+        $data['admin_id'] = $request->admin_id;
+        $data['admin_password'] = md5($request->password);
+        DB::table('tbl_admin')
+            ->where('admin_id', $admin_id)
+            ->update($data);
+        Session::put('message', "Vous avez modifié  votre mot de passe avec Succes !");
+        return redirect('/all-admin');
+    }
 
     //permet de verifier si l'utilisateur est connecté
     public function AdminAuthCheck()

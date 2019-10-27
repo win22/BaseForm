@@ -26,7 +26,7 @@
         <div class="card">
             <div class="card-header card-header-info">
                 <h4 class="card-title">Évenements   <i class="fa fa-calendar"></i></h4>
-                <p class="card-category">Modifier un formateur</p>
+                <p class="card-category">Modifier un évenement</p>
             </div>
             <div class="card-body">
                 <form action="{{ url('/update-even',$even_info->even_id)}}" method="post">
@@ -55,7 +55,7 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Déscription de l'évenement</label>
-                                <textarea name="even_description" type="text" class="form-control form-control-plaintext">
+                                <textarea name="even_description" type="text" class="form-control" rows="5">
                                     {{ $even_info->even_description }}
                                 </textarea>
                             </div>

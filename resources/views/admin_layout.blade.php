@@ -29,7 +29,6 @@
       -->
         <div class="logo">
             <img src="{{ URL::to('backend/img/Logo-MASE-SNEGAL-sn.png') }}" style="width: 120px; padding-left: 20px">
-
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
@@ -38,7 +37,6 @@
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
                     </a>
-
                 </li>
 
                 <li class="nav-item {{ request()->is('all-admin','add-admin')? 'active' : '' }}">
@@ -247,15 +245,14 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
             <div class="container-fluid">
-                <a class="simple-text logo-normal">
-                    BaseForm
-                </a>
                 <div class="navbar-wrapper">
-                         | Login name:
-                    <a class="navbar-brand col-sm-3 text-success" href="#pablo">{{  Session::get('admin_structure') }}
+                    <a class="navbar-brand" href="/dashboard">
+                        <strong style="font-family: 'Manjari'" class="text-danger"> BaseForm  Dashboard </strong>
+                    </a>
+                    <a class="navbar-brand" href="#pablo">| Login name :
+                        <strong style="font-family: 'Manjari'" class="text-success">  {{  Session::get('admin_structure') }} </strong>
                     </a>
                 </div>
-
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="navbar-toggler-icon icon-bar"></span>
@@ -265,28 +262,20 @@
                 <div class="collapse navbar-collapse justify-content-end">
 
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#pablo">
-                                <i class="material-icons">dashboard</i>
-                                <p class="d-lg-none d-md-block">
-                                    Stats
-                                </p>
-                            </a>
-                        </li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                                <!--<i class="material-icons">person</i>-->
-                                <img src="{{URL::to(Session::get('admin_image'))}}"
-                                     style=" height: 50px; width: 50px; border-radius: 50px;"
-                                     alt="" />
+                                <i class="material-icons">person</i>
+
                                 <p class="d-lg-none d-md-block">
                                     Account
                                 </p>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                <a class="dropdown-item" href="#">Profil de  {{ Session::get('admin_structure') }}</a>
+                                <a class="dropdown-item"  href="{{ URL::to('/edit-admin-profil/'.
+                                      Session::get('admin_id'))}}">
+                                    Profil de  {{ Session::get('admin_structure') }}</a>
                                 @if(Session::get('admin_role')==1)
                                 <a class="dropdown-item" href="#">Administrateur</a>
                                 @else
@@ -311,17 +300,27 @@
         </div>
         <footer class="footer">
             <div class="container-fluid">
-                <nav class="float-left ">
+                <nav class="float-left">
                     <ul>
                         <li>
-                            <a class="text-success" href="https://www.mase-senegal.com/">
-                              Ameliorer la performance sse
+                            <a class="text-success" target="_blank" href="https://www.mase-senegal.com/">
+                                Ameliorer la performance SSE
                             </a>
                         </li>
-
                     </ul>
                 </nav>
+                <div class="float-right">
+                    <ul>
+                        <li>
 
+                            <a href="http://nataalagency.com" target="_blank"> &copy;
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script> by | <strong class="text-danger">Nataal Agency</strong> </a>.
+                        </li>
+                    </ul>
+
+                </div>
             </div>
         </footer>
     </div>

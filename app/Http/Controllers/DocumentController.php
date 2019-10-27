@@ -64,13 +64,13 @@ class DocumentController extends Controller
         request()->validate([
             'doc_name' => ['required'],
             'doc_contenu' => ['required'],
-            'doc_file' => ['required'],
+
         ]);
         $data = array();
         $data['doc_id'] = $request->doc_id;
         $data['doc_name'] = $request->doc_name;
         $data['doc_contenu'] = $request->doc_contenu;
-        $data['doc_file'] = $request->doc_file;
+
 
         DB::table('tbl_documents')->insert($data);
         Session::put('message', "la document " . $data['doc_name'] . " a été crée avec succes !");
@@ -100,13 +100,12 @@ class DocumentController extends Controller
         request()->validate([
             'doc_name' => ['required'],
             'doc_contenu' => ['required'],
-            'doc_file' => ['required'],
+
         ]);
         $data = array();
         $data['doc_id'] = $request->doc_id;
         $data['doc_name'] = $request->doc_name;
         $data['doc_contenu'] = $request->doc_contenu;
-        $data['doc_file'] = $request->doc_file;
 
         DB::table('tbl_documents')
             ->where('doc_id', $doc_id)

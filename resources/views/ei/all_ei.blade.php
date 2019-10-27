@@ -51,7 +51,7 @@
                     <th>Téléphone</th>
                     <th>adresse</th>
                     <th>Date de Creation</th>
-                    <th>Directeir</th>
+                    <th>Directeur</th>
                     <th>Status</th>
                     <th>Action</th>
 
@@ -67,9 +67,8 @@
                         <td class="center">{{ $v_ei->ei_email }}</td>
                         <td class="center">{{ $v_ei->ei_phone }}</td>
                         <td class="center">{{ $v_ei->ei_adresse }}</td>
-                        <td class="center">{{ $v_ei->ei_nameDi }}</td>
                         <td class="center">{{ $v_ei->created_at }}</td>
-
+                        <td class="center">{{ $v_ei->ei_nameDi }}</td>
                         <td class="center">
                             @if($v_ei->ei_status==1)
                             <span class="label label-success">

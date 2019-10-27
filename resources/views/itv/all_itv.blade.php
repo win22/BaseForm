@@ -20,8 +20,8 @@
     <div class="card">
         <div class="row card-header card-header-info">
             <div class="col-md-8">
-                <h4 class="card-title ">Entreprise Intervenante  <i class="fa fa-user-circle-o"></i></h4>
-                <p class="card-eu">les differentes entreprises Intervenante de votre base de données</p>
+                <h4 class="card-title ">Intervenants  <i class="fa fa-user-circle-o"></i></h4>
+                <p class="card-eu">les differents Intervenante de votre base de données</p>
 
             </div>
 

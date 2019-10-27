@@ -95,7 +95,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <select  class="form-control" name="admin_status">
+                            <select  class="form-control" name="of_status">
                                 @if($of_info->of_status == 1)
                                 <option value="1">Status Activé</option>
                                 @else
@@ -103,7 +103,7 @@
                                 @endif
                             </select>
                             @if($errors->has('of_status'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('admin_status')}}</small>
+                            <small class="form-text text-muted text-danger">{{$errors->first('of_status')}}</small>
                             @endif
                         </div>
                     </div>

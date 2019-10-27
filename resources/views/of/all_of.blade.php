@@ -26,7 +26,7 @@
             </div>
 
             <div class="col-md-4">
-                <form class="navbar-form" action="/searchUser">
+                <form class="navbar-form" action="/searchOf">
                     <div class="input-group">
                         <div class="form-group">
                             <label class="bmd-label-floating text-white">Rechercher</label>

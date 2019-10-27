@@ -180,6 +180,7 @@ class OfController extends Controller
             $data['of_password'] = md5($request->of_password);
             $data['of_email'] = $request->of_email;
             $data['of_adresse'] = $request->of_adresse;
+            $data['of_formation'] = $request->of_formation;
             $data['of_phone'] = $request->of_phone;
             $data['of_status'] = $request->of_status;
             DB::table('tbl_of')
@@ -188,9 +189,6 @@ class OfController extends Controller
 
             Session::put('message', "l'OF ".$data['of_raison']." a eté modifié avec Succes !");
             return redirect('/all-of');
-
-
-
 
     }
 

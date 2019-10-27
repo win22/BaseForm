@@ -26,7 +26,7 @@
         <div class="card">
             <div class="card-header card-header-info">
                 <h4 class="card-title"> Formation <i class="fa fa-graduation-cap"></i> &nbsp;</h4>
-                <p class="card-category">Modifier un Organisme de Formation</p>
+                <p class="card-category">Modifier une Formation</p>
             </div>
             <div class="card-body">
                 <form action="{{ url('/update-formt',$formt_info->formt_id)}}" method="post">

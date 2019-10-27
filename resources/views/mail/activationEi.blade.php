@@ -1,3 +1,3 @@
 Bienvenue  {{ $ei_name }}
-Svp activer votre compte :: {{ url('user/activation', $token) }};
+Votre Compte a été creé avec succes!
 Voici votre Mot de passe: {{ $psw }};

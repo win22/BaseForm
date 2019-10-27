@@ -20,8 +20,8 @@
     <div class="card">
         <div class="row card-header card-header-info">
             <div class="col-md-8">
-                <h4 class="card-title ">Organisme de Formation</h4>
-                <p class="card-form">les differents organisme de formation de votre base de données</p>
+                <h4 class="card-title ">Formation</h4>
+                <p class="card-form">les differentes formations de votre base de données</p>
 
             </div>
 

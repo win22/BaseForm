@@ -25,7 +25,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-info">
-                <h4 class="card-title">Entreprise Intervenant   <i class="fa fa-building redI"></i></h4>
+                <h4 class="card-title">Entreprise Intervenante   <i class="fa fa-building redI"></i></h4>
                 <p class="card-category">Ajouter une Entreprise Intervenant</p>
             </div>
             <div class="card-body">

@@ -45,6 +45,8 @@ class HomeController extends Controller
                 Session::put('admin_structure', $result->admin_structure);
                 Session::put('admin_role', $result->admin_role);
                 Session::put('admin_id', $result->admin_id);
+                Session::put('admin_email', $result->admin_email);
+                Session::put('admin_phone', $result->admin_phone);
                 Session::put('admin_image', $result->admin_image);
                return redirect::to('/dashboard');
         }

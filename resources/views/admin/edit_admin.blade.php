@@ -51,7 +51,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Password</label>
-                                <input  value="{{ $admin_info->admin_password }}" name="admin_password" type="password" class="form-control">
+                                <input  value="{{ $admin_info->admin_password }}" hidden name="admin_password" type="password" class="form-control">
                             </div>
                             @if($errors->has('admin_password'))
                             <small class="form-text text-muted text-danger">{{$errors->first('admin_password')}}</small>
@@ -80,9 +80,16 @@
                         </div>
                         <div class="col-md-4">
                             <select  class="form-control" name="admin_role">
-                                <option value="">Selectioner un role</option>
-                                <option  value="1">Administrateur</option>
-                                <option  value="2">Utilisateur</option>
+                                @if($admin_info->admin_role == 1)
+                                <option value="1">Administrateur</option>
+                                @else
+                                <option value="2">Utilisateur</option>
+                                @endif
+                                @if( Session::get('admin_role')==1)
+                                <option value="">Selectionner un role</option>
+                                <option value="1">Administrateur</option>
+                                <option value="2">Utilisateur</option>
+                                @endif
                             </select>
                             @if($errors->has('admin_role'))
                             <small class="form-text text-muted text-danger">{{$errors->first('admin_role')}}</small>
@@ -93,7 +100,7 @@
                                 @if($admin_info->admin_status == 1)
                                 <option value="1">Status Activé</option>
                                 @else
-                                <option value="2">Status Désactivé</option>
+                                <option value="0">Status Désactivé</option>
                                 @endif
                             </select>
                             @if($errors->has('admin_status'))
@@ -123,7 +130,7 @@
                         Annuler </button>&nbsp;
                     <button type="submit" id="md." class="btn btn-success pull-right">
                         <i class="material-icons">check</i>
-                        Creer </button>
+                            Modifier </button>
                     <div class="clearfix"></div>
                 </form>
             </div>

@@ -68,8 +68,8 @@ class FormateurController extends Controller
         $data = array();
         $data['form_id'] = $request->form_id;
         $data['form_name'] = $request->form_name;
-        $data['form_prenom'] = $request->form_adresse;
-        $data['form_adresse'] = $request->form_prenom;
+        $data['form_prenom'] = $request->form_prenom;
+        $data['form_adresse'] = $request->form_adresse;
         $data['form_of'] = $request->form_of;
 
         DB::table('tbl_formateurs')->insert($data);
@@ -106,8 +106,8 @@ class FormateurController extends Controller
         $data = array();
         $data['form_id'] = $request->form_id;
         $data['form_name'] = $request->form_name;
-        $data['form_prenom'] = $request->form_adresse;
-        $data['form_adresse'] = $request->form_prenom;
+        $data['form_prenom'] = $request->form_prenom;
+        $data['form_adresse'] = $request->form_adresse;
         $data['form_of'] = $request->form_of;
 
         DB::table('tbl_formateurs')

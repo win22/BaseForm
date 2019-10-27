@@ -55,7 +55,7 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Déscription de l'évenement</label>
-                                <textarea  value="{{ old('even_description') }}" name="even_description" type="text" class="form-control form-control-plaintext"></textarea>
+                                <textarea  value="{{ old('even_description') }}" name="even_description" type="text" class="form-control" rows="5"></textarea>
                             </div>
                             @if($errors->has('even_description'))
                             <small class="form-text text-muted text-danger">{{$errors->first('even_description')}}</small>

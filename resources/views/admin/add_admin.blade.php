@@ -75,8 +75,10 @@
                         </div>
                         <div class="col-md-4">
                             <select class="form-control" name="admin_role">
-                                <option value="">Selectioner un role</option>
-                                    <option  value="1">Administrateur</option>
+                                   <option value="">Selectioner un role</option>
+                                @if( Session::get('admin_role')==1)
+                                <option value="1">Administrateur</option>
+                                @endif
                                     <option  value="2">Utilisateur</option>
                             </select>
                             @if($errors->has('admin_role'))
@@ -114,7 +116,7 @@
                         Annuler </button>&nbsp;
                     <button type="submit" id="md." class="btn btn-success pull-right">
                         <i class="material-icons">check</i>
-                        Creer  </button>
+                        Creer    </button>
                     <div class="clearfix"></div>
                 </form>
             </div>

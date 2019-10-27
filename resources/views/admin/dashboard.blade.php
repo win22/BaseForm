@@ -109,7 +109,6 @@
         </div>
     </div>
 </div>
-
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div id="alert6" class="card card-stats">
@@ -196,7 +195,7 @@
                     <i class="fa fa-calendar"></i>
                 </div>
                 <p class="card-category">Gestion des évenements</p>
-                <a href="/even">
+                <a href="/all-even">
                     <h3 class="card-title">
                         {{ $all_even_count }}
                     </h3>
@@ -242,8 +241,5 @@
     </div>
 
 </div>
-
-</div>
-
 
 @endsection

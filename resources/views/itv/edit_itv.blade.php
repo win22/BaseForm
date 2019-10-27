@@ -27,8 +27,8 @@
 
         <div class="card">
             <div class="card-header card-header-info">
-                <h4 class="card-title">Entreprise Intervenante  <i class="fa fa-user-circle-o"></i></h4>
-                <p class="card-category">Modifier une entreprise intervenante </p>
+                <h4 class="card-title">Intervenants  <i class="fa fa-user-circle-o"></i></h4>
+                <p class="card-category">Modifier un intervenant </p>
             </div>
             <div class="card-body">
                 <form enctype="multipart/form-data" action="{{ url('/update-itv',$itv_info->itv_id)}}" method="post">
@@ -127,7 +127,7 @@
                         <div class="col-md-4">
                             <div>
                                 <label class="label">Image de l'intervenant </label><br>
-                                <input required accept="image/*" type="file" name="itv_image">
+                                <input accept="image/*" type="file" name="itv_image">
                             </div>
                             @if($errors->has('itv_image'))
                             <small class="form-text text-muted text-danger">{{$errors->first('itv_image')}}</small>
