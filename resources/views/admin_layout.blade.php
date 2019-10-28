@@ -266,7 +266,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                                <i class="material-icons">person</i>
+                                <i class="material-icons of">person</i>
 
                                 <p class="d-lg-none d-md-block">
                                     Account
@@ -277,9 +277,11 @@
                                       Session::get('admin_id'))}}">
                                     Profil de  {{ Session::get('admin_structure') }}</a>
                                 @if(Session::get('admin_role')==1)
-                                <a class="dropdown-item" href="#">Administrateur</a>
+                                <a class="dropdown-item" href="{{ URL::to('/edit-admin-profil/'.
+                                      Session::get('admin_id'))}}"> Role: Administrateur</a>
                                 @else
-                                <a class="dropdown-item" href="#">Utilisateur</a>
+                                <a class="dropdown-item" href="{{ URL::to('/edit-admin-profil/'.
+                                      Session::get('admin_id'))}}">Role: Utilisateur</a>
                                 @endif
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/logout">Déconnexion</a>
@@ -303,8 +305,8 @@
                 <nav class="float-left">
                     <ul>
                         <li>
-                            <a class="text-success" target="_blank" href="https://www.mase-senegal.com/">
-                                Ameliorer la performance SSE
+                            <a  target="_blank" href="https://www.mase-senegal.com/">
+                             MASE-Sénégal |   <span class="text-success">Ameliorer la performance SSE</span>
                             </a>
                         </li>
                     </ul>
@@ -575,7 +577,7 @@
     jQuery(function ($) {
         var alert = $('#alert3');
         if(alert.length > 0){
-            alert.hide().delay(900).slideDown(730);
+            alert.hide().delay(900).slideDown(760);
 
         }
     })
@@ -584,7 +586,7 @@
     jQuery(function ($) {
         var alert = $('#alert4');
         if(alert.length > 0){
-            alert.hide().delay(1500).slideDown(730);
+            alert.hide().delay(1500).slideDown(760);
 
         }
     })
@@ -593,7 +595,7 @@
     jQuery(function ($) {
         var alert = $('#alert5');
         if(alert.length > 0){
-            alert.hide().delay(2400).slideDown(730);
+            alert.hide().delay(2400).slideDown(760);
 
         }
     })
@@ -602,7 +604,7 @@
     jQuery(function ($) {
         var alert = $('#alert6');
         if(alert.length > 0){
-            alert.hide().delay(3200).slideDown(730);
+            alert.hide().delay(3200).slideDown(760);
 
         }
     })
@@ -611,7 +613,7 @@
     jQuery(function ($) {
         var alert = $('#alert7');
         if(alert.length > 0){
-            alert.hide().delay(4100).slideDown(730);
+            alert.hide().delay(4100).slideDown(760);
 
         }
     })
@@ -620,7 +622,7 @@
     jQuery(function ($) {
         var alert = $('#alert8');
         if(alert.length > 0){
-            alert.hide().delay(5000).slideDown(730);
+            alert.hide().delay(5000).slideDown(760);
 
         }
     })
@@ -629,7 +631,7 @@
     jQuery(function ($) {
         var alert = $('#alert9');
         if(alert.length > 0){
-            alert.hide().delay(5900).slideDown(730);
+            alert.hide().delay(5900).slideDown(760);
 
         }
     })
@@ -638,7 +640,7 @@
     jQuery(function ($) {
         var alert = $('#alert10');
         if(alert.length > 0){
-            alert.hide().delay(6800).slideDown(730);
+            alert.hide().delay(6800).slideDown(760);
 
         }
     })

@@ -5002,7 +5002,7 @@ tbody.collapse.show {
 }
 
 .alert-success {
-  color: rgba(60, 138, 64, 0.88);
+  color: rgba(0, 138, 51, 0.88);
   background-color: #dbefdc;
   border-color: #cde9ce;
 }
@@ -12940,7 +12940,7 @@ select.form-control {
 }
 
 .form-group {
-  padding-bottom: 10px;
+  padding-bottom: 13px;
   position: relative;
   margin: 8px 0 0;
 }
@@ -13175,8 +13175,8 @@ fieldset[disabled] .form-group .form-control {
 
 .navbar.bg-primary .dropdown-item:hover,
 .navbar.bg-primary .dropdown-item:focus {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
-  background-color: #9c27b0;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 127, 194, 0.97);
+  background-color: #0076b5;
   color: #fff;
 }
 
@@ -14145,7 +14145,7 @@ h2.title {
 .dropdown-menu a:focus,
 .dropdown-menu a:active {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
-  background-color: #9c27b0;
+  background-color: #0076b0;
   color: #FFFFFF;
 }
 
@@ -14897,7 +14897,9 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .main-panel>.content {
   margin-top: 70px;
-  background-image: url("/backend/img/blur.jpg");
+  background-image: url("/backend/img/blur2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover ;
   padding: 30px 15px;
   min-height: calc(100vh - 123px);
 }

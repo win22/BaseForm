@@ -3,8 +3,8 @@
 
 <div class="row" >
 
-    <div  class="col-lg-3 col-md-6 col-sm-6">
-        <div id="alert2" class="card card-stats">
+    <div id="alert2"  class="col-lg-3 col-md-6 col-sm-6">
+        <div  class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
 
                 <div class="card-icon" href="/all-admin">
@@ -30,8 +30,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div  id="alert3" class="card card-stats">
+    <div id="alert3" class="col-lg-3 col-md-6 col-sm-6">
+        <div   class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
                 <div class="card-icon">
                     <i class="material-icons">bubble_chart</i>
@@ -56,8 +56,8 @@
             </div>
         </div>
     </div>
-    <div  class="col-lg-3 col-md-6 col-sm-6">
-        <div  id="alert4" class="card card-stats">
+    <div  id="alert4"  class="col-lg-3 col-md-6 col-sm-6">
+        <div  class="card card-stats">
             <div class="card-header card-header-danger card-header-icon">
                 <div class="card-icon">
                     <i class="fa fa-industry"></i>
@@ -82,8 +82,8 @@
             </div>
         </div>
     </div>
-    <div  class="col-lg-3 col-md-6 col-sm-6">
-        <div id="alert5" class="card card-stats">
+    <div id="alert5"  class="col-lg-3 col-md-6 col-sm-6">
+        <div  class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
                 <div class="card-icon">
                     <i class="fa fa-building"></i>
@@ -110,8 +110,8 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div id="alert6" class="card card-stats">
+    <div id="alert6" class="col-lg-3 col-md-6 col-sm-6">
+        <div  class="card card-stats">
             <div class="card-header card-header-rose card-header-icon">
                 <div class="card-icon">
                     <i class="fa fa-user-circle-o"></i>
@@ -136,8 +136,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div  id="alert7" class="card card-stats">
+    <div id="alert7" class="col-lg-3 col-md-6 col-sm-6">
+        <div   class="card card-stats">
             <div class="card-header card-header-danger card-header-icon">
                 <div class="card-icon">
                     <i class="fa fa-users"></i>
@@ -162,8 +162,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div  id="alert8" class="card card-stats">
+    <div id="alert8" class="col-lg-3 col-md-6 col-sm-6">
+        <div   class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
                 <div class="card-icon">
                     <i class="fa fa-graduation-cap"></i>
@@ -188,8 +188,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <div   id="alert9" class="card card-stats">
+    <div id="alert9" class="col-lg-3 col-md-6 col-sm-6">
+        <div    class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
                 <div class="card-icon">
                     <i class="fa fa-calendar"></i>
@@ -216,16 +216,18 @@
     </div>
 </div>
 <div class="row" >
-    <div  class="col-lg-3 col-md-6 col-sm-6">
-        <div id="alert10" class="card card-stats">
+    <div   id="alert10" class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
                 <div class="card-icon" href="/all-admin">
                     <i class="fa fa-book"></i>
                 </div>
                 <p class="card-category">Gestion de la documentation</p>
-                <h3 class="card-title">
-                    {{ $all_admin_count }}
-                </h3>
+                <a href="/all-doc">
+                    <h3 class="card-title">
+                        {{ $all_doc_count }}
+                    </h3>
+                </a>
             </div>
             <div class="card-footer">
                 <div class="stats">
@@ -233,7 +235,7 @@
                     @if(($all_admin_date) == null)
                     Aucune information n'a été trouvé
                     @else
-                    {{ $all_admin_date->created_at }}
+                    {{ $all_doc_date->created_at }}
                     @endif
                 </div>
             </div>
