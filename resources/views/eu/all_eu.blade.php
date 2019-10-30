@@ -15,8 +15,8 @@
     <div class="card">
         <div class="row card-header card-header-info">
             <div class="col-md-8">
-                <h4 class="card-title ">Entreprise Utilisatrice  <i class="fa fa-industry"></i></h4>
-                <p class="card-eu">les differentes entreprises utilisatrice de votre base de données</p>
+                <h4 class="card-title ">Entreprises Utilisatrices  <i class="fa fa-industry"></i></h4>
+                <p class="card-eu">Listes des entreprises utilisatrice</p>
 
             </div>
 
@@ -41,14 +41,14 @@
                 <table class="table table-hover">
                     <thead class=" text-danger">
 
-                    <th>Nom</th>
-                    <th>Email</th>
-                    <th>Téléphone</th>
-                    <th>adresse</th>
-                    <th>Date de Creation</th>
-                    <th>Directeur</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th class="text-center">Nom</th>
+                    <th class="text-center">Adresse e-mail</th>
+                    <th class="text-center">Téléphone</th>
+                    <th class="text-center">adresse</th>
+                    <th class="text-center">Date de Creation</th>
+                    <th class="text-center">Directeur</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Action</th>
 
 
                     </thead>
@@ -58,11 +58,11 @@
                     @foreach ( $all_eu_info as $v_eu)
                     <tr>
                         </td>
-                        <td class="center">{{ $v_eu->eu_name }}</td>
-                        <td class="center">{{ $v_eu->eu_email }}</td>
-                        <td class="center">{{ $v_eu->eu_phone }}</td>
-                        <td class="center">{{ $v_eu->eu_adresse }}</td>
-                        <td class="center">{{ $v_eu->eu_nameDi }}</td>
+                        <td class="text-center">{{ $v_eu->eu_name }}</td>
+                        <td class="text-center">{{ $v_eu->eu_email }}</td>
+                        <td class="text-center">{{ $v_eu->eu_phone }}</td>
+                        <td class="text-center">{{ $v_eu->eu_adresse }}</td>
+                        <td class="text-center">{{ $v_eu->eu_nameDi }}</td>
                         <td class="center">{{ $v_eu->created_at }}</td>
 
                         <td class="center">

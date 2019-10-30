@@ -12970,7 +12970,7 @@ textarea {
 .form-newsletter .input-group,
 .form-newsletter .form-group {
   float: left;
-  width: 78%;
+  width: 100%;
   margin-right: 2%;
   margin-top: 9px;
   padding-top: 5px;
@@ -14649,9 +14649,9 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .sidebar .nav i {
-  font-size: 24px;
+  font-size: 18px;
   float: left;
-  color: white;
+  color: #fbf8ff;
   margin-right: 15px;
   line-height: 30px;
   width: 30px;
@@ -17351,7 +17351,7 @@ label {
 
 .card-profile .card-avatar {
   margin: -50px auto 0;
-  border-radius: 90px;
+  border-radius: 50%;
   overflow: hidden;
   padding: 0;
   box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
@@ -18862,57 +18862,42 @@ Copyright (c) 2015 Daniel Eden
 
 .EU
 {
-  background-color: red;
+  background-color: #e53935;
   border-radius: 20px;
   color: #fff;
 }
 
 .EI
 {
-  background-color: blue;
+  background-color: #2186af;
   border-radius: 20px;
-  color: #fff;
+  color: #fff !important;
 }
 
 .itr
 {
-  background-color: deeppink;
+  background-color: #ae336c;
   border-radius: 20px;
   color: #fff;
 }
 
-.EI
-{
-  background-color: blue;
-  border-radius: 20px;
-  color: #fff;
-}
 
 .formi
 {
-  background-color: red;
-  border-radius: 20px;
-  color: #fff;
+  color: #ffffff;
 }
 
 .formt
 {
-  background-color: green;
-  border-radius: 20px;
-  color: #fff;
+  color: #fff !important;
 }
+
 .evenI
 {
-  background-color: #ff9800;
-  border-radius: 20px;
-  color: #fff;
+  color: #ff9800 !important;
+
 }
-.evenI
-{
-  background-color: #ff9800;
-  border-radius: 20px;
-  color: #fff;
-}
+
 
 
 

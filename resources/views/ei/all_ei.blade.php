@@ -20,8 +20,8 @@
     <div class="card">
         <div class="row card-header card-header-info">
             <div class="col-md-8">
-                <h4 class="card-title ">Entreprise Intervenante   <i class="fa fa-building redI"></i></h4>
-                <p class="card-eu">les differentes entreprises Intervenante de votre base de données</p>
+                <h4 class="card-title ">Entreprise Intervenante <i class="fa fa-building redI"></i></h4>
+                <p class="card-eu">Liste des entreprises intervenantes</p>
 
             </div>
 
@@ -46,14 +46,14 @@
                 <table class="table table-hover">
                     <thead class=" text-danger">
 
-                    <th>Nom</th>
-                    <th>Email</th>
-                    <th>Téléphone</th>
-                    <th>adresse</th>
-                    <th>Date de Creation</th>
-                    <th>Directeur</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th class="text-center">Nom</th>
+                    <th class="text-center">Adresse e-mail</th>
+                    <th class="text-center">Téléphone</th>
+                    <th class="text-center">adresse</th>
+                    <th class="text-center">Date de Creation</th>
+                    <th class="text-center">Directeur</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Action</th>
 
 
                     </thead>
@@ -63,24 +63,24 @@
                     @foreach ( $all_ei_info as $v_ei)
                     <tr>
                         </td>
-                        <td class="center">{{ $v_ei->ei_name }}</td>
-                        <td class="center">{{ $v_ei->ei_email }}</td>
-                        <td class="center">{{ $v_ei->ei_phone }}</td>
-                        <td class="center">{{ $v_ei->ei_adresse }}</td>
-                        <td class="center">{{ $v_ei->created_at }}</td>
-                        <td class="center">{{ $v_ei->ei_nameDi }}</td>
-                        <td class="center">
+                        <td class="text-center">{{ $v_ei->ei_name }}</td>
+                        <td class="text-center">{{ $v_ei->ei_email }}</td>
+                        <td class="text-center">{{ $v_ei->ei_phone }}</td>
+                        <td class="text-center">{{ $v_ei->ei_adresse }}</td>
+                        <td class="text-center">{{ $v_ei->created_at }}</td>
+                        <td class="text-center">{{ $v_ei->ei_nameDi }}</td>
+                        <td class="text-center">
                             @if($v_ei->ei_status==1)
-                            <span class="label label-success">
+                            <span class="label text-success">
                             Activé
                         </span>
                             @else
-                            <span class="label label-warning">
+                            <span class="label text-danger">
                             Desactivé
                         </span>
                             @endif
                         </td>
-                        <td class="td-actions ">
+                        <td class="td-actions text-center" >
                             @if($v_ei->ei_status==1)
                             <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-ei/'.
                         $v_ei->ei_id)}}">

@@ -17,16 +17,16 @@
             <div class="row w-100">
                 <div class="col-lg-5 mx-auto">
                     <div class="auto-form-wrapper">
-                        <h3 class="text-center"><span class="text-success">BaseFom</span> | Login</h3>
+                        <h3 class="text-center"><span class="text-success">BaseForm</span>| Connexion</h3>
                         <form action="/admin_login" method="post">
                             @csrf
                             <div class="form-group">
-                                <label class="label">Email</label>
+                                <label class="label">Adresse e-mail</label>
                                 <div class="input-group">
-                                    <input type="email" name="admin_email" class="form-control" placeholder="Saisir votre adresse email">
+                                    <input type="email" name="admin_email" class="form-control" placeholder="Veuillez saisir votre adresse e-mail">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
-                                           <i class="material-icons">person</i>
+                                           <i class="material-icons">mail</i>
                                         </span>
                                     </div>
                                 </div>
@@ -41,9 +41,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="label">Password</label>
+                                <label class="label">Mot de passe </label>
                                 <div class="input-group">
-                                    <input type="password" name="admin_password" class="form-control" placeholder="*********">
+                                    <input type="password" name="admin_password" class="form-control" placeholder="Veuillez saisir votre mot de passe">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="material-icons">lock</i>

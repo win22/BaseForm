@@ -28,20 +28,20 @@
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo">
-            <img src="{{ URL::to('backend/img/Logo-MASE-SNEGAL-sn.png') }}" style="width: 120px; padding-left: 20px">
+            <img src="{{ URL::to('backend/img/Logo-MASE-SNEGAL-sn.png') }}" style="width: 120px; padding-left: 25px">
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="nav-item {{ request()->is('dashboard')? 'active' : '' }}">
                     <a class="nav-link" href="{{URL::to('/dashboard')}}">
-                        <i class="material-icons">dashboard</i>
-                        <p>Dashboard</p>
+                        <i class="material-icons EI">dashboard</i>
+                        <p>Tableau de bord</p>
                     </a>
                 </li>
 
                 <li class="nav-item {{ request()->is('all-admin','add-admin')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-admin','add-admin')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                        <i class="material-icons userI">supervised_user_circle</i>
+                        <i class="material-icons of">supervised_user_circle</i>
                         <p class="menu-title">Utilisateurs</p>
                     </a>
                     <div class="collapse {{ request()->is('all-admin','add-admin')? 'show' : '' }}" id="ui-basic">
@@ -55,7 +55,7 @@
                             <li class="nav-item {{ request()->is('add-admin')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-admin')}}">
                                     <i class="material-icons">playlist_add</i>
-                                    <span class="text-white">Ajouter un Utilisateur</span>
+                                    <span class="text-white">Ajouter un utilisateur</span>
                                 </a>
                             </li>
                         </ul>
@@ -63,8 +63,8 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-of','add-of')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-of','add-of')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
-                        <i class="material-icons of">bubble_chart</i>
-                        <p class="menu-title">Organisme de Formation</p>
+                        <i class="material-icons userI">bubble_chart</i>
+                        <p class="menu-title">Organismes de Formation</p>
                     </a>
                     <div class="collapse {{ request()->is('all-of','add-of')? 'show' : '' }}" id="ui-basic2">
                         <ul class="nav flex-column sub-menu">
@@ -85,8 +85,8 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-eu','add-eu')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-eu','add-eu')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic3" aria-expanded="false" aria-controls="ui-basic3">
-                        <i class="fa fa-industry"></i>
-                        <p class="menu-title">Entrprise Utilisatrice</p>
+                        <i class="fa fa-industry EU"></i>
+                        <p class="menu-title">Entrprises Utilisatrices</p>
                     </a>
                     <div class="collapse {{ request()->is('all-eu','add-eu')? 'show' : '' }}" id="ui-basic3">
                         <ul class="nav flex-column sub-menu">
@@ -107,8 +107,8 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-ei','add-ei')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-ei','add-ei')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic4" aria-expanded="false" aria-controls="ui-basic3">
-                        <i class="fa fa-building"></i>
-                        <p class="menu-title">Entrprise Intervenantes</p>
+                        <i class="fa fa-crop EI"></i>
+                        <p class="menu-title">Entrprises Intervenantes</p>
                     </a>
                     <div class="collapse {{ request()->is('all-ei','add-ei')? 'show' : '' }}" id="ui-basic4">
                         <ul class="nav flex-column sub-menu">
@@ -129,7 +129,7 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-itv','add-itv')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-itv','add-itv')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic5" aria-expanded="false" aria-controls="ui-basic5">
-                        <i class="fa fa-user-circle-o itr"></i>
+                        <i class="fa fa-user userI"></i>
                         <p class="menu-title">Intervenants</p>
                     </a>
                     <div class="collapse {{ request()->is('all-itv','add-itv')? 'show' : '' }}" id="ui-basic5">
@@ -151,8 +151,8 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-form','add-form')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-form','add-form')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic6" aria-expanded="false" aria-controls="ui-basic6">
-                        <i class="fa fa-users formi"></i>
-                        <p class="menu-title">Formateur</p>
+                        <i class="fa fa-users EU"></i>
+                        <p class="menu-title">Formateurs</p>
                     </a>
                     <div class="collapse {{ request()->is('all-form','add-form')? 'show' : '' }}" id="ui-basic6">
                         <ul class="nav flex-column sub-menu">
@@ -173,8 +173,8 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-formt','add-formt')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-formt','add-formt')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic7" aria-expanded="false" aria-controls="ui-basic7">
-                        <i class="fa fa-graduation-cap formt"></i>
-                        <p class="menu-title">Gestion de formation</p>
+                        <i class="fa fa-graduation-cap of"></i>
+                        <p class="menu-title">Formations</p>
                     </a>
                     <div class="collapse {{ request()->is('all-formt','add-formt')? 'show' : '' }}" id="ui-basic7">
                         <ul class="nav flex-column sub-menu">
@@ -195,8 +195,8 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-even','add-even')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-even','add-even')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic8" aria-expanded="false" aria-controls="ui-basic8">
-                        <i class="fa fa-calendar evenI"></i>
-                        <p class="menu-title">Gestion des évenements</p>
+                        <i class="fa fa-calendar-o userI"></i>
+                        <p class="menu-title">Évenements</p>
                     </a>
                     <div class="collapse {{ request()->is('all-even','add-even')? 'show' : '' }}" id="ui-basic8">
                         <ul class="nav flex-column sub-menu">
@@ -217,8 +217,8 @@
                 </li>
                 <li class="nav-item {{ request()->is('all-doc','add-doc')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-doc','add-doc')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic9" aria-expanded="false" aria-controls="ui-basic9">
-                        <i class="fa fa-book"></i>
-                        <p class="menu-title">Gestion documentation</p>
+                        <i class="fa fa-book EI"></i>
+                        <p class="menu-title">Documentations</p>
                     </a>
                     <div class="collapse {{ request()->is('all-doc','add-doc')? 'show' : '' }}" id="ui-basic9">
                         <ul class="nav flex-column sub-menu">
@@ -245,14 +245,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
             <div class="container-fluid">
-                <div class="navbar-wrapper">
-                    <a class="navbar-brand" href="/dashboard">
-                        <strong style="font-family: 'Manjari'" class="text-danger"> BaseForm  Dashboard </strong>
-                    </a>
-                    <a class="navbar-brand" href="#pablo">| Login name :
-                        <strong style="font-family: 'Manjari'" class="text-success">  {{  Session::get('admin_structure') }} </strong>
-                    </a>
-                </div>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="navbar-toggler-icon icon-bar"></span>
@@ -262,7 +255,11 @@
                 <div class="collapse navbar-collapse justify-content-end">
 
                     <ul class="navbar-nav">
-
+                        <li>
+                            <a class="navbar-brand" href="#pablo"> Nom de la structure :
+                                <strong style="font-family: 'Manjari'" class="text-danger">  {{  Session::get('admin_structure') }} </strong>
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
@@ -276,15 +273,8 @@
                                 <a class="dropdown-item"  href="{{ URL::to('/edit-admin-profil/'.
                                       Session::get('admin_id'))}}">
                                     Profil de  {{ Session::get('admin_structure') }}</a>
-                                @if(Session::get('admin_role')==1)
-                                <a class="dropdown-item" href="{{ URL::to('/edit-admin-profil/'.
-                                      Session::get('admin_id'))}}"> Role: Administrateur</a>
-                                @else
-                                <a class="dropdown-item" href="{{ URL::to('/edit-admin-profil/'.
-                                      Session::get('admin_id'))}}">Role: Utilisateur</a>
-                                @endif
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/logout">Déconnexion</a>
+                                <a class="dropdown-item" href="/logout">Se déconnecter</a>
                             </div>
                         </li>
                     </ul>

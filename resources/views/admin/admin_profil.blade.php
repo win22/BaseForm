@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header card-header-info">
                 <h4 class="card-title">Profil &nbsp;  <i class="material-icons">supervised_user_circle</i></h4>
-                <p class="card-category">modifier votre mot de passe</p>
+                <p class="card-category">Modifier votre mot de passe</p>
             </div>
             <div class="card-body">
                 <form method="post" action="{{ url('/profil-admin-update',$admin_info->admin_id)}}">

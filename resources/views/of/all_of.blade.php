@@ -21,7 +21,7 @@
         <div class="row card-header card-header-info">
             <div class="col-md-8">
                 <h4 class="card-title ">Organisme de Formation <i class="material-icons greenI">bubble_chart</i></h4>
-                <p class="card-of">les differents organisme de formation de votre base de données</p>
+                <p class="card-of">Liste des organismes de formations</p>
 
             </div>
 
@@ -46,13 +46,13 @@
                 <table class="table table-hover">
                     <thead class=" text-danger">
 
-                    <th>Raison Social</th>
-                    <th>Email</th>
-                    <th>Téléphone</th>
-                    <th>Date de Creation</th>
-                    <th>Formation</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th class="text-center">Raison Social</th>
+                    <th class="text-center">Adresse Email</th>
+                    <th class="text-center">Téléphone</th>
+                    <th class="text-center">Date de Creation</th>
+                    <th class="text-center">Formation</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Action</th>
 
 
                     </thead>
@@ -61,14 +61,13 @@
                     <tbody>
                     @foreach ( $all_of_info as $v_of)
                     <tr>
-                        </td>
-                        <td class="center">{{ $v_of->of_raison }}</td>
-                        <td class="center">{{ $v_of->of_email }}</td>
-                        <td class="center">{{ $v_of->of_phone }}</td>
-                        <td class="center">{{ $v_of->created_at }}</td>
-                        <td class="center">{{ $v_of->of_formation }}</td>
+                        <td class="text-center">{{ $v_of->of_raison }}</td>
+                        <td class="text-center">{{ $v_of->of_email }}</td>
+                        <td class="text-center">{{ $v_of->of_phone }}</td>
+                        <td class="text-center">{{ $v_of->created_at }}</td>
+                        <td class="text-center">{{ $v_of->of_formation }}</td>
 
-                        <td class="center">
+                        <td class="text-center">
                             @if($v_of->of_status==1)
                             <span class="label label-success">
                             Activé
@@ -79,7 +78,7 @@
                         </span>
                             @endif
                         </td>
-                        <td class="td-actions ">
+                        <td  class="td-actions text-center">
                             @if($v_of->of_status==1)
                             <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-of/'.
                         $v_of->of_id)}}">

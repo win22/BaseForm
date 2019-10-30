@@ -21,7 +21,7 @@
         <div class="row card-header card-header-info">
             <div class="col-md-8">
                 <h4 class="card-title ">Utilisateurs  <i class="material-icons oraI">supervised_user_circle</i></h4>
-                <p class="card-admin">les differents utilisateurs de votre base de données</p>
+                <p class="card-admin">Liste des utilisateurs</p>
             </div>
 
             <div class="col-md-4">
@@ -46,29 +46,29 @@
                 <table class="table table-hover">
                     <thead class=" text-danger">
 
-                    <th>image</th>
-                    <th>Structure</th>
-                    <th>Email</th>
-                    <th>Téléphone</th>
-                    <th>Date de Creation</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th class="text-center">image</th>
+                    <th class="text-center">Structure</th>
+                    <th class="text-center">Adresse e-mail</th>
+                    <th class="text-center">Téléphone</th>
+                    <th class="text-center">Date de Creation</th>
+                    <th class="text-center">Role</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Action</th>
 
                     </thead>
                     <tbody>
                     @foreach ( $all_admin_info as $v_admin)
                     <tr>
-                        <td><img src="{{ URL::to($v_admin->admin_image) }}"
+                        <td class="text-center"><img src="{{ URL::to($v_admin->admin_image) }}"
                                  style=" height: 40px; width: 40px; border-radius: 15px;">
                         </td>
-                        <td class="center">{{ $v_admin->admin_structure }}</td>
-                        <td class="center">{{ $v_admin->admin_email }}</td>
-                        <td class="center">{{ $v_admin->admin_phone }}</td>
-                        <td class="center">{{ $v_admin->created_at }}</td>
-                        <td class="center">
+                        <td class="text-center">{{ $v_admin->admin_structure }}</td>
+                        <td class="text-center">{{ $v_admin->admin_email }}</td>
+                        <td class="text-center">{{ $v_admin->admin_phone }}</td>
+                        <td class="text-center">{{ $v_admin->created_at }}</td>
+                        <td class="text-center">
                             @if($v_admin->admin_role==1)
-                            <span class="label label-success">
+                            <span class="label success">
                             Administrateur
                         </span>
                             @else
@@ -77,18 +77,19 @@
                         </span>
                             @endif
                         </td>
-                        <td class="center">
+                        <td class="text-center">
                             @if($v_admin->admin_status==1)
-                            <span class="label label-success">
+                            <span class="label text-success">
                             Activé
                         </span>
                             @else
-                            <span class="label label-warning">
+                            <span class="label text-danger">
                             Desactivé
                         </span>
                             @endif
                         </td>
-                        <td class="td-actions ">
+                        <td class="td-actions text-center">
+                            @if( Session::get('admin_role')==1)
                             @if($v_admin->admin_status==1)
                             <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-admin/'.
                         $v_admin->admin_id)}}">
@@ -99,6 +100,7 @@
                         $v_admin->admin_id)}}">
                                 <i class="material-icons">thumb_up</i>
                             </a>
+                            @endif
                             @endif
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-admin/'.
                         $v_admin->admin_id)}}">

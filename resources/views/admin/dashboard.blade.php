@@ -5,12 +5,12 @@
 
     <div id="alert2"  class="col-lg-3 col-md-6 col-sm-6">
         <div  class="card card-stats">
-            <div class="card-header card-header-warning card-header-icon">
+            <div class="card-header card-header-success card-header-icon">
 
                 <div class="card-icon" href="/all-admin">
                     <i class="material-icons">supervised_user_circle</i>
                 </div>
-                <p class="card-category">Utilisateurs de la Platform</p>
+                <p class="card-category">Utilisateurs de la plateforme</p>
                 <a href="/all-admin">
                     <h3 class="card-title">
                         {{ $all_admin_count }}
@@ -32,11 +32,11 @@
     </div>
     <div id="alert3" class="col-lg-3 col-md-6 col-sm-6">
         <div   class="card card-stats">
-            <div class="card-header card-header-success card-header-icon">
+            <div class="card-header card-header-warning card-header-icon">
                 <div class="card-icon">
                     <i class="material-icons">bubble_chart</i>
                 </div>
-                <p class="card-category">Organisation de Formations</p>
+                <p class="card-category">Organisme de formation</p>
                 <a href="/all-of">
                     <h3 class="card-title">
                         {{ $all_of_count }}
@@ -62,7 +62,7 @@
                 <div class="card-icon">
                     <i class="fa fa-industry"></i>
                 </div>
-                <p class="card-category">Entreprise utilisatrices</p>
+                <p class="card-category">Entreprises utilisatrices</p>
                 <a href="/all-eu">
                     <h3 class="card-title">
                         {{ $all_eu_count }}
@@ -86,7 +86,7 @@
         <div  class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
                 <div class="card-icon">
-                    <i class="fa fa-building"></i>
+                    <i class="fa fa-crop"></i>
                 </div>
                 <p class="card-category">Entreprises Intervenantes</p>
                 <a href="/all-ei">
@@ -112,11 +112,11 @@
 <div class="row">
     <div id="alert6" class="col-lg-3 col-md-6 col-sm-6">
         <div  class="card card-stats">
-            <div class="card-header card-header-rose card-header-icon">
+            <div class="card-header card-header-warning card-header-icon">
                 <div class="card-icon">
-                    <i class="fa fa-user-circle-o"></i>
+                    <i class="fa fa-user"></i>
                 </div>
-                <p class="card-category">Gestion des Intervenants </p>
+                <p class="card-category">Intervenants </p>
                 <a href="/all-itv">
                     <h3 class="card-title">
                         {{ $all_itv_count }}
@@ -142,7 +142,7 @@
                 <div class="card-icon">
                     <i class="fa fa-users"></i>
                 </div>
-                <p class="card-category">Gestion des Formateurs</p>
+                <p class="card-category">Formateurs</p>
                 <a href="/all-form">
                     <h3 class="card-title">
                         {{ $all_form_count }}
@@ -168,7 +168,7 @@
                 <div class="card-icon">
                     <i class="fa fa-graduation-cap"></i>
                 </div>
-                <p class="card-category">Gestion des Formations</p>
+                <p class="card-category">Formations</p>
                 <a href="/all-formt">
                     <h3 class="card-title">
                         {{ $all_formt_count }}
@@ -194,7 +194,7 @@
                 <div class="card-icon">
                     <i class="fa fa-calendar"></i>
                 </div>
-                <p class="card-category">Gestion des évenements</p>
+                <p class="card-category">Évenements</p>
                 <a href="/all-even">
                     <h3 class="card-title">
                         {{ $all_even_count }}
@@ -218,11 +218,11 @@
 <div class="row" >
     <div   id="alert10" class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <div class="card-header card-header-warning card-header-icon">
+            <div class="card-header card-header-info card-header-icon">
                 <div class="card-icon" href="/all-admin">
                     <i class="fa fa-book"></i>
                 </div>
-                <p class="card-category">Gestion de la documentation</p>
+                <p class="card-category">Documentation</p>
                 <a href="/all-doc">
                     <h3 class="card-title">
                         {{ $all_doc_count }}

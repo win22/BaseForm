@@ -20,8 +20,8 @@
     <div class="card">
         <div class="row card-header card-header-info">
             <div class="col-md-8">
-                <h4 class="card-title ">Formateur</h4>
-                <p class="card-form">les differents formateurs  de votre base de données</p>
+                <h4 class="card-title ">Formateurs</h4>
+                <p class="card-form">Liste des formateurs</p>
 
             </div>
 
@@ -44,7 +44,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead class=" text-danger">
+                    <thead class="text-center text-danger">
 
                     <th>Nom</th>
                     <th>Prénom</th>
@@ -57,7 +57,7 @@
                     </thead>
 
 
-                    <tbody>
+                    <tbody class="text-center">
                     @foreach ( $all_form_info as $v_form)
                     <tr>
                         </td>

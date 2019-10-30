@@ -21,7 +21,7 @@
         <div class="row card-header card-header-info">
             <div class="col-md-8">
                 <h4 class="card-title">Évenements   <i class="fa fa-calendar"></i></h4>
-                <p class="card-form">les differents évenements de votre base de données</p>
+                <p class="card-form">Liste des évenements</p>
 
             </div>
 
@@ -44,7 +44,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead class=" text-danger">
+                    <thead class="text-center text-danger">
 
                     <th>Nom</th>
                     <th>Date de l'événement</th>
@@ -56,12 +56,12 @@
                     </thead>
 
 
-                    <tbody>
+                    <tbody class="text-center">
                     @foreach ( $all_even_info as $v_even)
                     <tr>
                         <td class="center">{{ $v_even->even_name }}</td>
                         <td class="center">{{ $v_even->even_date }}</td>
-                        <td  class="center">{{ $v_even->even_description }}</td>
+                        <td  class="text-justify">{{ $v_even->even_description }}</td>
                         <td  class="center">{{ $v_even->created_at }}</td>
                         <td>
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-even/'.

@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Email</label>
+                                <label class="bmd-label-floating">Adresse e-mail</label>
                                 <input  value="{{ old('ei_email') }}" name="ei_email" type="email" class="form-control">
                             </div>
                             @if($errors->has('ei_email'))

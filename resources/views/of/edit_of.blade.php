@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Email</label>
+                                <label class="bmd-label-floating">Adresse email</label>
                                 <input  value="{{ $of_info->of_email  }}" name="of_email" type="email" class="form-control">
                             </div>
                             @if($errors->has('of_email'))

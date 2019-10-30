@@ -21,7 +21,7 @@
         <div class="row card-header card-header-info">
             <div class="col-md-8">
                 <h4 class="card-title ">Intervenants  <i class="fa fa-user-circle-o"></i></h4>
-                <p class="card-eu">les differents Intervenante de votre base de données</p>
+                <p class="card-eu">Liste des intervenants</p>
 
             </div>
 
@@ -44,9 +44,9 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead class=" text-danger">
+                    <thead class="text-center text-danger">
 
-                    <th>Image</th>
+                    <th >Image</th>
                     <th>Code</th>
                     <th>N°de sécurité</th>
                     <th>Nom</th>
@@ -60,7 +60,7 @@
                     </thead>
 
 
-                    <tbody>
+                    <tbody class="text-center">
                     @foreach ( $all_itv_info as $v_itv)
                     <tr>
                         </td>

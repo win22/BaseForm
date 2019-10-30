@@ -44,7 +44,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead class=" text-danger">
+                    <thead class="text-center text-danger">
 
                     <th>Nom</th>
                     <th>Validité</th>
@@ -57,7 +57,7 @@
                     </thead>
 
 
-                    <tbody>
+                    <tbody class="text-center">
                     @foreach ( $all_formt_info as $v_formt)
                     <tr>
                         </td>

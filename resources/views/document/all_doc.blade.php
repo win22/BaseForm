@@ -21,7 +21,7 @@
         <div class="row card-header card-header-info">
             <div class="col-md-8">
                 <h4 class="card-title">Documents   <i class="fa fa-calendar"></i></h4>
-                <p class="card-form">les differents Documents de votre base de données</p>
+                <p class="card-form">Liste des documents</p>
 
             </div>
 
@@ -44,7 +44,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead class=" text-danger">
+                    <thead class="text-center text-danger">
 
                     <th>Nom du  Document</th>
                     <th>Contenu du document</th>
@@ -55,11 +55,11 @@
                     </thead>
 
 
-                    <tbody>
+                    <tbody class="text-center">
                     @foreach ( $all_doc_info as $v_doc)
                     <tr>
                         <td class="center">{{ $v_doc->doc_name }}</td>
-                        <td aria-valuemax="10" class="center">{{ $v_doc->doc_contenu }}</td>
+                        <td aria-valuemax="10" class="text-justify">{{ $v_doc->doc_contenu }}</td>
                         <td  class="center">{{ $v_doc->created_at }}</td>
                         <td>
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-doc/'.
