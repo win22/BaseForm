@@ -4,4 +4,4 @@
 
 <p>Des informations concernant votre compte vous serons transmisent Ulterierement!</p>
 
-<h6>Merci !!</h6>
+<h4>Merci !!</h4>

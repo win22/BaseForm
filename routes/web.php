@@ -27,6 +27,8 @@ Route::get('/dashboard','SuperAdminController@countData');
 
 Route::get('/add-admin', 'AdminController@index');
 Route::get('/all-admin', 'AdminController@all_admin');
+Route::post('/add-admin/fetch', 'AdminController@fetch')
+    ->name('SuperAdminController.fetch');
 
 Route::get('/searchUser', 'AdminController@search');
 

@@ -256,8 +256,9 @@
 
                     <ul class="navbar-nav">
                         <li>
-                            <a class="navbar-brand" href="#pablo"> Nom de la structure :
-                                <strong style="font-family: 'Manjari'" class="text-danger">  {{  Session::get('admin_structure') }} </strong>
+                            <a class="navbar-brand" href="#pablo">Utilisateur :
+
+                                <strong style="font-family: 'Manjari'" class="text-danger">  {{  Session::get('admin_prenom') }} </strong>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -649,14 +650,30 @@
     });
 </script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(document).on('change', '#admin_structure', function() {
-            var air_id =  $('#admin_structure').val();     // get id the value from the select
-            $('#admin_email').val(air_id);   // set the textbox value
+<script>
+    $(document).ready(function () {
+        $('.dynamic').change(function () {
+            if($(this).val() != '')
+            {
+                var select = $(this).attr("id");
+                var value = $(this).val();
+                var dependent = $(this).data('dependent');
+                var  _token =  $('input[name="_token"]').val();
 
-            // if you want the selected text instead of the value
-            // var air_text = $('.aircraftsName option:selected').text();
+                console.log(select);
+                console.log(value);
+                console.log(dependent);
+                console.log(_token);
+                $.ajax({
+                    url:"{{route('SuperAdminController.fetch')}}",
+                    method : "POST",
+                    data:{select: select,value:value, _token:_token, dependent:dependent},
+                    success:function (result)
+                    {
+                        $('#'+dependent).html(result);
+                    }
+                })
+            }
         });
     });
 </script>

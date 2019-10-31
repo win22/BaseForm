@@ -32,11 +32,19 @@
                 <form enctype="multipart/form-data" action="{{ url('/save-admin')}}" method="post">
                     @csrf
                     <div class="row">
-
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Nom</label>
+                                <input  value="{{ old('admin_prenom') }}" name="admin_prenom" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('admin_prenom'))
+                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('admin_prenom')}}</small>
+                            @endif
+                        </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Adresse e-mail</label>
-                                <input  id="admin_email"  name="admin_email" type="email" class="form-control">
+                                <input  value="{{ old('admin_email') }}" name="admin_email" type="email" class="form-control">
                             </div>
                             @if($errors->has('admin_email'))
                             <small class="form-text text-muted text-danger">{{$errors->first('admin_email')}}</small>
@@ -52,34 +60,35 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('admin_password')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Téléphone</label>
-                                <input  value="{{ old('admin_phone') }}" name="admin_phone" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('admin_short_description'))
-                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('admin_short_description')}}</small>
-                            @endif
-                        </div>
-
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <select class="form-control" id="admin_structure" name="admin_structure"
-                                data-dependant="state">
+                                <select class="form-control dynamic" id="eu_name" name="admin_structure"
+                                data-dependent="user_role">
                                 <option value="">Selectionner une structure</option>
                                     @foreach($EU as $v_eu)
-                                    <option value="{{ $v_eu->eu_id }}" >
+                                    <option value="{{ $v_eu->eu_name }}" >
                                         {{ $v_eu->eu_name }}
                                     </option>
                                     @endforeach
                                 </select>
-                                @if($errors->has('admin_structure'))
-                                <small class="form-text text-muted text-danger">{{$errors->first('admin_structure')}}</small>
+                            </div>
+                            @if($errors->has('admin_structure'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('admin_structure')}}</small>
+                            @endif
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <select  class="form-control dynamic" id="user_role" name="user_role">
+                                    <option value="">Categorie Structure</option>
+                                </select>
+                                @if($errors->has('user_role'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('user_role')}}</small>
                                 @endif
                             </div>
                         </div>
+
                         <div class="col-md-4">
                             <div class="form-group">
                                 <select class="form-control" name="admin_role">
@@ -93,20 +102,30 @@
                                 <small class="form-text text-muted text-danger">{{$errors->first('admin_role')}}</small>
                                 @endif
                             </div>
-
                         </div>
+                    </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Téléphone</label>
+                                    <input  value="{{ old('admin_phone') }}" name="admin_phone" type="text" class="form-control">
+                                </div>
+                                @if($errors->has('admin_phone'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('admin_phone')}}</small>
+                                @endif
+                            </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <select  class="form-control" name="admin_status">
+                                <select  class="form-control " name="admin_status">
                                     <option value="0">Status Désactivé</option>
                                 </select>
                                 @if($errors->has('admin_status'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('admin_status')}}</small>
                                 @endif
                             </div>
+
                         </div>
                     </div>
-
 
                     <div class="row">
                         <div class="col-md-4">
@@ -118,11 +137,8 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('admin_image')}}</small>
                             @endif
                         </div>
-
                     </div>
-                    <div class="row">
 
-                    </div>
                     <button type="submit" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
                         Annuler </button>&nbsp;

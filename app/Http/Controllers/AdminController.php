@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Illuminate\View\View;
 use Session;
 Use Mail;
+use \Crypt;
 session_start();
 class AdminController extends Controller
 {
@@ -20,12 +21,33 @@ class AdminController extends Controller
         return view('admin.add_admin', ['EU' => $EU]);
     }
 
-    public function getInfo(Request $request)
+
+    public function fetch(Request $request)
     {
-        $fill = DB::table('tbl_entreprise_utilisatrices')->where('eu_id', $request->admin_structure)
-            ->select('eu_email')
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependent');
+        $data = DB::table('tbl_entreprise_utilisatrices')
+            ->where($select, $value)
+            ->groupBy($dependent)
             ->get();
-        return Response::json(['success'=>true, 'info'=>$fill]);
+
+        $output = '<option value="">Select '.ucfirst($dependent).'</option>';
+        foreach ($data as $row)
+        {
+            if($row->$dependent == 1)
+            {
+                $text = 'Entreprise Utilisatrice';
+            }elseif ($row->$dependent == 2)
+            {
+                $text = 'Entreprise Intervenate';
+            }else
+            {
+                $text = 'Organisme de formation';
+            }
+            $output = '<option value="'.$row->$dependent.'">'.$text.'</option>';
+        }
+        echo  $output;
     }
 
     public  function  search(Request $request)
@@ -96,12 +118,13 @@ class AdminController extends Controller
     {
         $this->AdminAuthCheck();
         request()->validate([
-            'admin_structure' => ['required'],
-            'admin_email' => ['required', 'unique:tbl_admin'],
-            'admin_role' => ['required'],
-            'admin_structure' => ['required'],
-            'admin_phone' => ['required'],
-            'admin_password' => ['required'],
+            'admin_structure' => ['max:30'],
+            'admin_email' => ['required', 'unique:tbl_admin', 'max:191'],
+            'admin_role' => ['required', 'max:2'],
+            'user_role' => [ 'max:2'],
+            'admin_phone' => ['required', 'max:60'],
+            'admin_prenom' => ['required', 'max:30'],
+            'admin_password' => ['required','max:30', 'min:5'],
         ]);
         $data = array();
         $data['admin_id'] = $request->admin_id;
@@ -110,7 +133,9 @@ class AdminController extends Controller
         $data['admin_role'] = $request->admin_role;
         $data['admin_structure'] = $request->admin_structure;
         $data['admin_phone'] = $request->admin_phone;
+        $data['admin_prenom'] = $request->admin_prenom;
         $data['admin_status'] = $request->admin_status;
+        $data['user_role'] = $request->user_role;
         $data['token'] = str_random(30);
         $image = $request->file('admin_image');
         if ($image){
@@ -127,15 +152,20 @@ class AdminController extends Controller
                 $data['admin_image'] = $image_url;
             }
         }
-        Mail::send('mail.activation', $data, function ($message) use ($data){
+        $pass = array();
+        $pass['test'] = $request->admin_password;
+
+        $data2 = array('data'=> $data, 'pass'=>$pass);
+        Mail::send('mail.activation', $data2, function ($message) use ($data){
             $message->to($data['admin_email']);
             $message->from('mailtrapmail@gmail.com');
-            $message->subject('Activation Votre Compte');
+            $message->subject('Activation Votre Compte ');
+
         });
         DB::table('tbl_admin')->insert($data);
+
           Session::put('message', "Un mail a été envoyé a ".$data['admin_structure']." !");
           return redirect('/all-admin');
-
     }
 
     //Activer un Compte
@@ -198,7 +228,7 @@ class AdminController extends Controller
         $data = array();
         $data['admin_id'] = $request->admin_id;
         $data['admin_email'] = $request->admin_email;
-        $data['admin_password'] = md5($request->admin_password);
+        $data['admin_password'] = $request->admin_password;
         $data['admin_role'] = $request->admin_role;
         $data['admin_structure'] = $request->admin_structure;
         $data['admin_phone'] = $request->admin_phone;
@@ -223,6 +253,7 @@ class AdminController extends Controller
             ->update($data);
         Session::put('message', "l'utilisateur ".$data['admin_structure']." a eté modifié avec Succes !");
         return redirect('/all-admin');
+        dump($data);
 
 
     }
