@@ -45,16 +45,15 @@
                     <th class="text-center">Adresse e-mail</th>
                     <th class="text-center">Téléphone</th>
                     <th class="text-center">adresse</th>
-                    <th class="text-center">Date de Creation</th>
                     <th class="text-center">Directeur</th>
-                    <th class="text-center">Status</th>
+                    <th class="text-center">Date de Creation</th>
                     <th class="text-center">Action</th>
 
 
                     </thead>
 
 
-                    <tbody>
+                    <tbody class="text-center">
                     @foreach ( $all_eu_info as $v_eu)
                     <tr>
                         </td>
@@ -65,29 +64,11 @@
                         <td class="text-center">{{ $v_eu->eu_nameDi }}</td>
                         <td class="center">{{ $v_eu->created_at }}</td>
 
-                        <td class="center">
-                            @if($v_eu->eu_status==1)
-                            <span class="label label-success">
-                            Activé
-                        </span>
-                            @else
-                            <span class="label label-warning">
-                            Desactivé
-                        </span>
-                            @endif
-                        </td>
                         <td class="td-actions ">
-                            @if($v_eu->eu_status==1)
-                            <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-eu/'.
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/detail-eu/'.
                         $v_eu->eu_id)}}">
-                                <i class="material-icons">thumb_down_alt</i>
+                                <i class="material-icons">visibility</i>
                             </a>
-                            @else
-                            <a class="btn btn-success btn-link btn-sm"  rel="tooltip" title="Activer" href="{{ URL::to('/active-eu/'.
-                        $v_eu->eu_id)}}">
-                                <i class="material-icons">thumb_up</i>
-                            </a>
-                            @endif
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-eu/'.
                         $v_eu->eu_id)}}">
                                 <i class="material-icons">edit</i>

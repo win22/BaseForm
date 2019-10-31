@@ -57,14 +57,14 @@ Route::post('/update-of/{of_id}', 'OfController@update_of');
 
 //Route pour les Entreprise Utilisatrice
 Route::get('/add-eu', 'EuController@index');
+Route::get('/infos', 'EuController@getInfo');
 Route::post('/save-eu', 'EuController@save_eu');
 
 Route::get('/all-eu', 'EuController@all_eu');
 Route::get('/searchEu', 'EuController@search');
 
 Route::get('/all-eu', 'EuController@all_eu');
-Route::get('/unactive-eu/{eu_id}', 'EuController@unactive_eu');
-Route::get('/active-eu/{eu_id}', 'EuController@active_eu');
+Route::get('/detail-eu/{eu_id}', 'EuController@detail_eu');
 Route::get('/edit-eu/{eu_id}', 'EuController@edit_eu');
 Route::get('/delete-eu/{eu_id}', 'EuController@delete_eu');
 Route::post('/update-eu/{eu_id}', 'EuController@update_eu');

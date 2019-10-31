@@ -32,7 +32,7 @@
                 <form action="{{ url('/save-eu')}}" method="post">
                     @csrf
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Nom</label>
                                 <input  value="{{ old('eu_name') }}" name="eu_name" type="text" class="form-control">
@@ -42,7 +42,7 @@
                             @endif
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Adresse</label>
                                 <input  value="{{ old('eu_adresse') }}" name="eu_adresse" type="text" class="form-control">
@@ -71,17 +71,6 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_efectif')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Téléphone</label>
-                                <input  value="{{ old('eu_phone') }}" name="eu_phone" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('eu_phone'))
-                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('eu_phone')}}</small>
-                            @endif
-                        </div>
-
-
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -93,15 +82,16 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_secteurA')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Chiffre d'Affaires</label>
-                                <input  value="{{ old('eu_chifreA') }}" name="eu_chifreA" type="text" class="form-control">
+                                <label class="bmd-label-floating">Téléphone</label>
+                                <input  value="{{ old('eu_phone') }}" name="eu_phone" type="text" class="form-control">
                             </div>
-                            @if($errors->has('eu_chifreA'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('eu_chifreA')}}</small>
+                            @if($errors->has('eu_phone'))
+                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('eu_phone')}}</small>
                             @endif
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-4">
@@ -122,38 +112,14 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_nameDi')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Entreprises Intervenante</label>
-                                <input  value="{{ old('eu_ei') }}" name="eu_ei" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('eu_ei'))
-                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('eu_ei')}}</small>
-                            @endif
-                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Password</label>
-                                <input  value="{{ old('psw') }}" name="psw" type="password" class="form-control">
-                            </div>
-                            @if($errors->has('psw'))
-                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('psw')}}</small>
-                            @endif
-                        </div>
-                        <div class="col-md-4">
-                            <select  class="form-control" name="eu_status">
-                                <option value="0">Status Désactivé</option>
-                            </select>
-                            @if($errors->has('eu_status'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('eu_status')}}</small>
-                            @endif
-                        </div>
+                        <input value="1" name="user_role" type="text" hidden>
                     </div>
-                    <button type="submit" id="md." class="btn btn-danger pull-right">
+                    <a href="/all-eu"  id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
-                        Annuler </button>&nbsp;
+                        Annuler
+                    </a>&nbsp;
                     <button type="submit" id="md." class="btn btn-success pull-right">
                         <i class="material-icons">check</i>
                         Creer </button>

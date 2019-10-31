@@ -22,7 +22,7 @@ class EuController extends Controller
     {
         $this->AdminAuthCheck();
         $search = $request->get('search');
-        $all_eu_info = DB::table('tbl_eu')
+        $all_eu_info = DB::table('tbl_entreprise_utilisatrices')
             ->where('eu_name', 'like', '%'.$search.'%')
             ->orderByDesc('eu_id')
             ->paginate(5);
@@ -36,7 +36,7 @@ class EuController extends Controller
     {
 
         $this->AdminAuthCheck();
-        $all_eu_info =  DB::table('tbl_eu')
+        $all_eu_info =  DB::table('tbl_entreprise_utilisatrices')
             ->orderByDesc('eu_id')
             ->paginate(5);
         $nb= $all_eu_info->count();
@@ -46,34 +46,25 @@ class EuController extends Controller
 
     }
 
-    //Modifier le status
-    public function unactive_eu($eu_id)
+
+    //details eu
+    public function detail_eu($eu_id)
     {
         $this->AdminAuthCheck();
-        DB::table('tbl_eu')
-            ->where('eu_id',$eu_id)
-            ->update(['eu_status'=>0]);
-        Session::put('message', 'Une entreprise utilisatriceu a été désactivé... ');
-        return back();
+        $eu_info = DB::table('tbl_entreprise_utilisatrices')
+            ->where('eu_id', $eu_id)
+            ->first();
 
+        $eu_info = view('eu.details_eu')->with('eu_info', $eu_info);
+        return View('admin_layout')
+            ->with('eu.details_eu', $eu_info);
     }
 
-    //Modifier le chiffreA
-    public function active_eu($eu_id)
-    {
-        $this->AdminAuthCheck();
-        DB::table('tbl_eu')
-            ->where('eu_id',$eu_id)
-            ->update(['eu_status'=>1]);
-        Session::put('message', 'Une entreprise utilisatrice a été activé... ');
-        return back();
-    }
-
-    //supprimer Un categeorie
+    //supprimer Une Entreprise Utilisatrice
     public function delete_eu($eu_id)
     {
         $this->AdminAuthCheck();
-        DB::table('tbl_eu')
+        DB::table('tbl_entreprise_utilisatrices')
             ->where('eu_id',$eu_id)
             ->delete();
         Session::put('message', 'Cette entreprise utilisatrice a été supprimé... ');
@@ -87,12 +78,12 @@ class EuController extends Controller
         request()->validate([
             'eu_adresse' => ['required'],
             'eu_name' => ['required'],
-            'eu_email' => ['required','unique:tbl_eu'],
+            'eu_email' => ['required','unique:tbl_entreprise_utilisatrices'],
             'eu_secteurA' => ['required'],
             'eu_phone' => ['required'],
             'eu_nameDi' => ['required'],
-            'eu_ei' => ['required'],
-            'psw' => ['required'],
+            'eu_contactDe' => ['required'],
+            'eu_efectif' => ['required'],
         ]);
 
         $data = array();
@@ -103,53 +94,19 @@ class EuController extends Controller
         $data['eu_phone'] = $request->eu_phone;
         $data['eu_efectif'] = $request->eu_efectif;
         $data['eu_secteurA'] = $request->eu_secteurA;
-        $data['eu_chifreA'] = $request->eu_chifreA;
         $data['eu_contactDe'] = $request->eu_contactDe;
         $data['eu_nameDi'] = $request->eu_nameDi;
-        $data['eu_ei'] = $request->eu_ei;
-        $data['psw'] = $request->psw;
-        $data['eu_status'] = $request->eu_status;
-        $data['token'] = str_random(30);
+        $data['user_role'] = $request->user_role;
 
         Mail::send('mail.activationEU', $data, function ($message) use ($data){
             $message->to($data['eu_email']);
             $message->from('mazesenegal@gmail.com');
             $message->subject('Activation Votre Compte');
         });
-        DB::table('tbl_eu')->insert($data);
+        DB::table('tbl_entreprise_utilisatrices')->insert($data);
         Session::put('message', "Un mail a été envoyé a ".$data['eu_name']." !");
-        dump('ok');
+         dump($data);
 
-    }
-
-    //Activer un Organisme
-    public function userActivation($token)
-    {
-        $this->AdminAuthCheck();
-        $check = DB::table('tbl_eu')
-            ->where('token', $token)
-            ->where('eu_chiffreA',0)->first();
-        if(!is_null($check)){
-            DB::table('tbl_eu')
-                ->where('token',$token)
-                ->update(['eu_chiffreA'=>1]);
-            return redirect('/');
-
-        } elseif (['eu_chiffreA'==1])
-        {
-            return Redirect::to('/eu')
-                ->withInput()->withErrors([
-                    'eu_name' => "Vous avez déja activé votre Compte",
-
-                ]);
-        }
-        else{
-            return Redirect::to('/eu')
-                ->withInput()->withErrors([
-                    'eu_name' => "Vous avez déja activé votre Compte",
-
-                ]);
-        }
     }
 
 
@@ -157,7 +114,7 @@ class EuController extends Controller
     public function edit_eu($eu_id)
     {
         $this->AdminAuthCheck();
-        $eu_info = DB::table('tbl_eu')
+        $eu_info = DB::table('tbl_entreprise_utilisatrices')
             ->where('eu_id', $eu_id)
             ->first();
 
@@ -176,14 +133,12 @@ class EuController extends Controller
             'eu_email' => ['required'],
             'eu_secteurA' => ['required'],
             'eu_phone' => ['required'],
-            'eu_efectif' => ['required'],
-            'eu_chifreA' => ['required'],
-            'eu_contactDe' => ['required'],
             'eu_nameDi' => ['required'],
-            'eu_ei' => ['required'],
-            'psw' => ['required'],
+            'eu_contactDe' => ['required'],
+            'eu_efectif' => ['required'],
         ]);
 
+        $data = array();
         $data['eu_id'] = $request->eu_id;
         $data['eu_name'] = $request->eu_name;
         $data['eu_email'] = $request->eu_email;
@@ -191,13 +146,9 @@ class EuController extends Controller
         $data['eu_phone'] = $request->eu_phone;
         $data['eu_efectif'] = $request->eu_efectif;
         $data['eu_secteurA'] = $request->eu_secteurA;
-        $data['eu_chifreA'] = $request->eu_chifreA;
         $data['eu_contactDe'] = $request->eu_contactDe;
         $data['eu_nameDi'] = $request->eu_nameDi;
-        $data['eu_ei'] = $request->eu_ei;
-        $data['psw'] = $request->psw;
-        $data['eu_status'] = $request->eu_status;
-        DB::table('tbl_eu')
+        DB::table('tbl_entreprise_utilisatrices')
             ->where('eu_id', $eu_id)
             ->update($data);
 

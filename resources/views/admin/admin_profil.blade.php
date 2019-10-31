@@ -56,7 +56,6 @@
                 </h6>
                 <h6 class="card-category text-gray">Téléphone : {{ Session::get('admin_phone') }}</h6>
                 <h6 class="card-category text-gray">Email : {{ Session::get('admin_email') }}</h6>
-
             </div>
         </div>
     </div>

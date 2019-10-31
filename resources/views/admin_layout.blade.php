@@ -32,7 +32,7 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="nav-item {{ request()->is('dashboard')? 'active' : '' }}">
+                <li class="nav-item {{ request()->is('dashboard','/detail-eu/{eu_id}')? 'active' : '' }}">
                     <a class="nav-link" href="{{URL::to('/dashboard')}}">
                         <i class="material-icons EI">dashboard</i>
                         <p>Tableau de bord</p>
@@ -645,6 +645,18 @@
             if (confirmed) {
                 window.location.href = link;
             };
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(document).on('change', '#admin_structure', function() {
+            var air_id =  $('#admin_structure').val();     // get id the value from the select
+            $('#admin_email').val(air_id);   // set the textbox value
+
+            // if you want the selected text instead of the value
+            // var air_text = $('.aircraftsName option:selected').text();
         });
     });
 </script>

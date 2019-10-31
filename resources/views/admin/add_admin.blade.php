@@ -36,7 +36,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Adresse e-mail</label>
-                                <input  value="{{ old('admin_email') }}" name="admin_email" type="email" class="form-control">
+                                <input  id="admin_email"  name="admin_email" type="email" class="form-control">
                             </div>
                             @if($errors->has('admin_email'))
                             <small class="form-text text-muted text-danger">{{$errors->first('admin_email')}}</small>
@@ -52,18 +52,6 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('admin_password')}}</small>
                             @endif
                         </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Structure</label>
-                                <input  value="{{ old('admin_structure') }}" name="admin_structure" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('admin_structure'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('admin_structure')}}</small>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Téléphone</label>
@@ -73,25 +61,49 @@
                             <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('admin_short_description')}}</small>
                             @endif
                         </div>
+
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
-                            <select class="form-control" name="admin_role">
-                                   <option value="">Selectioner un role</option>
-                                @if( Session::get('admin_role')==1)
-                                <option value="1">Administrateur</option>
+                            <div class="form-group">
+                                <select class="form-control" id="admin_structure" name="admin_structure"
+                                data-dependant="state">
+                                <option value="">Selectionner une structure</option>
+                                    @foreach($EU as $v_eu)
+                                    <option value="{{ $v_eu->eu_id }}" >
+                                        {{ $v_eu->eu_name }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @if($errors->has('admin_structure'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('admin_structure')}}</small>
                                 @endif
-                                    <option  value="2">Utilisateur</option>
-                            </select>
-                            @if($errors->has('admin_role'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('admin_role')}}</small>
-                            @endif
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <select  class="form-control" name="admin_status">
-                                <option value="0">Status Désactivé</option>
-                            </select>
-                            @if($errors->has('admin_status'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('admin_status')}}</small>
-                            @endif
+                            <div class="form-group">
+                                <select class="form-control" name="admin_role">
+                                    <option value="">Selectioner un role</option>
+                                    @if( Session::get('admin_role')==1)
+                                    <option value="1">Administrateur</option>
+                                    @endif
+                                    <option  value="2">Utilisateur</option>
+                                </select>
+                                @if($errors->has('admin_role'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('admin_role')}}</small>
+                                @endif
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <select  class="form-control" name="admin_status">
+                                    <option value="0">Status Désactivé</option>
+                                </select>
+                                @if($errors->has('admin_status'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('admin_status')}}</small>
+                                @endif
+                            </div>
                         </div>
                     </div>
 

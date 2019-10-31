@@ -15,7 +15,17 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.add_admin');
+        $EU = DB::table('tbl_entreprise_utilisatrices')
+            ->get();
+        return view('admin.add_admin', ['EU' => $EU]);
+    }
+
+    public function getInfo(Request $request)
+    {
+        $fill = DB::table('tbl_entreprise_utilisatrices')->where('eu_id', $request->admin_structure)
+            ->select('eu_email')
+            ->get();
+        return Response::json(['success'=>true, 'info'=>$fill]);
     }
 
     public  function  search(Request $request)
@@ -230,7 +240,6 @@ class AdminController extends Controller
             ->with('admin.all_admin', $admin_info);
 
     }
-
 
     public function update_pass(Request $request, $admin_id)
     {
