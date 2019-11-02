@@ -38,7 +38,7 @@
                         <p>Tableau de bord</p>
                     </a>
                 </li>
-
+                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                 <li class="nav-item {{ request()->is('all-admin','add-admin')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-admin','add-admin')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                         <i class="material-icons of">supervised_user_circle</i>
@@ -52,6 +52,7 @@
                                     <span class="text-white">Listes des utilisateurs</span>
                                 </a>
                             </li>
+
                             <li class="nav-item {{ request()->is('add-admin')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-admin')}}">
                                     <i class="material-icons">playlist_add</i>
@@ -61,6 +62,7 @@
                         </ul>
                     </div>
                 </li>
+                @endif
                 <li class="nav-item {{ request()->is('all-of','add-of')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-of','add-of')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
                         <i class="material-icons userI">bubble_chart</i>
@@ -74,12 +76,14 @@
                                     <span class="text-white">Listes des OF</span>
                                 </a>
                             </li>
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                             <li class="nav-item {{ request()->is('add-of')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-of')}}">
                                     <i class="material-icons">playlist_add</i>
                                     <span class="text-white">Ajouter un OF</span>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
@@ -96,12 +100,14 @@
                                     <span class="text-white">Listes des E.U</span>
                                 </a>
                             </li>
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                             <li class="nav-item {{ request()->is('add-eu')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-eu')}}">
                                     <i class="material-icons">playlist_add</i>
                                     <span class="text-white">Ajouter une E.U</span>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
@@ -245,7 +251,12 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
             <div class="container-fluid">
+                <div class="navbar-wrapper">
 
+                    <a class="navbar-brand" style="font-family: 'Manjari'; font-size: small" href="#pablo">
+                        Nom de votre structure :
+                        <span style="font-family: 'Manjari Bold'; color: #0d704d">{{  Session::get('admin_structure') }}</span></a>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="navbar-toggler-icon icon-bar"></span>
@@ -256,7 +267,7 @@
 
                     <ul class="navbar-nav">
                         <li>
-                            <a class="navbar-brand" href="#pablo">Utilisateur :
+                            <a class="navbar-brand" style="font-size: small" href="#pablo">Utilisateur :
 
                                 <strong style="font-family: 'Manjari'" class="text-danger">  {{  Session::get('admin_prenom') }} </strong>
                             </a>
@@ -273,7 +284,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                 <a class="dropdown-item"  href="{{ URL::to('/edit-admin-profil/'.
                                       Session::get('admin_id'))}}">
-                                    Profil de  {{ Session::get('admin_structure') }}</a>
+                                    Profil de  {{ Session::get('admin_prenom') }}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/logout">Se déconnecter</a>
                             </div>

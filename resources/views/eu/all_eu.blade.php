@@ -69,10 +69,12 @@
                         $v_eu->eu_id)}}">
                                 <i class="material-icons">visibility</i>
                             </a>
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-eu/'.
                         $v_eu->eu_id)}}">
                                 <i class="material-icons">edit</i>
                             </a>
+                            @endif
                             @if( Session::get('admin_role')==1)
                             <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-eu/'.
                         $v_eu->eu_id)}}" id="delete">

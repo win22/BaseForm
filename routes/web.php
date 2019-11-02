@@ -31,7 +31,7 @@ Route::post('/add-admin/fetch', 'AdminController@fetch')
     ->name('SuperAdminController.fetch');
 
 Route::get('/searchUser', 'AdminController@search');
-
+Route::get('/details-admin/{admin_id}', 'AdminController@detail_admin');
 Route::get('/unactive-admin/{admin_id}', 'AdminController@unactive_admin');
 Route::get('/active-admin/{admin_id}', 'AdminController@active_admin');
 Route::get('/edit-admin/{admin_id}', 'AdminController@edit_admin');

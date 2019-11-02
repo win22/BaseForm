@@ -1,5 +1,6 @@
 @extends('admin_layout')
 @section('contenu')
+
 <div class="row">
     <div class="col-md-8">
         <div class="card">
@@ -56,9 +57,11 @@
                 </h6>
                 <h6 class="card-category text-gray">Téléphone : {{ Session::get('admin_phone') }}</h6>
                 <h6 class="card-category text-gray">Email : {{ Session::get('admin_email') }}</h6>
+                @if(Session::get('admin_structure'))
+                <h6 class="card-category text-gray">Votre structure est : {{ Session::get('admin_structure') }}</h6>
+                @endif
             </div>
         </div>
     </div>
 </div>
-
 @endsection

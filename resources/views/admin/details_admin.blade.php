@@ -5,8 +5,8 @@
     <div class="col-md-10">
         <div class="card">
             <div class="card-header card-header-info">
-                <h4 class="card-title">Entreprise utilisatrice <i class="fa fa-industry"></i></h4>
-                <p class="card-category">Afficher les détails d'une entreprise utilisatrice</p>
+                <h4 class="card-title">Utilisatadminr <i class="fa fa-user"></i></h4>
+                <p class="card-category">Afficher les détails d'un utilisatadminr</p>
             </div>
             <div class="card-body">
 
@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $eu_info->eu_name }}</span>
+                            <span style="font-family: 'Manjari Bold'"> {{ $admin_info->admin_prenom }}</span>
                         </p>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $eu_info->eu_email }}</span>
+                            <span style="font-family: 'Manjari Bold'"> {{ $admin_info->admin_email }}</span>
                         </p>
                     </div>
                 </div>
@@ -45,75 +45,11 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $eu_info->eu_phone }}</span>
+                            <span style="font-family: 'Manjari Bold'"> {{ $admin_info->admin_phone }}</span>
                         </p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <p class="card-title">
-                        <li class="fa fa-map-marker " style="color: #036b75!important;"></li>&nbsp;
-                        Adresse :
-                        </p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $eu_info->eu_adresse }}</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <p class="card-title">
-                        <li class="fa fa-user" style="color: #036b75!important;"></li>&nbsp;
-                        Directeur :
-                        </p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $eu_info->eu_nameDi }}</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <p class="card-title">
-                        <li class="fa fa-external-link" style="color: #036b75!important;"></li>&nbsp;
-                        Secteur d'activité :
-                        </p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $eu_info->eu_secteurA }}</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <p class="card-title">
-                        <li class="fa fa-group" style="color: #036b75!important;"></li>&nbsp;
-                        Effectif :
-                        </p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $eu_info->eu_efectif }}</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <p class="card-title">
-                        <li class="fa fa-user" style="color: #036b75!important;"></li>&nbsp;
-                        Contacte pour la commande
-                        </p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $eu_info->eu_contactDe }}</span>
-                        </p>
-                    </div>
-                </div>
+
                 <div class="row">
                     <div class="col-md-3">
                         <p class="card-title">
@@ -123,22 +59,99 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $eu_info->created_at }}</span>
+                            <span style="font-family: 'Manjari Bold'"> {{ $admin_info->created_at }}</span>
                         </p>
                     </div>
                 </div>
-                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                @if($admin_info->admin_structure)
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-title">
+                        <li class="fa fa-home" style="color: #036b75!important;"></li>&nbsp;
+                            Structure  :
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'"> {{ $admin_info->admin_structure }}</span>
+                        </p>
+                    </div>
+                </div>
+                @endif
+                @if($admin_info->user_role)
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-title">
+                        <li class="fa fa-cubes" style="color: #036b75!important;"></li>&nbsp;
+                        Categorié  :
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        @if($admin_info->user_role == 1)
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'">Entreprise utilisatrice</span>
+                        </p>
+                        @elseif($admin_info->user_role == 2)
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'">Entreprise intervenante</span>
+                        </p>
+                        @else
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'">Organisme de formation</span>
+                        </p>
+                        @endif
+                    </div>
+                </div>
+                @endif
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-title">
+                        <li class="fa fa-circle" style="color: #036b75!important;"></li>&nbsp;
+                        status  :
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        @if($admin_info->admin_status == 1)
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'">Activé</span>
+                        </p>
+                        @else
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'">Désactivé</span>
+                        </p>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-title">
+                        <li class="fa fa-user" style="color: #036b75!important;"></li>&nbsp;
+                        Role  :
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        @if($admin_info->admin_role == 1)
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'">Administrateur</span>
+                        </p>
+                        @else
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'">Utilisateur</span>
+                        </p>
+                        @endif
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="{{ URL::to('/edit-eu/'.
-                        $eu_info->eu_id)}}"  id="md." class="btn btn-warning pull-right">
+                        <a href="{{ URL::to('/edit-admin/'.
+                        $admin_info->admin_id)}}"  id="md." class="btn btn-warning pull-right">
                             <i class="material-icons">edit</i>&nbsp;
                             Modifier
                         </a>&nbsp;
                     </div>
 
                 </div>
-                @endif
+
             </div>
         </div>
 

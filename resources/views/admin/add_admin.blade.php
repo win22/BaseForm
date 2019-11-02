@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('contenu')
-
+@if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
 <div id="alert" class="alert alert-success alert-with-icon col-md-4 right">
@@ -95,8 +95,12 @@
                                     <option value="">Selectioner un role</option>
                                     @if( Session::get('admin_role')==1)
                                     <option value="1">Administrateur</option>
-                                    @endif
                                     <option  value="2">Utilisateur</option>
+                                    <option  value="3">Autres utilisateur</option>
+                                    @else
+                                    <option  value="2">Utilisateur</option>
+                                    <option  value="3">Autres utilisateur</option>
+                                    @endif
                                 </select>
                                 @if($errors->has('admin_role'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('admin_role')}}</small>
@@ -153,4 +157,5 @@
 
 
 </div>
+@endif
 @endsection

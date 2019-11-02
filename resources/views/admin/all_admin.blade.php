@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('contenu')
-
+@if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
 <div id="alert" class="alert alert-success alert-with-icon col-md-4 right">
@@ -68,7 +68,7 @@
                         <td class="text-center">{{ $v_admin->created_at }}</td>
                         <td class="text-center">
                             @if($v_admin->admin_role==1)
-                            <span class="label success">
+                            <span class="label" style="font-family: 'Manjari Bold'; color: #ffa700;">
                             Administrateur
                         </span>
                             @else
@@ -79,11 +79,11 @@
                         </td>
                         <td class="text-center">
                             @if($v_admin->admin_status==1)
-                            <span class="label text-success">
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
                             Activé
                         </span>
                             @else
-                            <span class="label text-danger">
+                            <span class="label" style="font-family: 'Manjari Bold'; color: red;" >
                             Desactivé
                         </span>
                             @endif
@@ -102,6 +102,10 @@
                             </a>
                             @endif
                             @endif
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/details-admin/'.
+                        $v_admin->admin_id)}}">
+                                <i class="material-icons">visibility</i>
+                            </a>
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-admin/'.
                         $v_admin->admin_id)}}">
                                 <i class="material-icons">edit</i>
@@ -134,7 +138,5 @@
     </div>
 
 </div>
-
-
-
+@endif
 @endsection

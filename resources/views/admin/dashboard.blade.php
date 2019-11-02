@@ -3,6 +3,7 @@
 
 <div class="row" >
 
+    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
     <div id="alert2"  class="col-lg-3 col-md-6 col-sm-6">
         <div  class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
@@ -30,6 +31,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div id="alert3" class="col-lg-3 col-md-6 col-sm-6">
         <div   class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">

@@ -9,8 +9,9 @@ use App\Http\Requests;
 use Illuminate\View\View;
 use Session;
 Use Mail;
-use \Crypt;
+
 session_start();
+
 class AdminController extends Controller
 {
 
@@ -164,7 +165,7 @@ class AdminController extends Controller
         });
         DB::table('tbl_admin')->insert($data);
 
-          Session::put('message', "Un mail a été envoyé a ".$data['admin_structure']." !");
+          Session::put('message', "Un mail a été envoyé a ".$data['admin_prenom']." !");
           return redirect('/all-admin');
     }
 
@@ -207,9 +208,13 @@ class AdminController extends Controller
             ->where('admin_id', $admin_id)
             ->first();
 
-        $admin_info = view('admin.edit_admin')->with('admin_info', $admin_info);
+        $EU = DB::table('tbl_entreprise_utilisatrices')
+            ->get();
+
+        $admin_info = view('admin.edit_admin')->with('admin_info', $admin_info)
+            ->with('EU', $EU);
         return View('admin_layout')
-            ->with('admin.all_admin', $admin_info);
+            ->with('admin.all_admin', $admin_info, $EU);
 
         //return View('admin.edit_admin');
     }
@@ -218,21 +223,24 @@ class AdminController extends Controller
     {
         $this->AdminAuthCheck();
         request()->validate([
-            'admin_structure' => ['required'],
-            'admin_email' => ['required'],
-            'admin_role' => ['required'],
-            'admin_structure' => ['required'],
-            'admin_phone' => ['required'],
-            'admin_password' => ['required'],
+            'admin_structure' => ['max:30'],
+            'admin_email' => ['required', 'max:191'],
+            'admin_role' => ['required', 'max:2'],
+            'user_role' => [ 'max:2'],
+            'admin_phone' => ['required', 'max:60'],
+            'admin_prenom' => ['required', 'max:30'],
+            'admin_password' => ['max:120', 'min:5'],
         ]);
         $data = array();
         $data['admin_id'] = $request->admin_id;
         $data['admin_email'] = $request->admin_email;
-        $data['admin_password'] = $request->admin_password;
+//        $data['admin_password'] = md5($request->admin_password);
         $data['admin_role'] = $request->admin_role;
         $data['admin_structure'] = $request->admin_structure;
         $data['admin_phone'] = $request->admin_phone;
+        $data['admin_prenom'] = $request->admin_prenom;
         $data['admin_status'] = $request->admin_status;
+        $data['user_role'] = $request->user_role;
         $image = $request->file('admin_image');
         if ($image){
             request()->validate([
@@ -251,7 +259,7 @@ class AdminController extends Controller
         DB::table('tbl_admin')
             ->where('admin_id', $admin_id)
             ->update($data);
-        Session::put('message', "l'utilisateur ".$data['admin_structure']." a eté modifié avec Succes !");
+        Session::put('message', "l'utilisateur ".$data['admin_prenom']." a eté modifié avec Succes !");
         return redirect('/all-admin');
         dump($data);
 
@@ -286,6 +294,18 @@ class AdminController extends Controller
             ->update($data);
         Session::put('message', "Vous avez modifié  votre mot de passe avec Succes !");
         return redirect('/all-admin');
+    }
+
+    public function detail_admin($admin_id)
+    {
+        $this->AdminAuthCheck();
+        $admin_info = DB::table('tbl_admin')
+            ->where('admin_id', $admin_id)
+            ->first();
+
+        $admin_info = view('admin.details_admin')->with('admin_info', $admin_info);
+        return View('admin_layout')
+            ->with('admin.details_admin', $admin_info);
     }
 
     //permet de verifier si l'utilisateur est connecté
