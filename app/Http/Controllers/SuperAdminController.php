@@ -41,6 +41,8 @@ class SuperAdminController extends Controller
             ->count();
         $all_doc_count = DB::table('tbl_documents')
             ->count();
+        $all_stag_count = DB::table('tbl_stagiaires')
+            ->count();
 
 
         $all_admin_date = DB::table('tbl_admin')
@@ -79,6 +81,10 @@ class SuperAdminController extends Controller
             ->orderByDesc('doc_id')
             ->select('created_at')
             ->first();
+        $all_stag_date = DB::table('tbl_stagiaires')
+            ->orderByDesc('stag_id')
+            ->select('created_at')
+            ->first();
 
         return view('admin.dashboard', ['all_admin_count' => $all_admin_count ])
             ->with('all_of_count', $all_of_count)
@@ -89,6 +95,7 @@ class SuperAdminController extends Controller
             ->with('all_formt_count', $all_formt_count)
             ->with('all_even_count', $all_even_count)
             ->with('all_doc_count', $all_doc_count)
+            ->with('all_stag_count', $all_stag_count)
 
             ->with('all_of_date', $all_of_date)
             ->with('all_eu_date', $all_eu_date)
@@ -98,6 +105,7 @@ class SuperAdminController extends Controller
             ->with('all_formt_date', $all_formt_date)
             ->with('all_even_date', $all_even_date)
             ->with('all_doc_date', $all_doc_date)
+            ->with('all_stag_date', $all_stag_date)
             ->with('all_admin_date', $all_admin_date);
     }
 

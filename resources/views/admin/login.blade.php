@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>BaseForm | connexion</title>
+    <title>Connexion</title>
     <link href="{{asset('backend/css/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -17,7 +17,7 @@
             <div class="row w-100">
                 <div class="col-lg-5 mx-auto">
                     <div class="auto-form-wrapper">
-                        <h3 class="text-center"><span class="text-success">BaseForm</span>| Connexion</h3>
+                        <h3 class="text-center"><span class="text-primary">BaseForm</span>| Connexion</h3>
                         <form action="/admin_login" method="post">
                             @csrf
                             <div class="form-group">
@@ -57,7 +57,7 @@
 
                             <div class="form-group">
 
-                                <button class="btn btn-success submit-btn btn-block">
+                                <button class="btn btn-primary submit-btn btn-block">
                                     <i class="material-icons mr-6">send</i>
                                     Se connecter
 

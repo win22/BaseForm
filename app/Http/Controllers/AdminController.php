@@ -21,8 +21,11 @@ class AdminController extends Controller
             ->get();
         $OF = DB::table('tbl_organisme_formation')
             ->get();
+        $EI = DB::table('tbl_entreprise_intervenantes')
+            ->get();
         return view('admin.add_admin', ['EU' => $EU])
-              ->with('OF', $OF);
+              ->with('OF', $OF)
+              ->with('EI', $EI);
     }
 
 
@@ -40,6 +43,10 @@ class AdminController extends Controller
             ->where($select, $value)
             ->groupBy($dependent)
             ->get();
+            $data3 = DB::table('tbl_entreprise_intervenantes')
+            ->where($select, $value)
+            ->groupBy($dependent)
+            ->get();
 
 
             $output = '<option value="">Select '.ucfirst($dependent).'</option>';
@@ -48,12 +55,17 @@ class AdminController extends Controller
                 $text = 'Entreprise utilisatrice';
                 $output = '<option value="'.$row->$dependent.'">'.$text.'</option>';
             }
-        foreach ($data2 as $row)
-        {
-            $text = 'Organisme de formation';
-            $output = '<option value="'.$row->$dependent.'">'.$text.'</option>';
-        }
-            echo  $output;
+            foreach ($data2 as $row)
+            {
+                $text = 'Organisme de formation';
+                $output = '<option value="'.$row->$dependent.'">'.$text.'</option>';
+            }
+            foreach ($data3 as $row)
+            {
+                $text = 'Entreprise intervenante';
+                $output = '<option value="'.$row->$dependent.'">'.$text.'</option>';
+            }
+                echo  $output;
 
     }
 
@@ -166,7 +178,7 @@ class AdminController extends Controller
         Mail::send('mail.activation', $data2, function ($message) use ($data){
             $message->to($data['admin_email']);
             $message->from('mailtrapmail@gmail.com');
-            $message->subject('Activation Votre Compte ');
+            $message->subject('Activation de  votre Compte ');
 
         });
         DB::table('tbl_admin')->insert($data);
@@ -216,16 +228,17 @@ class AdminController extends Controller
 
         $EU = DB::table('tbl_entreprise_utilisatrices')
             ->get();
-        $OF = DB::table('tbl_organisme_formation')
+        $EI = DB::table('tbl_entreprise_intervenantes')
             ->get();
         $OF = DB::table('tbl_organisme_formation')
             ->get();
 
         $admin_info = view('admin.edit_admin')->with('admin_info', $admin_info)
             ->with('EU', $EU)
-            ->with('OF', $OF);
+            ->with('OF', $OF)
+            ->with('EI', $EI);
         return View('admin_layout')
-            ->with('admin.all_admin', $admin_info, $EU);
+            ->with('admin.all_admin', $admin_info, $EU, $EI, $OF);
 
         //return View('admin.edit_admin');
     }

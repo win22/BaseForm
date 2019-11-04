@@ -16,6 +16,7 @@ class StagiaireController extends Controller
     public function index()
     {
 
+        $this->stagAuthCheck();
         $OF_all = DB::table('tbl_organisme_formation')
             ->get();
 

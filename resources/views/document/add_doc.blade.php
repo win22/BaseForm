@@ -1,5 +1,6 @@
 @extends('admin_layout')
 @section('contenu')
+@if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
 
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
@@ -29,7 +30,7 @@
                 <p class="card-category">Ajouter un Document</p>
             </div>
             <div class="card-body">
-                <form action="{{ url('/save-doc')}}" method="post">
+                <form enctype="multipart/form-data" action="{{ url('/save-doc')}}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-md-5">
@@ -54,6 +55,17 @@
                             @endif
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div>
+                                <label class="bmd-label-floating" style="color: black !important;">Choisir le document</label><br>
+                                <input  required accept=".pdf,.doc" type="file" name="doc_file">
+                            </div>
+                            @if($errors->has('doc_file'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('doc_file')}}</small>
+                            @endif
+                        </div>
+                    </div>
 
                     <button type="submit" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
@@ -68,6 +80,6 @@
         </div>
     </div>
 
-
 </div>
+@endif
 @endsection

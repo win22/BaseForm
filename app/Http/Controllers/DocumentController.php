@@ -62,7 +62,7 @@ class DocumentController extends Controller
     {
         $this->AdminAuthCheck();
         request()->validate([
-            'doc_name' => ['required'],
+            'doc_name' => ['required', 60],
             'doc_contenu' => ['required'],
 
         ]);
@@ -70,11 +70,21 @@ class DocumentController extends Controller
         $data['doc_id'] = $request->doc_id;
         $data['doc_name'] = $request->doc_name;
         $data['doc_contenu'] = $request->doc_contenu;
-
+        $file = $request->file('doc_file');
+        if ($file){
+            $file_full_name = strtolower($file->getClientOriginalName());
+            $upload_path = 'download/';
+            $file_url = $file_full_name;
+            $success = $file->move($upload_path,$file_full_name);
+            if($success){
+                $data['doc_file'] = $file_url;
+            }
+        }
 
         DB::table('tbl_documents')->insert($data);
         Session::put('message', "la document " . $data['doc_name'] . " a été crée avec succes !");
         return redirect('/all-doc');
+
 
     }
 
@@ -98,7 +108,7 @@ class DocumentController extends Controller
     {
         $this->AdminAuthCheck();
         request()->validate([
-            'doc_name' => ['required'],
+            'doc_name' => ['required', 'max:60'],
             'doc_contenu' => ['required'],
 
         ]);
@@ -106,6 +116,17 @@ class DocumentController extends Controller
         $data['doc_id'] = $request->doc_id;
         $data['doc_name'] = $request->doc_name;
         $data['doc_contenu'] = $request->doc_contenu;
+        $file = $request->file('doc_file');
+
+        if ($file){
+            $file_full_name = strtolower($file->getClientOriginalName());
+            $upload_path = 'download/';
+            $file_url = $file_full_name;
+            $success = $file->move($upload_path,$file_full_name);
+            if($success){
+                $data['doc_file'] = $file_url;
+            }
+        }
 
         DB::table('tbl_documents')
             ->where('doc_id', $doc_id)
@@ -116,8 +137,17 @@ class DocumentController extends Controller
     }
 
 
+    public function detail_doc($doc_id)
+    {
+        $this->adminAuthCheck();
+        $doc_info = DB::table('tbl_documents')
+            ->where('doc_id',$doc_id)
+            ->first();
 
-
+        $doc_info = view('document.details_doc')->with('doc_info', $doc_info);
+        return View('admin_layout')
+            ->with('document.details_doc', $doc_info);
+    }
 
 //permet de verifier si l'doc est connecté
     public function AdminAuthCheck()

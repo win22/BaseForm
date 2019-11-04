@@ -147,7 +147,7 @@
                             @endif
                             @endif
 
-                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/details-stag/'.
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="visualiser"  href="{{ URL::to('/details-stag/'.
                         $v_stag->stag_id)}}">
                                 <i class="material-icons">visibility</i>
                             </a>
@@ -168,21 +168,21 @@
                     </tbody>
                 </table>
                 @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                <p href="#" id="total_records">
+                <p  id="total_records">
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
-                    @else
-                    Aucune information trouvé
-                    @endif
                 </p>
                 @else
-                <p href="#" id="total_records">
+                <p class="text-center">Aucune information trouvé</p>
+                @endif
+                @else
+                <p  id="total_records">
                     @if($nb1>0)
                     Total des informations : <span id="total_records">{{ $nb1 }}</span>
-                    @else
-                    Aucune information trouvé
-                    @endif
                 </p>
+                @else
+                <p class="text-center">Aucune information trouvé</p>
+                @endif
                 @endif
 
                 @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)

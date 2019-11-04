@@ -80,7 +80,12 @@
                                         {{ $v_eu->name }}
                                     </option>
                                     @endforeach
-                                    @foreach($OF as $v_of)
+                                    @foreach($EI as $v_of)
+                                    <option value="{{ $v_of->name }}" >
+                                        {{ $v_of->name	 }}
+                                    </option>
+                                    @endforeach
+                                    @foreach($EU as $v_of)
                                     <option value="{{ $v_of->name }}" >
                                         {{ $v_of->name	 }}
                                     </option>
@@ -98,10 +103,10 @@
                                     <option value="{{ $admin_info->user_role }}">Entreprise utilisatrice</option>
                                     @elseif($admin_info->user_role == 2)
                                     <option value="{{ $admin_info->user_role }}">Entreprise intervenante</option>
-                                    @elseif($admin_info->user_role == 2)
+                                    @elseif($admin_info->user_role == 3)
                                     <option value="{{ $admin_info->user_role }}">Organisme de formation</option>
                                     @endif
-                                    <option value="">Categorie Structure</option>
+
                                 </select>
                                 @if($errors->has('user_role'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('user_role')}}</small>

@@ -137,6 +137,8 @@ Route::get('/searchDoc', 'DocumentController@search');
 Route::get('/delete-doc/{doc_id}', 'DocumentController@delete_doc');
 Route::get('/edit-doc/{doc_id}', 'DocumentController@edit_doc');
 Route::post('/update-doc/{doc_id}', 'DocumentController@update_doc');
+Route::get('/details-doc/{doc_id}', 'DocumentController@detail_doc');
+
 
 
 //Route pour la gestion des stagiares

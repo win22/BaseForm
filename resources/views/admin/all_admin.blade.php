@@ -47,7 +47,7 @@
                     <thead class=" text-danger">
 
                     <th class="text-center">image</th>
-                    <th class="text-center">Structure</th>
+                    <th class="text-center">Nom</th>
                     <th class="text-center">Adresse e-mail</th>
                     <th class="text-center">Téléphone</th>
                     <th class="text-center">Date de Creation</th>
@@ -62,19 +62,23 @@
                         <td class="text-center"><img src="{{ URL::to($v_admin->admin_image) }}"
                                  style=" height: 40px; width: 40px; border-radius: 15px;">
                         </td>
-                        <td class="text-center">{{ $v_admin->admin_structure }}</td>
+                        <td class="text-center">{{ $v_admin->admin_prenom }}</td>
                         <td class="text-center">{{ $v_admin->admin_email }}</td>
                         <td class="text-center">{{ $v_admin->admin_phone }}</td>
                         <td class="text-center">{{ $v_admin->created_at }}</td>
                         <td class="text-center">
                             @if($v_admin->admin_role==1)
-                            <span class="label" style="font-family: 'Manjari Bold'; color: #ffa700;">
+                            <span class="label" style="font-family: 'Manjari Bold'; color: #ff6a0f;">
                             Administrateur
-                        </span>
-                            @else
-                            <span class="label label-warning">
+                            </span>
+                            @elseif($v_admin->admin_role==2)
+                            <span class="label" style="font-family: 'Manjari Bold'; color: #05af5a;">
                             Utilisateur
-                        </span>
+                            </span>
+                            @else
+                            <span class="label" style="font-family: 'Manjari Bold'; color: #09a2ff;">
+                            Autres utilisateurs
+                            </span>
                             @endif
                         </td>
                         <td class="text-center">
@@ -121,13 +125,13 @@
                     @endforeach
                     </tbody>
                 </table>
-                <p href="#" id="total_records">
+                <p  id="total_records">
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
-                    @else
-                    Aucune information trouvé
-                    @endif
                 </p>
+                @else
+                <p class="text-center">Aucune information trouvé</p>
+                @endif
                 <p class="center">
                     {{ $all_admin_info->links() }}
                 </p>

@@ -12,7 +12,7 @@
 =========================================================
 
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.*/
- 
+
 
 /*     brand Colors              */
 
@@ -12549,7 +12549,7 @@ fieldset[disabled][disabled] .has-rose .form-control,
 
 .bmd-form-group:not(.has-success):not(.has-danger) [class^='bmd-label'].bmd-label-floating,
 .bmd-form-group:not(.has-success):not(.has-danger) [class*=' bmd-label'].bmd-label-floating {
-  color: #112706;
+  color: #004e67;
 }
 
 .bmd-form-group [class^='bmd-label'],
@@ -16178,6 +16178,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .table thead tr th {
   font-size: 1.063rem;
+  font-family: "Manjari";
 }
 
 .table .th-description {
@@ -17324,7 +17325,8 @@ label {
 
 .card-stats .card-header .card-category:not([class*="text-"]) {
   color: #000000;
-  font-size: 14px;
+  font-size: 12px;
+  font-family: "Manjari";
 }
 
 .card-stats .card-header+.card-footer {

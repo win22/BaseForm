@@ -173,6 +173,18 @@ class EiController extends Controller
 
 
 
+    public function detail_ei($ei_id)
+    {
+        $this->AdminAuthCheck();
+        $ei_info = DB::table('tbl_entreprise_intervenantes')
+            ->where('ei_id', $ei_id)
+            ->first();
+
+        $ei_info = view('ei.details_ei')->with('ei_info', $ei_info);
+        return View('admin_layout')
+            ->with('ei.details_ei', $ei_info);
+    }
+
 
 //permet de verifier si l'ei est connecté
     public function AdminAuthCheck()

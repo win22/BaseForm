@@ -48,6 +48,7 @@
 
                     <th>Nom du  Document</th>
                     <th>Contenu du document</th>
+                    <th>Fichier </th>
                     <th>Date de création</th>
                     <th>Action</th>
 
@@ -58,15 +59,20 @@
                     <tbody class="text-center">
                     @foreach ( $all_doc_info as $v_doc)
                     <tr>
-                        <td class="center">{{ $v_doc->doc_name }}</td>
-                        <td aria-valuemax="10" class="text-justify">{{ $v_doc->doc_contenu }}</td>
-                        <td  class="center">{{ $v_doc->created_at }}</td>
-                        <td>
+                        <td>{{ $v_doc->doc_name }}</td>
+                        <td>{{ $v_doc->doc_contenu }}</td>
+                        <td>{{ $v_doc->doc_file }}</td>
+                        <td>{{ $v_doc->created_at }}</td>
+                        <td class="td-actions">
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="visualiser"  href="{{ URL::to('/details-doc/'.
+                          $v_doc->doc_id)}}">
+                                <i class="material-icons">visibility</i>
+                            </a>
+                            @if( Session::get('admin_role')==1)
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-doc/'.
                                  $v_doc->doc_id)}}">
                                 <i class="material-icons">edit</i>
                             </a>
-                            @if( Session::get('admin_role')==1)
                             <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-doc/'.
                                  $v_doc->doc_id)}}" id="delete">
                                 <i class="material-icons">close</i>
@@ -78,13 +84,13 @@
                     </tbody>
                 </table>
 
-                <p id="total_records">
+                <p  id="total_records">
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
-                    @else
-                    Aucune information trouvé
-                    @endif
                 </p>
+                @else
+                <p class="text-center">Aucune information trouvé</p>
+                @endif
 
                 {{ $all_doc_info->links() }}
             </div>

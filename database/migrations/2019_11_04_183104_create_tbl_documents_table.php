@@ -15,9 +15,11 @@ class CreateTblDocumentsTable extends Migration
     {
         Schema::create('tbl_documents', function (Blueprint $table) {
             $table->increments('doc_id');
-            $table->string('doc_name');
+            $table->string('doc_name', 60);
             $table->text('doc_contenu');
-            $table->timestamps();
+            $table->text('doc_file');
+            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

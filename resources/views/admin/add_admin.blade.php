@@ -77,6 +77,11 @@
                                         {{ $v_of->name	 }}
                                     </option>
                                     @endforeach
+                                    @foreach($EI as $v_ei)
+                                    <option value="{{ $v_ei->name }}" >
+                                        {{ $v_ei->name	 }}
+                                    </option>
+                                    @endforeach
                                 </select>
                             </div>
                             @if($errors->has('admin_structure'))

@@ -111,13 +111,13 @@
                     @endforeach
                     </tbody>
                 </table>
-                <p id="total_records">
+                <p  id="total_records">
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
-                    @else
-                    Aucune information trouvé
-                    @endif
                 </p>
+                @else
+                <p class="text-center">Aucune information trouvé</p>
+                @endif
                 {{ $all_of_info->links() }}
             </div>
         </div>

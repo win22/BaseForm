@@ -1,5 +1,6 @@
 @extends('admin_layout')
 @section('contenu')
+@if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
 
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
@@ -133,7 +134,7 @@
             </div>
         </div>
     </div>
-
-
 </div>
+
+@endif
 @endsection

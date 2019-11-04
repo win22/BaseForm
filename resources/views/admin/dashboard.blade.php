@@ -22,7 +22,7 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons">date_range</i>Dernier Ajout le :
-                    @if(($all_admin_date) == null)
+                    @if(($all_admin_count) == null)
                     Aucune information n'a été trouvé
                     @else
                     {{ $all_admin_date->created_at }}
@@ -49,7 +49,7 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons">date_range</i>Dernier Ajout le :
-                    @if(($all_of_date) == null)
+                    @if(($all_of_count) == null)
                     Aucune information n'a été trouvée
                     @else
                     {{ $all_of_date->created_at }}
@@ -75,7 +75,7 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons">date_range</i>Dernier Ajout le :
-                    @if(($all_eu_date) == null)
+                    @if(($all_eu_count) == null)
                     Aucune information n'a été trouvée
                     @else
                     {{ $all_eu_date->created_at }}
@@ -101,7 +101,7 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons">date_range</i>Dernier Ajout le :
-                    @if(($all_ei_date) == null)
+                    @if(($all_ei_count) == null)
                     Aucune information n'a été trouvée
                     @else
                     {{ $all_ei_date->created_at }}
@@ -131,7 +131,7 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons">date_range</i>Dernier Ajout le :
-                    @if(($all_itv_date) == null)
+                    @if(($all_itv_count) == null)
                     Aucune information n'a été trouvé
                     @else
                     {{ $all_itv_date->created_at }}
@@ -158,7 +158,7 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons">date_range</i>Dernier Ajout le :
-                    @if(($all_form_date) == null)
+                    @if(($all_form_count) == null)
                         Aucune information n'a été trouvé
                     @else
                     {{ $all_form_date->created_at }}
@@ -186,7 +186,7 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons">date_range</i>Dernier Ajout le :
-                    @if(($all_formt_date) == null)
+                    @if(($all_formt_count) == null)
                     Aucune information n'a été trouvé
                     @else
                     {{ $all_formt_date->created_at }}
@@ -213,7 +213,7 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons">date_range</i>Dernier Ajout le :
-                    @if(($all_even_date) == null)
+                    @if(($all_even_count) == null)
                     Aucune information n'a été trouvé
                     @else
                     {{ $all_even_date->created_at }}
@@ -241,7 +241,7 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons">date_range</i>Dernier Ajout le :
-                    @if(($all_admin_date) == null)
+                    @if(($all_doc_count) == null)
                     Aucune information n'a été trouvé
                     @else
                     {{ $all_doc_date->created_at }}
@@ -251,6 +251,35 @@
         </div>
     </div>
 
+    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3 )
+    <div   id="alert11" class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon" href="/all-admin">
+                    <i class="fa fa-book"></i>
+                </div>
+                <p class="card-category">Stagiaires</p>
+                <a href="/all-doc">
+                    <h3 class="card-title">
+                        {{ $all_stag_count }}
+                    </h3>
+                </a>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">date_range</i>Dernier Ajout le :
+                    @if(($all_stag_count) == null)
+                    Aucune information n'a été trouvé
+                    @else
+                    {{ $all_stag_date->created_at }}
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
+
+
 
 @endsection

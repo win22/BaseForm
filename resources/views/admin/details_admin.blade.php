@@ -1,12 +1,19 @@
 @extends('admin_layout')
 @section('contenu')
+@if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
 
 <div class="row">
     <div class="col-md-10">
         <div class="card">
-            <div class="card-header card-header-info">
+            <div class="card-header card-header-info row">
+                <div class="col-md-6">
                 <h4 class="card-title">Utilisatadminr <i class="fa fa-user"></i></h4>
                 <p class="card-category">Afficher les détails d'un utilisatadminr</p>
+                </div>
+
+                <div class="col-md-6">
+                    <img class="img" style="width: 95px; height : 95px; border-radius: 100px" src="{{URL::to($admin_info->admin_image)}}" />
+                </div>
             </div>
             <div class="card-body">
 
@@ -132,11 +139,15 @@
                     <div class="col-md-5">
                         @if($admin_info->admin_role == 1)
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'">Administrateur</span>
+                            <span  style="font-family: 'Manjari Bold'; color: #ff6a0f;" >Administrateur</span>
+                        </p>
+                        @elseif($admin_info->admin_role == 2)
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'; color: #05af5a;">Utilisateur</span>
                         </p>
                         @else
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'">Utilisateur</span>
+                            <span style="font-family: 'Manjari Bold'; color: #09a2ff;">Autres utilisateurs</span>
                         </p>
                         @endif
                     </div>
@@ -158,5 +169,5 @@
     </div>
 
 </div>
-
+@endif
 @endsection

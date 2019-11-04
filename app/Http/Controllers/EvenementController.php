@@ -57,6 +57,7 @@ class EvenementController extends Controller
         return back();
     }
 
+
     //ajouter un even
     public function save_even(Request $request)
     {

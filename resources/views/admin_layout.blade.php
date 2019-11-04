@@ -282,9 +282,11 @@
             <div class="container-fluid">
                 <div class="navbar-wrapper">
 
+                    @if( Session::get('admin_structure'))
                     <a class="navbar-brand" style="font-family: 'Manjari'; font-size: small" href="#pablo">
                         Nom de votre structure :
                         <span style="font-family: 'Manjari Bold'; color: #0d704d">{{  Session::get('admin_structure') }}</span></a>
+                    @endif
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sr-only">Toggle navigation</span>
@@ -676,6 +678,17 @@
         }
     })
 </script>
+
+<script>
+    jQuery(function ($) {
+        var alert = $('#alert11');
+        if(alert.length > 0){
+            alert.hide().delay(7600).slideDown(760);
+
+        }
+    })
+</script>
+
 <script type="text/javascript" src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js')}}"></script>
 
 <script>
