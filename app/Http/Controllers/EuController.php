@@ -23,7 +23,7 @@ class EuController extends Controller
         $this->AdminAuthCheck();
         $search = $request->get('search');
         $all_eu_info = DB::table('tbl_entreprise_utilisatrices')
-            ->where('eu_name', 'like', '%'.$search.'%')
+            ->where('name', 'like', '%'.$search.'%')
             ->orderByDesc('eu_id')
             ->paginate(5);
         $nb= $all_eu_info->count();
@@ -77,7 +77,7 @@ class EuController extends Controller
         $this->AdminAuthCheck();
         request()->validate([
             'eu_adresse' => ['required'],
-            'eu_name' => ['required'],
+            'name' => ['required'],
             'eu_email' => ['required','unique:tbl_entreprise_utilisatrices'],
             'eu_secteurA' => ['required'],
             'eu_phone' => ['required'],
@@ -88,7 +88,7 @@ class EuController extends Controller
 
         $data = array();
         $data['eu_id'] = $request->eu_id;
-        $data['eu_name'] = $request->eu_name;
+        $data['name'] = $request->name;
         $data['eu_email'] = $request->eu_email;
         $data['eu_adresse'] = $request->eu_adresse;
         $data['eu_phone'] = $request->eu_phone;
@@ -104,8 +104,8 @@ class EuController extends Controller
             $message->subject('Activation Votre Compte');
         });
         DB::table('tbl_entreprise_utilisatrices')->insert($data);
-        Session::put('message', "Un mail a été envoyé a ".$data['eu_name']." !");
-         dump($data);
+        Session::put('message', "Un mail a été envoyé a ".$data['name']." !");
+        return redirect('/all-eu');
 
     }
 
@@ -129,7 +129,7 @@ class EuController extends Controller
         $this->AdminAuthCheck();
         request()->validate([
             'eu_adresse' => ['required'],
-            'eu_name' => ['required'],
+            'name' => ['required'],
             'eu_email' => ['required'],
             'eu_secteurA' => ['required'],
             'eu_phone' => ['required'],
@@ -140,7 +140,7 @@ class EuController extends Controller
 
         $data = array();
         $data['eu_id'] = $request->eu_id;
-        $data['eu_name'] = $request->eu_name;
+        $data['name'] = $request->name;
         $data['eu_email'] = $request->eu_email;
         $data['eu_adresse'] = $request->eu_adresse;
         $data['eu_phone'] = $request->eu_phone;
@@ -152,7 +152,7 @@ class EuController extends Controller
             ->where('eu_id', $eu_id)
             ->update($data);
 
-        Session::put('message', "l'eu ".$data['eu_name']." a eté modifié avec Succes !");
+        Session::put('message', "l'eu ".$data['name']." a eté modifié avec Succes !");
         return redirect('/all-eu');
     }
 

@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <p class="card-title">
-                        <li class="fa fa-industry" style="color: #036b75!important;"></li>&nbsp;
+                        <li class="fa fa-user" style="color: #036b75!important;"></li>&nbsp;
                         Nom :
                         </p>
                     </div>

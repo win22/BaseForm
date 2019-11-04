@@ -110,8 +110,10 @@
             </div>
         </div>
     </div>
+    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
 </div>
 <div class="row">
+
     <div id="alert6" class="col-lg-3 col-md-6 col-sm-6">
         <div  class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
@@ -138,6 +140,7 @@
             </div>
         </div>
     </div>
+
     <div id="alert7" class="col-lg-3 col-md-6 col-sm-6">
         <div   class="card card-stats">
             <div class="card-header card-header-danger card-header-icon">
@@ -164,13 +167,15 @@
             </div>
         </div>
     </div>
+    @endif
+
     <div id="alert8" class="col-lg-3 col-md-6 col-sm-6">
         <div   class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
                 <div class="card-icon">
                     <i class="fa fa-graduation-cap"></i>
                 </div>
-                <p class="card-category">Formations</p>
+                <p class="card-category">Formations de Mase</p>
                 <a href="/all-formt">
                     <h3 class="card-title">
                         {{ $all_formt_count }}
@@ -190,6 +195,7 @@
             </div>
         </div>
     </div>
+    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
     <div id="alert9" class="col-lg-3 col-md-6 col-sm-6">
         <div    class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
@@ -216,6 +222,7 @@
             </div>
         </div>
     </div>
+    @endif
 </div>
 <div class="row" >
     <div   id="alert10" class="col-lg-3 col-md-6 col-sm-6">
@@ -224,7 +231,7 @@
                 <div class="card-icon" href="/all-admin">
                     <i class="fa fa-book"></i>
                 </div>
-                <p class="card-category">Documentation</p>
+                <p class="card-category">Documents</p>
                 <a href="/all-doc">
                     <h3 class="card-title">
                         {{ $all_doc_count }}

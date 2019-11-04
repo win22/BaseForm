@@ -35,10 +35,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Raison Social</label>
-                                <input  value="{{ old('of_raison') }}" name="of_raison" type="text" class="form-control">
+                                <input  value="{{ old('name') }}" name="name" type="text" class="form-control">
                             </div>
-                            @if($errors->has('of_raison'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('of_raison')}}</small>
+                            @if($errors->has('name'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('name')}}</small>
                             @endif
                         </div>
 
@@ -53,25 +53,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Adresse email</label>
+                                <label class="bmd-label-floating">Adresse e-mail</label>
                                 <input  value="{{ old('of_email') }}" name="of_email" type="email" class="form-control">
                             </div>
                             @if($errors->has('of_email'))
                             <small class="form-text text-muted text-danger">{{$errors->first('of_email')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Password</label>
-                                <input  value="{{ old('of_password') }}" name="of_password" type="password" class="form-control">
-                            </div>
-                            @if($errors->has('of_password'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('of_password')}}</small>
-                            @endif
-                        </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Téléphone</label>
                                 <input  value="{{ old('of_phone') }}" name="of_phone" type="text" class="form-control">
@@ -103,12 +94,15 @@
                             @endif
                         </div>
                     </div>
-                    <button type="submit" id="md." class="btn btn-danger pull-right">
+                    <div class="row">
+                        <input value="3" name="user_role" type="text" hidden>
+                    </div>
+                    <a href="/all-of" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
-                        Annuler </button>&nbsp;
+                        Annuler </a>&nbsp;
                     <button type="submit" id="md." class="btn btn-success pull-right">
                         <i class="material-icons">check</i>
-                        Creer </button>
+                        Ajouter </button>
                     <div class="clearfix"></div>
                 </form>
             </div>

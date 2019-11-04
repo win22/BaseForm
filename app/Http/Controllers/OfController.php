@@ -21,8 +21,8 @@ class OfController extends Controller
     public  function  search(Request $request)
     {
         $search = $request->get('search');
-        $all_of_info = DB::table('tbl_of')
-            ->where('of_raison', 'like', '%'.$search.'%')
+        $all_of_info = DB::table('tbl_organisme_formation')
+            ->where('name', 'like', '%'.$search.'%')
             ->orderByDesc('of_id')
             ->paginate(5);
         $nb= $all_of_info->count();
@@ -35,7 +35,7 @@ class OfController extends Controller
     {
 
         $this->AdminAuthCheck();
-        $all_of_info =  DB::table('tbl_of')
+        $all_of_info =  DB::table('tbl_organisme_formation')
             ->orderByDesc('of_id')
             ->paginate(5);
         $nb= $all_of_info->count();
@@ -49,7 +49,7 @@ class OfController extends Controller
     public function unactive_of($of_id)
     {
         $this->AdminAuthCheck();
-        DB::table('tbl_of')
+        DB::table('tbl_organisme_formation')
             ->where('of_id',$of_id)
             ->update(['of_status'=>0]);
         Session::put('message', 'Un OF a été désactivé... ');
@@ -61,7 +61,7 @@ class OfController extends Controller
     public function active_of($of_id)
     {
         $this->AdminAuthCheck();
-        DB::table('tbl_of')
+        DB::table('tbl_organisme_formation')
             ->where('of_id',$of_id)
             ->update(['of_status'=>1]);
         Session::put('message', 'Un OF a été activé... ');
@@ -72,7 +72,7 @@ class OfController extends Controller
     public function delete_of($of_id)
     {
         $this->AdminAuthCheck();
-        DB::table('tbl_of')
+        DB::table('tbl_organisme_formation')
             ->where('of_id',$of_id)
             ->delete();
         Session::put('message', 'Un OF a été supprimé... ');
@@ -84,11 +84,10 @@ class OfController extends Controller
     {
         request()->validate([
             'of_adresse' => ['required'],
-            'of_raison' => ['required'],
-            'of_email' => ['required','unique:tbl_of'],
+            'name' => ['required'],
+            'of_email' => ['required','unique:tbl_organisme_formation'],
             'of_formation' => ['required'],
             'of_phone' => ['required'],
-            'of_password' => ['required'],
             'of_status' => ['required'],
 
         ]);
@@ -96,22 +95,21 @@ class OfController extends Controller
         $this->AdminAuthCheck();
         $data = array();
         $data['of_id'] = $request->of_id;
-        $data['of_raison'] = $request->of_raison;
+        $data['name'] = $request->name;
         $data['of_email'] = $request->of_email;
         $data['of_adresse'] = $request->of_adresse;
         $data['of_phone'] = $request->of_phone;
-        $data['of_password'] = $request->of_password;
         $data['of_formation'] = $request->of_formation;
         $data['of_status'] = $request->of_status;
-        $data['token'] = str_random(30);
+        $data['user_role'] = $request->user_role;
 
         Mail::send('mail.activationMaze', $data, function ($message) use ($data){
             $message->to($data['of_email']);
             $message->from('mazesenegal@gmail.com');
             $message->subject('Activation Votre Compte');
         });
-        DB::table('tbl_of')->insert($data);
-        Session::put('message', "Un mail a été envoyé a ".$data['of_raison']." !");
+        DB::table('tbl_organisme_formation')->insert($data);
+        Session::put('message', "Un mail a été envoyé a ".$data['name']." !");
         return redirect('/all-of');
 
     }
@@ -119,11 +117,11 @@ class OfController extends Controller
     //Activer un Organisme
     public function userActivation($token)
     {
-        $check = DB::table('tbl_of')
+        $check = DB::table('tbl_organisme_formation')
             ->where('token', $token)
             ->where('of_status',0)->first();
         if(!is_null($check)){
-            DB::table('tbl_of')
+            DB::table('tbl_organisme_formation')
                 ->where('token',$token)
                 ->update(['of_status'=>1]);
             return redirect('/');
@@ -132,14 +130,14 @@ class OfController extends Controller
         {
             return Redirect::to('/of')
                 ->withInput()->withErrors([
-                    'of_raison' => "Vous avez déja activé votre Compte",
+                    'name' => "Vous avez déja activé votre Compte",
 
                 ]);
         }
         else{
             return Redirect::to('/of')
                 ->withInput()->withErrors([
-                    'of_raison' => "Vous avez déja activé votre Compte",
+                    'name' => "Vous avez déja activé votre Compte",
 
                 ]);
         }
@@ -150,7 +148,7 @@ class OfController extends Controller
     public function edit_of($of_id)
     {
         $this->AdminAuthCheck();
-        $of_info = DB::table('tbl_of')
+        $of_info = DB::table('tbl_organisme_formation')
             ->where('of_id', $of_id)
             ->first();
 
@@ -165,31 +163,42 @@ class OfController extends Controller
     {
         request()->validate([
             'of_adresse' => ['required'],
-            'of_raison' => ['required'],
+            'name' => ['required'],
             'of_email' => ['required'],
             'of_formation' => ['required'],
             'of_phone' => ['required'],
-            'of_password' => ['required'],
             'of_status' => ['required'],
         ]);
 
             $this->AdminAuthCheck();
             $data = array();
             $data['of_id'] = $request->of_id;
-            $data['of_raison'] = $request->of_raison;
-            $data['of_password'] = md5($request->of_password);
+            $data['name'] = $request->name;
             $data['of_email'] = $request->of_email;
             $data['of_adresse'] = $request->of_adresse;
             $data['of_formation'] = $request->of_formation;
             $data['of_phone'] = $request->of_phone;
+            $data['user_role'] = $request->user_role;
             $data['of_status'] = $request->of_status;
-            DB::table('tbl_of')
+            DB::table('tbl_organisme_formation')
                 ->where('of_id', $of_id)
                 ->update($data);
 
-            Session::put('message', "l'OF ".$data['of_raison']." a eté modifié avec Succes !");
+            Session::put('message', "l'OF ".$data['name']." a eté modifié avec Succes !");
             return redirect('/all-of');
 
+    }
+
+    public function detail_of($of_id)
+    {
+        $this->AdminAuthCheck();
+        $of_info = DB::table('tbl_organisme_formation')
+            ->where('of_id', $of_id)
+            ->first();
+
+        $of_info = view('of.details_of')->with('of_info', $of_info);
+        return View('admin_layout')
+            ->with('of.details_of', $of_info);
     }
 
     //permet de verifier si l'OF est connecté

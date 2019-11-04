@@ -43,7 +43,7 @@
         <div class="card card-profile">
             <div class="card-avatar">
                 <a href="#pablo">
-                    <img class="img" src="{{URL::to(Session::get('admin_image'))}}" />
+                    <img class="img" style="width: 105px !important; height : 105px!important; border-radius: 100px !important;" src="{{URL::to(Session::get('admin_image'))}}" />
                 </a>
             </div>
             <div class="card-body">

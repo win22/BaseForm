@@ -1,4 +1,4 @@
-<h3>Bienvenue  {{ $eu_name }}</h3>
+<h3>Bienvenue  {{ $name }}</h3>
 
 <p>Vous avez été  ajouté à l'application BaseForm de Mase! </p>
 

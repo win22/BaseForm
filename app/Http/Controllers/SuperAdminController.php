@@ -25,11 +25,11 @@ class SuperAdminController extends Controller
         $this->AdminAuthCheck();
         $all_admin_count = DB::table('tbl_admin')
             ->count();
-        $all_of_count = DB::table('tbl_of')
+        $all_of_count = DB::table('tbl_organisme_formation')
             ->count();
-        $all_eu_count = DB::table('tbl_eu')
+        $all_eu_count = DB::table('tbl_entreprise_utilisatrices')
             ->count();
-        $all_ei_count = DB::table('tbl_ei')
+        $all_ei_count = DB::table('tbl_entreprise_intervenantes')
             ->count();
         $all_itv_count = DB::table('tbl_itv')
             ->count();
@@ -47,15 +47,15 @@ class SuperAdminController extends Controller
             ->orderByDesc('admin_id')
             ->select('created_at')
             ->first();
-        $all_of_date = DB::table('tbl_of')
+        $all_of_date = DB::table('tbl_organisme_formation')
             ->orderByDesc('of_id')
             ->select('created_at')
             ->first();
-        $all_eu_date = DB::table('tbl_eu')
+        $all_eu_date = DB::table('tbl_entreprise_utilisatrices')
             ->orderByDesc('eu_id')
             ->select('created_at')
             ->first();
-        $all_ei_date = DB::table('tbl_ei')
+        $all_ei_date = DB::table('tbl_entreprise_intervenantes')
             ->orderByDesc('ei_id')
             ->select('created_at')
             ->first();

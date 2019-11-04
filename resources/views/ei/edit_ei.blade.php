@@ -36,10 +36,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Nom</label>
-                                <input  value="{{ $ei_info->ei_name }}" name="ei_name" type="text" class="form-control">
+                                <input  value="{{ $ei_info->name }}" name="name" type="text" class="form-control">
                             </div>
-                            @if($errors->has('ei_name'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('ei_name')}}</small>
+                            @if($errors->has('name'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('name')}}</small>
                             @endif
                         </div>
 
@@ -63,15 +63,7 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('ei_email')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Password</label>
-                                <input  value="{{ $ei_info->psw }}" name="psw" type="password" class="form-control">
-                            </div>
-                            @if($errors->has('psw'))
-                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('psw')}}</small>
-                            @endif
-                        </div>
+
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Téléphone</label>
@@ -127,10 +119,12 @@
                             @endif
                         </div>
                     </div>
-                    <button type="submit" id="md." class="btn btn-danger pull-right">
+                    <div class="row">
+                        <input value="2" name="user_role" type="text" hidden>
+                    </div>
+                    <a href="/all-ei" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
-                        Annuler
-                    </button>&nbsp;
+                        Annuler </a>&nbsp;
                     <button type="submit" id="md." class="btn btn-success pull-right">
                         <i class="material-icons">check</i>
                         Modifier </button>

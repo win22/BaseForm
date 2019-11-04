@@ -17,12 +17,13 @@ class EiController extends Controller
         return view('ei.add_ei');
     }
 
+    //methode pour la recherche
     public function  search(Request $request)
     {
         $this->AdminAuthCheck();
         $search = $request->get('search');
-        $all_ei_info = DB::table('tbl_ei')
-            ->where('ei_name', 'like', '%'.$search.'%')
+        $all_ei_info = DB::table('tbl_entreprise_intervenantes')
+            ->where('name', 'like', '%'.$search.'%')
             ->orderByDesc('ei_id')
             ->paginate(5);
         $nb= $all_ei_info->count();
@@ -30,12 +31,12 @@ class EiController extends Controller
             ->with(['nb' => $nb]);
     }
 
-    //afficher la liste des ei
+    //afficher une entreprise intervenante
     public function all_ei()
     {
 
         $this->AdminAuthCheck();
-        $all_ei_info =  DB::table('tbl_ei')
+        $all_ei_info =  DB::table('tbl_entreprise_intervenantes')
             ->orderByDesc('ei_id')
             ->paginate(5);
         $nb= $all_ei_info->count();
@@ -45,11 +46,11 @@ class EiController extends Controller
 
     }
 
-    //Modifier le status
+    //Modifier une entreprise intervenante
     public function unactive_ei($ei_id)
     {
         $this->AdminAuthCheck();
-        DB::table('tbl_ei')
+        DB::table('tbl_entreprise_intervenantes')
             ->where('ei_id',$ei_id)
             ->update(['ei_status'=>0]);
         Session::put('message', 'Une entreprise Intervenante a été désactivé... ');
@@ -57,103 +58,75 @@ class EiController extends Controller
 
     }
 
-    //Modifier le chiffreA
+    //Modifier une entreprise intervenante
     public function active_ei($ei_id)
     {
         $this->AdminAuthCheck();
-        DB::table('tbl_ei')
+        DB::table('tbl_entreprise_intervenantes')
             ->where('ei_id',$ei_id)
             ->update(['ei_status'=>1]);
         Session::put('message', 'Une entreprise Intervenante a été activé... ');
         return back();
     }
 
-    //supprimer Un categeorie
+    //supprimer une entreprise intervenante
     public function delete_ei($ei_id)
     {
         $this->AdminAuthCheck();
-        DB::table('tbl_ei')
+        DB::table('tbl_entreprise_intervenantes')
             ->where('ei_id',$ei_id)
             ->delete();
         Session::put('message', 'Cette entreprise Intervenante a été supprimé... ');
         return back();
     }
 
-    //ajouter un ei
+
+    //ajouter une entreprise intervenante
     public function save_ei(Request $request)
     {
         $this->AdminAuthCheck();
         request()->validate([
             'ei_adresse' => ['required'],
-            'ei_name' => ['required'],
-            'ei_email' => ['required','unique:tbl_ei'],
+            'name' => ['required'],
+            'ei_email' => ['required','unique:tbl_entreprise_intervenantes'],
             'ei_secteurA' => ['required'],
             'ei_phone' => ['required'],
             'ei_nameDi' => ['required'],
             'ei_eu' => ['required'],
-            'psw' => ['required'],
             'ei_status' => ['required'],
         ]);
+
         $data = array();
         $data['ei_id'] = $request->ei_id;
-        $data['ei_name'] = $request->ei_name;
+        $data['name'] = $request->name;
         $data['ei_email'] = $request->ei_email;
         $data['ei_adresse'] = $request->ei_adresse;
         $data['ei_phone'] = $request->ei_phone;
         $data['ei_secteurA'] = $request->ei_secteurA;
         $data['ei_nameDi'] = $request->ei_nameDi;
         $data['ei_eu'] = $request->ei_eu;
-        $data['psw'] = $request->psw;
+        $data['user_role'] = $request->user_role;
         $data['ei_status'] = $request->ei_status;
-        $data['token'] = str_random(30);
 
         Mail::send('mail.activationEi', $data, function ($message) use ($data){
             $message->to($data['ei_email']);
             $message->from('mazesenegal@gmail.com');
             $message->subject('Activation Votre Compte');
         });
-        DB::table('tbl_ei')->insert($data);
-        Session::put('message', "Un mail a été envoyé a ".$data['ei_name']." !");
+
+        DB::table('tbl_entreprise_intervenantes')->insert($data);
+        Session::put('message', "Un mail a été envoyé ".$data['name']." !");
         return redirect('/all-ei');
 
     }
 
-    //Activer un Organisme
-    public function userActivation($token)
-    {
-        $this->AdminAuthCheck();
-        $check = DB::table('tbl_ei')
-            ->where('token', $token)
-            ->where('ei_chiffreA',0)->first();
-        if(!is_null($check)){
-            DB::table('tbl_ei')
-                ->where('token',$token)
-                ->update(['ei_chiffreA'=>1]);
-            return redirect('/');
-
-        } elseif (['ei_chiffreA'==1])
-        {
-            return Redirect::to('/ei')
-                ->withInput()->withErrors([
-                    'ei_name' => "Vous avez déja activé votre Compte",
-
-                ]);
-        }
-        else{
-            return Redirect::to('/ei')
-                ->withInput()->withErrors([
-                    'ei_name' => "Vous avez déja activé votre Compte",
-
-                ]);
-        }
-    }
 
 
     //selectionner un ei
     public function edit_ei($ei_id)
     {
         $this->AdminAuthCheck();
-        $ei_info = DB::table('tbl_ei')
+        $ei_info = DB::table('tbl_entreprise_intervenantes')
             ->where('ei_id', $ei_id)
             ->first();
 
@@ -163,38 +136,39 @@ class EiController extends Controller
 
     }
 
+    //methode pour la modification
     public  function  update_ei(Request $request, $ei_id)
     {
         $this->AdminAuthCheck();
         request()->validate([
             'ei_adresse' => ['required'],
-            'ei_name' => ['required'],
+            'name' => ['required'],
             'ei_email' => ['required'],
             'ei_secteurA' => ['required'],
             'ei_phone' => ['required'],
             'ei_nameDi' => ['required'],
             'ei_eu' => ['required'],
-            'psw' => ['required'],
             'ei_status' => ['required'],
         ]);
+
         $data = array();
         $data['ei_id'] = $request->ei_id;
-        $data['ei_name'] = $request->ei_name;
+        $data['name'] = $request->name;
         $data['ei_email'] = $request->ei_email;
         $data['ei_adresse'] = $request->ei_adresse;
         $data['ei_phone'] = $request->ei_phone;
         $data['ei_secteurA'] = $request->ei_secteurA;
         $data['ei_nameDi'] = $request->ei_nameDi;
         $data['ei_eu'] = $request->ei_eu;
-        $data['psw'] = $request->psw;
+        $data['user_role'] = $request->user_role;
         $data['ei_status'] = $request->ei_status;
-        DB::table('tbl_ei')
+
+        DB::table('tbl_entreprise_intervenantes')
             ->where('ei_id', $ei_id)
             ->update($data);
-        Session::put('message', " ".$data['ei_name']." a eté modifié avec Succes !");
+        Session::put('message', "l'entreprise ".$data['name']." a eté modifié avec Succes !");
         return redirect('/all-ei');
     }
-
 
 
 

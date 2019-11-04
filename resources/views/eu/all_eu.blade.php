@@ -57,7 +57,7 @@
                     @foreach ( $all_eu_info as $v_eu)
                     <tr>
                         </td>
-                        <td class="text-center">{{ $v_eu->eu_name }}</td>
+                        <td class="text-center">{{ $v_eu->name }}</td>
                         <td class="text-center">{{ $v_eu->eu_email }}</td>
                         <td class="text-center">{{ $v_eu->eu_phone }}</td>
                         <td class="text-center">{{ $v_eu->eu_adresse }}</td>

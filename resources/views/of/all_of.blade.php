@@ -61,7 +61,7 @@
                     <tbody>
                     @foreach ( $all_of_info as $v_of)
                     <tr>
-                        <td class="text-center">{{ $v_of->of_raison }}</td>
+                        <td class="text-center">{{ $v_of->name }}</td>
                         <td class="text-center">{{ $v_of->of_email }}</td>
                         <td class="text-center">{{ $v_of->of_phone }}</td>
                         <td class="text-center">{{ $v_of->created_at }}</td>
@@ -69,16 +69,17 @@
 
                         <td class="text-center">
                             @if($v_of->of_status==1)
-                            <span class="label label-success">
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
                             Activé
                         </span>
                             @else
-                            <span class="label label-warning">
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(174,0,0,0.88);">
                             Desactivé
                         </span>
                             @endif
                         </td>
                         <td  class="td-actions text-center">
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                             @if($v_of->of_status==1)
                             <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-of/'.
                         $v_of->of_id)}}">
@@ -100,6 +101,11 @@
                                 <i class="material-icons">close</i>
                             </a>
                             @endif
+                            @endif
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/details-of/'.
+                        $v_of->of_id)}}">
+                                <i class="material-icons">visibility</i>
+                            </a>
                         </td>
                     </tr>
                     @endforeach

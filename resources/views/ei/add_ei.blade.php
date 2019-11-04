@@ -35,10 +35,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Nom</label>
-                                <input  value="{{ old('ei_name') }}" name="ei_name" type="text" class="form-control">
+                                <input  value="{{ old('name') }}" name="name" type="text" class="form-control">
                             </div>
-                            @if($errors->has('ei_name'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('ei_name')}}</small>
+                            @if($errors->has('name'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('name')}}</small>
                             @endif
                         </div>
 
@@ -62,15 +62,7 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('ei_email')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Password</label>
-                                <input  value="{{ old('psw') }}" name="psw" type="password" class="form-control">
-                            </div>
-                            @if($errors->has('psw'))
-                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('psw')}}</small>
-                            @endif
-                        </div>
+
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Téléphone</label>
@@ -106,7 +98,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Entreprises Intervenante</label>
+                                <label class="bmd-label-floating">Entreprises Utilisatrices</label>
                                 <input  value="{{ old('ei_ei') }}" name="ei_eu" type="text" class="form-control">
                             </div>
                             @if($errors->has('ei_eu'))
@@ -115,16 +107,24 @@
                         </div>
                         <div class="col-md-4">
                             <select  class="form-control" name="ei_status">
-                                <option value="0">Status Désactivé</option>
+                                <option value="0">Selection un status</option>
+                                <option value="1">Certifié Mase</option>
+                                <option value="2">Démarche </option>
                             </select>
                             @if($errors->has('ei_status'))
                             <small class="form-text text-muted text-danger">{{$errors->first('ei_status')}}</small>
                             @endif
                         </div>
                     </div>
+                    <div class="row">
+                        <input value="2" name="user_role" type="text" hidden>
+                    </div>
+                    <a href="/all-ei" id="md." class="btn btn-danger pull-right">
+                        <i class="material-icons">cancel</i>
+                        Annuler </a>&nbsp;
                     <button type="submit" id="md." class="btn btn-success pull-right">
                         <i class="material-icons">check</i>
-                        Creer </button>
+                        Ajouter </button>
                     <div class="clearfix"></div>
                 </form>
             </div>

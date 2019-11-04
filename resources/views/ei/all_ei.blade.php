@@ -51,7 +51,6 @@
                     <th class="text-center">Téléphone</th>
                     <th class="text-center">adresse</th>
                     <th class="text-center">Date de Creation</th>
-                    <th class="text-center">Directeur</th>
                     <th class="text-center">Status</th>
                     <th class="text-center">Action</th>
 
@@ -63,24 +62,28 @@
                     @foreach ( $all_ei_info as $v_ei)
                     <tr>
                         </td>
-                        <td class="text-center">{{ $v_ei->ei_name }}</td>
+                        <td class="text-center">{{ $v_ei->name }}</td>
                         <td class="text-center">{{ $v_ei->ei_email }}</td>
                         <td class="text-center">{{ $v_ei->ei_phone }}</td>
                         <td class="text-center">{{ $v_ei->ei_adresse }}</td>
                         <td class="text-center">{{ $v_ei->created_at }}</td>
-                        <td class="text-center">{{ $v_ei->ei_nameDi }}</td>
                         <td class="text-center">
                             @if($v_ei->ei_status==1)
-                            <span class="label text-success">
-                            Activé
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
+                            Certifié Mase
                         </span>
                             @else
-                            <span class="label text-danger">
-                            Desactivé
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(233,32,3,0.88);">
+                            Démarche
                         </span>
                             @endif
                         </td>
                         <td class="td-actions text-center" >
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-details/'.
+                        $v_ei->ei_id)}}">
+                                <i class="material-icons">visibility</i>
+                            </a>
+                            @if( Session::get('admin_role')==1 || Session::get('admin_role')==2 )
                             @if($v_ei->ei_status==1)
                             <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-ei/'.
                         $v_ei->ei_id)}}">
@@ -102,11 +105,13 @@
                                 <i class="material-icons">close</i>
                             </a>
                             @endif
+                            @endif
                         </td>
                     </tr>
                     @endforeach
                     </tbody>
                 </table>
+
                 <p id="total_records">
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>

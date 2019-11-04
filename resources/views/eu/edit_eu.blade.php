@@ -35,10 +35,10 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Nom</label>
-                                <input  value="{{ $eu_info->eu_name }}" name="eu_name" type="text" class="form-control">
+                                <input  value="{{ $eu_info->name }}" name="name" type="text" class="form-control">
                             </div>
-                            @if($errors->has('eu_name'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('eu_name')}}</small>
+                            @if($errors->has('name'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('name')}}</small>
                             @endif
                         </div>
 

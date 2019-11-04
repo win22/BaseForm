@@ -64,12 +64,17 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <select class="form-control dynamic" id="eu_name" name="admin_structure"
+                                <select class="form-control dynamic" id="name" name="admin_structure"
                                 data-dependent="user_role">
                                 <option value="">Selectionner une structure</option>
                                     @foreach($EU as $v_eu)
-                                    <option value="{{ $v_eu->eu_name }}" >
-                                        {{ $v_eu->eu_name }}
+                                    <option value="{{ $v_eu->name }}" >
+                                        {{ $v_eu->name }}
+                                    </option>
+                                    @endforeach
+                                    @foreach($OF as $v_of)
+                                    <option value="{{ $v_of->name }}" >
+                                        {{ $v_of->name	 }}
                                     </option>
                                     @endforeach
                                 </select>
@@ -102,10 +107,10 @@
                                     <option  value="3">Autres utilisateur</option>
                                     @endif
                                 </select>
-                                @if($errors->has('admin_role'))
-                                <small class="form-text text-muted text-danger">{{$errors->first('admin_role')}}</small>
-                                @endif
                             </div>
+                            @if($errors->has('admin_role'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('admin_role')}}</small>
+                            @endif
                         </div>
                     </div>
                         <div class="row">
@@ -113,10 +118,11 @@
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Téléphone</label>
                                     <input  value="{{ old('admin_phone') }}" name="admin_phone" type="text" class="form-control">
+                                    @if($errors->has('admin_phone'))
+                                    <small class="form-text text-muted text-danger">{{$errors->first('admin_phone')}}</small>
+                                    @endif
                                 </div>
-                                @if($errors->has('admin_phone'))
-                                <small class="form-text text-muted text-danger">{{$errors->first('admin_phone')}}</small>
-                                @endif
+
                             </div>
                         <div class="col-md-4">
                             <div class="form-group">
@@ -143,9 +149,9 @@
                         </div>
                     </div>
 
-                    <button type="submit" id="md." class="btn btn-danger pull-right">
+                    <a href="/all-admin" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
-                        Annuler </button>&nbsp;
+                        Annuler </a>&nbsp;
                     <button type="submit" id="md." class="btn btn-success pull-right">
                         <i class="material-icons">check</i>
                         Creer    </button>

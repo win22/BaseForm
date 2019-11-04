@@ -54,6 +54,7 @@ Route::get('/all-of', 'OfController@all_of');
 Route::get('/unactive-of/{of_id}', 'OfController@unactive_of');
 Route::get('/active-of/{of_id}', 'OfController@active_of');
 Route::get('/edit-of/{admin_id}', 'OfController@edit_of');
+Route::get('/details-of/{of_id}', 'OfController@detail_of');
 Route::get('/delete-of/{admin_id}', 'OfController@delete_of');
 Route::post('/update-of/{of_id}', 'OfController@update_of');
 
@@ -81,6 +82,7 @@ Route::get('/searchEi', 'EiController@search');
 Route::get('/unactive-ei/{ei_id}', 'EiController@unactive_ei');
 Route::get('/active-ei/{ei_id}', 'EiController@active_ei');
 Route::get('/edit-ei/{ei_id}', 'EiController@edit_ei');
+Route::get('/edit-details/{ei_id}', 'EiController@detail_ei');
 Route::get('/delete-ei/{ei_id}', 'EiController@delete_ei');
 Route::post('/update-ei/{ei_id}', 'EiController@update_ei');
 
@@ -135,3 +137,16 @@ Route::get('/searchDoc', 'DocumentController@search');
 Route::get('/delete-doc/{doc_id}', 'DocumentController@delete_doc');
 Route::get('/edit-doc/{doc_id}', 'DocumentController@edit_doc');
 Route::post('/update-doc/{doc_id}', 'DocumentController@update_doc');
+
+
+//Route pour la gestion des stagiares
+Route::get('/add-stag', 'StagiaireController@index');
+Route::post('/save-stag', 'StagiaireController@save_stag');
+
+Route::get('/all-stag',  'StagiaireController@all_stag');
+Route::get('/details-stag/{stag_id}', 'StagiaireController@detail_stag');
+Route::get('/searchStag', 'StagiaireController@search');
+Route::get('/delete-stag/{stag_id}', 'StagiaireController@delete_stag');
+Route::get('/edit-stag/{stag_id}', 'StagiaireController@edit_stag');
+Route::post('/update-stag/{stag_id}', 'StagiaireController@update_stag');
+

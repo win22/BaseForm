@@ -2183,7 +2183,7 @@ pre code {
 }
 
 select.form-control:not([size]):not([multiple]) {
-  height: calc(2.4375rem + 2px);
+  height: calc(2.4375rem + 3px);
 }
 
 select.form-control:focus::-ms-value {
@@ -12549,7 +12549,7 @@ fieldset[disabled][disabled] .has-rose .form-control,
 
 .bmd-form-group:not(.has-success):not(.has-danger) [class^='bmd-label'].bmd-label-floating,
 .bmd-form-group:not(.has-success):not(.has-danger) [class*=' bmd-label'].bmd-label-floating {
-  color: #004e67;
+  color: #112706;
 }
 
 .bmd-form-group [class^='bmd-label'],

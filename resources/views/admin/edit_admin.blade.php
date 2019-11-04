@@ -71,13 +71,18 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <select class="form-control dynamic" id="eu_name" name="admin_structure"
+                                <select class="form-control dynamic" id="name" name="admin_structure"
                                         data-dependent="user_role">
                                     <option value="{{ $admin_info->admin_structure }}"> {{ $admin_info->admin_structure }}</option>
-                                    <option value="">Selectionner une structure</option>
+                                    <option  value="">Selectionner une autre structure</option>
                                     @foreach($EU as $v_eu)
-                                    <option value="{{ $v_eu->eu_name }}" >
-                                        {{ $v_eu->eu_name }}
+                                    <option value="{{ $v_eu->name }}" >
+                                        {{ $v_eu->name }}
+                                    </option>
+                                    @endforeach
+                                    @foreach($OF as $v_of)
+                                    <option value="{{ $v_of->name }}" >
+                                        {{ $v_of->name	 }}
                                     </option>
                                     @endforeach
                                 </select>
@@ -109,15 +114,20 @@
                                 <select class="form-control" name="admin_role">
                                     @if( $admin_info->admin_role == 1)
                                     <option value="1">Administrateur</option>
-                                    @else
+                                    @elseif( $admin_info->admin_role == 2)
                                     <option  value="2">Utilisateur</option>
+                                    @else
+                                    <option  value="3">Autres utilisateurs</option>
                                     @endif
 
-                                    <option value="">Selectioner un nouveau role</option>
                                     @if( Session::get('admin_role')==1)
                                     <option value="1">Administrateur</option>
-                                    @endif
                                     <option  value="2">Utilisateur</option>
+                                    <option  value="3">Autres utilisateur</option>
+                                    @else
+                                    <option  value="2">Utilisateur</option>
+                                    <option  value="3">Autres utilisateur</option>
+                                    @endif
                                 </select>
                                 @if($errors->has('admin_role'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('admin_role')}}</small>
@@ -163,7 +173,7 @@
                             @endif
                         </div>
                     </div>
-                    <a href="/all-admin" type="submit" id="md." class="btn btn-danger pull-right">
+                    <a href="/all-admin" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
                         Annuler </a>&nbsp;
                     <button type="submit" id="md." class="btn btn-success pull-right">

@@ -25,8 +25,8 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-info">
-                <h4 class="card-title">Formateur <i class="material-icons greenI">bubble_chart</i></h4>
-                <p class="card-category">Modifier un formateur</p>
+                <h4 class="card-title">Organisme de formation <i class="material-icons greenI">bubble_chart</i></h4>
+                <p class="card-category">Modifier une organisme de formation</p>
             </div>
             <div class="card-body">
                 <form enctype="multipart/form-data" action="{{ url('/update-of',$of_info->of_id)}}" method="post">
@@ -35,14 +35,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Raison Social</label>
-                                <input  value="{{  $of_info->of_raison }}" name="of_raison" type="text" class="form-control">
+                                <input  value="{{  $of_info->name }}" name="name" type="text" class="form-control">
                             </div>
-                            @if($errors->has('of_raison'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('of_raison')}}</small>
+                            @if($errors->has('name'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('name')}}</small>
                             @endif
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Adresse</label>
                                 <input  value="{{ $of_info->of_adresse  }}" name="of_adresse" type="text" class="form-control">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Adresse email</label>
                                 <input  value="{{ $of_info->of_email  }}" name="of_email" type="email" class="form-control">
@@ -62,16 +62,8 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('of_email')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Password</label>
-                                <input  value="{{ $of_info->of_password  }}" name="of_password" type="password" class="form-control">
-                            </div>
-                            @if($errors->has('of_password'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('of_password')}}</small>
-                            @endif
-                        </div>
-                        <div class="col-md-4">
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Téléphone</label>
                                 <input  value="{{ $of_info->of_phone  }}" name="of_phone" type="text" class="form-control">
@@ -107,11 +99,11 @@
                             @endif
                         </div>
                     </div>
-                    <button type="submit" id="md." class="btn btn-danger pull-right">
+                    <a href="/all-of" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
-                        Annuler </button>&nbsp;
+                        Annuler </a>&nbsp;
                     <button type="submit" id="md." class="btn btn-success pull-right">
-                        <i class="material-icons">check</i>
+                        <i class="material-icons">edit</i>
                         Modifier </button>
                     <div class="clearfix"></div>
                 </form>

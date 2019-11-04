@@ -19,7 +19,10 @@ class AdminController extends Controller
     {
         $EU = DB::table('tbl_entreprise_utilisatrices')
             ->get();
-        return view('admin.add_admin', ['EU' => $EU]);
+        $OF = DB::table('tbl_organisme_formation')
+            ->get();
+        return view('admin.add_admin', ['EU' => $EU])
+              ->with('OF', $OF);
     }
 
 
@@ -28,27 +31,30 @@ class AdminController extends Controller
         $select = $request->get('select');
         $value = $request->get('value');
         $dependent = $request->get('dependent');
-        $data = DB::table('tbl_entreprise_utilisatrices')
+
+            $data = DB::table('tbl_entreprise_utilisatrices')
+                ->where($select, $value)
+                ->groupBy($dependent)
+                ->get();
+            $data2 = DB::table('tbl_organisme_formation')
             ->where($select, $value)
             ->groupBy($dependent)
             ->get();
 
-        $output = '<option value="">Select '.ucfirst($dependent).'</option>';
-        foreach ($data as $row)
-        {
-            if($row->$dependent == 1)
+
+            $output = '<option value="">Select '.ucfirst($dependent).'</option>';
+            foreach ($data as $row)
             {
-                $text = 'Entreprise Utilisatrice';
-            }elseif ($row->$dependent == 2)
-            {
-                $text = 'Entreprise Intervenate';
-            }else
-            {
-                $text = 'Organisme de formation';
+                $text = 'Entreprise utilisatrice';
+                $output = '<option value="'.$row->$dependent.'">'.$text.'</option>';
             }
+        foreach ($data2 as $row)
+        {
+            $text = 'Organisme de formation';
             $output = '<option value="'.$row->$dependent.'">'.$text.'</option>';
         }
-        echo  $output;
+            echo  $output;
+
     }
 
     public  function  search(Request $request)
@@ -58,7 +64,7 @@ class AdminController extends Controller
         $all_admin_info = DB::table('tbl_admin')
                 ->where('admin_structure', 'like', '%'.$search.'%')
                 ->orderByDesc('admin_id')
-                ->paginate(2);
+                ->paginate(5);
         $nb= $all_admin_info->count();
         return view('admin.all_admin', ['all_admin_info' => $all_admin_info ])
             ->with(['nb' => $nb]);
@@ -71,7 +77,7 @@ class AdminController extends Controller
         $this->AdminAuthCheck();
         $all_admin_info =  DB::table('tbl_admin')
             ->orderByDesc('admin_id')
-            ->paginate(2);
+            ->paginate(5);
         $nb= $all_admin_info->count();
 
         return view('admin.all_admin', ['all_admin_info' => $all_admin_info ])
@@ -210,9 +216,14 @@ class AdminController extends Controller
 
         $EU = DB::table('tbl_entreprise_utilisatrices')
             ->get();
+        $OF = DB::table('tbl_organisme_formation')
+            ->get();
+        $OF = DB::table('tbl_organisme_formation')
+            ->get();
 
         $admin_info = view('admin.edit_admin')->with('admin_info', $admin_info)
-            ->with('EU', $EU);
+            ->with('EU', $EU)
+            ->with('OF', $OF);
         return View('admin_layout')
             ->with('admin.all_admin', $admin_info, $EU);
 

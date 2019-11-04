@@ -63,8 +63,8 @@
                     </div>
                 </li>
                 @endif
-                <li class="nav-item {{ request()->is('all-of','add-of')? 'active' : '' }}">
-                    <a class="nav-link {{ request()->is('all-of','add-of')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
+                <li class="nav-item {{ request()->is('all-of','add-of','add-stag','all-stag')? 'active' : '' }}">
+                    <a class="nav-link {{ request()->is('all-of','add-of','add-stag','all-stag')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
                         <i class="material-icons userI">bubble_chart</i>
                         <p class="menu-title">Organismes de Formation</p>
                     </a>
@@ -81,6 +81,21 @@
                                 <a class="nav-link" href="{{URL::to('/add-of')}}">
                                     <i class="material-icons">playlist_add</i>
                                     <span class="text-white">Ajouter un OF</span>
+                                </a>
+                            </li>
+                            @endif
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
+                            <li class="nav-item {{ request()->is('all-stag')? 'active' : '' }} ">
+                                <a class="nav-link" href="{{URL::to('/all-stag')}}">
+                                    <i class="fa fa-users"></i>
+                                    <span class="text-white">Listes des stagiaires</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{ request()->is('add-stag')? 'active' : '' }}">
+                                <a class="nav-link" href="{{URL::to('/add-stag')}}">
+                                    <i class="fa fa-user-plus"></i>
+                                    <span class="text-white">Ajouter un stagiaire</span>
                                 </a>
                             </li>
                             @endif
@@ -124,15 +139,18 @@
                                     <span class="text-white">Listes des E.I</span>
                                 </a>
                             </li>
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                             <li class="nav-item {{ request()->is('add-ei')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-ei')}}">
                                     <i class="material-icons">playlist_add</i>
                                     <span class="text-white">Ajouter une E.I</span>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
+                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                 <li class="nav-item {{ request()->is('all-itv','add-itv')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-itv','add-itv')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic5" aria-expanded="false" aria-controls="ui-basic5">
                         <i class="fa fa-user userI"></i>
@@ -155,6 +173,8 @@
                         </ul>
                     </div>
                 </li>
+                @endif
+                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                 <li class="nav-item {{ request()->is('all-form','add-form')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-form','add-form')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic6" aria-expanded="false" aria-controls="ui-basic6">
                         <i class="fa fa-users EU"></i>
@@ -177,6 +197,7 @@
                         </ul>
                     </div>
                 </li>
+                @endif
                 <li class="nav-item {{ request()->is('all-formt','add-formt')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-formt','add-formt')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic7" aria-expanded="false" aria-controls="ui-basic7">
                         <i class="fa fa-graduation-cap of"></i>
@@ -190,15 +211,18 @@
                                     <span class="text-white">Listes des formations</span>
                                 </a>
                             </li>
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                             <li class="nav-item {{ request()->is('add-formt')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-formt')}}">
                                     <i class="material-icons">playlist_add</i>
                                     <span class="text-white">Ajouter une formation</span>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
+                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                 <li class="nav-item {{ request()->is('all-even','add-even')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-even','add-even')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic8" aria-expanded="false" aria-controls="ui-basic8">
                         <i class="fa fa-calendar-o userI"></i>
@@ -212,15 +236,18 @@
                                     <span class="text-white">Listes des évenements</span>
                                 </a>
                             </li>
+
                             <li class="nav-item {{ request()->is('add-even')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-even')}}">
                                     <i class="material-icons">playlist_add</i>
                                     <span class="text-white">Ajouter un  évenement</span>
                                 </a>
                             </li>
+
                         </ul>
                     </div>
                 </li>
+                @endif
                 <li class="nav-item {{ request()->is('all-doc','add-doc')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-doc','add-doc')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic9" aria-expanded="false" aria-controls="ui-basic9">
                         <i class="fa fa-book EI"></i>
@@ -234,12 +261,14 @@
                                     <span class="text-white">Listes des documents</span>
                                 </a>
                             </li>
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                             <li class="nav-item {{ request()->is('add-doc')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-doc')}}">
                                     <i class="material-icons">playlist_add</i>
                                     <span class="text-white">Ajouter un document</span>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>

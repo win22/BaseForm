@@ -5,8 +5,8 @@
     <div class="col-md-10">
         <div class="card">
             <div class="card-header card-header-info">
-                <h4 class="card-title">Entreprise utilisatrice <i class="fa fa-industry"></i></h4>
-                <p class="card-category">Afficher les détails d'une entreprise utilisatrice</p>
+                <h4 class="card-title">Entreprise intervenantes <i class="fa fa-industry"></i></h4>
+                <p class="card-category">Afficher les détails d'une entreprise intervenantes</p>
             </div>
             <div class="card-body">
 
