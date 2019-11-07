@@ -79,7 +79,7 @@
                             @endif
                         </td>
                         <td class="td-actions text-center" >
-                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-details/'.
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/edit-details/'.
                         $v_ei->ei_id)}}">
                                 <i class="material-icons">visibility</i>
                             </a>

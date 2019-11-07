@@ -61,9 +61,13 @@
                     <tr>
                         <td class="center">{{ $v_even->even_name }}</td>
                         <td class="center">{{ $v_even->even_date }}</td>
-                        <td  class="text-justify">{{ $v_even->even_description }}</td>
+                        <td  class="ellipsis ellipsis">{{ $v_even->even_description }}</td>
                         <td  class="center">{{ $v_even->created_at }}</td>
-                        <td>
+                        <td class="td-actions">
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-even/'.
+                                 $v_even->even_id)}}">
+                                <i class="material-icons">visibility</i>
+                            </a>
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-even/'.
                                  $v_even->even_id)}}">
                                 <i class="material-icons">edit</i>

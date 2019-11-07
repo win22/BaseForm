@@ -62,7 +62,7 @@ class DocumentController extends Controller
     {
         $this->AdminAuthCheck();
         request()->validate([
-            'doc_name' => ['required', 60],
+            'doc_name' => ['required', 'max:60'],
             'doc_contenu' => ['required'],
 
         ]);

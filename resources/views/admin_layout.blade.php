@@ -88,14 +88,14 @@
                             <li class="nav-item {{ request()->is('all-stag')? 'active' : '' }} ">
                                 <a class="nav-link" href="{{URL::to('/all-stag')}}">
                                     <i class="fa fa-users"></i>
-                                    <span class="text-white">Listes des stagiaires</span>
+                                    <span class="text-white">Listes des Formateurs</span>
                                 </a>
                             </li>
 
                             <li class="nav-item {{ request()->is('add-stag')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-stag')}}">
                                     <i class="fa fa-user-plus"></i>
-                                    <span class="text-white">Ajouter un stagiaire</span>
+                                    <span class="text-white">Ajouter un Formateurs</span>
                                 </a>
                             </li>
                             @endif

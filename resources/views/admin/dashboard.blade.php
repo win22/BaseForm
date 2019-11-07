@@ -255,11 +255,11 @@
     <div   id="alert11" class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
-                <div class="card-icon" href="/all-admin">
-                    <i class="fa fa-book"></i>
+                <div class="card-icon" href="/all-stag">
+                    <i class="fa fa-user-o"></i>
                 </div>
                 <p class="card-category">Stagiaires</p>
-                <a href="/all-doc">
+                <a href="/all-stag">
                     <h3 class="card-title">
                         {{ $all_stag_count }}
                     </h3>

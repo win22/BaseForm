@@ -74,7 +74,8 @@ class AdminController extends Controller
         $this->AdminAuthCheck();
         $search = $request->get('search');
         $all_admin_info = DB::table('tbl_admin')
-                ->where('admin_structure', 'like', '%'.$search.'%')
+                ->where('admin_prenom', 'like', '%'.$search.'%')
+                ->orWhere('admin_structure', 'like', '%'.$search.'%')
                 ->orderByDesc('admin_id')
                 ->paginate(5);
         $nb= $all_admin_info->count();
@@ -317,7 +318,7 @@ class AdminController extends Controller
             ->where('admin_id', $admin_id)
             ->update($data);
         Session::put('message', "Vous avez modifié  votre mot de passe avec Succes !");
-        return redirect('/all-admin');
+        return back();
     }
 
     public function detail_admin($admin_id)

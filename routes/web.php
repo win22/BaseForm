@@ -93,11 +93,10 @@ Route::post('/save-itv', 'ItvController@save_itv');
 
 Route::get('/all-itv', 'ItvController@all_itv');
 Route::get('/searchItv', 'ItvController@search');
-
 Route::get('/edit-itv/{itv_id}', 'ItvController@edit_itv');
 Route::get('/delete-itv/{itv_id}', 'ItvController@delete_itv');
 Route::post('/update-itv/{itv_id}', 'ItvController@update_itv');
-
+Route::get('/details-itv/{itv_id}', 'ItvController@detail_itv');
 
 //Route pour la gestion des formateurs
 Route::get('/add-form', 'FormateurController@index');
@@ -127,7 +126,7 @@ Route::get('/searchEven', 'EvenementController@search');
 Route::get('/delete-even/{even_id}', 'EvenementController@delete_even');
 Route::get('/edit-even/{even_id}', 'EvenementController@edit_even');
 Route::post('/update-even/{even_id}', 'EvenementController@update_even');
-
+Route::get('/details-even/{even_id}', 'EvenementController@detail_even');
 
 //Route pour la gestion des documentations
 Route::get('/add-doc', 'DocumentController@index');
@@ -149,6 +148,7 @@ Route::get('/all-stag',  'StagiaireController@all_stag');
 Route::get('/details-stag/{stag_id}', 'StagiaireController@detail_stag');
 Route::get('/searchStag', 'StagiaireController@search');
 Route::get('/delete-stag/{stag_id}', 'StagiaireController@delete_stag');
+Route::get('/details-doc/{doc_id}', 'DocumentController@detail_doc');
 Route::get('/edit-stag/{stag_id}', 'StagiaireController@edit_stag');
 Route::post('/update-stag/{stag_id}', 'StagiaireController@update_stag');
 

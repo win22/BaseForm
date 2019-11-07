@@ -1,6 +1,16 @@
 @extends('admin_layout')
 @section('contenu')
 
+
+<p class="alert">{{ $message = Session::get('message')}}</p>
+@if($message)
+<div id="alert" class="alert alert-success alert-with-icon col-md-4 left">
+    <i class="material-icons" data-notify="icon">add_alert</i>
+    </button>
+    <span data-notify="message">{{$message }}</span>
+</div>
+{{ Session::put('message',NULL) }}
+@endif
 <div class="row">
     <div class="col-md-8">
         <div class="card">

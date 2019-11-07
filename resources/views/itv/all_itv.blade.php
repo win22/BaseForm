@@ -85,6 +85,10 @@
                         <td class="center">{{ $v_itv->itv_ei }}</td>
                         <td class="center">{{ $v_itv->created_at }}</td>
                         <td class="td-actions ">
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-itv/'.
+                        $v_itv->itv_id)}}">
+                                <i class="material-icons">visibility</i>
+                            </a>
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-itv/'.
                         $v_itv->itv_id)}}">
                                 <i class="material-icons">edit</i>

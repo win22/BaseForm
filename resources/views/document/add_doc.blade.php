@@ -67,9 +67,9 @@
                         </div>
                     </div>
 
-                    <button type="submit" id="md." class="btn btn-danger pull-right">
+                    <a href="/all-doc" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
-                        Annuler </button>&nbsp;
+                        Annuler </a>&nbsp;
 
                     <button type="submit" id="md." class="btn btn-success pull-right">
                         <i class="material-icons">check</i>

@@ -60,7 +60,7 @@
                     @foreach ( $all_doc_info as $v_doc)
                     <tr>
                         <td>{{ $v_doc->doc_name }}</td>
-                        <td>{{ $v_doc->doc_contenu }}</td>
+                        <td class="ellipsis">{{ $v_doc->doc_contenu }}</td>
                         <td>{{ $v_doc->doc_file }}</td>
                         <td>{{ $v_doc->created_at }}</td>
                         <td class="td-actions">

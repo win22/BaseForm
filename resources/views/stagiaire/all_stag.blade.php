@@ -94,7 +94,7 @@
                             @endif
                             @endif
 
-                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/details-stag/'.
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-stag/'.
                         $v_stag->stag_id)}}">
                                 <i class="material-icons">visibility</i>
                             </a>

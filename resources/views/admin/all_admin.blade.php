@@ -49,7 +49,7 @@
                     <th class="text-center">image</th>
                     <th class="text-center">Nom</th>
                     <th class="text-center">Adresse e-mail</th>
-                    <th class="text-center">Téléphone</th>
+                    <th class="text-center">Structure</th>
                     <th class="text-center">Date de Creation</th>
                     <th class="text-center">Role</th>
                     <th class="text-center">Status</th>
@@ -64,7 +64,7 @@
                         </td>
                         <td class="text-center">{{ $v_admin->admin_prenom }}</td>
                         <td class="text-center">{{ $v_admin->admin_email }}</td>
-                        <td class="text-center">{{ $v_admin->admin_phone }}</td>
+                        <td class="text-center">{{ $v_admin->admin_structure }}</td>
                         <td class="text-center">{{ $v_admin->created_at }}</td>
                         <td class="text-center">
                             @if($v_admin->admin_role==1)
@@ -106,7 +106,7 @@
                             </a>
                             @endif
                             @endif
-                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/details-admin/'.
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-admin/'.
                         $v_admin->admin_id)}}">
                                 <i class="material-icons">visibility</i>
                             </a>

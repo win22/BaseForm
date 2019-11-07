@@ -65,7 +65,7 @@
                         <td class="center">{{ $v_eu->created_at }}</td>
 
                         <td class="td-actions ">
-                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/detail-eu/'.
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/detail-eu/'.
                         $v_eu->eu_id)}}">
                                 <i class="material-icons">visibility</i>
                             </a>

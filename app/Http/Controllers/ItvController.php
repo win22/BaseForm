@@ -164,12 +164,19 @@ class ItvController extends Controller
 
     }
 
+    public function detail_itv($itv_id)
+    {
+        $this->adminAuthCheck();
+        $itv_info = DB::table('tbl_itv')
+            ->where('itv_id',$itv_id)
+            ->first();
 
+        $itv_info = view('itv.details_itv')->with('itv_info', $itv_info);
+        return View('admin_layout')
+            ->with('itv.details_itv', $itv_info);
+    }
 
-
-
-
-//permet de verifier si l'itv est connecté
+    //permet de verifier si l'itv est connecté
     public function AdminAuthCheck()
     {
         $admin_id = Session::get('admin_id');

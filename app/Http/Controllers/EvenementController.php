@@ -117,7 +117,17 @@ class EvenementController extends Controller
 
     }
 
+    public function detail_even($even_id)
+    {
+        $this->adminAuthCheck();
+        $even_info = DB::table('tbl_evenements')
+            ->where('even_id',$even_id)
+            ->first();
 
+        $even_info = view('evenement.details_even')->with('even_info', $even_info);
+        return View('admin_layout')
+            ->with('evenement.details_even', $even_info);
+    }
     
 
     //permet de verifier si l'even est connecté
