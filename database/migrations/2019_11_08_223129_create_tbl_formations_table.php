@@ -15,12 +15,13 @@ class CreateTblFormationsTable extends Migration
     {
         Schema::create('tbl_formations', function (Blueprint $table) {
             $table->increments('formt_id');
-            $table->string('formt_name');
-            $table->string('formt_valide');
-            $table->string('formt_time');
-            $table->string('formt_of');
+            $table->string('formt_name' , 30);
+            $table->string('formt_time', 60);
+            $table->string('formt_type', 10);
             $table->text('formt_contenu');
-            $table->timestamps();
+            $table->string('formt_file', 100);
+            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

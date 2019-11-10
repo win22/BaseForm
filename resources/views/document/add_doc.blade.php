@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Contenu du Document</label>
+                                <label class="bmd-label-floating">Description du Document</label>
                                 <textarea  value="{{ old('doc_contenu') }}" name="doc_contenu" type="text" class="form-control form-control-plaintext"></textarea>
                             </div>
                             @if($errors->has('doc_contenu'))

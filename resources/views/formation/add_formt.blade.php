@@ -29,54 +29,44 @@
                 <p class="card-category">Ajouter une Formation</p>
             </div>
             <div class="card-body">
-                <form action="{{ url('/save-formt')}}" method="post">
+                <form enctype="multipart/form-data" action="{{ url('/save-formt')}}" method="post">
                     @csrf
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Nom du formation</label>
+                                <label class="bmd-label-floating">Nom de la formation <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('formt_name') }}" name="formt_name" type="text" class="form-control">
+                                @if($errors->has('formt_name'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('formt_name')}}</small>
+                                @endif
                             </div>
-                            @if($errors->has('formt_name'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('formt_name')}}</small>
-                            @endif
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Organisme</label>
-                                <input  value="{{ old('formt_of') }}" name="formt_of" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('formt_of'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('formt_of')}}</small>
-                            @endif
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Validité (Ans)</label>
-                                <input  value="{{ old('formt_valide') }}" name="formt_valide" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('formt_valide'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('formt_valide')}}</small>
-                            @endif
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Temps avant alerte</label>
+                                <label class="bmd-label-floating">durée de la formation <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('formt_time') }}" name="formt_time" type="text" class="form-control">
+                                @if($errors->has('formt_time'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('formt_time')}}</small>
+                                @endif
                             </div>
-                            @if($errors->has('formt_time'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('formt_time')}}</small>
-                            @endif
-                        </div>
-                    </div>
 
+                        </div>
+                        <div class="col-md-4">
+                        <select  class="form-control" name="formt_type">
+                            <option value="">Type de formation <span  class="text-danger">*</span> </option>
+                            <option class="text-success" value="certi">Certifiée Mase </option>
+                            <option class="text-danger" value="non_certi">Non certifiée </option>
+                        </select>
+                        @if($errors->has('formt_type'))
+                        <small class="form-text text-muted text-danger">{{$errors->first('formt_type')}}</small>
+                        @endif
+                         </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Contenue de la formation</label>
+                                <label class="bmd-label-floating">Description de la formation <span  class="text-danger">*</span></label>
                                 <textarea  value="{{ old('formt_contenu') }}" name="formt_contenu" type="text" class="form-control form-control-plaintext"></textarea>
                             </div>
                             @if($errors->has('formt_contenu'))
@@ -84,14 +74,25 @@
                             @endif
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div>
+                                <label class="bmd-label-floating" style="color: black !important;">Choisir un fichier</label><br>
+                                <input  accept=".pdf,.form" type="file" name="formt_file">
+                            </div>
+                            @if($errors->has('form_file'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_file')}}</small>
+                            @endif
+                        </div>
+                    </div>
 
-                    <button type="submit" id="md." class="btn btn-danger pull-right">
+                    <a href="/all-formt" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
-                        Annuler </button>&nbsp;
+                        Annuler </a>&nbsp;
 
                     <button type="submit" id="md." class="btn btn-success pull-right">
                         <i class="material-icons">check</i>
-                        Creer </button>
+                        Ajouter </button>
                     <div class="clearfix"></div>
                 </form>
             </div>

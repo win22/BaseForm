@@ -17,79 +17,70 @@
             <div class="row w-100">
                 <div class="col-lg-5 mx-auto">
                     <div class="auto-form-wrapper">
-                        <h3 class="text-center"><span class="text-primary">BaseForm</span>| Connexion</h3>
-                        <form action="/admin_login" method="post">
+                        <h3 class="text-center"><span class="text-primary">BaseForm | </span>Modification de mot passe</h3>
+                        <form action="{{ url('/user/res',$token)}}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label class="label">Adresse e-mail</label>
+                                <label class="label">Mot de passe</label>
                                 <div class="input-group">
-                                    <input type="email" name="admin_email" class="form-control" placeholder="Veuillez saisir votre adresse e-mail">
+                                    <input type="password" name="password" class="form-control" placeholder="Veuillez saisir votre mot de passe">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
-                                           <i class="material-icons">mail</i>
+                                           <i class="material-icons">lock</i>
                                         </span>
                                     </div>
                                 </div>
-                                @if($errors->has('admin_email'))
-                                <small id="emailHelp" class="form-text text-danger">{{$errors->first('admin_email')}}</small>
+                                @if($errors->has('password'))
+                                <small id="emailHelp" class="form-text text-danger">{{$errors->first('password')}}</small>
                                 @endif
                                 <p hidden class="alert">{{ $message = Session::get('message')}}</p>
-                                <p hidden class="alert">{{ $succes = Session::get('succes')}}</p>
                                 @if($message)
                                 <small class="form-text text-danger">{{ $message}}</small>
                                 {{ Session::put('message',NULL) }}
                                 @endif
-                                @if($succes)
-                                <small class="form-text text-success">{{ $succes}}</small>
-                                {{ Session::put('succes',NULL) }}
-                                @endif
                             </div>
 
                             <div class="form-group">
-                                <label class="label">Mot de passe </label>
+                                <label class="label">Confirmer mot de passe </label>
                                 <div class="input-group">
-                                    <input type="password" name="admin_password" class="form-control" placeholder="Veuillez saisir votre mot de passe">
+                                    <input type="password" name="password_confirmation" class="form-control" placeholder="Veuillez confirmer votre mot de passe">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="material-icons">lock</i>
                                         </span>
                                     </div>
                                 </div>
-                                @if($errors->has('admin_password'))
-                                <small id="emailHelp" class="form-text text-danger">{{$errors->first('admin_password')}}</small>
+                                @if($errors->has('password_confirmation'))
+                                <small id="emailHelp" class="form-text text-danger">{{$errors->first('password_confirmation')}}</small>
                                 @endif
                             </div>
 
                             <div class="form-group">
 
                                 <button class="btn btn-primary submit-btn btn-block">
-                                    <i class="material-icons mr-6">send</i>
-                                    Se connecter
+                                    <i class="material-icons">check</i>
+                                    Activer
 
                                 </button>
                             </div>
                             <div class="text-block text-center my-3">
 
-                                <a href="/user/reset" class="text-warning text-small">Réinitialiser votre mot de passe </a>
                             </div>
-                            <div class="text-block text-center my-3">
+                            <div class="form-group">
 
+                            </div>
+
+
+                        </form>
                     </div>
-                    <div class="form-group">
-
-                    </div>
-
-
-                    </form>
+                    <ul class="auth-footer">
+                    </ul>
+                    <p class="footer-text text-center">design by Nataal Agency. Tous les droits sont réservés.</p>
                 </div>
-                <ul class="auth-footer">
-                </ul>
-                <p class="footer-text text-center">design by Nataal Agency. Tous les droits sont réservés.</p>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
 </div>
 

@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <p class="card-title">
-                        <li class="fa fa-industry" style="color: #036b75!important;"></li>&nbsp;
+                        <li class="material-icons" style="color: #036b75!important;">bubble_chart </li>&nbsp;
                         Raison social :
                         </p>
                     </div>
@@ -33,6 +33,23 @@
                     <div class="col-md-5">
                         <p class="card-title">
                             <span style="font-family: 'Manjari Bold'"> {{ $of_info->of_email }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-title">
+                        <li class="fa fa-certificate" style="color: #036b75!important;"></li>&nbsp;
+                            Etat:
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="card-title">
+                            @if($of_info->of_etat=='certi')
+                            <span class="text-success" style="font-family: 'Manjari Bold'"> Certifié Mase</span>
+                            @else
+                            <span class="text-success" style="font-family: 'Manjari Bold'">Non Certifié Mase</span>
+                            @endif
                         </p>
                     </div>
                 </div>
@@ -67,16 +84,59 @@
                     <div class="col-md-3">
                         <p class="card-title">
                         <li class="fa fa-calendar" style="color: #036b75!important;"></li>&nbsp;
-                        Date de création :
+                        Date de debut d'agreement  :
                         </p>
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $of_info->created_at }}</span>
+                            <span style="font-family: 'Manjari Bold'"> {{ $of_info->of_date_debut }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-title">
+                        <li class="fa fa-calendar" style="color: #036b75!important;"></li>&nbsp;
+                        Date de fin d'agreement  :
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'" class="text-danger"> {{ $of_info->of_date_fin }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-title">
+                        <li class="fa fa-clock-o" style="color: #036b75!important;"></li>&nbsp;
+                        Duré d'agreement  :
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'" class="text-warning"> 3 ans </span>
                         </p>
                     </div>
                 </div>
                 @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-title">
+                        <li class="fa fa-certificate" style="color: #036b75!important;"></li>&nbsp;
+                        Status:
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="card-title">
+                            @if($of_info->of_status == 1)
+                            <span class="text-success" style="font-family: 'Manjari Bold'"> Activé </span>
+                            @else
+                            <span class="text-danger" style="font-family: 'Manjari Bold'">Désactivé </span>
+                            @endif
+                        </p>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <a href="{{ URL::to('/edit-of/'.

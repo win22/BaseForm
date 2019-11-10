@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('contenu')
-
+@if( Session::get('admin_role')==1 || Session::get('admin_role')==2 )
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
 <div id="alert" class="alert alert-success alert-with-icon col-md-4 right">
@@ -20,7 +20,7 @@
     <div class="card">
         <div class="row card-header card-header-info">
             <div class="col-md-8">
-                <h4 class="card-title ">Formation</h4>
+                <h4 class="card-title ">Formation  <i class="fa fa-graduation-cap"></i></h4>
                 <p class="card-form">les differentes formations de votre base de données</p>
 
             </div>
@@ -47,9 +47,9 @@
                     <thead class="text-center text-danger">
 
                     <th>Nom</th>
-                    <th>Validité</th>
-                    <th>Temps avant alerte</th>
-                    <th>Organisme</th>
+                    <th>Durée</th>
+                    <th>Desciption</th>
+                    <th>Type</th>
                     <th>Date de création</th>
                     <th>Action</th>
 
@@ -61,12 +61,28 @@
                     @foreach ( $all_formt_info as $v_formt)
                     <tr>
                         </td>
-                        <td class="center">{{ $v_formt->formt_name }}</td>
-                        <td class="center">{{ $v_formt->formt_valide }}</td>
+                        <td class="center" style="font-family:'Manjari Bold'">{{ $v_formt->formt_name }}</td>
                         <td class="center">{{ $v_formt->formt_time }}</td>
-                        <td class="center">{{ $v_formt->formt_of }}</td>
+                        <td class="center ellipsis">{{ $v_formt->formt_contenu }}</td>
+                        <td class="text-center">
+                            @if($v_formt->formt_type=='certi')
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
+                            Certifié MASE
+                        </span>
+                            @else
+                            <span class="label" style="font-family: 'Manjari Bold'; color: red;" >
+                            Non certifié MASE
+                        </span>
+                            @endif
+
+                        </td>
                         <td class="center">{{ $v_formt->created_at }}</td>
-                        <td>
+                        <td class="td-actions">
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-formt/'.
+                                 $v_formt->formt_id)}}">
+                                <i class="material-icons">visibility</i>
+                            </a>
+                            @if( Session::get('admin_role')==1 || Session::get('admin_role')==2 )
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-formt/'.
                                  $v_formt->formt_id)}}">
                                 <i class="material-icons">edit</i>
@@ -76,6 +92,7 @@
                                  $v_formt->formt_id)}}" id="delete">
                                 <i class="material-icons">close</i>
                             </a>
+                            @endif
                             @endif
                         </td>
                     </tr>
@@ -100,5 +117,5 @@
 </div>
 
 
-
+@endif
 @endsection

@@ -144,12 +144,10 @@ class AdminController extends Controller
             'user_role' => [ 'max:2'],
             'admin_phone' => ['required', 'max:60'],
             'admin_prenom' => ['required', 'max:30'],
-            'admin_password' => ['required','max:30', 'min:5'],
         ]);
         $data = array();
         $data['admin_id'] = $request->admin_id;
         $data['admin_email'] = $request->admin_email;
-        $data['admin_password'] = md5($request->admin_password);
         $data['admin_role'] = $request->admin_role;
         $data['admin_structure'] = $request->admin_structure;
         $data['admin_phone'] = $request->admin_phone;
@@ -172,11 +170,12 @@ class AdminController extends Controller
                 $data['admin_image'] = $image_url;
             }
         }
-        $pass = array();
-        $pass['test'] = $request->admin_password;
+//        $pass = array();
+//        $pass['test'] = $request->admin_password;
+  //      $data = array('data'=> $data, 'pass'=>$pass);
 
-        $data2 = array('data'=> $data, 'pass'=>$pass);
-        Mail::send('mail.activation', $data2, function ($message) use ($data){
+
+        Mail::send('mail.activation', $data, function ($message) use ($data){
             $message->to($data['admin_email']);
             $message->from('mailtrapmail@gmail.com');
             $message->subject('Activation de  votre Compte ');
@@ -188,18 +187,125 @@ class AdminController extends Controller
           return redirect('/all-admin');
     }
 
-    //Activer un Compte
-    public function userActivation($token)
+
+
+
+    //debut de la partie reinitialisation
+
+    public function ren()
     {
-        $this->AdminAuthCheck();
+        return \view('admin.ren');
+    }
+
+    //methode pour envoyer le mail de reinitialisation
+    public function reset(Request $request)
+    {
+        request()->validate([
+            'admin_email' => ['required', 'email'],
+        ]);
+
+        $email = $request->admin_email;
+        $test = DB::table('tbl_admin')
+            ->where('admin_email', $email)
+            ->where('admin_status', 1)
+            ->first();
+        if(!is_null($test))
+        {
+            $data = array();
+            $data['token'] = str_random(30);
+            $data['admin_email'] = $request->admin_email;
+            $data['admin_password'] = null;
+
+            Mail::send('mail.reset', $data, function ($message) use ($data){
+                $message->to($data['admin_email']);
+                $message->from('mailtrapmail@gmail.com');
+                $message->subject('Réinitialisation de mot de passe ');
+
+                DB::table('tbl_admin')
+                    ->where('admin_email', $data['admin_email'])
+                    ->update($data);
+
+                dump('ok');
+            });
+
+        }elseif(['admin_status'] == 0)
+        {
+//            Session::put('message', "Désolé ce compte n'est pas activé ");
+//            return back();
+            dump($test);
+
+        }
+        else
+        {
+            Session::put('message', "Désolé cette adresse email n'existe pas dans notre base de donnée");
+            return back();
+        }
+
+
+    }
+
+    //verification de token
+    public function res($token)
+    {
+        $check = DB::table('tbl_admin')
+            ->where('token', $token)
+            ->where('admin_status',1)->first();
+
+        if(!is_null($check)){
+            return view('admin.password2')
+                ->with('token', $token);
+
+        } elseif (['admin_status'==1])
+        {
+            return Redirect::to('/admin')
+                ->withInput()->withErrors([
+                    'admin_email' => "Ce token n'est plus valide",
+
+                ]);
+        }
+        else{
+            return Redirect::to('/admin')
+                ->withInput()->withErrors([
+                    'admin_email' => "Ce token n'est plus valide",
+
+                ]);
+        }
+
+    }
+
+    public function active_compte2(Request $request, $token)
+    {
+        request() -> validate([
+            'password' => ['required', 'confirmed', 'min:8'],
+            'password_confirmation' => ['required'],
+        ]);
+        $data = array();
+        $data['admin_password'] = md5($request->password);
+        $data['admin_status'] = 1;
+        $data['token'] = null;
+        DB::table('tbl_admin')
+            ->where('token', $token)
+            ->update($data);
+
+
+        Session::put('succes', "Votre mot de passe a été modifié avec succès !");
+        return redirect('/');
+
+    }
+
+    //fin de la partie reinitialisation
+
+
+
+    public function password($token)
+    {
         $check = DB::table('tbl_admin')
             ->where('token', $token)
             ->where('admin_status',0)->first();
+
         if(!is_null($check)){
-          DB::table('tbl_admin')
-                ->where('token',$token)
-                ->update(['admin_status'=>1]);
-            return redirect('/');
+            return view('admin.password')
+                ->with('token', $token);
 
         } elseif (['admin_status'==1])
         {
@@ -212,11 +318,35 @@ class AdminController extends Controller
         else{
             return Redirect::to('/admin')
                 ->withInput()->withErrors([
-                    'admin_email' => "Vous avez déja activé votre Compte",
+                    'admin_email' => "Ce token n'est plus valide",
 
                 ]);
         }
+
     }
+
+
+    public function active_compte(Request $request, $token)
+    {
+        request() -> validate([
+            'password' => ['required', 'confirmed', 'min:8'],
+            'password_confirmation' => ['required'],
+        ]);
+        $data = array();
+        $data['admin_password'] = md5($request->password);
+        $data['admin_status'] = 1;
+        $data['token'] = null;
+        DB::table('tbl_admin')
+            ->where('token', $token)
+            ->update($data);
+
+
+        Session::put('succes', "Votre compte a été activé avec succès!");
+        return redirect('/');
+
+    }
+
+
 
 
     //selectionner un utilisateur
@@ -286,7 +416,7 @@ class AdminController extends Controller
             ->update($data);
         Session::put('message', "l'utilisateur ".$data['admin_prenom']." a eté modifié avec Succes !");
         return redirect('/all-admin');
-        dump($data);
+
 
 
     }

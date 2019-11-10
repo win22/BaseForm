@@ -22,6 +22,7 @@ class formationController extends Controller
         $search = $request->get('search');
         $all_formt_info = DB::table('tbl_formations')
             ->where('formt_name', 'like', '%'.$search.'%')
+            ->orWhere('formt_type', 'like', '%'.$search.'%')
             ->orderByDesc('formt_id')
             ->paginate(5);
         $nb= $all_formt_info->count();
@@ -51,7 +52,7 @@ class formationController extends Controller
         DB::table('tbl_formations')
             ->where('formt_id',$formt_id)
             ->delete();
-        Session::put('message', 'Cette entreprise Intervenante a été supprimé... ');
+        Session::put('message', 'Cette formation a été supprimé... ');
         return back();
     }
 
@@ -63,20 +64,33 @@ class formationController extends Controller
             'formt_name' => ['required'],
             'formt_contenu' => ['required'],
             'formt_time' => ['required'],
-            'formt_valide' => ['required'],
-            'formt_of' => ['required'],
+            'formt_type' => ['required'],
+
         ]);
         $data = array();
         $data['formt_id'] = $request->formt_id;
         $data['formt_name'] = $request->formt_name;
         $data['formt_contenu'] = $request->formt_contenu;
         $data['formt_time'] = $request->formt_time;
-        $data['formt_valide'] = $request->formt_valide;
-        $data['formt_of'] = $request->formt_of;
+        $data['formt_type'] = $request->formt_type;
+        $file = $request->file('formt_file');
+
+        if ($file){
+            $file_full_name = strtolower($file->getClientOriginalName());
+            $upload_path = 'formation/';
+            $file_url = $file_full_name;
+            $success = $file->move($upload_path,$file_full_name);
+            if($success){
+                $data['formt_file'] = $file_url;
+            }
+        }
 
         DB::table('tbl_formations')->insert($data);
         Session::put('message', "la formation " . $data['formt_name'] . " a été crée avec succes !");
         return redirect('/all-formt');
+
+
+
 
     }
 
@@ -103,31 +117,51 @@ class formationController extends Controller
             'formt_name' => ['required'],
             'formt_contenu' => ['required'],
             'formt_time' => ['required'],
-            'formt_valide' => ['required'],
-            'formt_of' => ['required'],
+            'formt_type' => ['required'],
+
         ]);
         $data = array();
         $data['formt_id'] = $request->formt_id;
         $data['formt_name'] = $request->formt_name;
         $data['formt_contenu'] = $request->formt_contenu;
         $data['formt_time'] = $request->formt_time;
-        $data['formt_valide'] = $request->formt_valide;
-        $data['formt_of'] = $request->formt_of;
+        $data['formt_type'] = $request->formt_type;
+        $file = $request->file('formt_file');
+
+        if ($file){
+            $file_full_name = strtolower($file->getClientOriginalName());
+            $upload_path = 'formation/';
+            $file_url = $file_full_name;
+            $success = $file->move($upload_path,$file_full_name);
+            if($success){
+                $data['formt_file'] = $file_url;
+            }
+        }
 
         DB::table('tbl_formations')
             ->where('formt_id', $formt_id)
             ->update($data);
-        Session::put('message', " ".$data['formt_name']." a eté modifié avec Succes !");
+        Session::put('message', "La formation ".$data['formt_name']." a eté modifié avec Succes !");
         return redirect('/all-formt');
 
     }
 
 
+    public function detail_formt($formt_id)
+    {
+        $this->adminAuthCheck();
+        $formt_info = DB::table('tbl_formations')
+            ->where('formt_id',$formt_id)
+            ->first();
+
+        $formt_info = view('formation.details_formt')->with('formt_info', $formt_info);
+        return View('admin_layout')
+            ->with('formation.details_formt', $formt_info);
+    }
 
 
 
-
-//permet de verifier si l'formt est connecté
+    //permet de verifier si l'formt est connecté
     public function AdminAuthCheck()
     {
         $admin_id = Session::get('admin_id');

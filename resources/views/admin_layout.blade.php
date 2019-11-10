@@ -590,7 +590,7 @@
     jQuery(function ($) {
         var alert = $('#alert');
         if(alert.length > 0){
-            alert.hide().slideDown(730).delay(2200).fadeOut(500);
+            alert.hide().slideDown(730).delay(2800).fadeOut(600);
 
         }
     })

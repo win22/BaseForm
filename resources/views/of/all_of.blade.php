@@ -49,9 +49,11 @@
                     <th class="text-center">Raison Social</th>
                     <th class="text-center">Adresse Email</th>
                     <th class="text-center">Téléphone</th>
-                    <th class="text-center">Date de Creation</th>
                     <th class="text-center">Formation</th>
+                    <th class="text-center">État</th>
+                    @if( Session::get('admin_role')==1)
                     <th class="text-center">Status</th>
+                    @endif
                     <th class="text-center">Action</th>
 
 
@@ -61,23 +63,34 @@
                     <tbody>
                     @foreach ( $all_of_info as $v_of)
                     <tr>
-                        <td class="text-center">{{ $v_of->name }}</td>
+                        <td class="text-center" style="font-family: 'Manjari Bold'">{{ $v_of->name }}</td>
                         <td class="text-center">{{ $v_of->of_email }}</td>
                         <td class="text-center">{{ $v_of->of_phone }}</td>
-                        <td class="text-center">{{ $v_of->created_at }}</td>
                         <td class="text-center">{{ $v_of->of_formation }}</td>
-
+                        <td class="text-center">
+                            @if($v_of->of_etat=='certi')
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
+                            Certifié Mase <i class="fa fa-certificate"></i>
+                        </span>
+                            @else
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(191,29,3,0.88);">
+                            Non certifié
+                        </span>
+                            @endif
+                        </td>
+                        @if( Session::get('admin_role')==1)
                         <td class="text-center">
                             @if($v_of->of_status==1)
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
                             Activé
                         </span>
                             @else
-                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(174,0,0,0.88);">
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(233,32,3,0.88);">
                             Desactivé
                         </span>
                             @endif
                         </td>
+                        @endif
                         <td  class="td-actions text-center">
                             @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                             @if($v_of->of_status==1)

@@ -17,13 +17,13 @@
             <div class="row w-100">
                 <div class="col-lg-5 mx-auto">
                     <div class="auto-form-wrapper">
-                        <h3 class="text-center"><span class="text-primary">BaseForm</span>| Connexion</h3>
-                        <form action="/admin_login" method="post">
+                        <h3 class="text-center"><span class="text-primary">BaseForm</span>| </h3>
+                        <form action="/user/reset/email" method="post">
                             @csrf
                             <div class="form-group">
                                 <label class="label">Adresse e-mail</label>
                                 <div class="input-group">
-                                    <input type="email" name="admin_email" class="form-control" placeholder="Veuillez saisir votre adresse e-mail">
+                                    <input type="email" name="admin_email" value="{{ old('$admin_email') }}" class="form-control" placeholder="Veuillez saisir votre adresse e-mail">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                            <i class="material-icons">mail</i>
@@ -46,50 +46,35 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="label">Mot de passe </label>
-                                <div class="input-group">
-                                    <input type="password" name="admin_password" class="form-control" placeholder="Veuillez saisir votre mot de passe">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="material-icons">lock</i>
-                                        </span>
-                                    </div>
-                                </div>
-                                @if($errors->has('admin_password'))
-                                <small id="emailHelp" class="form-text text-danger">{{$errors->first('admin_password')}}</small>
-                                @endif
-                            </div>
-
-                            <div class="form-group">
 
                                 <button class="btn btn-primary submit-btn btn-block">
                                     <i class="material-icons mr-6">send</i>
-                                    Se connecter
+                                    Envoyer
 
                                 </button>
                             </div>
                             <div class="text-block text-center my-3">
 
-                                <a href="/user/reset" class="text-warning text-small">Réinitialiser votre mot de passe </a>
+                                <a href="/" class="text-danger text-small">Annuler</a>
                             </div>
                             <div class="text-block text-center my-3">
 
+                            </div>
+                            <div class="form-group">
+
+                            </div>
+
+
+                        </form>
                     </div>
-                    <div class="form-group">
-
-                    </div>
-
-
-                    </form>
+                    <ul class="auth-footer">
+                    </ul>
+                    <p class="footer-text text-center">design by Nataal Agency. Tous les droits sont réservés.</p>
                 </div>
-                <ul class="auth-footer">
-                </ul>
-                <p class="footer-text text-center">design by Nataal Agency. Tous les droits sont réservés.</p>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
 </div>
 

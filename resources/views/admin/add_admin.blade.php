@@ -34,7 +34,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Nom</label>
+                                <label class="bmd-label-floating">Nom <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('admin_prenom') }}" name="admin_prenom" type="text" class="form-control">
                             </div>
                             @if($errors->has('admin_prenom'))
@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Adresse e-mail</label>
+                                <label class="bmd-label-floating">Adresse e-mail <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('admin_email') }}" name="admin_email" type="email" class="form-control">
                             </div>
                             @if($errors->has('admin_email'))
@@ -51,22 +51,30 @@
                             @endif
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Password</label>
-                                <input  value="{{ old('admin_password') }}" name="admin_password" type="password" class="form-control">
-                            </div>
-                            @if($errors->has('admin_password'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('admin_password')}}</small>
+                        <div  class="col-md-4">
+
+                                <select class="form-control" name="admin_role">
+                                    <option value="">Selectioner un role <span  class="text-danger">*</span></option>
+                                    @if( Session::get('admin_role')==1)
+                                    <option value="1">Administrateur</option>
+                                    <option  value="2">Utilisateur</option>
+                                    <option  value="3">Autres utilisateur</option>
+                                    @else
+                                    <option  value="2">Utilisateur</option>
+                                    <option  value="3">Autres utilisateur</option>
+                                    @endif
+                                </select>
+                            @if($errors->has('admin_role'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('admin_role')}}</small>
                             @endif
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <select class="form-control dynamic" id="name" name="admin_structure"
                                 data-dependent="user_role">
-                                <option value="">Selectionner une structure</option>
+                                <option value="">Selectionner une structure <span  class="text-danger">*</span> </option>
                                     @foreach($EU as $v_eu)
                                     <option value="{{ $v_eu->name }}" >
                                         {{ $v_eu->name }}
@@ -88,10 +96,10 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('admin_structure')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <select  class="form-control dynamic" id="user_role" name="user_role">
-                                    <option value="">Categorie Structure</option>
+                                    <option value="">Categorie Structure <span  class="text-danger">*</span></option>
                                 </select>
                                 @if($errors->has('user_role'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('user_role')}}</small>
@@ -99,29 +107,11 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <select class="form-control" name="admin_role">
-                                    <option value="">Selectioner un role</option>
-                                    @if( Session::get('admin_role')==1)
-                                    <option value="1">Administrateur</option>
-                                    <option  value="2">Utilisateur</option>
-                                    <option  value="3">Autres utilisateur</option>
-                                    @else
-                                    <option  value="2">Utilisateur</option>
-                                    <option  value="3">Autres utilisateur</option>
-                                    @endif
-                                </select>
-                            </div>
-                            @if($errors->has('admin_role'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('admin_role')}}</small>
-                            @endif
-                        </div>
                     </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <div class="form-group">
-                                    <label class="bmd-label-floating">Téléphone</label>
+                                    <label class="bmd-label-floating">Téléphone  <span  class="text-danger">*</span> </label>
                                     <input  value="{{ old('admin_phone') }}" name="admin_phone" type="text" class="form-control">
                                     @if($errors->has('admin_phone'))
                                     <small class="form-text text-muted text-danger">{{$errors->first('admin_phone')}}</small>
@@ -129,15 +119,13 @@
                                 </div>
 
                             </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
+                        <div class="col-md-5">
                                 <select  class="form-control " name="admin_status">
                                     <option value="0">Status Désactivé</option>
                                 </select>
                                 @if($errors->has('admin_status'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('admin_status')}}</small>
                                 @endif
-                            </div>
 
                         </div>
                     </div>

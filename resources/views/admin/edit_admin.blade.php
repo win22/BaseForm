@@ -56,17 +56,6 @@
                             @endif
                         </div>
 
-                        @if(Session::get('admin_role') == 1 )
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Mot de passe</label>
-                                <input  value="{{ ($admin_info->admin_password) }}" name="admin_password" type="password" class="form-control">
-                            </div>
-                            @if($errors->has('admin_password'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('admin_password')}}</small>
-                            @endif
-                        </div>
-                        @endif
                     </div>
                     <div class="row">
                         <div class="col-md-4">

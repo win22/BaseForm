@@ -15,8 +15,13 @@
 
 Route::get('/', 'HomeController@test');
 Route::post('/admin_login', 'HomeController@login');
-Route::get('/user/activation/{token}','AdminController@userActivation');
+Route::get('/user/activation/{token}','AdminController@password');
+Route::get('/user/reset/{token}','AdminController@res');
 
+Route::get('/user/reset', 'AdminController@ren');
+Route::post('/user/reset/email', 'AdminController@reset');
+Route::post('/user/{token}','AdminController@active_compte');
+Route::post('/user/res/{token}','AdminController@active_compte2');
 Route::get('/logout', 'SuperAdminController@logout');
 Route::get('admin', 'HomeController@index');
 Route::get('/dashboard','SuperAdminController@index');
@@ -116,7 +121,7 @@ Route::get('/searchFormt', 'FormationController@search');
 Route::get('/delete-formt/{formt_id}', 'FormationController@delete_formt');
 Route::get('/edit-formt/{formt_id}', 'FormationController@edit_formt');
 Route::post('/update-formt/{formt_id}', 'FormationController@update_formt');
-
+Route::get('/details-formt/{formt_id}', 'FormationController@detail_formt');
 
 //Route pour la gestion des événements
 Route::get('/add-even', 'EvenementController@index');
