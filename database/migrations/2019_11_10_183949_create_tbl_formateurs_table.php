@@ -21,7 +21,7 @@ class CreateTblFormateursTable extends Migration
             $table->string('form_phone', 60);
             $table->string('form_email', 191);
             $table->string('form_sexe', 1);
-            $table->string('form_etat', 1);
+            $table->string('form_etat', 10);
             $table->string('form_status', 1);
             $table->string('form_of', 60)->nullable();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

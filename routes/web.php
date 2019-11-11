@@ -107,11 +107,13 @@ Route::get('/details-itv/{itv_id}', 'ItvController@detail_itv');
 Route::get('/add-form', 'FormateurController@index');
 Route::post('/save-form', 'FormateurController@save_form');
 Route::get('/all-form',  'FormateurController@all_form');
+Route::get('/unactive-form/{form_id}', 'FormateurController@unactive_form');
+Route::get('/active-form/{form_id}', 'FormateurController@active_form');
 Route::get('/searchForm', 'FormateurController@search');
 Route::get('/delete-form/{form_id}', 'FormateurController@delete_form');
 Route::get('/edit-form/{form_id}', 'FormateurController@edit_form');
 Route::post('/update-form/{form_id}', 'FormateurController@update_form');
-
+Route::get('/details-form/{form_id}', 'FormateurController@detail_form');
 
 //Route pour la gestion des formations
 Route::get('/add-formt', 'FormationController@index');

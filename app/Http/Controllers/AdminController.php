@@ -139,7 +139,7 @@ class AdminController extends Controller
         $this->AdminAuthCheck();
         request()->validate([
             'admin_structure' => ['max:30'],
-            'admin_email' => ['required', 'unique:tbl_admin', 'max:191'],
+            'admin_email' => ['required', 'unique:tbl_admin', 'max:191', 'email'],
             'admin_role' => ['required', 'max:2'],
             'user_role' => [ 'max:2'],
             'admin_phone' => ['required', 'max:60'],
@@ -379,7 +379,7 @@ class AdminController extends Controller
         $this->AdminAuthCheck();
         request()->validate([
             'admin_structure' => ['max:30'],
-            'admin_email' => ['required', 'max:191'],
+            'admin_email' => ['required', 'max:191', 'email'],
             'admin_role' => ['required', 'max:2'],
             'user_role' => [ 'max:2'],
             'admin_phone' => ['required', 'max:60'],

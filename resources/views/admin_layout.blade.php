@@ -174,7 +174,7 @@
                     </div>
                 </li>
                 @endif
-                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
                 <li class="nav-item {{ request()->is('all-form','add-form')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-form','add-form')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic6" aria-expanded="false" aria-controls="ui-basic6">
                         <i class="fa fa-users EU"></i>
@@ -188,6 +188,7 @@
                                     <span class="text-white">Listes des Formateurs</span>
                                 </a>
                             </li>
+
                             <li class="nav-item {{ request()->is('add-form')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-form')}}">
                                     <i class="material-icons">playlist_add</i>

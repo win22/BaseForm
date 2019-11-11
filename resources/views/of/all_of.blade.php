@@ -115,7 +115,7 @@
                             </a>
                             @endif
                             @endif
-                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/details-of/'.
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-of/'.
                         $v_of->of_id)}}">
                                 <i class="material-icons">visibility</i>
                             </a>

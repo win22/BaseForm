@@ -1,6 +1,7 @@
 @extends('admin_layout')
 @section('contenu')
 
+@if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
 <div id="alert" class="alert alert-success alert-with-icon col-md-4 right">
@@ -47,30 +48,84 @@
                     <thead class="text-center text-danger">
 
                     <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Adresse</th>
-                    <th>Organisme de formation</th>
-                    <th>Date de création</th>
+                    <th>Téléphone </th>
+                    <th>Organisme de formation </th>
+                    <th>Adresse e-mail </th>
+                    <th style="font-family: 'Manjari Bold'">Etat</th>
+                    @if( Session::get('admin_role')==1)
+                    <th>Status</th>
+                    @endif
                     <th>Action</th>
 
-
                     </thead>
-
-
                     <tbody class="text-center">
                     @foreach ( $all_form_info as $v_form)
                     <tr>
                         </td>
-                        <td class="center">{{ $v_form->form_name }}</td>
-                        <td class="center">{{ $v_form->form_prenom }}</td>
-                        <td class="center">{{ $v_form->form_adresse }}</td>
-                        <td class="center">{{ $v_form->form_of }}</td>
-                        <td class="center">{{ $v_form->created_at }}</td>
-                       <td>
+                        <td  style="font-family: 'Manjari Bold'">{{ $v_form->form_name }}</td>
+                        <td class="center">{{ $v_form->form_phone }}</td>
+                        <td class="text-center">
+                            @if($v_form->form_of)
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,59,128,0.88);">
+                            {{ $v_form->form_of }}</i>
+                        </span>
+                            @else
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(191,29,3,0.88);">
+                            Null
+                        </span>
+                            @endif
+                        </td>
+                        <td class="center">{{ $v_form->form_email }}</td>
+                        <td class="text-center">
+                            @if($v_form->form_etat=='certi')
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
+                            Certifié Mase <i class="fa fa-certificate"></i>
+                        </span>
+                            @else
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(191,29,3,0.88);">
+                            Non certifié
+                        </span>
+                            @endif
+                        </td>
+                        @if( Session::get('admin_role')==1)
+                        <td class="text-center">
+                            @if($v_form->form_status==1)
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
+                            Activé
+                        </span>
+                            @else
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(233,32,3,0.88);">
+                            Desactivé
+                        </span>
+                            @endif
+                        </td>
+                        @endif
+                        <td class="td-actions">
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-form/'.
+                        $v_form->form_id)}}">
+                                <i class="material-icons">visibility</i>
+                            </a>
+                            @if( Session::get('admin_role')==1)
+                            @if($v_form->form_status==1)
+                            <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-form/'.
+                        $v_form->form_id)}}">
+                                <i class="material-icons">thumb_down_alt</i>
+                            </a>
+                            @else
+                            <a class="btn btn-success btn-link btn-sm"  rel="tooltip" title="Activer" href="{{ URL::to('/active-form/'.
+                        $v_form->form_id)}}">
+                                <i class="material-icons">thumb_up</i>
+                            </a>
+                            @endif
+                            @endif
+                            @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
+                            || Session::get('admin_role')== 3
+                            && Session::get('admin_structure')== $v_form->form_of  )
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-form/'.
                                  $v_form->form_id)}}">
                                 <i class="material-icons">edit</i>
                             </a>
+                            @endif
                             @if( Session::get('admin_role')==1)
                             <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-form/'.
                                  $v_form->form_id)}}" id="delete">
@@ -99,5 +154,5 @@
 </div>
 
 
-
+@endif
 @endsection

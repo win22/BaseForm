@@ -36,7 +36,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Nom </label>
+                                <label class="bmd-label-floating">Nom <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('form_name') }}" name="form_name" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_name'))
@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Prenom </label>
+                                <label class="bmd-label-floating">Prenom <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('form_prenom') }}" name="form_prenom" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_prenom'))
@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Adresse </label>
+                                <label class="bmd-label-floating">Adresse <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('form_adresse') }}" name="form_adresse" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_adresse'))
@@ -66,7 +66,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Téléphone</label>
+                                <label class="bmd-label-floating">Téléphone <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('form_phone') }}" name="form_phone" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_phone'))
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">adresse e-mail</label>
+                                <label class="bmd-label-floating">adresse e-mail <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('form_email') }}" name="form_email" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_email'))
@@ -83,16 +83,14 @@
                             @endif
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group">
                                 <select  class="form-control " name="form_sexe">
-                                    <option value="">Sexe </option>
+                                    <option value="">Sexe <span  class="text-danger">*</span> </option>
                                     <option value="1">Homme</option>
                                     <option value="2">Femme </option>
                                 </select>
                                 @if($errors->has('form_sexe'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_sexe')}}</small>
                                 @endif
-                            </div>
                         </div>
                     </div>
 
@@ -100,11 +98,11 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <select  class="form-control " name="form_etat">
-                                    <option value="">Etat du formateur </option>
+                                    <option value="">Etat du formateur <span  class="text-danger">*</span> </option>
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                                    <option value="1">Certifié Mase</option>
+                                    <option class="text-success" value="certi">Certifié Mase</option>
                                     @endif
-                                    <option value="2">Non certifié </option>
+                                    <option class="text-danger" value="non_certi">Non certifié </option>
                                 </select>
                                 @if($errors->has('form_etat'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_etat')}}</small>
@@ -114,9 +112,21 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <select  class="form-control " name="form_of">
-                                    <option value="">Organisme de formation</option>
-                                    <option value="1">Activé</option>
-                                    <option value="2">Désactivé</option>
+                                    <option value="">Organisme de formation </option>
+
+                                    @foreach($OF as $v_of)
+                                    <option value="{{ $v_of->name }}" >
+                                        {{ $v_of->name }}
+                                    </option>
+                                    @endforeach
+
+                                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                                    @foreach($OF_all as $v_of)
+                                    <option value="{{ $v_of->name }}" >
+                                        {{ $v_of->name }}
+                                    </option>
+                                    @endforeach
+                                    @endif
                                 </select>
                                 @if($errors->has('form_of'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_of')}}</small>
@@ -126,16 +136,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="form-group">
-                                <select  class="form-control " name="form_status">
-                                    <option value="">Status du formateur </option>
-                                    <option value="1">Activé</option>
-                                    <option value="2">Désactivé</option>
-                                </select>
-                                @if($errors->has('form_status'))
-                                <small class="form-text text-muted text-danger">{{$errors->first('form_status')}}</small>
-                                @endif
-                            </div>
+                            <select  class="form-control text-danger" name="form_status">
+                                <option value="0">Status Désactivé</option>
+                            </select>
+                            @if($errors->has('form_status'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_status')}}</small>
+                            @endif
+
                         </div>
                     </div>
 
