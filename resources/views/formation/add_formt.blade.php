@@ -55,8 +55,8 @@
                         <div class="col-md-4">
                         <select  class="form-control" name="formt_type">
                             <option value="">Type de formation <span  class="text-danger">*</span> </option>
-                            <option class="text-success" value="certi">Certifiée Mase </option>
-                            <option class="text-danger" value="non_certi">Non certifiée </option>
+                            <option class="text-success" value="certifie">Certifiée Mase </option>
+                            <option class="text-danger" value="non certifie">Non certifiée </option>
                         </select>
                         @if($errors->has('formt_type'))
                         <small class="form-text text-muted text-danger">{{$errors->first('formt_type')}}</small>

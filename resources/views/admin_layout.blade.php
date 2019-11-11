@@ -63,8 +63,8 @@
                     </div>
                 </li>
                 @endif
-                <li class="nav-item {{ request()->is('all-of','add-of','add-stag','all-stag')? 'active' : '' }}">
-                    <a class="nav-link {{ request()->is('all-of','add-of','add-stag','all-stag')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
+                <li class="nav-item {{ request()->is('all-of','add-of')? 'active' : '' }}">
+                    <a class="nav-link {{ request()->is('all-of','add-of')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
                         <i class="material-icons userI">bubble_chart</i>
                         <p class="menu-title">Organismes de Formation</p>
                     </a>
@@ -81,21 +81,6 @@
                                 <a class="nav-link" href="{{URL::to('/add-of')}}">
                                     <i class="material-icons">playlist_add</i>
                                     <span class="text-white">Ajouter un OF</span>
-                                </a>
-                            </li>
-                            @endif
-                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
-                            <li class="nav-item {{ request()->is('all-stag')? 'active' : '' }} ">
-                                <a class="nav-link" href="{{URL::to('/all-stag')}}">
-                                    <i class="fa fa-users"></i>
-                                    <span class="text-white">Listes des Formateurs</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item {{ request()->is('add-stag')? 'active' : '' }}">
-                                <a class="nav-link" href="{{URL::to('/add-stag')}}">
-                                    <i class="fa fa-user-plus"></i>
-                                    <span class="text-white">Ajouter un Formateurs</span>
                                 </a>
                             </li>
                             @endif
@@ -199,6 +184,31 @@
                     </div>
                 </li>
                 @endif
+                <li class="nav-item {{ request()->is('all-stag','add-stag')? 'active' : '' }}">
+                    <a class="nav-link {{ request()->is('all-stag','add-stag')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic11" aria-expanded="false" aria-controls="ui-basic11">
+                        <i class="fa fa-asl-interpreting EI"></i>
+                        <p class="menu-title">Stagiaires </p>
+                    </a>
+                    <div class="collapse {{ request()->is('all-stag','add-stag')? 'show' : '' }}" id="ui-basic11">
+                        <ul class="nav flex-column sub-menu">
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
+                            <li class="nav-item {{ request()->is('all-stag')? 'active' : '' }} ">
+                                <a class="nav-link" href="{{URL::to('/all-stag')}}">
+                                    <i class="material-icons">view_list</i>
+                                    <span class="text-white">Listes des Stagiaires</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{ request()->is('add-stag')? 'active' : '' }}">
+                                <a class="nav-link" href="{{URL::to('/add-stag')}}">
+                                    <i class="material-icons">playlist_add</i>
+                                    <span class="text-white">Ajouter un Stagiaire</span>
+                                </a>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
                 <li class="nav-item {{ request()->is('all-formt','add-formt')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-formt','add-formt')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic7" aria-expanded="false" aria-controls="ui-basic7">
                         <i class="fa fa-graduation-cap of"></i>

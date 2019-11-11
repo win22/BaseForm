@@ -251,12 +251,11 @@
         </div>
     </div>
 
-    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3 )
     <div   id="alert11" class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
                 <div class="card-icon" href="/all-stag">
-                    <i class="fa fa-user-o"></i>
+                    <i class="fa fa-asl-interpreting"></i>
                 </div>
                 <p class="card-category">Stagiaires</p>
                 <a href="/all-stag">
@@ -277,7 +276,7 @@
             </div>
         </div>
     </div>
-    @endif
+
 </div>
 
 

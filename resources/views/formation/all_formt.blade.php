@@ -65,7 +65,7 @@
                         <td class="center">{{ $v_formt->formt_time }}</td>
                         <td class="center ellipsis">{{ $v_formt->formt_contenu }}</td>
                         <td class="text-center">
-                            @if($v_formt->formt_type=='certi')
+                            @if($v_formt->formt_type=='certifie')
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
                             Certifié MASE
                         </span>

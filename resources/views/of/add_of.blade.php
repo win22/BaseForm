@@ -79,13 +79,39 @@
                         <div class="col-md-4">
                             <select  class="form-control" name="of_etat">
                                 <option value="">État de l'organisme  <span  class="text-danger">*</span> </option>
-                                <option class="text-success" value="certi">Certifié Mase </option>
-                                <option class="text-danger" value="non_certi">Non certifié </option>
+                                <option class="text-success" value="certifie">Certifié Mase </option>
+                                <option class="text-danger"  value="non_certifie">Non certifié </option>
                             </select>
                             @if($errors->has('of_etat'))
                             <small class="form-text text-muted text-danger">{{$errors->first('of_etat')}}</small>
                             @endif
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label">Date d'adhésion</label>
+                                <input type="date" class="form-control text-success" min="1800-08-13" name="of_date_ad">
+                            </div>
+                            @if($errors->has('of_date_ad'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('of_date_ad')}}</small>
+                            @endif
+                        </div>
+                        <div class="col-md-4">
+                            <select  class="form-control" name="of_formation">
+                                <option value="">Formation  <span  class="text-danger">*</span></option>
+                                @foreach($OF as $v_of)
+                                <option value="{{ $v_of->formt_name }}" >
+                                    {{ $v_of->formt_name	 }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('of_formation'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('of_formation')}}</small>
+                            @endif
+                        </div>
+
+                    </div>
+                    <div class="row">
+
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Date de début</label>
@@ -104,29 +130,13 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('of_date_fin')}}</small>
                             @endif
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-4">
-
-                                <select  class="form-control" name="of_formation">
-                                    <option value="">Formation  <span  class="text-danger">*</span></option>
-                                     @foreach($OF as $v_of)
-                                    <option value="{{ $v_of->formt_name }}" >
-                                        {{ $v_of->formt_name	 }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @if($errors->has('of_formation'))
-                                <small class="form-text text-muted text-danger">{{$errors->first('of_formation')}}</small>
-                                @endif
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Durée </label>
+                                <input  value="{{ old('of_time') }}" name="of_time" type="text" class="form-control">
                             </div>
-
-                        <div class="col-md-4">
-                            <select  class="form-control text-danger" name="of_status">
-                                <option class="text-danger" value="0">Status Désactivé</option>
-                            </select>
-                            @if($errors->has('of_status'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('of_statusa')}}</small>
+                            @if($errors->has('of_time'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('of_time')}}</small>
                             @endif
                         </div>
                     </div>

@@ -27,16 +27,16 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-info">
-                <h4 class="card-title">Entreprise Intervenante   <i class="fa fa-building redI"></i></h4>
-                <p class="card-category">Ajouter une Entreprise Intervenant</p>
+                <h4 class="card-title">Entreprise Intervenante  <i class="fa fa-crop redI"></i></h4>
+                <p class="card-category">Ajouter une Entreprise Intervenante</p>
             </div>
             <div class="card-body">
                 <form action="{{ url('/save-ei')}}" method="post">
                     @csrf
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Nom</label>
+                                <label class="bmd-label-floating">Nom <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('name') }}" name="name" type="text" class="form-control">
                             </div>
                             @if($errors->has('name'))
@@ -44,9 +44,9 @@
                             @endif
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Adresse</label>
+                                <label class="bmd-label-floating">Adresse <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('ei_adresse') }}" name="ei_adresse" type="text" class="form-control">
                             </div>
                             @if($errors->has('ei_adresse'))
@@ -57,39 +57,25 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Adresse e-mail</label>
+                                <label class="bmd-label-floating">Adresse e-mail <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('ei_email') }}" name="ei_email" type="email" class="form-control">
                             </div>
                             @if($errors->has('ei_email'))
                             <small class="form-text text-muted text-danger">{{$errors->first('ei_email')}}</small>
                             @endif
                         </div>
-
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Téléphone</label>
+                                <label class="bmd-label-floating">Téléphone <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('ei_phone') }}" name="ei_phone" type="text" class="form-control">
                             </div>
                             @if($errors->has('ei_phone'))
                             <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('ei_phone')}}</small>
                             @endif
                         </div>
-
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Nom du Directeur</label>
-                                <input  value="{{ old('ei_nameDi') }}" name="ei_nameDi" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('ei_nameDi'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('ei_nameDi')}}</small>
-                            @endif
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Secteur d'Activité</label>
+                                <label class="bmd-label-floating">Secteur d'Activité <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('ei_secteurA') }}" name="ei_secteurA" type="text" class="form-control">
                             </div>
                             @if($errors->has('ei_secteurA'))
@@ -100,23 +86,76 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Entreprises Utilisatrices</label>
-                                <input  value="{{ old('ei_ei') }}" name="ei_eu" type="text" class="form-control">
+                                <label class="bmd-label-floating">Nom du Directeur <span  class="text-danger">*</span></label>
+                                <input  value="{{ old('ei_nameDi') }}" name="ei_nameDi" type="text" class="form-control">
                             </div>
-                            @if($errors->has('ei_eu'))
-                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('ei_eu')}}</small>
+                            @if($errors->has('ei_nameDi'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('ei_nameDi')}}</small>
                             @endif
                         </div>
                         <div class="col-md-4">
-                            <select  class="form-control" name="ei_status">
-                                <option value="0">Selection un status</option>
-                                <option value="1">Certifié Mase</option>
-                                <option value="2">Démarche </option>
+                            <div class="form-group">
+                                <label class="label">Date d'adhésion <span  class="text-danger">*</span></label>
+                                <input type="date" class="form-control text-warning" min="1800-08-13" name="ei_date_ad">
+                                @if($errors->has('ei_date_ad'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('ei_date_ad')}}</small>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <select  class="form-control " name="ei_etat">
+                                <option value="">État <span  class="text-danger">*</span> </option>
+                                <option class="text-warning" value="en demarche">En démarche</option>
+                                <option class="text-success" value="certifie">Certifié Mase </option>
                             </select>
-                            @if($errors->has('ei_status'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('ei_status')}}</small>
+                            @if($errors->has('ei_etat'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('ei_etat')}}</small>
                             @endif
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Duré de la certification</label>
+                                <input  value="{{ old('ei_time') }}" name="ei_time" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('ei_time'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('ei_time')}}</small>
+                            @endif
+                        </div>
+
+                        <div class="col-md-5">
+                            <select  class="form-control " name="ei_eu">
+                                <option value="">Selectionner une Entreprise Utilisatrice </option>
+                               @foreach($eu_all as $v_eu)
+                                <option class="text-success" value="{{ $v_eu->name  }}">{{ $v_eu->name }} </option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('ei_eu'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('ei_eu')}}</small>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label">Date de début </label>
+                                <input type="date" class="form-control text-success" min="1800-08-13" name="ei_date_debut">
+                                @if($errors->has('ei_date_debut'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('ei_date_debut')}}</small>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label">Date de fin </label>
+                                <input type="date" class="form-control text-danger" min="1800-08-13" name="ei_date_fin">
+                                @if($errors->has('ei_date_fin'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('ei_date_fin')}}</small>
+                                @endif
+                            </div>
+                        </div>
+
                     </div>
                     <div class="row">
                         <input value="2" name="user_role" type="text" hidden>

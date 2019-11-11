@@ -64,6 +64,15 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label class="bmd-label-floating">Téléphone</label>
+                                <input  value="{{ old('eu_phone') }}" name="eu_phone" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('eu_phone'))
+                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('eu_phone')}}</small>
+                            @endif
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label class="bmd-label-floating">Effectif</label>
                                 <input  value="{{ old('eu_efectif') }}" name="eu_efectif" type="text" class="form-control">
                             </div>
@@ -73,7 +82,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Secteur d'Activité</label>
                                 <input  value="{{ old('eu_secteurA') }}" name="eu_secteurA" type="text" class="form-control">
@@ -82,18 +91,6 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_secteurA')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Téléphone</label>
-                                <input  value="{{ old('eu_phone') }}" name="eu_phone" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('eu_phone'))
-                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('eu_phone')}}</small>
-                            @endif
-                        </div>
-
-                    </div>
-                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Contact Pour la demande</label>
@@ -113,6 +110,70 @@
                             @endif
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                            <label class="label">Date d'adhésion <span  class="text-danger">*</span></label>
+                            <input type="date" class="form-control text-warning" min="1800-08-13" name="eu_date_ad">
+                            @if($errors->has('eu_date_ad'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('eu_date_ad')}}</small>
+                            @endif
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <select  class="form-control " name="eu_etat">
+                                <option value="">État <span  class="text-danger">*</span> </option>
+                                <option value="normal">Normal</option>
+                                <option class="text-warning" value="en demarche">En démarche</option>
+                                <option class="text-success" value="certifie">Certifié Mase </option>
+                            </select>
+                            @if($errors->has('eu_etat'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('eu_etat')}}</small>
+                            @endif
+                        </div>
+                        <div class="col-md-4">
+                            <select  class="form-control " name="eu_ei">
+                                <option value="">Selectionner une Entreprise Intervenante </option>
+                                @foreach($ei_all as $v_ei)
+                                <option class="text-success" value="{{ $v_ei->name  }}">{{ $v_ei->name }} </option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('ei_eu'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('ei_eu')}}</small>
+                            @endif
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label">Date de début </label>
+                                <input type="date" class="form-control text-success" min="1800-08-13" name="eu_date_debut">
+                                @if($errors->has('eu_date_debut'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('eu_date_debut')}}</small>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label">Date de fin </label>
+                                <input type="date" class="form-control text-danger" min="1800-08-13" name="eu_date_fin">
+                                @if($errors->has('eu_date_fin'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('eu_date_fin')}}</small>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Duré de la certification</label>
+                                <input  value="{{ old('eu_time') }}" name="eu_time" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('eu_time'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('eu_time')}}</small>
+                            @endif
+                        </div>
+                    </div>
                     <div class="row">
                         <input value="1" name="user_role" type="text" hidden>
                     </div>
@@ -122,7 +183,7 @@
                     </a>&nbsp;
                     <button type="submit" id="md." class="btn btn-success pull-right">
                         <i class="material-icons">check</i>
-                        Creer </button>
+                        Ajouter  </button>
                     <div class="clearfix"></div>
                 </form>
             </div>

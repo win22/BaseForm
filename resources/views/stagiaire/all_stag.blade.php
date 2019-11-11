@@ -20,7 +20,7 @@
     <div class="card">
         <div class="row card-header card-header-info">
             <div class="col-md-8">
-                <h4 class="card-title ">Stagiaires  <i class="material-icons oraI">supervised_user_circle</i></h4>
+                <h4 class="card-title ">Stagiaires   <i class="fa fa-asl-interpreting"></i></h4>
                 <p class="card-admin">Liste des stagiaires</p>
             </div>
 
@@ -50,24 +50,36 @@
                     <th class="text-center">Nom</th>
                     <th class="text-center">Adresse e-mail</th>
                     <th class="text-center">Téléphone</th>
+                    <th class="text-center">Validation</th>
                     <th class="text-center">Structure</th>
-                    <th class="text-center">Date de Creation</th>
+                    @if( Session::get('admin_role')==1 || Session::get('admin_role')==2 )
                     <th class="text-center">Status</th>
+                    @endif
                     <th class="text-center">Action</th>
 
                     </thead>
                     <tbody>
-                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                     @foreach ( $all_stag_info as $v_stag)
                     <tr>
                         <td class="text-center"><img src="{{ URL::to($v_stag->stag_image) }}"
                                                      style=" height: 40px; width: 40px; border-radius: 15px;">
                         </td>
-                        <td class="text-center">{{ $v_stag->stag_name }}</td>
+                        <td class="text-center" style="font-family: 'Manjari Bold'">{{ $v_stag->stag_name }}</td>
                         <td class="text-center">{{ $v_stag->stag_email }}</td>
                         <td class="text-center">{{ $v_stag->stag_phone }}</td>
-                        <td class="text-center">{{ $v_stag->stag_structure }}</td>
-                        <td class="text-center">{{ $v_stag->created_at }}</td>
+                        <td class="text-center">
+                            @if($v_stag->stag_validation==1)
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
+                                Certifié Mase  <i class="fa fa-certificate"></i>
+                        </span>
+                            @else
+                            <span class="label" style="font-family: 'Manjari Bold'; color: red;" >
+                            En cours de certifaction
+                        </span>
+                            @endif
+                        </td>
+                        <td style="font-family: 'Manjari Bold'" class="text-center">{{ $v_stag->stag_structure }}</td>
+                        @if( Session::get('admin_role')==1 || Session::get('admin_role')==2 )
                         <td class="text-center">
                             @if($v_stag->stag_status==1)
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
@@ -79,6 +91,7 @@
                         </span>
                             @endif
                         </td>
+                        @endif
                         <td class="td-actions text-center">
                             @if( Session::get('admin_role')==1)
                             @if($v_stag->stag_status==1)
@@ -92,12 +105,16 @@
                                 <i class="material-icons">thumb_up</i>
                             </a>
                             @endif
-                            @endif
 
+                            @endif
                             <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-stag/'.
                         $v_stag->stag_id)}}">
                                 <i class="material-icons">visibility</i>
                             </a>
+                            @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
+                            || Session::get('admin_role')== 3
+                            && Session::get('admin_structure')== $v_stag->stag_structure &&  $v_stag->stag_validation == 0   )
+
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-stag/'.
                         $v_stag->stag_id)}}">
                                 <i class="material-icons">edit</i>
@@ -107,67 +124,12 @@
                         $v_stag->stag_id)}}" id="delete">
                                 <i class="material-icons">close</i>
                             </a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
-                    @else
-                    @foreach ( $all_stag_info1 as $v_stag)
-                    <tr>
-                        <td class="text-center"><img src="{{ URL::to($v_stag->stag_image) }}"
-                                                     style=" height: 40px; width: 40px; border-radius: 15px;">
-                        </td>
-                        <td class="text-center">{{ $v_stag->stag_name }}</td>
-                        <td class="text-center">{{ $v_stag->stag_email }}</td>
-                        <td class="text-center">{{ $v_stag->stag_phone }}</td>
-                        <td class="text-center">{{ $v_stag->stag_structure }}</td>
-                        <td class="text-center">{{ $v_stag->created_at }}</td>
-                        <td class="text-center">
-                            @if($v_stag->stag_status==1)
-                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
-                            Activé
-                        </span>
-                            @else
-                            <span class="label" style="font-family: 'Manjari Bold'; color: red;" >
-                            Desactivé
-                        </span>
-                            @endif
-                        </td>
-                        <td class="td-actions text-center">
-                            @if( Session::get('admin_role')==1)
-                            @if($v_stag->stag_status==1)
-                            <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-stag/'.
-                        $v_stag->stag_id)}}">
-                                <i class="material-icons">thumb_down_alt</i>
-                            </a>
-                            @else
-                            <a class="btn btn-success btn-link btn-sm"  rel="tooltip" title="Activer" href="{{ URL::to('/active-stag/'.
-                        $v_stag->stag_id)}}">
-                                <i class="material-icons">thumb_up</i>
-                            </a>
-                            @endif
-                            @endif
-
-                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="visualiser"  href="{{ URL::to('/details-stag/'.
-                        $v_stag->stag_id)}}">
-                                <i class="material-icons">visibility</i>
-                            </a>
-                            <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-stag/'.
-                        $v_stag->stag_id)}}">
-                                <i class="material-icons">edit</i>
-                            </a>
-
-                            <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-stag/'.
-                        $v_stag->stag_id)}}" id="delete">
-                                <i class="material-icons">close</i>
-                            </a>
-                        </td>
-                    </tr>
-                    @endforeach
-
-                    @endif
                     </tbody>
                 </table>
-                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                 <p  id="total_records">
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
@@ -175,25 +137,8 @@
                 @else
                 <p class="text-center">Aucune information trouvé</p>
                 @endif
-                @else
-                <p  id="total_records">
-                    @if($nb1>0)
-                    Total des informations : <span id="total_records">{{ $nb1 }}</span>
-                </p>
-                @else
-                <p class="text-center">Aucune information trouvé</p>
-                @endif
-                @endif
 
-                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                <p class="center">
-                    {{ $all_stag_info->links() }}
-                </p>
-                @else
-                <p class="center">
-                    {{ $all_stag_info1->links() }}
-                </p>
-                @endif
+                {{ $all_stag_info->links() }}
 
 
             </div>

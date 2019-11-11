@@ -17,7 +17,7 @@ class CreateTblFormationsTable extends Migration
             $table->increments('formt_id');
             $table->string('formt_name' , 30);
             $table->string('formt_time', 60);
-            $table->string('formt_type', 10);
+            $table->string('formt_type', 30);
             $table->text('formt_contenu');
             $table->string('formt_file', 100);
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

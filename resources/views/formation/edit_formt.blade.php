@@ -55,7 +55,7 @@
                         <div class="col-md-4">
                             <select  class="form-control" name="formt_type">
 
-                                @if($formt_info->formt_type=='certi')
+                                @if($formt_info->formt_type=='certifie')
                                 <option class="text-success" value="{{ $formt_info->formt_type }}">Certifiée Mase </option>
                                 @else
                                 <option class="text-danger" value="{{ $formt_info->formt_type }}">Non certifiée </option>

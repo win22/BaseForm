@@ -14,7 +14,12 @@ class EiController extends Controller
     public function index()
     {
         $this->AdminAuthCheck();
-        return view('ei.add_ei');
+        $eu_all = DB::table('tbl_entreprise_utilisatrices')
+            ->where('eu_status', 1)
+            ->get();
+
+        return view('ei.add_ei')
+            ->with('eu_all', $eu_all);
     }
 
     //methode pour la recherche
@@ -24,6 +29,8 @@ class EiController extends Controller
         $search = $request->get('search');
         $all_ei_info = DB::table('tbl_entreprise_intervenantes')
             ->where('name', 'like', '%'.$search.'%')
+            ->orWhere('ei_etat', 'like', '%'.$search.'%')
+            ->orWhere('ei_eu', 'like', '%'.$search.'%')
             ->orderByDesc('ei_id')
             ->paginate(5);
         $nb= $all_ei_info->count();
@@ -88,13 +95,22 @@ class EiController extends Controller
         request()->validate([
             'ei_adresse' => ['required'],
             'name' => ['required'],
-            'ei_email' => ['required','unique:tbl_entreprise_intervenantes'],
+            'ei_email' => ['required','unique:tbl_entreprise_intervenantes', 'email'],
             'ei_secteurA' => ['required'],
             'ei_phone' => ['required'],
+            'ei_etat' => ['required'],
+            'ei_date_ad' => ['required'],
             'ei_nameDi' => ['required'],
-            'ei_eu' => ['required'],
-            'ei_status' => ['required'],
         ]);
+        if($request->eu_etat == 'certifie')
+        {
+            request()->validate([
+                'ei_date_debut' => ['required'],
+                'ei_date_fin' => ['required'],
+                'ei_time' => ['required'],
+            ]);
+
+        }
 
         $data = array();
         $data['ei_id'] = $request->ei_id;
@@ -102,22 +118,20 @@ class EiController extends Controller
         $data['ei_email'] = $request->ei_email;
         $data['ei_adresse'] = $request->ei_adresse;
         $data['ei_phone'] = $request->ei_phone;
+        $data['ei_date_ad'] = $request->ei_date_ad;
+        $data['ei_date_fin'] = $request->ei_date_fin;
+        $data['ei_date_debut'] = $request->ei_date_debut;
+        $data['ei_time'] = $request->ei_time;
+        $data['ei_eu'] = $request->ei_eu;
+        $data['ei_etat'] = $request->ei_etat;
         $data['ei_secteurA'] = $request->ei_secteurA;
         $data['ei_nameDi'] = $request->ei_nameDi;
-        $data['ei_eu'] = $request->ei_eu;
         $data['user_role'] = $request->user_role;
-        $data['ei_status'] = $request->ei_status;
-
-        Mail::send('mail.activationEi', $data, function ($message) use ($data){
-            $message->to($data['ei_email']);
-            $message->from('mazesenegal@gmail.com');
-            $message->subject('Activation Votre Compte');
-        });
+        $data['ei_status'] = 0;
 
         DB::table('tbl_entreprise_intervenantes')->insert($data);
         Session::put('message', "Un mail a été envoyé ".$data['name']." !");
         return redirect('/all-ei');
-
     }
 
 
@@ -129,10 +143,15 @@ class EiController extends Controller
         $ei_info = DB::table('tbl_entreprise_intervenantes')
             ->where('ei_id', $ei_id)
             ->first();
+        $eu_all = DB::table('tbl_entreprise_utilisatrices')
+            ->where('eu_status', 1)
+            ->get();
 
-        $ei_info = view('ei.edit_ei')->with('ei_info', $ei_info);
+        $ei_info = view('ei.edit_ei')
+            ->with('ei_info', $ei_info)
+            ->with('eu_all', $eu_all);
         return View('admin_layout')
-            ->with('ei.all_ei', $ei_info);
+            ->with('ei.all_ei', $ei_info, $eu_all);
 
     }
 
@@ -143,13 +162,22 @@ class EiController extends Controller
         request()->validate([
             'ei_adresse' => ['required'],
             'name' => ['required'],
-            'ei_email' => ['required'],
+            'ei_email' => ['required', 'email'],
             'ei_secteurA' => ['required'],
             'ei_phone' => ['required'],
+            'ei_etat' => ['required'],
+            'ei_date_ad' => ['required'],
             'ei_nameDi' => ['required'],
-            'ei_eu' => ['required'],
-            'ei_status' => ['required'],
         ]);
+        if($request->eu_etat == 'certifie')
+        {
+            request()->validate([
+                'ei_date_debut' => ['required'],
+                'ei_date_fin' => ['required'],
+                'ei_time' => ['required'],
+            ]);
+
+        }
 
         $data = array();
         $data['ei_id'] = $request->ei_id;
@@ -157,11 +185,15 @@ class EiController extends Controller
         $data['ei_email'] = $request->ei_email;
         $data['ei_adresse'] = $request->ei_adresse;
         $data['ei_phone'] = $request->ei_phone;
+        $data['ei_date_ad'] = $request->ei_date_ad;
+        $data['ei_date_fin'] = $request->ei_date_fin;
+        $data['ei_date_debut'] = $request->ei_date_debut;
+        $data['ei_time'] = $request->ei_time;
+        $data['ei_eu'] = $request->ei_eu;
+        $data['ei_etat'] = $request->ei_etat;
         $data['ei_secteurA'] = $request->ei_secteurA;
         $data['ei_nameDi'] = $request->ei_nameDi;
-        $data['ei_eu'] = $request->ei_eu;
         $data['user_role'] = $request->user_role;
-        $data['ei_status'] = $request->ei_status;
 
         DB::table('tbl_entreprise_intervenantes')
             ->where('ei_id', $ei_id)

@@ -88,17 +88,18 @@ class OfController extends Controller
         request()->validate([
             'of_adresse' => ['required'],
             'name' => ['required'],
-            'of_email' => ['required','unique:tbl_organisme_formation'],
+            'of_email' => ['required','unique:tbl_organisme_formation', 'email'],
             'of_formation' => ['required'],
             'of_etat' => ['required'],
             'of_phone' => ['required'],
-            'of_status' => ['required'],
+            'of_date_ad' => ['required'],
         ]);
-        if($request->of_etat == 'certi')
+        if($request->of_etat == 'certifie')
         {
             request()->validate([
                 'of_date_debut' => ['required'],
                 'of_date_fin' => ['required'],
+                'of_time' => ['required'],
             ]);
 
         }
@@ -111,12 +112,14 @@ class OfController extends Controller
         $data['of_adresse'] = $request->of_adresse;
         $data['of_phone'] = $request->of_phone;
         $data['of_etat'] = $request->of_etat;
+        $data['of_time'] = $request->of_time;
 
         $data['of_date_debut'] = $request->of_date_debut;
+        $data['of_date_ad'] = $request->of_date_ad;
         $data['of_date_fin'] = $request->of_date_fin;
 
         $data['of_formation'] = $request->of_formation;
-        $data['of_status'] = $request->of_status;
+        $data['of_status'] = 0;
         $data['user_role'] = $request->user_role;
 
         DB::table('tbl_organisme_formation')->insert($data);
@@ -150,20 +153,21 @@ class OfController extends Controller
 
     public  function  update_of(Request $request, $of_id)
     {
-        request()->validate([
-            'of_adresse' => ['required'],
-            'name' => ['required'],
-            'of_email' => ['required'],
-            'of_formation' => ['required'],
-            'of_etat' => ['required'],
-            'of_phone' => ['required'],
-            'of_status' => ['required'],
-        ]);
-        if($request->of_etat == 'certi')
+            request()->validate([
+                'of_adresse' => ['required'],
+                'name' => ['required'],
+                'of_email' => ['required','email'],
+                'of_formation' => ['required'],
+                'of_etat' => ['required'],
+                'of_phone' => ['required'],
+                'of_date_ad' => ['required'],
+            ]);
+        if($request->of_etat == 'certifie')
         {
             request()->validate([
                 'of_date_debut' => ['required'],
                 'of_date_fin' => ['required'],
+                'of_time' => ['required'],
             ]);
 
         }
@@ -176,13 +180,15 @@ class OfController extends Controller
         $data['of_adresse'] = $request->of_adresse;
         $data['of_phone'] = $request->of_phone;
         $data['of_etat'] = $request->of_etat;
+        $data['of_time'] = $request->of_time;
         $data['of_date_debut'] = $request->of_date_debut;
+        $data['of_date_ad'] = $request->of_date_ad;
         $data['of_date_fin'] = $request->of_date_fin;
-        $data['of_status'] = $request->of_status;
+
         $data['of_formation'] = $request->of_formation;
+        $data['user_role'] = $request->user_role;
 
-
-            DB::table('tbl_organisme_formation')
+        DB::table('tbl_organisme_formation')
                 ->where('of_id', $of_id)
                 ->update($data);
 

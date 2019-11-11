@@ -43,10 +43,17 @@
                         Type de formation  :
                         </p>
                     </div>
-                    <div class="col-md-8">
+
+                    <div class="col-md-5">
+                        @if(($formt_info->formt_type == 'certifie' ))
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $formt_info->formt_type }}</span>
+                            <span class="text-success" style="font-family: 'Manjari Bold'">Certifié Mase</span>
                         </p>
+                        @else
+                        <p class="card-title">
+                            <span class="text-danger" style="font-family: 'Manjari Bold'">En formation</span>
+                        </p>
+                        @endif
                     </div>
                 </div>
                 <div class="row">

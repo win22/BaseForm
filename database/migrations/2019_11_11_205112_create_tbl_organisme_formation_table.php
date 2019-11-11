@@ -20,9 +20,11 @@ class CreateTblOrganismeFormationTable extends Migration
             $table->string('of_email', 90);
             $table->string('of_phone', 60);
             $table->string('of_formation', 60);
-            $table->string('of_etat', 10);
-            $table->string('of_date_debut', 60)->nullable();;
-            $table->string('of_date_fin', 60)->nullable();;
+            $table->string('of_etat', 30);
+            $table->string('of_date_debut', 60)->nullable();
+            $table->string('of_date_fin', 60)->nullable();
+            $table->string('of_date_ad', 60)->nullable();
+            $table->string('of_time', 60)->nullable();
             $table->string('of_status', 1);
             $table->string('user_role',1);
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

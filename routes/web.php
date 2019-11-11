@@ -70,7 +70,8 @@ Route::post('/save-eu', 'EuController@save_eu');
 
 Route::get('/all-eu', 'EuController@all_eu');
 Route::get('/searchEu', 'EuController@search');
-
+Route::get('/unactive-eu/{eu_id}', 'EuController@unactive_eu');
+Route::get('/active-eu/{eu_id}', 'EuController@active_eu');
 Route::get('/all-eu', 'EuController@all_eu');
 Route::get('/detail-eu/{eu_id}', 'EuController@detail_eu');
 Route::get('/edit-eu/{eu_id}', 'EuController@edit_eu');
@@ -78,7 +79,7 @@ Route::get('/delete-eu/{eu_id}', 'EuController@delete_eu');
 Route::post('/update-eu/{eu_id}', 'EuController@update_eu');
 
 
-//Route Pour les entreprise Utilisatrice
+//Route Pour les entreprise Intervenantes
 Route::get('/add-ei', 'EiController@index');
 Route::post('/save-ei', 'EiController@save_ei');
 
@@ -90,7 +91,7 @@ Route::get('/edit-ei/{ei_id}', 'EiController@edit_ei');
 Route::get('/edit-details/{ei_id}', 'EiController@detail_ei');
 Route::get('/delete-ei/{ei_id}', 'EiController@delete_ei');
 Route::post('/update-ei/{ei_id}', 'EiController@update_ei');
-
+Route::get('/detail-ei/{ei_id}', 'EiController@detail_ei');
 
 //Route pour les intervenants
 Route::get('/add-itv', 'ItvController@index');
@@ -158,4 +159,8 @@ Route::get('/delete-stag/{stag_id}', 'StagiaireController@delete_stag');
 Route::get('/details-doc/{doc_id}', 'DocumentController@detail_doc');
 Route::get('/edit-stag/{stag_id}', 'StagiaireController@edit_stag');
 Route::post('/update-stag/{stag_id}', 'StagiaireController@update_stag');
+Route::get('/unactive-stag/{stag_id}', 'StagiaireController@unactive_stag');
+Route::get('/active-stag/{stag_id}', 'StagiaireController@active_stag');
 
+Route::get('/valide-stag/{stag_id}', 'StagiaireController@stag_valide');
+Route::get('/unvalide-stag/{stag_id}', 'StagiaireController@stag_unvalide');

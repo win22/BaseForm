@@ -57,6 +57,20 @@
                 <div class="row">
                     <div class="col-md-3">
                         <p class="card-title">
+                        <li class="fa fa-map-marker" style="color: #036b75!important;"></li>&nbsp;
+                        Adresse :
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'"> {{ $form_info->form_adresse }}</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-title">
                         <li class="fa fa-phone" style="color: #036b75!important;"></li>&nbsp;
                         Téléphone :
                         </p>
@@ -65,6 +79,45 @@
                         <p class="card-title">
                             <span style="font-family: 'Manjari Bold'"> {{ $form_info->form_phone }}</span>
                         </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-title">
+                        <li class="fa fa-intersex" style="color: #036b75!important;"></li>&nbsp;
+                        Sexe :
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        @if($form_info->form_sexe == 1)
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'">Homme</span>
+                        </p>
+                        @else
+                        <p class="card-title">
+                            <span style="font-family: 'Manjari Bold'">Femme</span>
+                        </p>
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-title">
+                        <li class="fa fa-certificate" style="color: #036b75!important;"></li>&nbsp;
+                        État  :
+                        </p>
+                    </div>
+
+                    <div class="col-md-5">
+                        @if($form_info->form_etat == 'certifie' )
+                        <p class="card-title">
+                            <span class="text-success" style="font-family: 'Manjari Bold'">Certifié Mase</span>
+                        </p>
+                        @else
+                        <p class="card-title">
+                            <span class="text-danger" style="font-family: 'Manjari Bold'">Non certifié Mase</span>
+                        </p>
+                        @endif
                     </div>
                 </div>
                 @if($form_info->form_of)
@@ -77,12 +130,12 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $form_info->form_of }}</span>
+                            <span class="text-warning" style="font-family: 'Manjari Bold'"> {{ $form_info->form_of }}</span>
                         </p>
                     </div>
                 </div>
                 @endif
-
+                @if(Session::get('admin_role') == 1)
                 <div class="row">
                     <div class="col-md-3">
                         <p class="card-title">
@@ -90,18 +143,20 @@
                         Status  :
                         </p>
                     </div>
+
                     <div class="col-md-5">
                         @if($form_info->form_status == 1)
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'">Activé</span>
+                            <span class="text-success" style="font-family: 'Manjari Bold'">Activé</span>
                         </p>
                         @else
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'">Désactivé</span>
+                            <span class="text-danger" style="font-family: 'Manjari Bold'">Désactivé</span>
                         </p>
                         @endif
                     </div>
                 </div>
+                @endif
                 <div class="row">
                     <div class="col-md-3">
                         <p class="card-title">
@@ -128,7 +183,7 @@
                     </div>
 
                 </div>
-
+                @endif
             </div>
         </div>
 

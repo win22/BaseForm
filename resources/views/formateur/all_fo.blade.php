@@ -77,7 +77,7 @@
                         </td>
                         <td class="center">{{ $v_form->form_email }}</td>
                         <td class="text-center">
-                            @if($v_form->form_etat=='certi')
+                            @if($v_form->form_etat=='certifie')
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
                             Certifié Mase <i class="fa fa-certificate"></i>
                         </span>
@@ -125,8 +125,6 @@
                                  $v_form->form_id)}}">
                                 <i class="material-icons">edit</i>
                             </a>
-                            @endif
-                            @if( Session::get('admin_role')==1)
                             <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-form/'.
                                  $v_form->form_id)}}" id="delete">
                                 <i class="material-icons">close</i>
