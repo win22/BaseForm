@@ -2,7 +2,9 @@
 @section('contenu')
 @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
 || Session::get('admin_role')== 3
-&& Session::get('admin_structure')== $form_info->form_of  )
+&& Session::get('admin_structure')== $form_info->form_of
+&& $form_info->form_etat == 'non agréé'
+)
 
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
@@ -104,17 +106,19 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <select  class="form-control " name="form_etat">
-                                    @if($form_info->form_etat == 'certi')
-                                    <option class="text-success" value="{{ $form_info->form_sexe }}">Certifié Mase </option>
+                                    @if($form_info->form_etat == 'agréé')
+                                    <option class="text-success" value="{{ $form_info->form_sexe }}">Agréé par Mase </option>
                                     @else
-                                    <option class="text-danger" value="{{ $form_info->form_sexe }}">Non certifié Mase </option>
-                                    @endif
-                                    <option value="">Etat du formateur <span  class="text-danger">*</span> </option>
-                                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                                    <option class="text-success" value="certi">Certifié Mase</option>
+                                    <option class="text-danger" value="{{ $form_info->form_sexe }}">Non agréé  </option>
                                     @endif
 
-                                    <option class="text-danger" value="non_certi">Non certifié </option>
+                                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                                    <option value="">Etat du formateur <span  class="text-danger">*</span> </option>
+                                    <option class="text-success" value="agréé">Agréé par Mase</option>
+                                    <option class="text-danger" value="non agréé">Non agréé </option>
+                                    @endif
+
+
                                 </select>
                                 @if($errors->has('form_etat'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_etat')}}</small>
@@ -140,28 +144,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        @if($form_info->form_status == 0)
-                        <div class="col-md-4">
-                            <select  class="form-control text-danger" name="form_status">
-                                <option value="0">Status Désactivé</option>
-                            </select>
-                            @if($errors->has('form_status'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('form_status')}}</small>
-                            @endif
-                        </div>
-                        @else
-                        <div class="col-md-4">
-                            <select  class="form-control text-success" name="form_status">
-                                <option value="0">Status Activé</option>
-                            </select>
-                            @if($errors->has('form_status'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('form_status')}}</small>
-                            @endif
-                        </div>
-                        @endif
-                    </div>
-
                     <a href="/all-form" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
                         Annuler </a>&nbsp;

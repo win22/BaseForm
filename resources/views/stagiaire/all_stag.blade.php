@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('contenu')
-@if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
+
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
 <div id="alert" class="alert alert-success alert-with-icon col-md-4 right">
@@ -68,7 +68,7 @@
                         <td class="text-center">{{ $v_stag->stag_email }}</td>
                         <td class="text-center">{{ $v_stag->stag_phone }}</td>
                         <td class="text-center">
-                            @if($v_stag->stag_validation==1)
+                            @if($v_stag->stag_validation=='certifie')
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
                                 Certifié Mase  <i class="fa fa-certificate"></i>
                         </span>
@@ -105,7 +105,6 @@
                                 <i class="material-icons">thumb_up</i>
                             </a>
                             @endif
-
                             @endif
                             <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-stag/'.
                         $v_stag->stag_id)}}">
@@ -113,7 +112,7 @@
                             </a>
                             @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
                             || Session::get('admin_role')== 3
-                            && Session::get('admin_structure')== $v_stag->stag_structure &&  $v_stag->stag_validation == 0   )
+                            && Session::get('admin_structure')== $v_stag->stag_structure &&  $v_stag->stag_validation == 'non certifie'   )
 
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-stag/'.
                         $v_stag->stag_id)}}">
@@ -134,9 +133,9 @@
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
                 </p>
-                @else
+                     @else
                 <p class="text-center">Aucune information trouvé</p>
-                @endif
+                     @endif
 
                 {{ $all_stag_info->links() }}
 
@@ -146,5 +145,5 @@
     </div>
 
 </div>
-@endif
+
 @endsection

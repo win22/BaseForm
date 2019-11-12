@@ -98,9 +98,8 @@
                             <div class="form-group">
                                 <select class="form-control dynamic" id="name" name="stag_structure"
                                         data-dependent="of_id">
-                                    <option class="text-warning" value="">Selectionner une structure <span  class="text-danger">*</span></option>
-
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                                    <option class="text-warning" value="">Selectionner une structure <span  class="text-danger">*</span></option>
                                     @foreach($OF_all as $v_of)
                                     <option value="{{ $v_of->name }}" >
                                         {{ $v_of->name }}

@@ -115,6 +115,9 @@ Route::get('/delete-form/{form_id}', 'FormateurController@delete_form');
 Route::get('/edit-form/{form_id}', 'FormateurController@edit_form');
 Route::post('/update-form/{form_id}', 'FormateurController@update_form');
 Route::get('/details-form/{form_id}', 'FormateurController@detail_form');
+Route::get('/valide-form/{form_id}', 'FormateurController@form_valide');
+Route::get('/unvalide-form/{form_id}', 'FormateurController@form    _unvalide');
+
 
 //Route pour la gestion des formations
 Route::get('/add-formt', 'FormationController@index');

@@ -26,6 +26,7 @@ class CreateTblEntrepriseIntervenantesTable extends Migration
             $table->string('ei_date_ad', 90)->nullable();
             $table->string('ei_date_debut', 90)->nullable();
             $table->string('ei_eu', 90)->nullable();
+            $table->string('ei_a_eu', 300)->nullable();
             $table->string('ei_nameDi' , 60);
             $table->string('user_role', 2);
             $table->string('ei_status', 2);

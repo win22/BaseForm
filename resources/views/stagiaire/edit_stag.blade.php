@@ -2,7 +2,7 @@
 @section('contenu')
 @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
 || Session::get('admin_role')== 3
-&& Session::get('admin_structure')== $stag_info->stag_structure &&  $stag_info->stag_validation == 0 )
+&& Session::get('admin_structure')== $stag_info->stag_structure &&  $stag_info->stag_validation == 'non certifie' )
 
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)

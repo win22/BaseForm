@@ -94,13 +94,31 @@
                     <div class="col-md-4">
                         <p class="card-title">
                         <li class="fa fa-industry" style="color: #046b75!important;"></li>&nbsp;
-                        Entreprise Utilsatrice :
+                        Entreprise Utilsatrice Principale :
                         </p>
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
                             @if( $ei_info->ei_eu)
                             <span class="text-info" style="font-family: 'Manjari Bold'"> {{ $ei_info->ei_eu }}</span>
+                            @else
+                            <span class="text-warning" style="font-family: 'Manjari Bold'">Aucune entreprise</span>
+                            @endif
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="card-title">
+                        <li class="fa fa-industry" style="color: #046b75!important;"></li>&nbsp;
+                       Autres  Entreprises Utilsatrices :
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="card-title">
+                            @if( $ei_info->ei_eu)
+                            <span class="text-warning" style="font-family: 'Manjari Bold'"> {{ $ei_info->ei_a_eu }}</span>
                             @else
                             <span class="text-warning" style="font-family: 'Manjari Bold'">Aucune entreprise</span>
                             @endif

@@ -36,6 +36,7 @@
                         </p>
                     </div>
                 </div>
+                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                 <div class="row">
                     <div class="col-md-3">
                         <p class="card-title">
@@ -49,6 +50,7 @@
                         </p>
                     </div>
                 </div>
+                @endif
                 <div class="row">
                     <div class="col-md-3">
                         <p class="card-title">
@@ -61,7 +63,7 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $doc_info->doc_file }}</span>
+                            <span class="text-info" style="font-family: 'Manjari Bold'"> {{ $doc_info->doc_file }}</span>
                         </p>
                     </div>
                 </div>

@@ -191,14 +191,14 @@
                         </p>
                         @else
                         <p class="card-title">
-                            <span class="text-danger" style="font-family: 'Manjari Bold'">En formation</span>
+                            <span class="text-danger" style="font-family: 'Manjari Bold'">En cours de certifaction</span>
                         </p>
                         @endif
                     </div>
                 </div>
                 @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
                 || Session::get('admin_role')== 3
-                && Session::get('admin_structure')== $stag_info->stag_structure &&  $stag_info->stag_validation == 0 )
+                && Session::get('admin_structure')== $stag_info->stag_structure &&  $stag_info->stag_validation == 'non certifie' )
                 <div class="row">
                     <div class="col-md-12">
                         @if( Session::get('admin_role')==1 )

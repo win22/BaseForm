@@ -98,11 +98,11 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <select  class="form-control " name="form_etat">
-                                    <option value="">Etat du formateur <span  class="text-danger">*</span> </option>
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                                    <option class="text-success" value="certi">Certifié Mase</option>
+                                    <option value="">Etat du formateur <span  class="text-danger">*</span> </option>
+                                    <option class="text-success" value="agréé">Agrée par Mase</option>
                                     @endif
-                                    <option class="text-danger" value="non_certi">Non certifié </option>
+                                    <option class="text-danger" value="non agréé">Non agrée par Mase </option>
                                 </select>
                                 @if($errors->has('form_etat'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_etat')}}</small>
@@ -112,37 +112,26 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <select  class="form-control " name="form_of">
+                                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                                     <option value="">Organisme de formation </option>
-
+                                    @foreach($OF_all as $v_of)
+                                    <option value="{{ $v_of->name }}" >
+                                        {{ $v_of->name }}
+                                    </option>
+                                    @endforeach
+                                    @else
                                     @foreach($OF as $v_of)
                                     <option value="{{ $v_of->name }}" >
                                         {{ $v_of->name }}
                                     </option>
                                     @endforeach
 
-                                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                                    @foreach($OF_all as $v_of)
-                                    <option value="{{ $v_of->name }}" >
-                                        {{ $v_of->name }}
-                                    </option>
-                                    @endforeach
                                     @endif
                                 </select>
                                 @if($errors->has('form_of'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_of')}}</small>
                                 @endif
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <select  class="form-control text-danger" name="form_status">
-                                <option value="0">Status Désactivé</option>
-                            </select>
-                            @if($errors->has('form_status'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('form_status')}}</small>
-                            @endif
-
                         </div>
                     </div>
 

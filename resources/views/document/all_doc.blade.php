@@ -49,7 +49,9 @@
                     <th>Nom du  Document</th>
                     <th>Contenu du document</th>
                     <th>Fichier </th>
+                    @if( Session::get('admin_role')==1)
                     <th>Date de création</th>
+                    @endif
                     <th>Action</th>
 
 
@@ -59,10 +61,12 @@
                     <tbody class="text-center">
                     @foreach ( $all_doc_info as $v_doc)
                     <tr>
-                        <td>{{ $v_doc->doc_name }}</td>
+                        <td style="font-family: 'Manjari Bold'">{{ $v_doc->doc_name }}</td>
                         <td class="ellipsis">{{ $v_doc->doc_contenu }}</td>
                         <td>{{ $v_doc->doc_file }}</td>
+                        @if( Session::get('admin_role')==1)
                         <td>{{ $v_doc->created_at }}</td>
+                        @endif
                         <td class="td-actions">
                             <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="visualiser"  href="{{ URL::to('/details-doc/'.
                           $v_doc->doc_id)}}">

@@ -51,7 +51,7 @@
                         </p>
                         @else
                         <p class="card-title">
-                            <span class="text-danger" style="font-family: 'Manjari Bold'">En formation</span>
+                            <span class="text-danger" style="font-family: 'Manjari Bold'">Non certifié </span>
                         </p>
                         @endif
                     </div>
@@ -69,6 +69,7 @@
                         </p>
                     </div>
                 </div>
+                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                 <div class="row">
                     <div class="col-md-3">
                         <p class="card-title">
@@ -82,6 +83,7 @@
                         </p>
                     </div>
                 </div>
+                @endif
                 <div class="row">
                     <div class="col-md-3">
                         <p class="card-title">

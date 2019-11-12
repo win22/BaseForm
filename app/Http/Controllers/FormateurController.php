@@ -30,6 +30,7 @@ class FormateurController extends Controller
             ->where('form_name', 'like', '%'.$search.'%')
             ->orWhere('form_etat', 'like', '%'.$search.'%')
             ->orWhere('form_of', 'like', '%'.$search.'%')
+            ->orWhere('form_status', 'like', '%'.$search.'%')
             ->orderByDesc('form_id')
             ->paginate(5);
         $nb= $all_form_info->count();
@@ -52,6 +53,25 @@ class FormateurController extends Controller
 
     }
 
+    public function form_valide($form_id)
+    {
+        $this->adminAuthCheck();
+        DB::table('tbl_formateurs')
+            ->where('form_id',$form_id)
+            ->update(['form_etat'=> 'agréé']);
+        Session::put('message', 'Un formateur  a été agréé ');
+        return back();
+    }
+
+    public  function  form_unvalide($form_id)
+    {
+        $this->adminAuthCheck();
+        DB::table('tbl_formateurs')
+            ->where('form_id',$form_id)
+            ->update(['form_etat'=>'non agréé']);
+        Session::put('message',  "Vous avez retiré l'agrément à ce formateur");
+        return back();
+    }
 
     //Modifier le status
     public function unactive_form($form_id)
@@ -111,7 +131,7 @@ class FormateurController extends Controller
         $data['form_etat'] = $request->form_etat;
         $data['form_sexe'] = $request->form_sexe;
         $data['form_of'] = $request->form_of;
-        $data['form_status'] = $request->form_status;
+        $data['form_status'] =  0;
 
         DB::table('tbl_formateurs')->insert($data);
         Session::put('message', "le formateur " . $data['form_name'] . " a été crée avec succès !");
@@ -165,7 +185,6 @@ class FormateurController extends Controller
         $data['form_etat'] = $request->form_etat;
         $data['form_sexe'] = $request->form_sexe;
         $data['form_of'] = $request->form_of;
-        $data['form_status'] = $request->form_status;
 
         DB::table('tbl_formateurs')
             ->where('form_id', $form_id)

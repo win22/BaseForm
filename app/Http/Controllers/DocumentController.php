@@ -53,7 +53,7 @@ class DocumentController extends Controller
         DB::table('tbl_documents')
             ->where('doc_id',$doc_id)
             ->delete();
-        Session::put('message', 'Cette entreprise Intervenante a été supprimé... ');
+        Session::put('message', 'Ce document  a été supprimé... ');
         return back();
     }
 
@@ -82,7 +82,7 @@ class DocumentController extends Controller
         }
 
         DB::table('tbl_documents')->insert($data);
-        Session::put('message', "la document " . $data['doc_name'] . " a été crée avec succes !");
+        Session::put('message', "le document " . $data['doc_name'] . " a été crée avec succes !");
         return redirect('/all-doc');
 
 

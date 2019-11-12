@@ -1,6 +1,16 @@
 @extends('admin_layout')
 @section('contenu')
 @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
+<p class="alert">{{ $message = Session::get('message')}}</p>
+@if($message)
+<div id="alert" class="alert alert-success alert-with-icon col-md-4 left">
+    <i class="material-icons" data-notify="icon">add_alert</i>
+    </button>
+    <span data-notify="message">{{$message }}</span>
+</div>
+{{ Session::put('message',NULL) }}
+@endif
+
 <div class="row">
     <div class="col-md-10">
         <div class="card">
@@ -109,13 +119,13 @@
                     </div>
 
                     <div class="col-md-5">
-                        @if($form_info->form_etat == 'certifie' )
+                        @if($form_info->form_etat == 'agréé' )
                         <p class="card-title">
-                            <span class="text-success" style="font-family: 'Manjari Bold'">Certifié Mase</span>
+                            <span class="text-success" style="font-family: 'Manjari Bold'">Agréé par Mase</span>
                         </p>
                         @else
                         <p class="card-title">
-                            <span class="text-danger" style="font-family: 'Manjari Bold'">Non certifié Mase</span>
+                            <span class="text-danger" style="font-family: 'Manjari Bold'">Non agréé par Mase</span>
                         </p>
                         @endif
                     </div>
@@ -157,6 +167,7 @@
                     </div>
                 </div>
                 @endif
+                @if( Session::get('admin_role')==1 || Session::get('admin_role')==2 )
                 <div class="row">
                     <div class="col-md-3">
                         <p class="card-title">
@@ -170,11 +181,28 @@
                         </p>
                     </div>
                 </div>
+                @endif
                 @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
                 || Session::get('admin_role')== 3
-                && Session::get('admin_structure')== $form_info->form_of  )
+                && Session::get('admin_structure')== $form_info->form_of
+                && $form_info->form_etat == 'non agréé'
+                )
                 <div class="row">
                     <div class="col-md-12">
+
+                        @if( Session::get('admin_role')==1 )
+                        @if($form_info->form_etat == 'agréé')
+                        <a href="{{ URL::to('/unvalide-form/'.
+                              $form_info->form_id)}}"id="md." class="btn btn-danger pull-right">
+                            <i class="material-icons">thumb_down_alt</i>
+                            Retirer l'agrément </a>&nbsp;
+                        @else
+                        <a href="{{ URL::to('/valide-form/'.
+                              $form_info->form_id)}}" id="md." class="btn btn-info pull-right">
+                            <i class="material-icons">thumb_up</i>
+                            Agréer </a>&nbsp;
+                        @endif
+                        @endif
                         <a href="{{ URL::to('/edit-form/'.
                         $form_info->form_id)}}"  id="md." class="btn btn-warning pull-right">
                             <i class="material-icons">edit</i>&nbsp;

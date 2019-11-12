@@ -73,7 +73,7 @@
                             <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('ei_phone')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Secteur d'Activité <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('ei_secteurA') }}" name="ei_secteurA" type="text" class="form-control">
@@ -102,7 +102,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <select  class="form-control " name="ei_etat">
                                 <option value="">État <span  class="text-danger">*</span> </option>
                                 <option class="text-warning" value="en demarche">En démarche</option>
@@ -124,15 +124,26 @@
                             @endif
                         </div>
 
-                        <div class="col-md-5">
-                            <select  class="form-control " name="ei_eu">
-                                <option value="">Selectionner une Entreprise Utilisatrice </option>
+                        <div class="col-md-6">
+                            <select  class="form-control text-info " name="ei_eu">
+                                <option value="">Entreprise Utilisatrice Principale </option>
                                @foreach($eu_all as $v_eu)
                                 <option class="text-success" value="{{ $v_eu->name  }}">{{ $v_eu->name }} </option>
                                 @endforeach
                             </select>
                             @if($errors->has('ei_eu'))
                             <small class="form-text text-muted text-danger">{{$errors->first('ei_eu')}}</small>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-11">
+                            <div class="form-group">
+                                <label  class="bmd-label-floating text-warning">Autres Entreprise Utilisatrice</label>
+                                <input  value="{{ old('ei_a_eu') }}" name="ei_a_eu" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('ei_a_eu'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('ei_a_eu')}}</small>
                             @endif
                         </div>
                     </div>

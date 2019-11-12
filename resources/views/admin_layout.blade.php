@@ -187,18 +187,18 @@
                 <li class="nav-item {{ request()->is('all-stag','add-stag')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-stag','add-stag')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic11" aria-expanded="false" aria-controls="ui-basic11">
                         <i class="fa fa-asl-interpreting EI"></i>
-                        <p class="menu-title">Stagiaires </p>
+                        <p class="menu-title">Apprenant </p>
                     </a>
                     <div class="collapse {{ request()->is('all-stag','add-stag')? 'show' : '' }}" id="ui-basic11">
                         <ul class="nav flex-column sub-menu">
-                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
+
                             <li class="nav-item {{ request()->is('all-stag')? 'active' : '' }} ">
                                 <a class="nav-link" href="{{URL::to('/all-stag')}}">
                                     <i class="material-icons">view_list</i>
-                                    <span class="text-white">Listes des Stagiaires</span>
+                                    <span class="text-white">Listes des apprenant</span>
                                 </a>
                             </li>
-
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
                             <li class="nav-item {{ request()->is('add-stag')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-stag')}}">
                                     <i class="material-icons">playlist_add</i>

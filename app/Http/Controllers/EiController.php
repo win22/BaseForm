@@ -123,6 +123,7 @@ class EiController extends Controller
         $data['ei_date_debut'] = $request->ei_date_debut;
         $data['ei_time'] = $request->ei_time;
         $data['ei_eu'] = $request->ei_eu;
+        $data['ei_a_eu'] = $request->ei_a_eu;
         $data['ei_etat'] = $request->ei_etat;
         $data['ei_secteurA'] = $request->ei_secteurA;
         $data['ei_nameDi'] = $request->ei_nameDi;
@@ -190,6 +191,7 @@ class EiController extends Controller
         $data['ei_date_debut'] = $request->ei_date_debut;
         $data['ei_time'] = $request->ei_time;
         $data['ei_eu'] = $request->ei_eu;
+        $data['ei_a_eu'] = $request->ei_a_eu;
         $data['ei_etat'] = $request->ei_etat;
         $data['ei_secteurA'] = $request->ei_secteurA;
         $data['ei_nameDi'] = $request->ei_nameDi;

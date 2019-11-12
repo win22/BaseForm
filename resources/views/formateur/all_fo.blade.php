@@ -77,13 +77,13 @@
                         </td>
                         <td class="center">{{ $v_form->form_email }}</td>
                         <td class="text-center">
-                            @if($v_form->form_etat=='certifie')
+                            @if($v_form->form_etat=='agréé')
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
-                            Certifié Mase <i class="fa fa-certificate"></i>
+                            Agréé par Mase <i class="fa fa-certificate"></i>
                         </span>
                             @else
-                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(191,29,3,0.88);">
-                            Non certifié
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(233,50,13,0.88);">
+                            Non agréé
                         </span>
                             @endif
                         </td>
@@ -120,7 +120,8 @@
                             @endif
                             @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
                             || Session::get('admin_role')== 3
-                            && Session::get('admin_structure')== $v_form->form_of  )
+                            && Session::get('admin_structure')== $v_form->form_of
+                            && $v_form->form_etat == 'non agréé' )
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-form/'.
                                  $v_form->form_id)}}">
                                 <i class="material-icons">edit</i>

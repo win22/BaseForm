@@ -86,7 +86,7 @@ class formationController extends Controller
         }
 
         DB::table('tbl_formations')->insert($data);
-        Session::put('message', "la formation " . $data['formt_name'] . " a été crée avec succes !");
+        Session::put('message', "la formation " . $data['formt_name'] . " a été ajoutée avec succès !");
         return redirect('/all-formt');
 
 
@@ -141,7 +141,7 @@ class formationController extends Controller
         DB::table('tbl_formations')
             ->where('formt_id', $formt_id)
             ->update($data);
-        Session::put('message', "La formation ".$data['formt_name']." a eté modifié avec Succes !");
+        Session::put('message', "La formation ".$data['formt_name']." a eté modifiée avec succès !");
         return redirect('/all-formt');
 
     }

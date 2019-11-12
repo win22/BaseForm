@@ -49,6 +49,8 @@ class StagiaireController extends Controller
         $all_stag_info = DB::table('tbl_stagiaires')
             ->where('stag_name', 'like', '%'.$search.'%')
             ->orWhere('stag_structure', 'like', '%'.$search.'%')
+            ->orWhere('stag_validation', 'like', '%'.$search.'%')
+            ->orWhere('stag_status', 'like', '%'.$search.'%')
             ->orderByDesc('stag_id')
             ->paginate(5);
 
@@ -89,7 +91,7 @@ class StagiaireController extends Controller
         $this->adminAuthCheck();
         DB::table('tbl_stagiaires')
             ->where('stag_id',$stag_id)
-            ->update(['stag_validation'=>0]);
+            ->update(['stag_validation'=>'non certifie']);
         Session::put('message', 'Un stagiaire a été désactivé ');
         return back();
     }
@@ -162,7 +164,7 @@ class StagiaireController extends Controller
         $data['stag_adresse'] = $request->stag_adresse;
         $data['stag_formation'] = $request->stag_formation;
         $data['stag_status'] = $request->stag_status;
-        $data['stag_validation'] = 0;
+        $data['stag_validation'] = 'non certifie';
 
         $image = $request->file('stag_image');
         if ($image){

@@ -50,7 +50,7 @@
                     <th class="text-center">Adresse e-mail</th>
                     <th class="text-center">adresse</th>
                     <th class="text-center">Etat</th>
-                    <th class="text-center">Entreprise Utilisatrice</th>
+                    <th class="text-center">Entreprise Utilisatrice Principale</th>
                     <th class="text-center">Date d'adhesion</th>
                     @if( Session::get('admin_role')==1)
                     <th class="text-center">Status</th>
