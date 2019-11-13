@@ -45,10 +45,10 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            @if($of_info->of_etat=='certi')
-                            <span class="text-success" style="font-family: 'Manjari Bold'"> Certifié Mase</span>
+                            @if($of_info->of_etat=='agrée')
+                            <span class="text-success" style="font-family: 'Manjari Bold'"> Agrée Mase</span>
                             @else
-                            <span class="text-success" style="font-family: 'Manjari Bold'">Non Certifié Mase</span>
+                            <span class="text-danger" style="font-family: 'Manjari Bold'">Non agrée </span>
                             @endif
                         </p>
                     </div>

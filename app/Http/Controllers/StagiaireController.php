@@ -82,8 +82,26 @@ class StagiaireController extends Controller
         DB::table('tbl_stagiaires')
             ->where('stag_id',$stag_id)
             ->update(['stag_validation'=> 'certifie']);
-        Session::put('message', 'Un stagiaire a été certifié Mase ');
+
+        $data = DB::table('tbl_stagiaires')
+            ->where('stag_id',$stag_id)
+            ->first();
+
+        $test = array();
+        $test['stag_email']= $data->stag_email;
+        $test['stag_name']= $data->stag_name;
+        $test['stag_formation']= $data->stag_formation;
+
+
+        Mail::send('mail.mailStag', $test , function ($message) use ($test){
+            $message->to($test['stag_email']);
+            $message->from('mailtrapmail@gmail.com');
+            $message->subject('Félicitaion !!! ');
+
+        });
+        Session::put('message', 'Un mail a été envoyé a '.$test['stag_name']);
         return back();
+
     }
 
     public  function  stag_unvalide($stag_id)
@@ -92,7 +110,7 @@ class StagiaireController extends Controller
         DB::table('tbl_stagiaires')
             ->where('stag_id',$stag_id)
             ->update(['stag_validation'=>'non certifie']);
-        Session::put('message', 'Un stagiaire a été désactivé ');
+        Session::put('message', 'Un apprenant  a été désactivé ');
         return back();
     }
 
@@ -104,7 +122,7 @@ class StagiaireController extends Controller
         DB::table('tbl_stagiaires')
             ->where('stag_id',$stag_id)
             ->update(['stag_status'=>0]);
-        Session::put('message', 'Un stagiaire a été désactivé... ');
+        Session::put('message', 'Un apprenant a été désactivé... ');
         return back();
 
     }
@@ -116,7 +134,7 @@ class StagiaireController extends Controller
         DB::table('tbl_stagiaires')
             ->where('stag_id',$stag_id)
             ->update(['stag_status'=>1]);
-        Session::put('message', 'Un stagiaire a été activé... ');
+        Session::put('message', 'Un apprenant a été activé... ');
         return back();
     }
 
@@ -128,7 +146,7 @@ class StagiaireController extends Controller
         DB::table('tbl_stagiaires')
             ->where('stag_id',$stag_id)
             ->delete();
-        Session::put('message', 'Un stagiaire a été supprimé... ');
+        Session::put('message', 'Un apprenant a été supprimé... ');
         return back();
     }
 
@@ -184,7 +202,7 @@ class StagiaireController extends Controller
 
         DB::table('tbl_stagiaires')->insert($data);
 
-        Session::put('message', "Un mail a été envoyé a ".$data['stag_prenom']." !");
+        Session::put('message', "Vous avez ajouté l' ".$data['stag_prenom']."  avec succès!");
         return redirect('/all-stag');
       //  dump($data);
 
@@ -275,7 +293,7 @@ class StagiaireController extends Controller
         DB::table('tbl_stagiaires')
             ->where('stag_id', $stag_id)
             ->update($data);
-        Session::put('message', "le stagiaire  ".$data['stag_prenom']." a eté modifié avec Succes !");
+        Session::put('message', "l'apprenant  ".$data['stag_prenom']." a eté modifié avec succès !");
         return redirect('/all-stag');
 
 

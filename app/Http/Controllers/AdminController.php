@@ -76,6 +76,7 @@ class AdminController extends Controller
         $all_admin_info = DB::table('tbl_admin')
                 ->where('admin_prenom', 'like', '%'.$search.'%')
                 ->orWhere('admin_structure', 'like', '%'.$search.'%')
+                ->orWhere('admin_status', 'like', '%'.$search.'%')
                 ->orderByDesc('admin_id')
                 ->paginate(5);
         $nb= $all_admin_info->count();
@@ -209,6 +210,10 @@ class AdminController extends Controller
             ->where('admin_email', $email)
             ->where('admin_status', 1)
             ->first();
+        $test2 = DB::table('tbl_admin')
+            ->where('admin_email', $email)
+            ->where('admin_status', 0)
+            ->first();
         if(!is_null($test))
         {
             $data = array();
@@ -228,13 +233,11 @@ class AdminController extends Controller
                 dump('ok');
             });
 
-        }elseif(['admin_status'] == 0)
-        {
-//            Session::put('message', "Désolé ce compte n'est pas activé ");
-//            return back();
-            dump($test);
-
+        }elseif (!is_null($test2)){
+            Session::put('message', "Désolé votre compte n'est pas activé");
+            return back();
         }
+
         else
         {
             Session::put('message', "Désolé cette adresse email n'existe pas dans notre base de donnée");

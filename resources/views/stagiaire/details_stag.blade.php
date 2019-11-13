@@ -191,7 +191,7 @@
                         </p>
                         @else
                         <p class="card-title">
-                            <span class="text-danger" style="font-family: 'Manjari Bold'">En cours de certifaction</span>
+                            <span class="text-danger" style="font-family: 'Manjari Bold'">Non certifié Mase</span>
                         </p>
                         @endif
                     </div>

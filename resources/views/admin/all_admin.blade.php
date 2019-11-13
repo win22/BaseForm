@@ -62,9 +62,9 @@
                         <td class="text-center"><img src="{{ URL::to($v_admin->admin_image) }}"
                                  style=" height: 40px; width: 40px; border-radius: 15px;">
                         </td>
-                        <td class="text-center">{{ $v_admin->admin_prenom }}</td>
+                        <td style="font-family: 'Manjari Bold'" class="text-center">{{ $v_admin->admin_prenom }}</td>
                         <td class="text-center">{{ $v_admin->admin_email }}</td>
-                        <td class="text-center">{{ $v_admin->admin_structure }}</td>
+                        <td style="font-family: 'Manjari Bold'" class="text-center">{{ $v_admin->admin_structure }}</td>
                         <td class="text-center">{{ $v_admin->created_at }}</td>
                         <td class="text-center">
                             @if($v_admin->admin_role==1)

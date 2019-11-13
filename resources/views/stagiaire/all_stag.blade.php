@@ -74,7 +74,7 @@
                         </span>
                             @else
                             <span class="label" style="font-family: 'Manjari Bold'; color: red;" >
-                            En cours de certifaction
+                          Non certifié Mase
                         </span>
                             @endif
                         </td>

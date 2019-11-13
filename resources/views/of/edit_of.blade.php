@@ -79,14 +79,14 @@
                     <div class="row">
                         <div class="col-md-4">
                             <select  class="form-control" name="of_etat">
-                                @if($of_info->of_etat == 'certi')
+                                @if($of_info->of_etat == 'agrée')
                                 <option class="text-success" value="{{ $of_info->of_etat }}">Certifié Mase </option>
                                 @else
                                 <option class="text-danger" value="{{ $of_info->of_etat }}">Non certifié </option>
                                 @endif
                                 <option value="">État de l'organisme  <span  class="text-danger">*</span> </option>
-                                <option class="text-success" value="certifie">Certifié Mase </option>
-                                <option class="text-danger" value="non_certi">Non certifié </option>
+                                <option class="text-success" value="agrée">Agrée Mase </option>
+                                <option class="text-danger" value="non">Non Agrée </option>
                             </select>
                             @if($errors->has('of_etat'))
                             <small class="form-text text-muted text-danger">{{$errors->first('of_etat')}}</small>

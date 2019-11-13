@@ -68,13 +68,13 @@
                         <td class="text-center">{{ $v_of->of_phone }}</td>
                         <td class="text-center">{{ $v_of->of_formation }}</td>
                         <td class="text-center">
-                            @if($v_of->of_etat=='certi')
+                            @if($v_of->of_etat=='agrée')
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
-                            Certifié Mase <i class="fa fa-certificate"></i>
+                            Agrée Mase <i class="fa fa-certificate"></i>
                         </span>
                             @else
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(191,29,3,0.88);">
-                            Non certifié
+                            Non agrée
                         </span>
                             @endif
                         </td>
