@@ -2,6 +2,7 @@
 @section('contenu')
 
 @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+@if(($of_info->of_certi) == 1)
 
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
@@ -146,6 +147,25 @@
                             @endif
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select  class="form-control" name="of_certi">
+                                <option class="text-danger" value="{{ $of_info->of_certi }}">{{ $of_info->of_certi }}</option>
+                                <option value="">Selectionner un nombre<span  class="text-danger">*</span> </option>
+                                <option  value="1">Première certification</option>
+                                <option  value="2">deuxième certification</option>
+                                <option  value="3">Troisième certification</option>
+                                <option  value="4">Quatrième certification</option>
+                                <option value="5">Cinquième certification</option>
+
+                            </select>
+                            @if($errors->has('of_certi'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('of_certi')}}</small>
+                            @endif
+
+                        <input  value="{{ $of_info->of_tok }}" name="of_tok" type="text" hidden>
+                        </div>
+                    </div>
 
                     <a href="/all-of" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
@@ -160,6 +180,6 @@
     </div>
 
 </div>
-
+@endif
 @endif
 @endsection

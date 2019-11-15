@@ -1,6 +1,7 @@
 @extends('admin_layout')
 @section('contenu')
 
+@if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
 <div id="alert" class="alert alert-success alert-with-icon col-md-4 right">
@@ -20,7 +21,7 @@
     <div class="card">
         <div class="row card-header card-header-info">
             <div class="col-md-8">
-                <h4 class="card-title ">Intervenants  <i class="fa fa-user-circle-o"></i></h4>
+                <h4 class="card-title ">Intervenants  <i class="fa fa-user"></i></h4>
                 <p class="card-eu">Liste des intervenants</p>
 
             </div>
@@ -45,15 +46,12 @@
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead class="text-center text-danger">
-
                     <th >Image</th>
-                    <th>Code</th>
-                    <th>N°de sécurité</th>
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th>sexe</th>
                     <th>Entreprise Intervenante</th>
-                    <th>Date de Creation</th>
+                    <th>Status</th>
                     <th>Action</th>
 
 
@@ -67,9 +65,7 @@
                         <td><img src="{{ URL::to($v_itv->itv_image) }}"
                                  style=" height: 40px; width: 40px; border-radius: 15px;">
                         </td>
-                        <td class="center">{{ $v_itv->itv_code }}</td>
-                        <td class="center">{{ $v_itv->itv_numsec }}</td>
-                        <td class="center">{{ $v_itv->itv_name }}</td>
+                        <td style="font-family: 'Manjari Bold'">{{ $v_itv->itv_name }}</td>
                         <td class="center">{{ $v_itv->itv_prenom }}</td>
                         <td class="center">
                             @if($v_itv->itv_sex==1)
@@ -82,9 +78,32 @@
                         </span>
                             @endif
                         </td>
-                        <td class="center">{{ $v_itv->itv_ei }}</td>
-                        <td class="center">{{ $v_itv->created_at }}</td>
+                        <td class="center text-warning" style="font-family: 'Manjari Bold'">{{ $v_itv->itv_ei }}</td>
+                        <td class="text-center">
+                            @if($v_itv->itv_status==1)
+                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
+                            Activé
+                        </span>
+                            @else
+                            <span class="label" style="font-family: 'Manjari Bold'; color: red;" >
+                            Desactivé
+                            </span>
+                            @endif
+                        </td>
                         <td class="td-actions ">
+                            @if( Session::get('admin_role')==1)
+                            @if($v_itv->itv_status==1)
+                            <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-itv/'.
+                        $v_itv->itv_id)}}">
+                                <i class="material-icons">thumb_down_alt</i>
+                            </a>
+                            @else
+                            <a class="btn btn-success btn-link btn-sm"  rel="tooltip" title="Activer" href="{{ URL::to('/active-itv/'.
+                        $v_itv->itv_id)}}">
+                                <i class="material-icons">thumb_up</i>
+                            </a>
+                            @endif
+                            @endif
                             <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-itv/'.
                         $v_itv->itv_id)}}">
                                 <i class="material-icons">visibility</i>
@@ -119,5 +138,5 @@
 </div>
 
 
-
+@endif
 @endsection

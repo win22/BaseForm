@@ -74,7 +74,7 @@
                                         {{ $v_of->name	 }}
                                     </option>
                                     @endforeach
-                                    @foreach($EU as $v_of)
+                                    @foreach($OF as $v_of)
                                     <option value="{{ $v_of->name }}" >
                                         {{ $v_of->name	 }}
                                     </option>

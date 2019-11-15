@@ -149,7 +149,7 @@ class formationController extends Controller
 
     public function detail_formt($formt_id)
     {
-        $this->adminAuthCheck();
+        $this->AdminAuthCheck();
         $formt_info = DB::table('tbl_formations')
             ->where('formt_id',$formt_id)
             ->first();

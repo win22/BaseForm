@@ -6,8 +6,8 @@
         <div class="card">
             <div class="card-header card-header-info row">
                 <div class="col-md-6">
-                    <h4 class="card-title">Utilisateur <i class="fa fa-user"></i></h4>
-                    <p class="card-category">Afficher les détails d'un utilisateur </p>
+                    <h4 class="card-title">Intervenant <i class="fa fa-user"></i></h4>
+                    <p class="card-category">Afficher les détails d'un intervenant </p>
                 </div>
                 <div class="col-md-6">
                     <img class="img" style="width: 95px; height : 95px; border-radius: 100px" src="{{URL::to($itv_info->itv_image)}}" />
@@ -62,7 +62,19 @@
                         @endif
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="card-title">
+                        <li class="fa fa-crop" style="color: #036b75!important;"></li>&nbsp;
+                        Entreprise Intervenante:
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="card-title">
+                            <span class="text-warning" style="font-family: 'Manjari Bold'"> {{ $itv_info->itv_ei }}</span>
+                        </p>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-3">
                         <p class="card-title">

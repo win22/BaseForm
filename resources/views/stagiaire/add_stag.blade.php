@@ -122,11 +122,19 @@
                             <div class="form-group">
                                 <select  class="form-control " name="stag_formation">
                                     <option class="text-warning" value="">Selectionner une formation <span  class="text-danger">*</span></option>
+                                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                                     @foreach($FORMT_all as $v_formt)
                                     <option value="{{ $v_formt->formt_name }}" >
                                         {{ $v_formt->formt_name }}
                                     </option>
                                     @endforeach
+                                    @else
+                                    @foreach($FORMT_spc as $v_format)
+                                    <option value="{{ $v_format->of_formation }}" >
+                                        {{ $v_format->of_formation }}
+                                    </option>
+                                    @endforeach
+                                    @endif
                                 </select>
                                 @if($errors->has('stag_formation'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('stag_formation')}}</small>
@@ -194,7 +202,7 @@
                         <div class="col-md-4">
                             <div>
                                 <label class="bmd-label-floating">Image</label><br>
-                                <input  accept="image/*" type="file" name="stag_image">
+                                <input required  accept="image/*" type="file" name="stag_image">
                             </div>
                             @if($errors->has('stag_image'))
                             <small class="form-text text-muted text-danger">{{$errors->first('stag_image')}}</small>

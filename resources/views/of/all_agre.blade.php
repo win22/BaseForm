@@ -21,24 +21,8 @@
         <div class="row card-header card-header-info">
             <div class="col-md-8">
                 <h4 class="card-title ">Organisme de Formation <i class="material-icons greenI">bubble_chart</i></h4>
-                <p class="card-of">Liste des organismes de formations</p>
+                <p class="card-of">Liste des agréments </p>
 
-            </div>
-
-            <div class="col-md-4">
-                <form class="navbar-form" action="/searchOf">
-                    <div class="input-group">
-                        <div class="form-group">
-                            <label class="bmd-label-floating text-white">Rechercher</label>
-                            <input  name="search" type="text" class="form-control text-white">
-                        </div>
-                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                            <i class="material-icons">search</i>
-                            <div class="ripple-container"></div>
-                        </button>
-                    </div>
-
-                </form>
             </div>
         </div>
         <div class="card-body">
@@ -46,9 +30,6 @@
                 <table class="table table-hover">
                     <thead class=" text-danger">
 
-                    <th class="text-center">Raison Social</th>
-                    <th class="text-center">Adresse Email</th>
-                    <th class="text-center">Téléphone</th>
                     <th class="text-center">Formation</th>
                     <th class="text-center">État</th>
                     @if( Session::get('admin_role')==1)
@@ -63,10 +44,7 @@
                     <tbody>
                     @foreach ( $all_of_info as $v_of)
                     <tr>
-                        <td class="text-center" style="font-family: 'Manjari Bold'">{{ $v_of->name }}</td>
-                        <td class="text-center">{{ $v_of->of_email }}</td>
-                        <td class="text-center">{{ $v_of->of_phone }}</td>
-                        <td class="text-center">{{ $v_of->of_formation }}</td>
+                        <td style="font-family: 'Manjari Bold'" class="text-center">{{ $v_of->of_formation }}</td>
                         <td class="text-center">
                             @if($v_of->of_etat=='agrée')
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
@@ -104,13 +82,13 @@
                                 <i class="material-icons">thumb_up</i>
                             </a>
                             @endif
-                            <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-of/'.
-                        $v_of->of_id)}}">
+                            <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-agre-of/'.
+                        $v_of->of_id)}}"">
                                 <i class="material-icons">edit</i>
                             </a>
                             @if( Session::get('admin_role')==1)
-                            <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-of/'.
-                        $v_of->of_tok)}}" id="delete">
+                            <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-agre-of/'.
+                        $v_of->of_id)}}" id="delete">
                                 <i class="material-icons">close</i>
                             </a>
                             @endif

@@ -66,7 +66,7 @@
                 <li class="nav-item {{ request()->is('all-of','add-of')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-of','add-of')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
                         <i class="material-icons userI">bubble_chart</i>
-                        <p class="menu-title">Organismes de Formation</p>
+                        <p class="menu-title">Organismes de Formations</p>
                     </a>
                     <div class="collapse {{ request()->is('all-of','add-of')? 'show' : '' }}" id="ui-basic2">
                         <ul class="nav flex-column sub-menu">
@@ -187,7 +187,7 @@
                 <li class="nav-item {{ request()->is('all-stag','add-stag')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-stag','add-stag')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic11" aria-expanded="false" aria-controls="ui-basic11">
                         <i class="fa fa-asl-interpreting EI"></i>
-                        <p class="menu-title">Apprenant </p>
+                        <p class="menu-title">Apprenants </p>
                     </a>
                     <div class="collapse {{ request()->is('all-stag','add-stag')? 'show' : '' }}" id="ui-basic11">
                         <ul class="nav flex-column sub-menu">
@@ -195,14 +195,14 @@
                             <li class="nav-item {{ request()->is('all-stag')? 'active' : '' }} ">
                                 <a class="nav-link" href="{{URL::to('/all-stag')}}">
                                     <i class="material-icons">view_list</i>
-                                    <span class="text-white">Listes des apprenant</span>
+                                    <span class="text-white">Listes des apprenants</span>
                                 </a>
                             </li>
                             @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
                             <li class="nav-item {{ request()->is('add-stag')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-stag')}}">
                                     <i class="material-icons">playlist_add</i>
-                                    <span class="text-white">Ajouter un Stagiaire</span>
+                                    <span class="text-white">Ajouter un apprenants</span>
                                 </a>
                             </li>
                             @endif
@@ -353,16 +353,24 @@
                              MASE-Sénégal |   <span class="text-success">Ameliorer la performance SSE</span>
                             </a>
                         </li>
+                        <li>
+
+
+                        </li>
                     </ul>
                 </nav>
                 <div class="float-right">
                     <ul>
                         <li>
+                            <a class="text-danger">
+                                <i class="fa fa-phone"></i>&nbsp;
+                                +221781578366
+                            </a>
 
-                            <a href="http://nataalagency.com" target="_blank"> &copy;
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script> by | <strong class="text-danger">Nataal Agency</strong> </a>.
+<!--                            <a href="http://nataalagency.com" target="_blank"> &copy;-->
+<!--                                <script>-->
+<!--                                    document.write(new Date().getFullYear())-->
+<!--                                </script> by | <strong class="text-danger">Nataal Agency</strong> </a>.-->
                         </li>
                     </ul>
 

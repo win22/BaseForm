@@ -19,6 +19,12 @@ class StagiaireController extends Controller
         $this->adminAuthCheck();
         $OF_all = DB::table('tbl_organisme_formation')
             ->get();
+
+        $FORMT_spc = DB::table('tbl_organisme_formation')
+            ->where('of_status', 1)
+            ->where('name', Session::get('admin_structure') )
+            ->get();
+
         $FORMT_all = DB::table('tbl_formations')
             ->get();
 
@@ -33,12 +39,14 @@ class StagiaireController extends Controller
         $OF = DB::table('tbl_organisme_formation')
             ->where('name', Session::get('admin_structure'))
             ->where('of_status', 1)
+            ->where('of_certi', 1)
             ->get();
         return view('stagiaire.add_stag', ['OF' => $OF])
             ->with('OF_all', $OF_all)
             ->with('FORMT_all', $FORMT_all)
             ->with('FORM_all', $FORM_all)
-            ->with('FORM', $FORM);
+            ->with('FORM', $FORM)
+            ->with('FORMT_spc', $FORMT_spc);
     }
 
 
@@ -63,7 +71,6 @@ class StagiaireController extends Controller
     //afficher la liste des utilisateurs
     public function all_stag()
     {
-
         $this->adminAuthCheck();
         $all_stag_info =  DB::table('tbl_stagiaires')
             ->orderByDesc('stag_id')
@@ -202,7 +209,7 @@ class StagiaireController extends Controller
 
         DB::table('tbl_stagiaires')->insert($data);
 
-        Session::put('message', "Vous avez ajouté l' ".$data['stag_prenom']."  avec succès!");
+        Session::put('message', "Vous avez ajouté l'apprenant  ".$data['stag_prenom']."  avec succès!");
         return redirect('/all-stag');
       //  dump($data);
 
@@ -223,6 +230,11 @@ class StagiaireController extends Controller
         $FORM_all = DB::table('tbl_formateurs')
             ->get();
 
+        $FORMT_spc = DB::table('tbl_organisme_formation')
+            ->where('of_status', 1)
+            ->where('name', Session::get('admin_structure') )
+            ->get();
+
         $OF_all = DB::table('tbl_organisme_formation')
             ->get();
 
@@ -235,6 +247,7 @@ class StagiaireController extends Controller
             ->with('OF_all', $OF_all)
             ->with('FORM_all', $FORM_all)
             ->with('FORM', $FORM)
+            ->with('FORMT_spc', $FORMT_spc)
             ->with('FORMT_all', $FORMT_all);
 
 

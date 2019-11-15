@@ -25,6 +25,8 @@ class CreateTblOrganismeFormationTable extends Migration
             $table->string('of_date_fin', 60)->nullable();
             $table->string('of_date_ad', 60)->nullable();
             $table->string('of_time', 60)->nullable();
+            $table->string('of_certi', 1)->nullable();
+            $table->string('of_tok', 60)->nullable();
             $table->string('of_status', 1);
             $table->string('user_role',1);
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

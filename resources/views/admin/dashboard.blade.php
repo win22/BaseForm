@@ -11,7 +11,7 @@
                 <div class="card-icon" href="/all-admin">
                     <i class="material-icons">supervised_user_circle</i>
                 </div>
-                <p class="card-category">Utilisateurs de la plateforme</p>
+                <p class="card-category">Utilisateurs de la  BaseForm </p>
                 <a href="/all-admin">
                     <h3 class="card-title">
                         {{ $all_admin_count }}
@@ -38,7 +38,7 @@
                 <div class="card-icon">
                     <i class="material-icons">bubble_chart</i>
                 </div>
-                <p class="card-category">Organisme de formation</p>
+                <p class="card-category">Organismes de formations</p>
                 <a href="/all-of">
                     <h3 class="card-title">
                         {{ $all_of_count }}
@@ -231,7 +231,7 @@
                 <div class="card-icon" href="/all-admin">
                     <i class="fa fa-book"></i>
                 </div>
-                <p class="card-category">Documents</p>
+                <p class="card-category">Documentations</p>
                 <a href="/all-doc">
                     <h3 class="card-title">
                         {{ $all_doc_count }}
@@ -257,7 +257,7 @@
                 <div class="card-icon" href="/all-stag">
                     <i class="fa fa-asl-interpreting"></i>
                 </div>
-                <p class="card-category">Stagiaires</p>
+                <p class="card-category">Apprenants</p>
                 <a href="/all-stag">
                     <h3 class="card-title">
                         {{ $all_stag_count }}

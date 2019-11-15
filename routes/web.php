@@ -52,16 +52,26 @@ Route::post('/update-admin/{admin_id}', 'AdminController@update_admin');
 //Route pour la partie Organisme de Formation
 Route::get('/add-of', 'OfController@index');
 Route::post('/save-of', 'OfController@save_of');
+Route::post('/save-agree', 'OfController@save_agre');
 
 Route::get('/searchOf', 'OfController@search');
 
 Route::get('/all-of', 'OfController@all_of');
+Route::get('/all-agre-of/{name}', 'OfController@all_agre_of');
+
 Route::get('/unactive-of/{of_id}', 'OfController@unactive_of');
 Route::get('/active-of/{of_id}', 'OfController@active_of');
-Route::get('/edit-of/{admin_id}', 'OfController@edit_of');
+Route::get('/edit-of/{of_id}', 'OfController@edit_of');
+Route::get('/edit-agre-of/{of_id}', 'OfController@edit_agre_of');
+
+Route::get('/add-agre-of/{of_id}', 'OfController@add_agre_of');
+
 Route::get('/details-of/{of_id}', 'OfController@detail_of');
+
 Route::get('/delete-of/{admin_id}', 'OfController@delete_of');
+Route::get('/delete-agre-of/{admin_id}', 'OfController@delete_agre_of');
 Route::post('/update-of/{of_id}', 'OfController@update_of');
+Route::post('/update-agre-of/{of_id}', 'OfController@update_agre_of');
 
 //Route pour les Entreprise Utilisatrice
 Route::get('/add-eu', 'EuController@index');
@@ -99,6 +109,8 @@ Route::post('/save-itv', 'ItvController@save_itv');
 
 Route::get('/all-itv', 'ItvController@all_itv');
 Route::get('/searchItv', 'ItvController@search');
+Route::get('/unactive-itv/{itv_id}', 'ItvController@unactive_itv');
+Route::get('/active-itv/{itv_id}', 'ItvController@active_itv');
 Route::get('/edit-itv/{itv_id}', 'ItvController@edit_itv');
 Route::get('/delete-itv/{itv_id}', 'ItvController@delete_itv');
 Route::post('/update-itv/{itv_id}', 'ItvController@update_itv');
@@ -116,7 +128,7 @@ Route::get('/edit-form/{form_id}', 'FormateurController@edit_form');
 Route::post('/update-form/{form_id}', 'FormateurController@update_form');
 Route::get('/details-form/{form_id}', 'FormateurController@detail_form');
 Route::get('/valide-form/{form_id}', 'FormateurController@form_valide');
-Route::get('/unvalide-form/{form_id}', 'FormateurController@form    _unvalide');
+Route::get('/unvalide-form/{form_id}', 'FormateurController@form_unvalide');
 
 
 //Route pour la gestion des formations

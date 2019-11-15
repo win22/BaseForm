@@ -26,12 +26,13 @@ class SuperAdminController extends Controller
         $all_admin_count = DB::table('tbl_admin')
             ->count();
         $all_of_count = DB::table('tbl_organisme_formation')
+            ->where('of_certi', 1)
             ->count();
         $all_eu_count = DB::table('tbl_entreprise_utilisatrices')
             ->count();
         $all_ei_count = DB::table('tbl_entreprise_intervenantes')
             ->count();
-        $all_itv_count = DB::table('tbl_itv')
+        $all_itv_count = DB::table('tbl_intervenants')
             ->count();
         $all_form_count = DB::table('tbl_formateurs')
             ->count();
@@ -61,7 +62,7 @@ class SuperAdminController extends Controller
             ->orderByDesc('ei_id')
             ->select('created_at')
             ->first();
-        $all_itv_date = DB::table('tbl_itv')
+        $all_itv_date = DB::table('tbl_intervenants')
             ->orderByDesc('itv_id')
             ->select('created_at')
             ->first();

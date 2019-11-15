@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header card-header-info">
                 <h4 class="card-title">Organisme de formations <i class="material-icons greenI">bubble_chart</i></h4>
-                <p class="card-category">Afficher les détails d'une organisme de formation</p>
+                <p class="card-category">Afficher les détails d'un organisme de formation</p>
             </div>
             <div class="card-body">
 
@@ -50,6 +50,19 @@
                             @else
                             <span class="text-danger" style="font-family: 'Manjari Bold'">Non agrée </span>
                             @endif
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="card-title">
+                            <i class="fa fa-graduation-cap" style="color: #046b75!important;"></i>
+                            Formations :
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="card-title">
+                            <span class="text-warning" style="font-family: 'Manjari Bold'"> {{ $of_info->of_formation }}</span>
                         </p>
                     </div>
                 </div>
@@ -142,6 +155,20 @@
                     </div>
                 </div>
                 @endif
+                @if($of_info->of_etat == 'agrée')
+                <div class="row">
+                    <div class="col-md-5">
+                        <p class="card-title">
+                        <li class="fa fa-eye" style="color: #036b75!important;"></li>&nbsp;
+                        <a href="{{ URL::to('/all-agre-of/'.
+                        $of_info->name)}}">
+                            Voir les autres agréments de {{ $of_info->name }}
+                        </a>
+
+                        </p>
+                    </div>
+                </div>
+                @endif
                 @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                 <div class="row">
                     <div class="col-md-4">
@@ -160,13 +187,32 @@
                         </p>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-md-12">
+                        @if(($of_info->of_certi) == 1)
                         <a href="{{ URL::to('/edit-of/'.
                         $of_info->of_id)}}"  id="md." class="btn btn-warning pull-right">
                             <i class="material-icons">edit</i>&nbsp;
                             Modifier
                         </a>&nbsp;
+                        @endif
+
+                        @if(($of_info->of_certi) >=2)
+                        <a href="{{ URL::to('/edit-agre-of/'.
+                        $of_info->of_id)}}"  id="md." class="btn btn-warning pull-right">
+                            <i class="material-icons">edit</i>&nbsp;
+                            Modifier
+                        </a>&nbsp;
+                        @endif
+
+                        @if(($of_info->of_certi) == 1)
+                        <a href="{{ URL::to('/add-agre-of/'.
+                        $of_info->of_id)}}"  id="md." class="btn btn-info pull-right">
+                            <i class="material-icons">add</i>&nbsp;
+                            Ajouter un agrément
+                        </a>&nbsp;
+                        @endif
                     </div>
 
                 </div>

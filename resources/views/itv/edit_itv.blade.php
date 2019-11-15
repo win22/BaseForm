@@ -1,6 +1,7 @@
 @extends('admin_layout')
 @section('contenu')
 
+@if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
 <div id="alert" class="alert alert-success alert-with-icon col-md-4 right">
@@ -27,7 +28,7 @@
 
         <div class="card">
             <div class="card-header card-header-info">
-                <h4 class="card-title">Intervenants  <i class="fa fa-user-circle-o"></i></h4>
+                <h4 class="card-title">Intervenants  <i class="fa fa-user"></i></h4>
                 <p class="card-category">Modifier un intervenant </p>
             </div>
             <div class="card-body">
@@ -114,12 +115,15 @@
                             @endif
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Entreprises Intervenante</label>
-                                <input  value="{{ $itv_info->itv_ei }}" name="itv_ei" type="text" class="form-control">
-                            </div>
+                            <select  class="form-control " name="itv_ei">
+                                <option value="{{ $itv_info->itv_ei }}">{{ $itv_info->itv_ei }}</option>
+                                <option class="text-warning" value="">Selectionner une Entreprise Intervenante </option>
+                                @foreach($ei_all as $v_ei)
+                                <option class="text-success" value="{{ $v_ei->name  }}">{{ $v_ei->name }} </option>
+                                @endforeach
+                            </select>
                             @if($errors->has('itv_ei'))
-                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('itv_ei')}}</small>
+                            <small class="form-text text-muted text-danger">{{$errors->first('itv_ei')}}</small>
                             @endif
                         </div>
                     </div>
@@ -151,4 +155,5 @@
 
 
 </div>
+@endif
 @endsection

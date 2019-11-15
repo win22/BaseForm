@@ -144,7 +144,6 @@ class FormateurController extends Controller
     //selectionner un form
     public function edit_form($form_id)
     {
-
         $this->AdminAuthCheck();
         $form_info = DB::table('tbl_formateurs')
             ->where('form_id', $form_id)

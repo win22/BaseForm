@@ -17,9 +17,11 @@ class AdminController extends Controller
 
     public function index()
     {
+        $this->AdminAuthCheck();
         $EU = DB::table('tbl_entreprise_utilisatrices')
             ->get();
         $OF = DB::table('tbl_organisme_formation')
+            ->where('of_certi', 1)
             ->get();
         $EI = DB::table('tbl_entreprise_intervenantes')
             ->get();
@@ -31,6 +33,7 @@ class AdminController extends Controller
 
     public function fetch(Request $request)
     {
+        $this->AdminAuthCheck();
         $select = $request->get('select');
         $value = $request->get('value');
         $dependent = $request->get('dependent');
@@ -220,6 +223,7 @@ class AdminController extends Controller
             $data['token'] = str_random(30);
             $data['admin_email'] = $request->admin_email;
             $data['admin_password'] = null;
+            $data['admin_status'] = 0;
 
             Mail::send('mail.reset', $data, function ($message) use ($data){
                 $message->to($data['admin_email']);
@@ -229,8 +233,9 @@ class AdminController extends Controller
                 DB::table('tbl_admin')
                     ->where('admin_email', $data['admin_email'])
                     ->update($data);
+                Session::put('succes', "Un mail de rénitialisation vous a été envoyé .");
+                return redirect('/');
 
-                dump('ok');
             });
 
         }elseif (!is_null($test2)){
@@ -263,7 +268,6 @@ class AdminController extends Controller
             return Redirect::to('/admin')
                 ->withInput()->withErrors([
                     'admin_email' => "Ce token n'est plus valide",
-
                 ]);
         }
         else{
@@ -365,6 +369,7 @@ class AdminController extends Controller
         $EI = DB::table('tbl_entreprise_intervenantes')
             ->get();
         $OF = DB::table('tbl_organisme_formation')
+            ->where('of_certi', 1)
             ->get();
 
         $admin_info = view('admin.edit_admin')->with('admin_info', $admin_info)
