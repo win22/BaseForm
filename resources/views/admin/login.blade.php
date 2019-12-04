@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Connexion</title>
     <link href="{{asset('backend/css/style.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ URL::to('backend/img/Logo-MASE-SNEGAL-sn.png') }}" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 </head>
@@ -84,7 +85,7 @@
                 </div>
                 <ul class="auth-footer">
                 </ul>
-                <p class="footer-text text-center">design by Nataal Agency. Tous les droits sont réservés.</p>
+                    <p  class="footer-text text-center">&copy; 2019 | design by <a  target="_blank" href="http://nataalagency.com/">Nataal Agency</a>. Tous les droits sont réservés.</p>
             </div>
         </div>
     </div>

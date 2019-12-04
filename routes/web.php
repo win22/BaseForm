@@ -151,17 +151,6 @@ Route::get('/edit-even/{even_id}', 'EvenementController@edit_even');
 Route::post('/update-even/{even_id}', 'EvenementController@update_even');
 Route::get('/details-even/{even_id}', 'EvenementController@detail_even');
 
-//Route pour la gestion des documentations
-Route::get('/add-doc', 'DocumentController@index');
-Route::post('/save-doc', 'DocumentController@save_doc');
-Route::get('/all-doc',  'DocumentController@all_doc');
-Route::get('/searchDoc', 'DocumentController@search');
-Route::get('/delete-doc/{doc_id}', 'DocumentController@delete_doc');
-Route::get('/edit-doc/{doc_id}', 'DocumentController@edit_doc');
-Route::post('/update-doc/{doc_id}', 'DocumentController@update_doc');
-Route::get('/details-doc/{doc_id}', 'DocumentController@detail_doc');
-
-
 
 //Route pour la gestion des stagiares
 Route::get('/add-stag', 'StagiaireController@index');

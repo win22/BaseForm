@@ -52,7 +52,7 @@
                     @if(($all_of_count) == null)
                     Aucune information n'a été trouvée
                     @else
-                    {{ $all_of_date->created_at }}
+                    {{ $all_of_date -> created_at }}
                     @endif
                 </div>
             </div>
@@ -225,31 +225,7 @@
     @endif
 </div>
 <div class="row" >
-    <div   id="alert10" class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-            <div class="card-header card-header-info card-header-icon">
-                <div class="card-icon" href="/all-admin">
-                    <i class="fa fa-book"></i>
-                </div>
-                <p class="card-category">Documentations</p>
-                <a href="/all-doc">
-                    <h3 class="card-title">
-                        {{ $all_doc_count }}
-                    </h3>
-                </a>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">date_range</i>Dernier Ajout le :
-                    @if(($all_doc_count) == null)
-                    Aucune information n'a été trouvé
-                    @else
-                    {{ $all_doc_date->created_at }}
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <div   id="alert11" class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">

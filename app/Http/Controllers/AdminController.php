@@ -225,18 +225,17 @@ class AdminController extends Controller
             $data['admin_password'] = null;
             $data['admin_status'] = 0;
 
+
             Mail::send('mail.reset', $data, function ($message) use ($data){
                 $message->to($data['admin_email']);
                 $message->from('mailtrapmail@gmail.com');
                 $message->subject('Réinitialisation de mot de passe ');
-
-                DB::table('tbl_admin')
-                    ->where('admin_email', $data['admin_email'])
-                    ->update($data);
-                Session::put('succes', "Un mail de rénitialisation vous a été envoyé .");
-                return redirect('/');
-
             });
+            DB::table('tbl_admin')
+                ->where('admin_email', $data['admin_email'])
+                ->update($data);
+            return view('admin.SendMailReset')
+                ->with('data', $data);
 
         }elseif (!is_null($test2)){
             Session::put('message', "Désolé votre compte n'est pas activé");
@@ -257,7 +256,7 @@ class AdminController extends Controller
     {
         $check = DB::table('tbl_admin')
             ->where('token', $token)
-            ->where('admin_status',1)->first();
+            ->where('admin_status',0)->first();
 
         if(!is_null($check)){
             return view('admin.password2')

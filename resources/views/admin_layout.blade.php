@@ -4,10 +4,10 @@
 
 <head>
     <meta charset="utf-8" />
-
+    <link rel="shortcut icon" href="{{ URL::to('backend/img/Logo-MASE-SNEGAL-sn.png') }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        BaseForm | admin
+        BaseForm
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -259,30 +259,6 @@
                     </div>
                 </li>
                 @endif
-                <li class="nav-item {{ request()->is('all-doc','add-doc')? 'active' : '' }}">
-                    <a class="nav-link {{ request()->is('all-doc','add-doc')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic9" aria-expanded="false" aria-controls="ui-basic9">
-                        <i class="fa fa-book EI"></i>
-                        <p class="menu-title">Documentations</p>
-                    </a>
-                    <div class="collapse {{ request()->is('all-doc','add-doc')? 'show' : '' }}" id="ui-basic9">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item {{ request()->is('all-doc')? 'active' : '' }} ">
-                                <a class="nav-link" href="{{URL::to('/all-doc')}}">
-                                    <i class="material-icons">view_list</i>
-                                    <span class="text-white">Listes des documents</span>
-                                </a>
-                            </li>
-                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                            <li class="nav-item {{ request()->is('add-doc')? 'active' : '' }}">
-                                <a class="nav-link" href="{{URL::to('/add-doc')}}">
-                                    <i class="material-icons">playlist_add</i>
-                                    <span class="text-white">Ajouter un document</span>
-                                </a>
-                            </li>
-                            @endif
-                        </ul>
-                    </div>
-                </li>
 
             </ul>
         </div>
