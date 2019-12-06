@@ -68,7 +68,7 @@ Route::get('/add-agre-of/{of_id}', 'OfController@add_agre_of');
 
 Route::get('/details-of/{of_id}', 'OfController@detail_of');
 
-Route::get('/delete-of/{admin_id}', 'OfController@delete_of');
+Route::get('/delete-of/{name}', 'OfController@delete_of');
 Route::get('/delete-agre-of/{admin_id}', 'OfController@delete_agre_of');
 Route::post('/update-of/{of_id}', 'OfController@update_of');
 Route::post('/update-agre-of/{of_id}', 'OfController@update_agre_of');

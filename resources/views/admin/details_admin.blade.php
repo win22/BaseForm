@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $admin_info->created_at }}</span>
+                            <span style="font-family: 'Manjari Bold'"> {{  strftime("%d %B %Y", strtotime( $admin_info->created_at)) }}</span>
                         </p>
                     </div>
                 </div>
@@ -120,11 +120,11 @@
                     <div class="col-md-5">
                         @if($admin_info->admin_status == 1)
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'">Activé</span>
+                            <span class="text-success bold" style="font-family: 'Manjari Bold'">Activé</span>
                         </p>
                         @else
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'">Désactivé</span>
+                            <span class="text-danger" style="font-family: 'Manjari Bold'">Désactivé</span>
                         </p>
                         @endif
                     </div>

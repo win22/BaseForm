@@ -65,7 +65,7 @@
                         <td style="font-family: 'Manjari Bold'" class="text-center">{{ $v_admin->admin_prenom }}</td>
                         <td class="text-center">{{ $v_admin->admin_email }}</td>
                         <td style="font-family: 'Manjari Bold'" class="text-center">{{ $v_admin->admin_structure }}</td>
-                        <td class="text-center">{{ $v_admin->created_at }}</td>
+                        <td class="text-center">{{  strftime("%d %B %Y", strtotime($v_admin->created_at)) }}</td>
                         <td class="text-center">
                             @if($v_admin->admin_role==1)
                             <span class="label" style="font-family: 'Manjari Bold'; color: #ff6a0f;">

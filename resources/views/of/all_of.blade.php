@@ -110,7 +110,7 @@
                             </a>
                             @if( Session::get('admin_role')==1)
                             <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-of/'.
-                        $v_of->of_tok)}}" id="delete">
+                        $v_of->name)}}" id="delete">
                                 <i class="material-icons">close</i>
                             </a>
                             @endif

@@ -100,13 +100,19 @@ class OfController extends Controller
     }
 
     //supprimer un OF
-    public function delete_of($of_tok)
+    public function delete_of($name)
     {
         $this->AdminAuthCheck();
         DB::table('tbl_organisme_formation')
             ->whereIn('of_certi', [1,2,3,4,5])
-            ->where('of_tok', $of_tok )
+            ->where('name', $name )
             ->delete();
+
+        DB::table('tbl_admin')
+            ->where('admin_structure', $name)
+            ->delete();
+
+
         Session::put('message', 'Cette supprésion a été effectué avec succès. ');
         return back();
     }

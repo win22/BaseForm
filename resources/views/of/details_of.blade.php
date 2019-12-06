@@ -76,7 +76,7 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $of_info->of_date_ad }}</span>
+                            <span style="font-family: 'Manjari Bold'"> {{ strftime("%d %B %Y", strtotime($of_info->of_date_ad)) }}</span>
                         </p>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $of_info->of_date_debut }}</span>
+                            <span class="text-info" style="font-family: 'Manjari Bold'"> {{ strftime("%d %B %Y", strtotime($of_info->of_date_debut)) }}</span>
                         </p>
                     </div>
                 </div>
@@ -150,25 +150,12 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'" class="text-danger"> {{ $of_info->of_date_fin }}</span>
+                            <span style="font-family: 'Manjari Bold'" class="text-danger"> {{  strftime("%d %B %Y", strtotime($of_info->of_date_fin)) }}</span>
                         </p>
                     </div>
                 </div>
                 @endif
-                @if($of_info->of_etat == 'agrée')
-                <div class="row">
-                    <div class="col-md-5">
-                        <p class="card-title">
-                        <li class="fa fa-eye" style="color: #036b75!important;"></li>&nbsp;
-                        <a href="{{ URL::to('/all-agre-of/'.
-                        $of_info->name)}}">
-                            Voir les autres agréments de {{ $of_info->name }}
-                        </a>
 
-                        </p>
-                    </div>
-                </div>
-                @endif
                 @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                 <div class="row">
                     <div class="col-md-4">
@@ -187,7 +174,22 @@
                         </p>
                     </div>
                 </div>
+                @endif
+                @if($of_info->of_etat == 'agrée')
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="card-title">
+                        <li class="fa fa-hand-o-up" style="color: #036b75!important;"></li>&nbsp;
+                        <a href="{{ URL::to('/all-agre-of/'.
+                        $of_info->name)}}">
+                            Cliquer ici afin de voir les autres agréments décerné à  {{ $of_info->name }}
+                        </a>
 
+                        </p>
+                    </div>
+                </div>
+                @endif
+                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                 <div class="row">
                     <div class="col-md-12">
                         @if(($of_info->of_certi) == 1)

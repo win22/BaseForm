@@ -3,11 +3,12 @@
 
 <div class="row" >
 
+
     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
     <div id="alert2"  class="col-lg-3 col-md-6 col-sm-6">
         <div  class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
-
+                <p hidden>   {{ \Carbon\Carbon::setLocale('fr') }}</p>
                 <div class="card-icon" href="/all-admin">
                     <i class="material-icons">supervised_user_circle</i>
                 </div>
@@ -21,11 +22,13 @@
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i>Dernier Ajout le :
+                    <i class="material-icons">date_range</i>
                     @if(($all_admin_count) == null)
                     Aucune information n'a été trouvé
                     @else
-                    {{ $all_admin_date->created_at }}
+                    La dernière insertion a été effectuée le
+                    {{  strftime("%d %B %Y", strtotime( $all_even_date->created_at)) }}
+                   ( {{ \Carbon\Carbon::parse($all_admin_date->created_at)->diffForHumans() }} )
                     @endif
                 </div>
             </div>
@@ -48,11 +51,13 @@
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i>Dernier Ajout le :
+                    <i class="material-icons">date_range</i>
                     @if(($all_of_count) == null)
                     Aucune information n'a été trouvée
                     @else
-                    {{ $all_of_date -> created_at }}
+                    La dernière insertion a été effectuée le
+                    {{  strftime("%d %B %Y", strtotime( $all_of_date->created_at)) }}
+                    ( {{ \Carbon\Carbon::parse($all_of_date->created_at)->diffForHumans() }} )
                     @endif
                 </div>
             </div>
@@ -74,11 +79,13 @@
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i>Dernier Ajout le :
+                    <i class="material-icons">date_range</i>
                     @if(($all_eu_count) == null)
                     Aucune information n'a été trouvée
                     @else
-                    {{ $all_eu_date->created_at }}
+                    La dernière insertion a été effectuée le
+                    {{  strftime("%d %B %Y", strtotime( $all_eu_date->created_at)) }}
+                   ( {{ \Carbon\Carbon::parse($all_eu_date->created_at)->diffForHumans() }} )
                     @endif
                 </div>
             </div>
@@ -100,11 +107,13 @@
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i>Dernier Ajout le :
+                    <i class="material-icons">date_range</i>
                     @if(($all_ei_count) == null)
                     Aucune information n'a été trouvée
                     @else
-                    {{ $all_ei_date->created_at }}
+                    La dernière insertion a été effectuée
+                    {{  strftime("%d %B %Y", strtotime( $all_ei_date->created_at)) }}
+                    {{ \Carbon\Carbon::parse($all_ei_date->created_at)->diffForHumans() }}
                     @endif
                 </div>
             </div>
@@ -130,11 +139,13 @@
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i>Dernier Ajout le :
+                    <i class="material-icons">date_range</i>
                     @if(($all_itv_count) == null)
                     Aucune information n'a été trouvé
                     @else
-                    {{ $all_itv_date->created_at }}
+                    La dernière insertion a été effectuée le
+                    {{  strftime("%d %B %Y", strtotime( $all_itv_date->created_at)) }}
+                   ( {{ \Carbon\Carbon::parse($all_itv_date->created_at)->diffForHumans() }} )
                     @endif
                 </div>
             </div>
@@ -157,11 +168,13 @@
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i>Dernier Ajout le :
+                    <i class="material-icons">date_range</i>
                     @if(($all_form_count) == null)
                         Aucune information n'a été trouvé
                     @else
-                    {{ $all_form_date->created_at }}
+                    La dernière insertion a été effectuée le
+                    {{  strftime("%d %B %Y", strtotime( $all_form_date->created_at)) }}
+                    ( {{ \Carbon\Carbon::parse($all_form_date->created_at)->diffForHumans() }} )
                     @endif
                 </div>
             </div>
@@ -185,11 +198,13 @@
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i>Dernier Ajout le :
+                    <i class="material-icons">date_range</i>
                     @if(($all_formt_count) == null)
                     Aucune information n'a été trouvé
                     @else
-                    {{ $all_formt_date->created_at }}
+                    La dernière insertion a été effectuée le
+                    {{  strftime("%d %B %Y", strtotime( $all_formt_date->created_at)) }}
+                   ( {{ \Carbon\Carbon::parse($all_formt_date->created_at)->diffForHumans() }} )
                     @endif
                 </div>
             </div>
@@ -212,11 +227,13 @@
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i>Dernier Ajout le :
+                    <i class="material-icons">date_range</i>
                     @if(($all_even_count) == null)
                     Aucune information n'a été trouvé
                     @else
-                    {{ $all_even_date->created_at }}
+                    La dernière insertion a été effectuée le
+                    {{  strftime("%d %B %Y", strtotime( $all_even_date->created_at)) }}
+                    ( {{ \Carbon\Carbon::parse($all_even_date->created_at)->diffForHumans() }} )
                     @endif
                 </div>
             </div>
@@ -242,11 +259,13 @@
             </div>
             <div class="card-footer">
                 <div class="stats">
-                    <i class="material-icons">date_range</i>Dernier Ajout le :
+                    <i class="material-icons">date_range</i>
                     @if(($all_stag_count) == null)
                     Aucune information n'a été trouvé
                     @else
-                    {{ $all_stag_date->created_at }}
+                    La dernière insertion a été effectuée le
+                    {{  strftime("%d %B %Y", strtotime( $all_stag_date->created_at)) }}
+                   ( {{ \Carbon\Carbon::parse($all_even_date->created_at)->diffForHumans() }})
                     @endif
                 </div>
             </div>

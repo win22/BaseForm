@@ -256,25 +256,23 @@ class AdminController extends Controller
     {
         $check = DB::table('tbl_admin')
             ->where('token', $token)
-            ->where('admin_status',0)->first();
+            ->first();
 
         if(!is_null($check)){
-            return view('admin.password2')
-                ->with('token', $token);
+            if(($check->admin_status) == 0){
+                return view('admin.password2')
+                    ->with('token', $token);
 
-        } elseif (['admin_status'==1])
-        {
-            return Redirect::to('/admin')
-                ->withInput()->withErrors([
-                    'admin_email' => "Ce token n'est plus valide",
-                ]);
+            } elseif (['admin_status'==1])
+            {
+                return Redirect::to('/admin')
+                    ->withInput()->withErrors([
+                        'admin_email' => "Ce token n'est plus valide",
+                    ]);
+            }
         }
         else{
-            return Redirect::to('/admin')
-                ->withInput()->withErrors([
-                    'admin_email' => "Ce token n'est plus valide",
-
-                ]);
+            return view('admin.error');
         }
 
     }
@@ -307,26 +305,24 @@ class AdminController extends Controller
     {
         $check = DB::table('tbl_admin')
             ->where('token', $token)
-            ->where('admin_status',0)->first();
+            ->first();
 
         if(!is_null($check)){
-            return view('admin.password')
-                ->with('token', $token);
+            if(($check->admin_status) == 0){
+                return view('admin.password')
+                    ->with('token', $token);
 
-        } elseif (['admin_status'==1])
-        {
-            return Redirect::to('/admin')
-                ->withInput()->withErrors([
-                    'admin_email' => "Vous avez déja activé votre Compte",
+            }elseif(($check->admin_status) ==1)
+            {
+                return Redirect::to('/admin')
+                    ->withInput()->withErrors([
+                        'admin_email' => "Ce Token n'est plus valide",
 
-                ]);
+                    ]);
+            }
         }
         else{
-            return Redirect::to('/admin')
-                ->withInput()->withErrors([
-                    'admin_email' => "Ce token n'est plus valide",
-
-                ]);
+            return view('admin.error');
         }
 
     }
