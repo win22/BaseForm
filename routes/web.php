@@ -55,8 +55,11 @@ Route::post('/save-of', 'OfController@save_of');
 Route::post('/save-agree', 'OfController@save_agre');
 
 Route::get('/searchOf', 'OfController@search');
+Route::get('/searchOfA', 'OfController@searchA');
+Route::get('/searchOfN', 'OfController@searchN');
 
 Route::get('/all-of', 'OfController@all_of');
+Route::get('/excel', 'OfController@excel');
 Route::get('/all-agre-of/{name}', 'OfController@all_agre_of');
 
 Route::get('/unactive-of/{of_id}', 'OfController@unactive_of');

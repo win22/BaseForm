@@ -29,7 +29,7 @@
                 <form class="navbar-form" action="/searchOf">
                     <div class="input-group">
                         <div class="form-group">
-                            <label class="bmd-label-floating text-white">Rechercher</label>
+                            <label class="bmd-label-floating text-white">Rechercher par nom</label>
                             <input  name="search" type="text" class="form-control text-white">
                         </div>
                         <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -37,13 +37,28 @@
                             <div class="ripple-container"></div>
                         </button>
                     </div>
-
                 </form>
+                <div class="row">
+                    <form action="/searchOfA">
+                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher les Organismes Agrées " type="submit" class="btn btn-success btn-sm">
+                            Agrée
+                            <div class="ripple-container"></div>
+                        </button>
+                    </form> &nbsp;
+                    <form action="/searchOfN">
+                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher les Organismes qui ne sont pas Agrées" type="submit" class="btn btn-warning btn-sm">
+                            Non Agrée
+                            <div class="ripple-container"></div>
+                        </button>
+                    </form>
+                </div>
+
             </div>
         </div>
+
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover table-condesed">
                     <thead class=" text-danger">
 
                     <th class="text-center">Raison Social</th>
@@ -127,6 +142,13 @@
                 <p  id="total_records">
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
+                <form action="/excel">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <i class="fa fa-share"></i>&nbsp;
+                        Exporter vers excel
+                        <div class="ripple-container"></div>
+                    </button>
+                </form>
                 </p>
                 @else
                 <p class="text-center">Aucune information trouvé</p>

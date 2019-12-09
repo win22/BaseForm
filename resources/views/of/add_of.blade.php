@@ -77,10 +77,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <select  class="form-control" name="of_etat">
+                            <select  class="form-control dynamic2" id="of_etat"  name="of_etat">
                                 <option value="">État de l'organisme  <span  class="text-danger">*</span> </option>
-                                <option class="text-success" value="agrée">Agrée Mase </option>
-                                <option class="text-danger"  value="non">Non agrée </option>
+                                <option  class="text-success dynamic2" value="agrée">Agrée Mase </option>
+                                <option  class="text-danger"  value="non">Non agrée </option>
                             </select>
                             @if($errors->has('of_etat'))
                             <small class="form-text text-muted text-danger">{{$errors->first('of_etat')}}</small>
@@ -95,7 +95,7 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('of_date_ad')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 forma">
                             <select  class="form-control" name="of_formation">
                                 <option value="">Formation  <span  class="text-danger">*</span></option>
                                 @foreach($OF as $v_of)
@@ -110,9 +110,8 @@
                         </div>
 
                     </div>
-                    <div class="row">
-
-                        <div class="col-md-4">
+                    <div class="row forma">
+                        <div  class="col-md-4 forma">
                             <div class="form-group">
                                 <label class="label">Date de début</label>
                                 <input type="date" class="form-control text-success" min="1800-08-13" name="of_date_debut">
@@ -141,7 +140,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 forma">
                             <select  class="form-control" name="of_certi">
                                 <option value="">Selection un nombre<span  class="text-danger">*</span> </option>
                                 <option  value="1">Première certification</option>

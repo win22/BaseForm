@@ -19,7 +19,7 @@ class CreateTblOrganismeFormationTable extends Migration
             $table->string('of_adresse', 90);
             $table->string('of_email', 90);
             $table->string('of_phone', 60);
-            $table->string('of_formation', 60);
+            $table->string('of_formation', 60)->nullable();
             $table->string('of_etat', 30);
             $table->string('of_date_debut', 60)->nullable();
             $table->string('of_date_fin', 60)->nullable();

@@ -577,10 +577,17 @@
     $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js
         md.initDashboardPageCharts();
-
     });
 </script>
+<script>
+    jQuery(function ($) {
+        var alert = $('#affiche');
+        if(alert.length > 0){
+            alert.hide().slideDown(730).delay(2800).fadeOut(600);
 
+        }
+    })
+</script>
 <script>
     jQuery(function ($) {
         var alert = $('#alert');
@@ -687,7 +694,7 @@
 <script type="text/javascript" src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js')}}"></script>
 
 <script>
-    $(document).on("click", "#delete",function (e) {
+    $(document).on("click", "delete",function (e) {
         e.preventDefault();
         var link = $(this).attr("href");
         bootbox.confirm("Voulez-vous poursuivre cette action?", function (confirmed) {
@@ -725,6 +732,31 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function () {
+        $(".forma").hide();
+        $('.dynamic2').change(function () {
+
+            if($(this).val() != '')
+            {
+                var select = $(this).attr("id");
+                var value = $(this).val();
+
+                console.log(select);
+                console.log(value);
+                if (value == 'agrée') {
+                   $(".forma").hide().slideDown("slow");
+                };
+                if (value == 'non') {
+                    $(".forma").hide().slideUp("slow");
+                };
+
+            }
+        });
+    });
+</script>
+
 </body>
 
 </html>

@@ -9,6 +9,8 @@ use App\Http\Requests;
 use Illuminate\View\View;
 use Session;
 Use Mail;
+use Excel;
+
 session_start();
 class OfController extends Controller
 {
@@ -26,12 +28,68 @@ class OfController extends Controller
         $search = $request->get('search');
         $all_of_info = DB::table('tbl_organisme_formation')
             ->where('name', 'like', '%'.$search.'%')
-            ->where('of_certi', 1)
+            ->orWhere('of_certi', 1)
+            ->orWhere('of_certi', null)
             ->orderByDesc('of_id')
             ->paginate(5);
         $nb= $all_of_info->count();
         return view('of.all_of', ['all_of_info' => $all_of_info ])
             ->with(['nb' => $nb]);
+    }
+    public  function  searchA()
+    {
+        $this->AdminAuthCheck();
+
+        $all_of_info = DB::table('tbl_organisme_formation')
+            ->where('of_etat' , 'agrée')
+            ->orWhere('of_certi', 1)
+            ->orderByDesc('of_id')
+            ->paginate(5);
+        $nb= $all_of_info->count();
+        return view('of.all_of', ['all_of_info' => $all_of_info ])
+            ->with(['nb' => $nb]);
+    }
+    public  function  searchN(Request $request)
+    {
+        $this->AdminAuthCheck();
+        $search = $request->get('search');
+        $all_of_info = DB::table('tbl_organisme_formation')
+            ->where('of_etat' , 'non')
+            ->orWhere('of_certi', 1)
+            ->orWhere('of_certi', null)
+            ->orderByDesc('of_id')
+            ->paginate(5);
+        $nb= $all_of_info->count();
+        return view('of.all_of', ['all_of_info' => $all_of_info ])
+            ->with(['nb' => $nb]);
+    }
+
+    //Extraire les données vers excel
+    public  function excel()
+    {
+        $data = DB::table('tbl_organisme_formation')
+            ->orWhere('of_certi', 1)
+            ->orWhere('of_certi', null)
+            ->get()
+            ->toArray();
+        $data_array[] = array('name', 'of_adresse', 'of_email', 'of_phone', 'of_formation', 'of_etat');
+        foreach ( $data as $da)
+        {
+            $data_array[] = array('name' => $da->name,
+                'of_adresse'  => $da->of_adresse,
+                'of_email'  => $da->of_email,
+                'of_phone' => $da->of_phone,
+                'of_formation' => $da->of_formation,
+                'of_etat'  => $da->of_etat);
+        }
+        Excel::create('data', function ($excel)use ($data_array)
+        {
+            $excel->setTitle('data');
+            $excel->sheet('data',function ($sheet) use ($data_array){
+               $sheet->fromArray($data_array, null, 'A1', false, false);
+            });
+        })->download('xlsx');
+
     }
 
     //afficher la liste des OFs
@@ -41,6 +99,7 @@ class OfController extends Controller
         $this->AdminAuthCheck();
         $all_of_info =  DB::table('tbl_organisme_formation')
             ->orWhere('of_certi', 1)
+            ->orWhere('of_certi', null)
             ->orderByDesc('of_id')
             ->paginate(5);
         $nb= $all_of_info->count();
