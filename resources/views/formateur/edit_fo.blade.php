@@ -106,7 +106,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <select  class="form-control " name="form_etat">
-                                    @if($form_info->form_etat == 'agréé')
+                                    @if($form_info->form_etat == 'agrée')
                                     <option class="text-success" value="{{ $form_info->form_sexe }}">Agréé par Mase </option>
                                     @else
                                     <option class="text-danger" value="{{ $form_info->form_sexe }}">Non agréé  </option>
@@ -114,8 +114,8 @@
 
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                                     <option value="">Etat du formateur <span  class="text-danger">*</span> </option>
-                                    <option class="text-success" value="agréé">Agréé par Mase</option>
-                                    <option class="text-danger" value="non agréé">Non agréé </option>
+                                    <option class="text-success" value="agrée">agrée par Mase</option>
+                                    <option class="text-danger" value="non">Non agréé </option>
                                     @endif
 
 

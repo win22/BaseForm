@@ -694,7 +694,7 @@
 <script type="text/javascript" src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js')}}"></script>
 
 <script>
-    $(document).on("click", "delete",function (e) {
+    $(document).on("click", "#delete",function (e) {
         e.preventDefault();
         var link = $(this).attr("href");
         bootbox.confirm("Voulez-vous poursuivre cette action?", function (confirmed) {
@@ -736,6 +736,7 @@
 <script>
     $(document).ready(function () {
         $(".forma").hide();
+
         $('.dynamic2').change(function () {
 
             if($(this).val() != '')
@@ -750,6 +751,13 @@
                 };
                 if (value == 'non') {
                     $(".forma").hide().slideUp("slow");
+                    $('.clean').change(function () {
+                        if($(this).val() != '')
+                        {
+                            var vale = $(this).val() ;
+                            console.log(vale);
+                        }
+                    });
                 };
 
             }

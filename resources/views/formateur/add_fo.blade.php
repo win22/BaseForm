@@ -31,7 +31,7 @@
                 <p class="card-category">Ajouter un formateur</p>
             </div>
             <div class="card-body">
-                <form action="{{ url('/save-form')}}" method="post">
+                <form  enctype="multipart/form-data" action="{{ url('/save-form')}}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
@@ -97,20 +97,6 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <select  class="form-control " name="form_etat">
-                                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                                    <option value="">Etat du formateur <span  class="text-danger">*</span> </option>
-                                    <option class="text-success" value="agréé">Agrée par Mase</option>
-                                    @endif
-                                    <option class="text-danger" value="non agréé">Non agrée par Mase </option>
-                                </select>
-                                @if($errors->has('form_etat'))
-                                <small class="form-text text-muted text-danger">{{$errors->first('form_etat')}}</small>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
                                 <select  class="form-control " name="form_of">
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                                     <option value="">Organisme de formation </option>
@@ -133,7 +119,79 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <select  class="form-control dynamic2" name="form_etat">
+                                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                                    <option value="">Etat du formateur <span  class="text-danger">*</span> </option>
+                                    <option class="text-success" value="agrée">Agrée par Mase</option>
+                                    @endif
+                                    <option class="text-danger" value="non">Non agrée par Mase </option>
+                                </select>
+                                @if($errors->has('form_etat'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('form_etat')}}</small>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <select  class="form-control " name="form_formation">
+                                    <option class="text-warning" value="">Selectionner une formation <span  class="text-danger">*</span></option>
+                                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                                    @foreach($FORMT_all as $v_formt)
+                                    <option value="{{ $v_formt->formt_name }}" >
+                                        {{ $v_formt->formt_name }}
+                                    </option>
+                                    @endforeach
+                                    @else
+                                    @foreach($FORM as $v_format)
+                                    <option value="{{ $v_format->of_formation }}" >
+                                        {{ $v_format->of_formation }}
+                                    </option>
+                                    @endforeach
+                                    @endif
+                                </select>
+                                @if($errors->has('form_formation'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('form_formation')}}</small>
+                                @endif
+                            </div>
+                        </div>
                     </div>
+                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                    <div class="row forma">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label">Début de la formation <span  class="text-danger">*</span></label>
+                                <input type="date" class="form-control text-success" min="1800-08-13" name="form_date_debut">
+                                @if($errors->has('form_date_debut'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('form_date_debut')}}</small>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label">Fin de la formation <span  class="text-danger">*</span></label>
+                                <input type="date" class="form-control text-danger" min="1800-08-13" name="form_date_fin">
+                                @if($errors->has('form_date_fin'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('form_date_fin')}}</small>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div>
+                                <label class="bmd-label-floating">Selectionner l'image du formateur</label><br>
+                                <input required  accept="image/*" type="file" name="form_image">
+                            </div>
+                            @if($errors->has('form_image'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_image')}}</small>
+                            @endif
+                        </div>
+                    </div>
+
 
                     <a href="/all-form" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>

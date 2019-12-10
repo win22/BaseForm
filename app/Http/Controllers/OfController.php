@@ -29,7 +29,7 @@ class OfController extends Controller
         $all_of_info = DB::table('tbl_organisme_formation')
             ->where('name', 'like', '%'.$search.'%')
             ->orWhere('of_certi', 1)
-            ->orWhere('of_certi', null)
+            ->orWhere('of_certi', 0)
             ->orderByDesc('of_id')
             ->paginate(5);
         $nb= $all_of_info->count();
@@ -56,7 +56,7 @@ class OfController extends Controller
         $all_of_info = DB::table('tbl_organisme_formation')
             ->where('of_etat' , 'non')
             ->orWhere('of_certi', 1)
-            ->orWhere('of_certi', null)
+            ->orWhere('of_certi', 0)
             ->orderByDesc('of_id')
             ->paginate(5);
         $nb= $all_of_info->count();
@@ -69,7 +69,7 @@ class OfController extends Controller
     {
         $data = DB::table('tbl_organisme_formation')
             ->orWhere('of_certi', 1)
-            ->orWhere('of_certi', null)
+            ->orWhere('of_certi', 0)
             ->get()
             ->toArray();
         $data_array[] = array('name', 'of_adresse', 'of_email', 'of_phone', 'of_formation', 'of_etat');
@@ -99,7 +99,7 @@ class OfController extends Controller
         $this->AdminAuthCheck();
         $all_of_info =  DB::table('tbl_organisme_formation')
             ->orWhere('of_certi', 1)
-            ->orWhere('of_certi', null)
+            ->orWhere('of_certi', 0)
             ->orderByDesc('of_id')
             ->paginate(5);
         $nb= $all_of_info->count();
@@ -163,7 +163,7 @@ class OfController extends Controller
     {
         $this->AdminAuthCheck();
         DB::table('tbl_organisme_formation')
-            ->whereIn('of_certi', [1,2,3,4,5])
+            ->whereIn('of_certi', [0,1,2,3,4,5])
             ->where('name', $name )
             ->delete();
 
@@ -207,12 +207,23 @@ class OfController extends Controller
         $data['of_adresse'] = $request->of_adresse;
         $data['of_phone'] = $request->of_phone;
         $data['of_etat'] = $request->of_etat;
-        $data['of_time'] = $request->of_time;
-        $data['of_date_debut'] = $request->of_date_debut;
-        $data['of_date_ad'] = $request->of_date_ad;
-        $data['of_date_fin'] = $request->of_date_fin;
-        $data['of_formation'] = $request->of_formation;
-        $data['of_certi'] = $request->of_certi;
+        if($request->of_etat == 'non')
+        {
+            $data['of_formation'] = null;
+            $data['of_date_debut'] = null;
+            $data['of_date_fin'] = null;
+            $data['of_time'] = null;
+            $data['of_certi'] = 0;
+        }
+        else
+        {
+            $data['of_time'] = $request->of_time;
+            $data['of_date_debut'] = $request->of_date_debut;
+            $data['of_date_ad'] = $request->of_date_ad;
+            $data['of_date_fin'] = $request->of_date_fin;
+            $data['of_formation'] = $request->of_formation;
+            $data['of_certi'] = $request->of_certi;
+        }
         $data['of_status'] = 0;
         $data['user_role'] = $request->user_role;
         $data['of_tok'] = str_random(50);
@@ -344,7 +355,6 @@ class OfController extends Controller
             'of_adresse' => ['required'],
             'name' => ['required'],
             'of_email' => ['required', 'email'],
-            'of_formation' => ['required'],
             'of_etat' => ['required'],
             'of_phone' => ['required'],
             'of_date_ad' => ['required'],
@@ -357,6 +367,7 @@ class OfController extends Controller
                 'of_date_fin' => ['required'],
                 'of_time' => ['required'],
                 'of_certi' => ['required'],
+                'of_formation' => ['required'],
             ]);
 
         }
@@ -369,11 +380,25 @@ class OfController extends Controller
         $data['of_adresse'] = $request->of_adresse;
         $data['of_phone'] = $request->of_phone;
         $data['of_etat'] = $request->of_etat;
-        $data['of_time'] = $request->of_time;
-        $data['of_date_debut'] = $request->of_date_debut;
+
+        if($request->of_etat == 'non')
+        {
+            $data['of_formation'] = null;
+            $data['of_date_debut'] = null;
+            $data['of_date_fin'] = null;
+            $data['of_time'] = null;
+            $data['of_certi'] = 0;
+        }
+        else
+        {
+            $data['of_time'] = $request->of_time;
+            $data['of_date_debut'] = $request->of_date_debut;
+            $data['of_date_ad'] = $request->of_date_ad;
+            $data['of_date_fin'] = $request->of_date_fin;
+            $data['of_formation'] = $request->of_formation;
+            $data['of_certi'] = $request->of_certi;
+        }
         $data['of_date_ad'] = $request->of_date_ad;
-        $data['of_date_fin'] = $request->of_date_fin;
-        $data['of_formation'] = $request->of_formation;
 
         $data2['name'] = $request->name;
         $data2['of_email'] = $request->of_email;
@@ -381,6 +406,8 @@ class OfController extends Controller
         $data2['of_phone'] = $request->of_phone;
         $data2['of_date_ad'] = $request->of_date_ad;
         $data2['of_tok'] = $request->of_tok;
+
+
 
 
         DB::table('tbl_organisme_formation')

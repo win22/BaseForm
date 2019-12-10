@@ -2,7 +2,7 @@
 @section('contenu')
 
 @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-@if(($of_info->of_certi) == 1)
+@if(($of_info->of_certi) <= 1)
 
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
@@ -79,11 +79,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <select  class="form-control" name="of_etat">
+                            <select class="form-control dynamic2" id="of_etat" name="of_etat">
                                 @if($of_info->of_etat == 'agrée')
-                                <option class="text-success" value="{{ $of_info->of_etat }}">Certifié Mase </option>
+                                <option class="text-success az" value="{{ $of_info->of_etat }}">Agrée Mase </option>
                                 @else
-                                <option class="text-danger" value="{{ $of_info->of_etat }}">Non certifié </option>
+                                <option class="text-danger az" value="{{ $of_info->of_etat }}">Non Agrée </option>
                                 @endif
                                 <option value="">État de l'organisme  <span  class="text-danger">*</span> </option>
                                 <option class="text-success" value="agrée">Agrée Mase </option>
@@ -102,9 +102,9 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('of_date_ad')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 forma">
                             <select  class="form-control" name="of_formation">
-                                <option value="{{ $of_info->of_formation }}">{{ $of_info->of_formation }}<span  class="text-danger">*</span></option>
+                                <option value="{{ $of_info->of_formation }}">{{ $of_info->of_formation }}</option>
                                 <option class="text-warning" value="">Formation  <span  class="text-danger">*</span></option>
                                 @foreach($OF as $v_of)
                                 <option value="{{ $v_of->formt_name }}" >
@@ -118,7 +118,7 @@
                         </div>
 
                     </div>
-                    <div class="row">
+                    <div class="row forma">
                         <div class="col-md-4">
                         <div class="form-group">
                             <label class="label">Date de début</label>
@@ -148,14 +148,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <select  class="form-control" name="of_certi">
+                        <div class="col-md-4 forma">
+                            <select  class="form-control clean" name="of_certi">
                                 <option class="text-danger" value="{{ $of_info->of_certi }}">{{ $of_info->of_certi }}</option>
                                 <option value="">Selectionner un nombre<span  class="text-danger">*</span> </option>
-                                <option  value="1">Première certification</option>
-                                <option  value="2">deuxième certification</option>
-                                <option  value="3">Troisième certification</option>
-                                <option  value="4">Quatrième certification</option>
+                                <option value="1">Première certification</option>
+                                <option value="2">deuxième certification</option>
+                                <option value="3">Troisième certification</option>
+                                <option value="4">Quatrième certification</option>
                                 <option value="5">Cinquième certification</option>
 
                             </select>

@@ -123,17 +123,18 @@
                         $v_of->of_id)}}">
                                 <i class="material-icons">edit</i>
                             </a>
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-of/'.
+                        $v_of->of_id)}}">
+                                <i class="material-icons">visibility</i>
+                            </a>
                             @if( Session::get('admin_role')==1)
-                            <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-of/'.
+                            <a class="btn btn-danger btn-link btn-sm" id="delete"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-of/'.
                         $v_of->name)}}" id="delete">
                                 <i class="material-icons">close</i>
                             </a>
                             @endif
                             @endif
-                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-of/'.
-                        $v_of->of_id)}}">
-                                <i class="material-icons">visibility</i>
-                            </a>
+
                         </td>
                     </tr>
                     @endforeach

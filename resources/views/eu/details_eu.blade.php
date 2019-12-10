@@ -163,7 +163,7 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span class="text-info" style="font-family: 'Manjari Bold'"> {{ $eu_info->eu_date_ad }}</span>
+                            <span class="text-info" style="font-family: 'Manjari Bold'"> {{ strftime("%d %B %Y", strtotime( $eu_info->eu_date_ad)) }}</span>
                         </p>
                     </div>
                 </div>
@@ -218,7 +218,7 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span class="text-success" style="font-family: 'Manjari Bold'"> {{ $eu_info->eu_date_debut }}</span>
+                            <span class="text-success" style="font-family: 'Manjari Bold'"> {{ strftime("%d %B %Y", strtotime($eu_info->eu_date_debut)) }}</span>
                         </p>
                     </div>
                 </div>
@@ -233,7 +233,7 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span class="text-danger" style="font-family: 'Manjari Bold'"> {{ $eu_info->eu_date_fin  }}</span>
+                            <span class="text-danger" style="font-family: 'Manjari Bold'"> {{ strftime("%d %B %Y", strtotime($eu_info->eu_date_fin))  }}</span>
                         </p>
                     </div>
                 </div>

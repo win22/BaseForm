@@ -21,7 +21,8 @@ class AdminController extends Controller
         $EU = DB::table('tbl_entreprise_utilisatrices')
             ->get();
         $OF = DB::table('tbl_organisme_formation')
-            ->where('of_certi', 1)
+            ->orWhere('of_certi', 1)
+            ->orWhere('of_certi', 0)
             ->get();
         $EI = DB::table('tbl_entreprise_intervenantes')
             ->get();

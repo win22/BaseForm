@@ -38,8 +38,21 @@
                             <div class="ripple-container"></div>
                         </button>
                     </div>
-
                 </form>
+                <div class="row">
+                    <form action="/searchOfA">
+                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher les formateurs Agrées " type="submit" class="btn btn-success btn-sm">
+                            Agrée
+                            <div class="ripple-container"></div>
+                        </button>
+                    </form> &nbsp;
+                    <form action="/searchOfN">
+                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher les formateurs qui ne sont pas Agrées" type="submit" class="btn btn-warning btn-sm">
+                            Non Agrée
+                            <div class="ripple-container"></div>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -77,7 +90,7 @@
                         </td>
                         <td class="center">{{ $v_form->form_email }}</td>
                         <td class="text-center">
-                            @if($v_form->form_etat=='agréé')
+                            @if($v_form->form_etat=='agrée')
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
                             Agréé par Mase <i class="fa fa-certificate"></i>
                         </span>

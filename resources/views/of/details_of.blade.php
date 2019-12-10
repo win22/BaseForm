@@ -53,6 +53,7 @@
                         </p>
                     </div>
                 </div>
+                @if( $of_info->of_formation)
                 <div class="row">
                     <div class="col-md-4">
                         <p class="card-title">
@@ -66,6 +67,7 @@
                         </p>
                     </div>
                 </div>
+                @endif
                 @if( $of_info->of_date_ad)
                 <div class="row">
                     <div class="col-md-4">
@@ -192,7 +194,7 @@
                 @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                 <div class="row">
                     <div class="col-md-12">
-                        @if(($of_info->of_certi) == 1)
+                        @if(($of_info->of_certi) <=1)
                         <a href="{{ URL::to('/edit-of/'.
                         $of_info->of_id)}}"  id="md." class="btn btn-warning pull-right">
                             <i class="material-icons">edit</i>&nbsp;

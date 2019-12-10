@@ -133,7 +133,8 @@ Route::get('/details-form/{form_id}', 'FormateurController@detail_form');
 Route::get('/valide-form/{form_id}', 'FormateurController@form_valide');
 Route::get('/unvalide-form/{form_id}', 'FormateurController@form_unvalide');
 
-
+Route::get('/searchOfA', 'FormateurController@searchA');
+Route::get('/searchOfN', 'FormateurController@searchN');
 //Route pour la gestion des formations
 Route::get('/add-formt', 'FormationController@index');
 Route::post('/save-formt', 'FormationController@save_formt');

@@ -93,7 +93,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <select  class="form-control" name="of_date_ad">
-                                    <option class="text-success" value="{{ $of_info->of_date_ad }}">{{ $of_info->of_date_ad }}</option>
+                                    <option class="text-success" value="{{ $of_info->of_date_ad }}">{{  strftime("%d %B %Y", strtotime($of_info->of_date_ad)) }}</option>
                                 </select>
                             </div>
                             @if($errors->has('of_date_ad'))

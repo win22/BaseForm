@@ -158,7 +158,7 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $stag_info->stag_date_debu }}</span>
+                            <span style="font-family: 'Manjari Bold'"> {{ strftime("%d %B %Y", strtotime($stag_info->stag_date_debu)) }}</span>
                         </p>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                     </div>
                     <div class="col-md-5">
                         <p class="card-title">
-                            <span style="font-family: 'Manjari Bold'"> {{ $stag_info->stag_date_fin }}</span>
+                            <span style="font-family: 'Manjari Bold'"> {{ strftime("%d %B %Y", strtotime($stag_info->stag_date_fin)) }}</span>
                         </p>
                     </div>
                 </div>
