@@ -24,9 +24,12 @@ class CreateTblStagiairesTable extends Migration
             $table->string('stag_formation', 90);
             $table->string('stag_formateur', 90);
             $table->string('stag_sexe', 2);
-            $table->string('stag_date_debu', 90);
+            $table->string('stag_date_debut', 90);
             $table->string('stag_date_fin', 90);
             $table->string('stag_status', 2)->nullable();
+            $table->string('stag_certi', 2)->nullable();
+            $table->string('stag_etat', 20)->nullable();
+            $table->string('stag_token', 60)->nullable();
             $table->string('stag_validation', 30)->nullable();
             $table->string('stag_image', 30);
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

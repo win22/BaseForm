@@ -122,14 +122,19 @@ Route::get('/details-itv/{itv_id}', 'ItvController@detail_itv');
 //Route pour la gestion des formateurs
 Route::get('/add-form', 'FormateurController@index');
 Route::post('/save-form', 'FormateurController@save_form');
+Route::post('/save-form_of', 'FormateurController@saveNewforma');
+Route::post('/save-form_of', 'FormateurController@saveNewforma');
 Route::get('/all-form',  'FormateurController@all_form');
 Route::get('/unactive-form/{form_id}', 'FormateurController@unactive_form');
 Route::get('/active-form/{form_id}', 'FormateurController@active_form');
 Route::get('/searchForm', 'FormateurController@search');
 Route::get('/delete-form/{form_id}', 'FormateurController@delete_form');
+Route::get('/delete-form-fo/{token_id}', 'FormateurController@delete_form2');
 Route::get('/edit-form/{form_id}', 'FormateurController@edit_form');
+Route::get('/edit-form2/{form_id}', 'FormateurController@edit_form2');
 Route::post('/update-form/{form_id}', 'FormateurController@update_form');
-Route::get('/details-form/{form_id}', 'FormateurController@detail_form');
+Route::post('/update-form-fo/{form_id}', 'FormateurController@update_form2');
+Route::get('/details-form/{form_token}', 'FormateurController@detail_form');
 Route::get('/valide-form/{form_id}', 'FormateurController@form_valide');
 Route::get('/unvalide-form/{form_id}', 'FormateurController@form_unvalide');
 
@@ -159,6 +164,7 @@ Route::get('/details-even/{even_id}', 'EvenementController@detail_even');
 //Route pour la gestion des stagiares
 Route::get('/add-stag', 'StagiaireController@index');
 Route::post('/save-stag', 'StagiaireController@save_stag');
+Route::post('/save-stag-fo', 'StagiaireController@saveNewforma');
 
 Route::get('/all-stag',  'StagiaireController@all_stag');
 Route::get('/details-stag/{stag_id}', 'StagiaireController@detail_stag');

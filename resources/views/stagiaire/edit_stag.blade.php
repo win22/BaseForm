@@ -2,7 +2,7 @@
 @section('contenu')
 @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
 || Session::get('admin_role')== 3
-&& Session::get('admin_structure')== $stag_info->stag_structure &&  $stag_info->stag_validation == 'non certifie' )
+&& Session::get('admin_structure')== $stag_info->stag_structure &&  $stag_info->stag_etat == 'non' )
 
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
@@ -173,9 +173,9 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Début de la formation <span  class="text-danger">*</span></label>
-                                <input value="{{ $stag_info->stag_date_debu }}" type="date" class="form-control text-success" min="1800-08-13" name="stag_date_debu">
-                                @if($errors->has('stag_date_debu'))
-                                <small class="form-text text-muted text-danger">{{$errors->first('stag_date_debu')}}</small>
+                                <input value="{{ $stag_info->stag_date_debut }}" type="date" class="form-control text-success" min="1800-08-13" name="stag_date_debut">
+                                @if($errors->has('stag_date_debut'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('stag_date_debut')}}</small>
                                 @endif
                             </div>
                         </div>
@@ -186,6 +186,27 @@
                                 <input value="{{ $stag_info->stag_date_fin }}" type="date" class="form-control text-danger" min="1800-08-13" name="stag_date_fin">
                                 @if($errors->has('stag_date_fin'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('stag_date_fin')}}</small>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <select  class="form-control " name="stag_etat">
+                                    @if($stag_info->stag_etat == 'agrée')
+                                    <option class="text-success" value="{{ $stag_info->stag_etat }}">Certifié Mase </option>
+                                    @else
+                                    <option style="color: red!important;" class="text-danger" value="{{ $stag_info->stag_etat }}">Non Certifié  </option>
+                                    @endif
+
+                                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                                    <option value="">Etat du Stagiaire <span  class="text-danger">*</span> </option>
+                                    <option class="text-success" value="agrée">Certfié </option>
+                                    <option  class="text-danger" value="non">Non certifié </option>
+                                    @endif
+
+                                </select>
+                                @if($errors->has('stag_etat'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('stag_etat')}}</small>
                                 @endif
                             </div>
                         </div>
@@ -202,6 +223,8 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('stag_image')}}</small>
                             @endif
                         </div>
+                        <input hidden  value="{{ $stag_info->stag_token }}" name="stag_token" type="text" class="form-control">
+                        <input hidden value="{{ $stag_info->stag_status }}" name="stag_status" type="text" class="form-control">
                     </div>
 
                     <a href="/all-stag" id="md." class="btn btn-danger pull-right">

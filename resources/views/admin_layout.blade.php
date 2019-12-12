@@ -764,7 +764,11 @@
         });
     });
 </script>
-
+<script>
+    $(function() {
+        $('#exampleModal4').modal('show');
+    });
+</script>
 </body>
 
 </html>

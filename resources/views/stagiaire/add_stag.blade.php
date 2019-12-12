@@ -170,9 +170,9 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                     <label class="label">Début de la formation <span  class="text-danger">*</span></label>
-                                    <input type="date" class="form-control text-success" min="1800-08-13" name="stag_date_debu">
-                                @if($errors->has('stag_date_debu'))
-                                <small class="form-text text-muted text-danger">{{$errors->first('stag_date_debu')}}</small>
+                                    <input type="date" class="form-control text-success" min="1800-08-13" name="stag_date_debut">
+                                @if($errors->has('stag_date_debut'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('stag_date_debut')}}</small>
                                 @endif
                             </div>
                         </div>
@@ -188,12 +188,18 @@
                         </div>
 
                         <div class="col-md-4">
-                                <select  class="form-control text-danger " name="stag_status" hidden>
-                                    <option value="0">Status Désactivé</option>
+                            <div class="form-group">
+                                <select  class="form-control" name="stag_etat">
+                                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                                    <option value="">Etat du Stagiaire <span  class="text-danger">*</span> </option>
+                                    <option class="text-success" value="agrée">Certfié </option>
+                                    @endif
+                                    <option  class="text-danger" value="non">Non certifié </option>
                                 </select>
-                                @if($errors->has('stag_status'))
-                                <small class="form-text text-muted text-danger">{{$errors->first('stag_status')}}</small>
+                                @if($errors->has('stag_etat'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('stag_etat')}}</small>
                                 @endif
+                            </div>
                         </div>
 
                     </div>

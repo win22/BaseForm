@@ -50,7 +50,7 @@
                     <th class="text-center">Nom</th>
                     <th class="text-center">Adresse e-mail</th>
                     <th class="text-center">Téléphone</th>
-                    <th class="text-center">Validation</th>
+                    <th class="text-center">État</th>
                     <th class="text-center">Structure</th>
                     @if( Session::get('admin_role')==1 || Session::get('admin_role')==2 )
                     <th class="text-center">Status</th>
@@ -68,7 +68,7 @@
                         <td class="text-center">{{ $v_stag->stag_email }}</td>
                         <td class="text-center">{{ $v_stag->stag_phone }}</td>
                         <td class="text-center">
-                            @if($v_stag->stag_validation=='certifie')
+                            @if($v_stag->stag_etat=='agrée')
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
                                 Certifié Mase  <i class="fa fa-certificate"></i>
                         </span>
@@ -112,7 +112,7 @@
                             </a>
                             @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
                             || Session::get('admin_role')== 3
-                            && Session::get('admin_structure')== $v_stag->stag_structure &&  $v_stag->stag_validation == 'non certifie'   )
+                            && Session::get('admin_structure')== $v_stag->stag_structure &&  $v_stag->stag_etat == 'non'   )
 
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-stag/'.
                         $v_stag->stag_id)}}">

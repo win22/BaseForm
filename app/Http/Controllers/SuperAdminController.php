@@ -35,6 +35,7 @@ class SuperAdminController extends Controller
         $all_itv_count = DB::table('tbl_intervenants')
             ->count();
         $all_form_count = DB::table('tbl_formateurs')
+            ->where('form_certi', 1)
             ->count();
         $all_formt_count = DB::table('tbl_formations')
             ->count();

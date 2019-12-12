@@ -124,9 +124,9 @@
                                 <select  class="form-control dynamic2" name="form_etat">
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                                     <option value="">Etat du formateur <span  class="text-danger">*</span> </option>
-                                    <option class="text-success" value="agrée">Agrée par Mase</option>
+                                    <option class="text-success" value="agrée">Agrée</option>
                                     @endif
-                                    <option class="text-danger" value="non">Non agrée par Mase </option>
+                                    <option  class="text-danger" value="non">Non agrée </option>
                                 </select>
                                 @if($errors->has('form_etat'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_etat')}}</small>
@@ -162,7 +162,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Début de la formation <span  class="text-danger">*</span></label>
-                                <input type="date" class="form-control text-success" min="1800-08-13" name="form_date_debut">
+                                <input type="date" class="form-control text-success" name="form_date_debut">
                                 @if($errors->has('form_date_debut'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_date_debut')}}</small>
                                 @endif
@@ -172,7 +172,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Fin de la formation <span  class="text-danger">*</span></label>
-                                <input type="date" class="form-control text-danger" min="1800-08-13" name="form_date_fin">
+                                <input type="date" class="form-control text-danger"  name="form_date_fin">
                                 @if($errors->has('form_date_fin'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_date_fin')}}</small>
                                 @endif
@@ -189,6 +189,7 @@
                             @if($errors->has('form_image'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_image')}}</small>
                             @endif
+
                         </div>
                     </div>
 

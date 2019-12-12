@@ -115,7 +115,7 @@
                         @endif
                         <td class="td-actions">
                             <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-form/'.
-                        $v_form->form_id)}}">
+                        $v_form->form_token)}}">
                                 <i class="material-icons">visibility</i>
                             </a>
                             @if( Session::get('admin_role')==1)
@@ -134,13 +134,13 @@
                             @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
                             || Session::get('admin_role')== 3
                             && Session::get('admin_structure')== $v_form->form_of
-                            && $v_form->form_etat == 'non agréé' )
+                            && $v_form->form_etat == 'non' )
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-form/'.
                                  $v_form->form_id)}}">
                                 <i class="material-icons">edit</i>
                             </a>
-                            <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-form/'.
-                                 $v_form->form_id)}}" id="delete">
+                            <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-form-fo/'.
+                                 $v_form->form_token)}}" id="delete">
                                 <i class="material-icons">close</i>
                             </a>
                             @endif
