@@ -107,7 +107,7 @@
                             @endif
                             @endif
                             <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-stag/'.
-                        $v_stag->stag_id)}}">
+                        $v_stag->stag_token)}}">
                                 <i class="material-icons">visibility</i>
                             </a>
                             @if( Session::get('admin_role')==1 || Session::get('admin_role')==2

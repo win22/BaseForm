@@ -393,4 +393,107 @@
         </div>
     </form>
 </div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Autres formation de <span class="text-warning">{{ $stag_info->stag_name }}</span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-center text-danger">
+
+                        <th>Formation </th>
+                        <th>Début de la formation </th>
+                        <th>Fin de la formation </th>
+                        <th>État </th>
+                        @if( Session::get('admin_role')==1)
+                        <th>Status </th>
+                        @endif
+                        <th></th>
+                        </thead>
+                        <tbody class="text-center">
+                        @foreach ( $all_stag_info as $v_stag)
+                        <tr>
+                            <td  style="font-family: 'Manjari Bold'">{{ $v_stag->stag_formation }}</td>
+                            <td class="center">{{  strftime("%d %B %Y", strtotime($v_stag->stag_date_debut)) }}</td>
+                            <td class="center">{{  strftime("%d %B %Y", strtotime($v_stag->stag_date_fin)) }}</td>
+                            <td class="text-center">
+                                @if($v_stag->stag_etat=='agrée')
+                                <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
+                            Certifié Mase <i class="fa fa-certificate"></i>
+                        </span>
+                                @else
+                                <span class="label" style="font-family: 'Manjari Bold'; color: rgba(233,50,13,0.88);">
+                            Non Certifié
+                        </span>
+                                @endif
+                            </td>
+                            @if( Session::get('admin_role')==1)
+                            <td class="text-center">
+                                @if($v_stag->stag_status==1)
+                                <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
+                            Activé
+                        </span>
+                                @else
+                                <span class="label" style="font-family: 'Manjari Bold'; color: rgba(233,32,3,0.88);">
+                            Desactivé
+                        </span>
+                                @endif
+                            </td>
+                            @endif
+                            <td class="td-actions">
+
+                                @if( Session::get('admin_role')==1)
+                                @if($v_stag->stag_status==1)
+                                <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-stag/'.
+                        $v_stag->stag_id)}}">
+                                    <i class="material-icons">thumb_down_alt</i>
+                                </a>
+                                @else
+                                <a class="btn btn-success btn-link btn-sm"  rel="tooltip" title="Activer" href="{{ URL::to('/active-stag/'.
+                        $v_stag->stag_id)}}">
+                                    <i class="material-icons">thumb_up</i>
+                                </a>
+                                @endif
+                                @endif
+                                @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
+                                || Session::get('admin_role')== 3
+                                && Session::get('admin_structure')== $v_stag->stag_structure
+                                && $v_stag->stag_etat == 'non' )
+                                <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-stag2/'.
+                                 $v_stag->stag_id)}}">
+                                    <i class="material-icons">edit</i>
+                                </a>
+                                <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-stag/'.
+                                 $v_stag->stag_id)}}" id="delete">
+                                    <i class="material-icons">close</i>
+                                </a>
+                                @endif
+                            </td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
+                    <p  id="total_records">
+                        @if($nb>0)
+                        Total des informations : <span id="total_records">{{ $nb }}</span>
+                    </p>
+                    @else
+                    <p class="text-center">Aucune information trouvé</p>
+                    @endif
+
+                    {{ $all_stag_info->links() }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 @endsection

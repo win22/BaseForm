@@ -133,7 +133,8 @@
                     <button type="submit" id="md." class="btn btn-info btn-sm pull-right">
                         <i class="material-icons">edit</i>
                         Enregistrer </button>
-                    <a href="/all-form" id="md." class="btn btn-danger btn-sm pull-right">
+                    <a href="{{ URL::to('/details-form/'.
+                        $form_info->form_token)}}"  id="md." class="btn btn-danger btn-sm pull-right">
                         <i class="material-icons">cancel</i>
                         Annuler </a>&nbsp;
                 </div>

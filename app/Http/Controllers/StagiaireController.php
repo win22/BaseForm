@@ -300,8 +300,45 @@ class StagiaireController extends Controller
 
         return View('admin_layout')
             ->with('stagiaire.all_stag', $stag_info, $OF_all, $FORMT_all, $FORM, $FORM_all);
+    }
+
+    public function edit_stag2($stag_id)
+    {
+        $this->adminAuthCheck();
+        $stag_info = DB::table('tbl_stagiaires')
+            ->where('stag_id', $stag_id)
+            ->first();
+
+        $FORMT_all = DB::table('tbl_formations')
+            ->get();
+
+        $FORM_all = DB::table('tbl_formateurs')
+            ->get();
+
+        $FORMT_spc = DB::table('tbl_organisme_formation')
+            ->where('of_status', 1)
+            ->where('name', Session::get('admin_structure') )
+            ->get();
+
+        $OF_all = DB::table('tbl_organisme_formation')
+            ->where('of_certi', 1)
+            ->get();
+
+        $FORM = DB::table('tbl_organisme_formation')
+            ->where('name', Session::get('admin_structure'))
+            ->where('of_status', 1)
+            ->whereIn('of_certi', [1,2,3,4,5])
+            ->get();
 
 
+        $stag_info = view('stagiaire.edit_stag_of')->with('stag_info', $stag_info)
+            ->with('OF_all', $OF_all)
+            ->with('FORM_all', $FORM_all)
+            ->with('FORM', $FORM)
+            ->with('FORMT_spc', $FORMT_spc)
+            ->with('FORMT_all', $FORMT_all);
+        return View('admin_layout')
+            ->with('stagiaire.all_stag', $stag_info, $OF_all, $FORMT_all, $FORM, $FORM_all);
     }
 
     public  function  update_stag(Request $request, $stag_id)
@@ -376,14 +413,51 @@ class StagiaireController extends Controller
 
     }
 
+    public  function  update_stag2(Request $request, $stag_id)
+    {
+        $this->adminAuthCheck();
+//        request()->validate([
+//            'stag_formation' => ['required', 'max:90'],
+//            'stag_date_debut' => ['required', 'max:90'],
+//            'stag_date_fin' => ['required', 'max:90'],
+//            'stag_date_certi' => ['required', 'max:90'],
+//
+//        ]);
+        $data = array();
+        $data['stag_id'] = $request->stag_id;
+        $data['stag_email'] = $request->stag_email;
+        $data['stag_name'] = ($request->stag_name);
+        $data['stag_structure'] = $request->stag_structure;
+        $data['stag_sexe'] = $request->stag_sexe;
+        $data['stag_formateur'] = $request->stag_formateur;
+        $data['stag_phone'] = $request->stag_phone;
+        $data['stag_date_debut'] = $request->stag_date_debut;
+        $data['stag_date_fin'] = $request->stag_date_fin;
+        $data['stag_prenom'] = $request->stag_prenom;
+        $data['stag_adresse'] = $request->stag_adresse;
+        $data['stag_certi'] = $request->stag_certi;
+        $data['stag_status'] = $request->stag_status;
+        $data['stag_etat'] = $request->stag_etat;
+
+//        DB::table('tbl_stagiaires')
+//            ->where('stag_id', $stag_id)
+//            ->update($data);
+//
+//        Session::put('message', "Cette formation a été Modifié avec succès ");
+//        return redirect('/details-stag/'.$request->stag_token);
+        dump($data);
+
+    }
 
 
-    public function detail_stag($stag_id)
+
+    public function detail_stag($stag_token)
     {
         $this->adminAuthCheck();
         $stag_info = DB::table('tbl_stagiaires')
-            ->where('stag_id', $stag_id)
+            ->where('stag_token', $stag_token)
             ->first();
+
         $OF_all = DB::table('tbl_organisme_formation')
             ->where('of_certi', 1)
             ->get();
@@ -395,12 +469,20 @@ class StagiaireController extends Controller
             ->where('of_status', 1)
             ->whereIn('of_certi', [1,2,3,4,5])
             ->get();
+        $all_stag_info =  DB::table('tbl_stagiaires')
+            ->where('stag_token', $stag_token)
+            ->whereIn('stag_certi' , [2,3,4,5])
+            ->orderByDesc('stag_id')
+            ->paginate(5);
+        $nb= $all_stag_info->count();
 
         $stag_info = view('stagiaire.details_stag')
             ->with('stag_info', $stag_info)
             ->with('FORMT_all', $FORMT_all)
             ->with('FORM', $FORM)
-            ->with('OF_all', $OF_all);
+            ->with('OF_all', $OF_all)
+            ->with('nb', $nb)
+            ->with('all_stag_info', $all_stag_info);
         return View('admin_layout')
             ->with('stagiaire.details_stag', $stag_info, $OF_all, $FORM, $FORMT_all);
     }

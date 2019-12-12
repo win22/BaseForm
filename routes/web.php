@@ -167,12 +167,14 @@ Route::post('/save-stag', 'StagiaireController@save_stag');
 Route::post('/save-stag-fo', 'StagiaireController@saveNewforma');
 
 Route::get('/all-stag',  'StagiaireController@all_stag');
-Route::get('/details-stag/{stag_id}', 'StagiaireController@detail_stag');
+Route::get('/details-stag/{stag_token}', 'StagiaireController@detail_stag');
 Route::get('/searchStag', 'StagiaireController@search');
 Route::get('/delete-stag/{stag_id}', 'StagiaireController@delete_stag');
 Route::get('/details-doc/{doc_id}', 'DocumentController@detail_doc');
 Route::get('/edit-stag/{stag_id}', 'StagiaireController@edit_stag');
+Route::get('/edit-stag2/{stag_id}', 'StagiaireController@edit_stag2');
 Route::post('/update-stag/{stag_id}', 'StagiaireController@update_stag');
+Route::post('/update-stag-fo/{stag_id}', 'StagiaireController@update_stag2');
 Route::get('/unactive-stag/{stag_id}', 'StagiaireController@unactive_stag');
 Route::get('/active-stag/{stag_id}', 'StagiaireController@active_stag');
 
