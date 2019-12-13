@@ -123,8 +123,9 @@
                         $v_of->of_id)}}">
                                 <i class="material-icons">edit</i>
                             </a>
+                            @endif
                             <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-of/'.
-                        $v_of->of_id)}}">
+                        $v_of->of_tok)}}">
                                 <i class="material-icons">visibility</i>
                             </a>
                             @if( Session::get('admin_role')==1)
@@ -132,7 +133,6 @@
                         $v_of->name)}}" id="delete">
                                 <i class="material-icons">close</i>
                             </a>
-                            @endif
                             @endif
 
                         </td>
@@ -152,7 +152,7 @@
                 </form>
                 </p>
                 @else
-                <p class="text-center">Aucune information trouvé</p>
+                <p class="text-center">Aucune information n'a été trouvée</p>
                 @endif
                 {{ $all_of_info->links() }}
             </div>

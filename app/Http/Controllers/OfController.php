@@ -29,7 +29,6 @@ class OfController extends Controller
         $all_of_info = DB::table('tbl_organisme_formation')
             ->where('name', 'like', '%'.$search.'%')
             ->orWhere('of_certi', 1)
-            ->orWhere('of_certi', 0)
             ->orderByDesc('of_id')
             ->paginate(5);
         $nb= $all_of_info->count();
@@ -69,7 +68,6 @@ class OfController extends Controller
     {
         $data = DB::table('tbl_organisme_formation')
             ->orWhere('of_certi', 1)
-            ->orWhere('of_certi', 0)
             ->get()
             ->toArray();
         $data_array[] = array('name', 'of_adresse', 'of_email', 'of_phone', 'of_formation', 'of_etat');
@@ -109,20 +107,7 @@ class OfController extends Controller
 
     }
 
-    public function all_agre_of($name)
-    {
-        $this->AdminAuthCheck();
-        $all_of_info =  DB::table('tbl_organisme_formation')
-            ->where('name', $name)
-            ->where('of_certi', '>=', 2)
-            ->orderByDesc('of_id')
-            ->paginate(5);
-        $nb= $all_of_info->count();
 
-        return view('of.all_agre', ['all_of_info' => $all_of_info ])
-            ->with(['nb' => $nb]);
-
-    }
 
     //Modifier le status
     public function unactive_of($of_id)
@@ -213,7 +198,7 @@ class OfController extends Controller
             $data['of_date_debut'] = null;
             $data['of_date_fin'] = null;
             $data['of_time'] = null;
-            $data['of_certi'] = 0;
+            $data['of_certi'] = 1;
         }
         else
         {
@@ -239,25 +224,14 @@ class OfController extends Controller
     {
         $this->AdminAuthCheck();
         request()->validate([
-            'of_adresse' => ['required'],
-            'name' => ['required'],
-            'of_email' => ['required', 'email'],
+
             'of_formation' => ['required'],
-            'of_etat' => ['required'],
-            'of_phone' => ['required'],
-            'of_date_ad' => ['required'],
+            'of_date_debut' => ['required'],
+            'of_date_fin' => ['required'],
+            'of_time' => ['required'],
+            'of_certi' => ['required'],
         ]);
 
-        if($request->of_etat == 'agrée')
-        {
-            request()->validate([
-                'of_date_debut' => ['required'],
-                'of_date_fin' => ['required'],
-                'of_time' => ['required'],
-                'of_certi' => ['required'],
-            ]);
-
-        }
         $this->AdminAuthCheck();
         $data = array();
         $data['of_id'] = $request->of_id;
@@ -279,9 +253,9 @@ class OfController extends Controller
         $data['user_role'] = $request->user_role;
 
         DB::table('tbl_organisme_formation')->insert($data);
-        Session::put('message', "un nouvelle formation  a été agréé à ".$data['name']);
+        Session::put('message', "un nouvelle agrément a été ajoutée à ".$data['name']);
         return redirect('/all-of');
-        dump($data);
+
 
     }
 
@@ -323,30 +297,9 @@ class OfController extends Controller
             ->with('of.edit_agre', $of_info)
             ->with('of.edit_agre', $of_info);
 
-
-        //return View('of.edit_of');
     }
 
-    public function add_agre_of($of_id)
-    {
-        $this->AdminAuthCheck();
-        $OF = DB::table('tbl_formations')
-            ->get();
 
-        $of_info = DB::table('tbl_organisme_formation')
-            ->where('of_id', $of_id)
-            ->first();
-
-        $of_info = view('of.add_agrement')
-            ->with('of_info', $of_info)
-            ->with('OF', $OF);
-        return View('admin_layout')
-            ->with('of.add_agrement', $of_info)
-            ->with('of.add_agrement', $of_info);
-        dump('ok');
-
-
-    }
 
     public  function  update_of(Request $request, $of_id)
     {
@@ -387,7 +340,7 @@ class OfController extends Controller
             $data['of_date_debut'] = null;
             $data['of_date_fin'] = null;
             $data['of_time'] = null;
-            $data['of_certi'] = 0;
+            $data['of_certi'] = 1;
         }
         else
         {
@@ -429,23 +382,17 @@ class OfController extends Controller
         $this->AdminAuthCheck();
         request()->validate([
             'of_formation' => ['required'],
+            'of_date_debut' => ['required'],
+            'of_date_fin' => ['required'],
+            'of_time' => ['required'],
+            'of_certi' => ['required']
         ]);
 
-        if($request->of_etat == 'agrée')
-        {
-            request()->validate([
-                'of_date_debut' => ['required'],
-                'of_date_fin' => ['required'],
-                'of_time' => ['required'],
-                'of_certi' => ['required'],
-            ]);
-
-        }
 
         $this->AdminAuthCheck();
         $data = array();
         $data['of_id'] = $request->of_id;
-        $data['name'] = $request->name;
+        $data['of_certi'] = $request->of_certi;
         $data['of_time'] = $request->of_time;
         $data['of_date_debut'] = $request->of_date_debut;
         $data['of_date_fin'] = $request->of_date_fin;
@@ -455,34 +402,47 @@ class OfController extends Controller
             ->where('of_id', $of_id)
             ->update($data);
 
-        Session::put('message', "Vous avez modifié des informations  concernant ".$data['name']);
-        return redirect('/all-of');
-
+        Session::put('message', "Cette agrément a été modifié avec succès");
+        return redirect('/details-of/'.$request->of_tok);
     }
 
-    public function detail_of($of_id)
+    public function detail_of($of_tok)
     {
         $this->AdminAuthCheck();
         $of_info = DB::table('tbl_organisme_formation')
-            ->where('of_id', $of_id)
+            ->where('of_tok', $of_tok)
             ->first();
+        $OF = DB::table('tbl_formations')
+            ->get();
 
-        $of_info = view('of.details_of')->with('of_info', $of_info);
+        $all_of_info =  DB::table('tbl_organisme_formation')
+            ->where('of_tok', $of_tok)
+            ->where('of_certi', '>=', 2)
+            ->orderByDesc('of_id')
+            ->paginate(5);
+        $nb= $all_of_info->count();
+
+
+        $of_info = view('of.details_of')
+            ->with('of_info', $of_info)
+            ->with('all_of_info', $all_of_info)
+            ->with('nb', $nb)
+            ->with('OF', $OF);
         return View('admin_layout')
             ->with('of.details_of', $of_info);
     }
 
-    public function verify_all()
-    {
-        $this->AdminAuthCheck();
-        $of_info = DB::table('tbl_organisme_formation')
-                    ->get();
-
-
-        $of_info = view('of.details_of')->with('of_info', $of_info);
-        return View('admin_layout')
-            ->with('of.details_of', $of_info);
-    }
+//    public function verify_all()
+//    {
+//        $this->AdminAuthCheck();
+//        $of_info = DB::table('tbl_organisme_formation')
+//                    ->get();
+//
+//
+//        $of_info = view('of.details_of')->with('of_info', $of_info);
+//        return View('admin_layout')
+//            ->with('of.details_of', $of_info);
+//    }
 
 
 

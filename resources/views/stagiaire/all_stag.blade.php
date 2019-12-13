@@ -36,8 +36,21 @@
                             <div class="ripple-container"></div>
                         </button>
                     </div>
-
                 </form>
+                <div class="row">
+                    <form action="/searchStgA">
+                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher les apprenants certifiés " type="submit" class="btn btn-success btn-sm">
+                            Certifié
+                            <div class="ripple-container"></div>
+                        </button>
+                    </form> &nbsp;
+                    <form action="/searchStgN">
+                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher les apprenants qui ne sont pas certifiés" type="submit" class="btn btn-warning btn-sm">
+                            Non certifié
+                            <div class="ripple-container"></div>
+                        </button>
+                    </form>
+                </div>
             </div>
 
         </div>
@@ -119,8 +132,8 @@
                                 <i class="material-icons">edit</i>
                             </a>
 
-                            <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-stag/'.
-                        $v_stag->stag_id)}}" id="delete">
+                            <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-stag-ap/'.
+                        $v_stag->stag_token)}}" id="delete">
                                 <i class="material-icons">close</i>
                             </a>
                             @endif
@@ -134,7 +147,7 @@
                     Total des informations : <span id="total_records">{{ $nb }}</span>
                 </p>
                      @else
-                <p class="text-center">Aucune information trouvé</p>
+                <p class="text-center">Aucune information n'a été trouvée</p>
                      @endif
 
                 {{ $all_stag_info->links() }}

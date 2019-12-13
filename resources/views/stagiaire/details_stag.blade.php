@@ -20,7 +20,7 @@
             <div class="card-header card-header-info row">
                 <div class="col-md-6">
                     <h4 class="card-title">Stagiaire <i class="fa fa-asl-interpreting"></i></h4>
-                    <p class="card-category">Afficher les détails d'un stagiaire </p>
+                    <p class="card-category">Afficher les détails d'un apprenant  </p>
                 </div>
                 <div class="col-md-6">
                     <img class="img" style="width: 96px; height : 96px; border-radius: 100px" src="{{URL::to($stag_info->stag_image)}}" />
@@ -129,7 +129,19 @@
                                 </p>
                             </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="card-title">
+                                <li class="fa fa-user" style="color: #046b76!important;"></li>&nbsp;
+                                Non du formateur :
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-title">
+                                    <span style="font-family: 'Manjari Bold'"> {{ $stag_info->stag_formateur }}</span>
+                                </p>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <p class="card-title">
@@ -141,6 +153,7 @@
                                 <span class="text-info" style="font-family: 'Manjari Bold'"> {{ $stag_info->stag_formation }}</span>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-4">
                                 <p class="card-title">
@@ -255,8 +268,7 @@
                             Certifier </a>&nbsp;
                         @endif
                         @endif
-                        <a  data-toggle="modal" data-target="#exampleModal" href="{{ URL::to('/edit-stag/'.
-                        $stag_info->stag_id)}}"  id="md." class="btn btn-sm  btn-info pull-right">
+                        <a  data-toggle="modal" data-target="#exampleModal"   id="md." class="btn btn-sm  btn-info pull-right">
                             <i class="material-icons">add</i>&nbsp;
                             Ajouter une nouvelle formation
                         </a>&nbsp;
@@ -486,7 +498,7 @@
                         Total des informations : <span id="total_records">{{ $nb }}</span>
                     </p>
                     @else
-                    <p class="text-center">Aucune information trouvé</p>
+                    <p class="text-center">Aucune information n'a été trouvée</p>
                     @endif
 
                     {{ $all_stag_info->links() }}

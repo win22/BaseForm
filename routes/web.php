@@ -60,16 +60,13 @@ Route::get('/searchOfN', 'OfController@searchN');
 
 Route::get('/all-of', 'OfController@all_of');
 Route::get('/excel', 'OfController@excel');
-Route::get('/all-agre-of/{name}', 'OfController@all_agre_of');
 
 Route::get('/unactive-of/{of_id}', 'OfController@unactive_of');
 Route::get('/active-of/{of_id}', 'OfController@active_of');
 Route::get('/edit-of/{of_id}', 'OfController@edit_of');
 Route::get('/edit-agre-of/{of_id}', 'OfController@edit_agre_of');
 
-Route::get('/add-agre-of/{of_id}', 'OfController@add_agre_of');
-
-Route::get('/details-of/{of_id}', 'OfController@detail_of');
+Route::get('/details-of/{of_tok}', 'OfController@detail_of');
 
 Route::get('/delete-of/{name}', 'OfController@delete_of');
 Route::get('/delete-agre-of/{admin_id}', 'OfController@delete_agre_of');
@@ -123,13 +120,12 @@ Route::get('/details-itv/{itv_id}', 'ItvController@detail_itv');
 Route::get('/add-form', 'FormateurController@index');
 Route::post('/save-form', 'FormateurController@save_form');
 Route::post('/save-form_of', 'FormateurController@saveNewforma');
-Route::post('/save-form_of', 'FormateurController@saveNewforma');
 Route::get('/all-form',  'FormateurController@all_form');
 Route::get('/unactive-form/{form_id}', 'FormateurController@unactive_form');
 Route::get('/active-form/{form_id}', 'FormateurController@active_form');
 Route::get('/searchForm', 'FormateurController@search');
 Route::get('/delete-form/{form_id}', 'FormateurController@delete_form');
-Route::get('/delete-form-fo/{token_id}', 'FormateurController@delete_form2');
+Route::get('/delete-form-fo/{form_token}', 'FormateurController@delete_form2');
 Route::get('/edit-form/{form_id}', 'FormateurController@edit_form');
 Route::get('/edit-form2/{form_id}', 'FormateurController@edit_form2');
 Route::post('/update-form/{form_id}', 'FormateurController@update_form');
@@ -137,9 +133,9 @@ Route::post('/update-form-fo/{form_id}', 'FormateurController@update_form2');
 Route::get('/details-form/{form_token}', 'FormateurController@detail_form');
 Route::get('/valide-form/{form_id}', 'FormateurController@form_valide');
 Route::get('/unvalide-form/{form_id}', 'FormateurController@form_unvalide');
-
 Route::get('/searchOfA', 'FormateurController@searchA');
 Route::get('/searchOfN', 'FormateurController@searchN');
+
 //Route pour la gestion des formations
 Route::get('/add-formt', 'FormationController@index');
 Route::post('/save-formt', 'FormationController@save_formt');
@@ -170,6 +166,7 @@ Route::get('/all-stag',  'StagiaireController@all_stag');
 Route::get('/details-stag/{stag_token}', 'StagiaireController@detail_stag');
 Route::get('/searchStag', 'StagiaireController@search');
 Route::get('/delete-stag/{stag_id}', 'StagiaireController@delete_stag');
+Route::get('/delete-stag-ap/{stag_token}', 'StagiaireController@delete_stag2');
 Route::get('/details-doc/{doc_id}', 'DocumentController@detail_doc');
 Route::get('/edit-stag/{stag_id}', 'StagiaireController@edit_stag');
 Route::get('/edit-stag2/{stag_id}', 'StagiaireController@edit_stag2');
@@ -180,3 +177,5 @@ Route::get('/active-stag/{stag_id}', 'StagiaireController@active_stag');
 
 Route::get('/valide-stag/{stag_id}', 'StagiaireController@stag_valide');
 Route::get('/unvalide-stag/{stag_id}', 'StagiaireController@stag_unvalide');
+Route::get('/searchStgA', 'StagiaireController@searchA');
+Route::get('/searchStgN', 'StagiaireController@searchN');

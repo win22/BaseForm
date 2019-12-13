@@ -143,11 +143,11 @@
                         <div class="col-md-4 forma">
                             <select  class="form-control" name="of_certi">
                                 <option value="">Selection un nombre<span  class="text-danger">*</span> </option>
-                                <option  value="1">Première certification</option>
-                                <option  value="2">deuxième certification</option>
-                                <option  value="3">Troisième certification</option>
-                                <option  value="4">Quatrième certification</option>
-                                <option value="5">Cinquème certification</option>
+                                <option  value="1">Premier agrément</option>
+                                <option  value="2">deuxième agrément</option>
+                                <option  value="3">Troisième agrément</option>
+                                <option  value="4">Quatrième agrément</option>
+                                <option value="5">Cinquème agrément</option>
 
                             </select>
                             @if($errors->has('of_certi'))
@@ -155,6 +155,7 @@
                             @endif
                         </div>
                         <input value="3" name="user_role" type="text" hidden>
+
                     </div>
                     <a href="/all-of" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>

@@ -142,18 +142,18 @@ class FormateurController extends Controller
         DB::table('tbl_formateurs')
             ->where('form_id',$form_id)
             ->delete();
-        Session::put('message', 'Cette formation a été supprimé avec succés ');
+        Session::put('message', 'Cette formation a été supprimée ');
         return back();
     }
 
-    public function  delete_form2($token)
+    public function  delete_form2($form_token)
     {
         $this->AdminAuthCheck();
         DB::table('tbl_formateurs')
             ->whereIn('form_certi', [0,1,2,3,4,5])
-            ->where('form_token', $token)
+            ->where('form_token', $form_token)
             ->delete();
-        Session::put('message', 'Ce formateur a été supprimé avec succès');
+        Session::put('message', 'Ce formateur a été supprimé');
         return back();
     }
 

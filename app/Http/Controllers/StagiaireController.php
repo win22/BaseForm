@@ -73,6 +73,35 @@ class StagiaireController extends Controller
             ->with(['nb' => $nb]);
     }
 
+    public  function  searchA()
+    {
+        $this->AdminAuthCheck();
+
+        $all_stag_info = DB::table('tbl_stagiaires')
+            ->where('stag_etat' , 'agrée')
+            ->where('stag_certi' , '1')
+            ->orderByDesc('stag_id')
+            ->paginate(5);
+        $nb= $all_stag_info->count();
+        return view('stagiaire.all_stag', ['all_stag_info' => $all_stag_info ])
+            ->with(['nb' => $nb]);
+    }
+
+    public  function  searchN()
+    {
+        $this->AdminAuthCheck();
+
+        $all_stag_info = DB::table('tbl_stagiaires')
+            ->where('stag_etat' , 'non')
+            ->where('stag_certi' , '1')
+            ->orderByDesc('stag_id')
+            ->paginate(5);
+        $nb= $all_stag_info->count();
+        return view('stagiaire.all_stag', ['all_stag_info' => $all_stag_info ])
+            ->with(['nb' => $nb]);
+    }
+
+
     //afficher la liste des utilisateurs
     public function all_stag()
     {
@@ -152,14 +181,26 @@ class StagiaireController extends Controller
     }
 
 
-    //supprimer Un Stagiaire
+    //supprimer une formation
     public function delete_stag($stag_id)
     {
         $this->adminAuthCheck();
         DB::table('tbl_stagiaires')
             ->where('stag_id',$stag_id)
             ->delete();
-        Session::put('message', 'Un apprenant a été supprimé... ');
+        Session::put('message', 'Cette formation  a été supprimée ');
+        return back();
+    }
+
+    //supprimer un apprenant
+    public function delete_stag2($stag_token)
+    {
+        $this->adminAuthCheck();
+        DB::table('tbl_stagiaires')
+            ->whereIn('stag_certi', [0,1,2,3,4,5])
+            ->where('stag_token', $stag_token)
+            ->delete();
+        Session::put('message', 'Un apprenant a été supprimé ');
         return back();
     }
 
@@ -179,7 +220,7 @@ class StagiaireController extends Controller
             'stag_formateur' => ['required', 'max:90'],
             'stag_date_debut' => ['required'],
             'stag_date_fin' => ['required'],
-            'stag_certi' => ['required', 'max:90'],
+
         ]);
 
         $data = array();
@@ -222,6 +263,7 @@ class StagiaireController extends Controller
         return redirect('/all-stag');
 
 
+
     }
 
     public function saveNewforma(Request $request)
@@ -255,7 +297,7 @@ class StagiaireController extends Controller
 
         DB::table('tbl_stagiaires')->insert($data);
         Session::put('message', "Une nouvelle formation a été ajouté à l'apprenant ".$data['stag_prenom']);
-        return redirect('/all-stag');
+        return redirect('/details-stag/'.$request->stag_token);
 
 
 
@@ -416,13 +458,13 @@ class StagiaireController extends Controller
     public  function  update_stag2(Request $request, $stag_id)
     {
         $this->adminAuthCheck();
-//        request()->validate([
-//            'stag_formation' => ['required', 'max:90'],
-//            'stag_date_debut' => ['required', 'max:90'],
-//            'stag_date_fin' => ['required', 'max:90'],
-//            'stag_date_certi' => ['required', 'max:90'],
-//
-//        ]);
+        request()->validate([
+            'stag_formation' => ['required', 'max:90'],
+            'stag_date_debut' => ['required', 'max:90'],
+            'stag_date_fin' => ['required', 'max:90'],
+            'stag_certi' => ['required', 'max:90'],
+
+        ]);
         $data = array();
         $data['stag_id'] = $request->stag_id;
         $data['stag_email'] = $request->stag_email;
@@ -430,6 +472,7 @@ class StagiaireController extends Controller
         $data['stag_structure'] = $request->stag_structure;
         $data['stag_sexe'] = $request->stag_sexe;
         $data['stag_formateur'] = $request->stag_formateur;
+        $data['stag_formation'] = $request->stag_formation;
         $data['stag_phone'] = $request->stag_phone;
         $data['stag_date_debut'] = $request->stag_date_debut;
         $data['stag_date_fin'] = $request->stag_date_fin;
@@ -439,13 +482,13 @@ class StagiaireController extends Controller
         $data['stag_status'] = $request->stag_status;
         $data['stag_etat'] = $request->stag_etat;
 
-//        DB::table('tbl_stagiaires')
-//            ->where('stag_id', $stag_id)
-//            ->update($data);
-//
-//        Session::put('message', "Cette formation a été Modifié avec succès ");
-//        return redirect('/details-stag/'.$request->stag_token);
-        dump($data);
+        DB::table('tbl_stagiaires')
+            ->where('stag_id', $stag_id)
+            ->update($data);
+
+        Session::put('message', "Cette formation a été Modifiée avec succès ");
+        return redirect('/details-stag/'.$request->stag_token);
+
 
     }
 

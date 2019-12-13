@@ -22,7 +22,6 @@ class formationController extends Controller
         $search = $request->get('search');
         $all_formt_info = DB::table('tbl_formations')
             ->where('formt_name', 'like', '%'.$search.'%')
-            ->orWhere('formt_type', 'like', '%'.$search.'%')
             ->orderByDesc('formt_id')
             ->paginate(5);
         $nb= $all_formt_info->count();

@@ -13,7 +13,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Nouvelle formation pour <span class="text-warning">{{ $stag_info->stag_name }}</span></h5>
+                    <h5 class="modal-title" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Modifier</h5>
                 </div>
                 <div class="modal-body">
                     <div hidden class="form-group">
@@ -77,7 +77,7 @@
                     </div>
 
                     <div  class="form-group">
-                        <select  class="form-control" name="stag_cert">
+                        <select  class="form-control" name="stag_certi">
                             <option class="text-success" value="{{ $stag_info->stag_certi }}">{{$stag_info->stag_certi }}</option>
                             <option   class="text-warning" value="">Ou</option>
                             <option  value="2">Deuxieme formation</option>

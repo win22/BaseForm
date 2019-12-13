@@ -487,7 +487,7 @@
                         Total des informations : <span id="total_records">{{ $nb }}</span>
                     </p>
                     @else
-                    <p class="text-center">Aucune information trouvé</p>
+                    <p class="text-center">Aucune information n'a été trouvée</p>
                     @endif
 
                     {{ $all_form_info->links() }}
