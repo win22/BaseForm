@@ -39,8 +39,7 @@ class SuperAdminController extends Controller
             ->count();
         $all_formt_count = DB::table('tbl_formations')
             ->count();
-        $all_even_count = DB::table('tbl_evenements')
-            ->count();
+
 
         $all_stag_count = DB::table('tbl_stagiaires')
             ->count();
@@ -74,10 +73,7 @@ class SuperAdminController extends Controller
             ->orderByDesc('formt_id')
             ->select('created_at')
             ->first();
-        $all_even_date = DB::table('tbl_evenements')
-            ->orderByDesc('even_id')
-            ->select('created_at')
-            ->first();
+
         $all_stag_date = DB::table('tbl_stagiaires')
             ->orderByDesc('stag_id')
             ->select('created_at')
@@ -90,7 +86,7 @@ class SuperAdminController extends Controller
             ->with('all_itv_count', $all_itv_count)
             ->with('all_form_count', $all_form_count)
             ->with('all_formt_count', $all_formt_count)
-            ->with('all_even_count', $all_even_count)
+
             ->with('all_stag_count', $all_stag_count)
 
             ->with('all_of_date', $all_of_date)
@@ -99,7 +95,7 @@ class SuperAdminController extends Controller
             ->with('all_itv_date', $all_itv_date)
             ->with('all_form_date', $all_form_date)
             ->with('all_formt_date', $all_formt_date)
-            ->with('all_even_date', $all_even_date)
+
             ->with('all_stag_date', $all_stag_date)
             ->with('all_admin_date', $all_admin_date);
     }

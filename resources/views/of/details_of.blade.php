@@ -97,21 +97,7 @@
                             </div>
                         </div>
                         @endif
-                        @if($of_info->of_time)
-                        <div class="row">
-                            <div class="col-md-4">
-                                <p class="card-title">
-                                <li class="fa fa-clock-o" style="color: #046b75!important;"></li>&nbsp;
-                                Durée de la certification :
-                                </p>
-                            </div>
-                            <div class="col-md-5">
-                                <p class="card-title">
-                                    <span class="text-warning" style="font-family: 'Manjari Bold'"> {{ $of_info->of_time }}</span>
-                                </p>
-                            </div>
-                        </div>
-                        @endif
+
 
 
 
@@ -141,36 +127,7 @@
                                 </p>
                             </div>
                         </div>
-                        @if( $of_info->of_date_debut)
-                        <div class="row">
-                            <div class="col-md-4">
-                                <p class="card-title">
-                                <li class="fa fa-calendar" style="color: #046b75!important;"></li>&nbsp;
-                                Date de debut d'agreement  :
-                                </p>
-                            </div>
-                            <div class="col-md-5">
-                                <p class="card-title">
-                                    <span class="text-info" style="font-family: 'Manjari Bold'"> {{ strftime("%d %B %Y", strtotime($of_info->of_date_debut)) }}</span>
-                                </p>
-                            </div>
-                        </div>
-                        @endif
-                        @if( $of_info->of_date_fin)
-                        <div class="row">
-                            <div class="col-md-4">
-                                <p class="card-title">
-                                <li class="fa fa-calendar" style="color: #046b75!important;"></li>&nbsp;
-                                Date de fin d'agreement  :
-                                </p>
-                            </div>
-                            <div class="col-md-5">
-                                <p class="card-title">
-                                    <span style="font-family: 'Manjari Bold'" class="text-danger"> {{  strftime("%d %B %Y", strtotime($of_info->of_date_fin)) }}</span>
-                                </p>
-                            </div>
-                        </div>
-                        @endif
+
 
                         @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                         <div class="row">
@@ -325,28 +282,6 @@
                         </select>
                     </div>
 
-                    <div  class="form-group">
-                        <label class="label">Date de début</label>
-                        <input type="date" class="form-control text-success" min="1800-08-13" name="of_date_debut">
-                        @if($errors->has('of_date_debut'))
-                        <small class="form-text text-muted text-danger">{{$errors->first('of_date_debut')}}</small>
-                        @endif
-                    </div>
-                    <div  class="form-group">
-                        <label class="label">Date de fin d'agrément <span  class="text-danger">*</span></label>
-                        <input type="date" class="form-control text-danger" min="1800-08-13" name="of_date_fin">
-                        @if($errors->has('of_date_fin'))
-                        <small class="form-text text-muted text-danger">{{$errors->first('of_date_fin')}}</small>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <label class="bmd-label-floating">Durée de l'agrément  </label>
-                        <input name="of_time" type="text" class="form-control">
-                        @if($errors->has('of_time'))
-                        <small class="form-text text-muted text-danger">{{$errors->first('of_time')}}</small>
-                        @endif
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-sm btn-info">Enregistrer </button>
@@ -371,8 +306,7 @@
                         <thead class=" text-danger">
 
                         <th class="text-center">Formation</th>
-                        <th class="text-center">Début </th>
-                        <th class="text-center">Fin </th>
+                       
                         <th class="text-center">État</th>
                         @if( Session::get('admin_role')==1)
                         <th class="text-center">Status</th>
@@ -387,8 +321,7 @@
                         @foreach ( $all_of_info as $v_of)
                         <tr>
                             <td style="font-family: 'Manjari Bold'" class="text-center">{{ $v_of->of_formation }}</td>
-                            <td class="center">{{  strftime("%d %B %Y", strtotime($v_of->of_date_debut)) }}</td>
-                            <td class="center">{{  strftime("%d %B %Y", strtotime($v_of->of_date_fin)) }}</td>
+
                             <td class="text-center">
                                 @if($v_of->of_etat=='agrée')
                                 <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">

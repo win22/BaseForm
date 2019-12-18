@@ -27,7 +27,7 @@
                     Aucune information n'a été trouvé
                     @else
                     La dernière insertion a été effectuée le
-                    {{  strftime("%d %B %Y", strtotime( $all_even_date->created_at)) }}
+                    {{  strftime("%d %B %Y", strtotime( $all_admin_date->created_at)) }}
                    ( {{ \Carbon\Carbon::parse($all_admin_date->created_at)->diffForHumans() }} )
                     @endif
                 </div>
@@ -210,40 +210,6 @@
             </div>
         </div>
     </div>
-    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-    <div id="alert9" class="col-lg-3 col-md-6 col-sm-6">
-        <div    class="card card-stats">
-            <div class="card-header card-header-warning card-header-icon">
-                <div class="card-icon">
-                    <i class="fa fa-calendar"></i>
-                </div>
-                <p class="card-category">Évenements</p>
-                <a href="/all-even">
-                    <h3 class="card-title">
-                        {{ $all_even_count }}
-                    </h3>
-                </a>
-
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">date_range</i>
-                    @if(($all_even_count) == null)
-                    Aucune information n'a été trouvé
-                    @else
-                    La dernière insertion a été effectuée le
-                    {{  strftime("%d %B %Y", strtotime( $all_even_date->created_at)) }}
-                    ( {{ \Carbon\Carbon::parse($all_even_date->created_at)->diffForHumans() }} )
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
-</div>
-<div class="row" >
-
-
     <div   id="alert11" class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
@@ -265,14 +231,14 @@
                     @else
                     La dernière insertion a été effectuée le
                     {{  strftime("%d %B %Y", strtotime( $all_stag_date->created_at)) }}
-                   ( {{ \Carbon\Carbon::parse($all_even_date->created_at)->diffForHumans() }})
+                    ( {{ \Carbon\Carbon::parse($all_stag_date->created_at)->diffForHumans() }})
                     @endif
                 </div>
             </div>
         </div>
     </div>
-
 </div>
+
 
 
 

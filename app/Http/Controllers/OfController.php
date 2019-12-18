@@ -35,33 +35,7 @@ class OfController extends Controller
         return view('of.all_of', ['all_of_info' => $all_of_info ])
             ->with(['nb' => $nb]);
     }
-    public  function  searchA()
-    {
-        $this->AdminAuthCheck();
 
-        $all_of_info = DB::table('tbl_organisme_formation')
-            ->where('of_etat' , 'agrée')
-            ->orWhere('of_certi', 1)
-            ->orderByDesc('of_id')
-            ->paginate(5);
-        $nb= $all_of_info->count();
-        return view('of.all_of', ['all_of_info' => $all_of_info ])
-            ->with(['nb' => $nb]);
-    }
-    public  function  searchN(Request $request)
-    {
-        $this->AdminAuthCheck();
-        $search = $request->get('search');
-        $all_of_info = DB::table('tbl_organisme_formation')
-            ->where('of_etat' , 'non')
-            ->orWhere('of_certi', 1)
-            ->orWhere('of_certi', 0)
-            ->orderByDesc('of_id')
-            ->paginate(5);
-        $nb= $all_of_info->count();
-        return view('of.all_of', ['all_of_info' => $all_of_info ])
-            ->with(['nb' => $nb]);
-    }
 
     //Extraire les données vers excel
     public  function excel()
@@ -171,18 +145,10 @@ class OfController extends Controller
             'of_etat' => ['required'],
             'of_phone' => ['required'],
             'of_date_ad' => ['required'],
+            'of_certi' => ['required'],
+            'of_formation' => ['required'],
         ]);
-        if($request->of_etat == 'agrée')
-        {
-            request()->validate([
-                'of_date_debut' => ['required'],
-                'of_date_fin' => ['required'],
-                 'of_time' => ['required'],
-                 'of_certi' => ['required'],
-                'of_formation' => ['required'],
-            ]);
 
-        }
 
         $this->AdminAuthCheck();
         $data = array();
@@ -192,23 +158,9 @@ class OfController extends Controller
         $data['of_adresse'] = $request->of_adresse;
         $data['of_phone'] = $request->of_phone;
         $data['of_etat'] = $request->of_etat;
-        if($request->of_etat == 'non')
-        {
-            $data['of_formation'] = null;
-            $data['of_date_debut'] = null;
-            $data['of_date_fin'] = null;
-            $data['of_time'] = null;
-            $data['of_certi'] = 1;
-        }
-        else
-        {
-            $data['of_time'] = $request->of_time;
-            $data['of_date_debut'] = $request->of_date_debut;
             $data['of_date_ad'] = $request->of_date_ad;
-            $data['of_date_fin'] = $request->of_date_fin;
             $data['of_formation'] = $request->of_formation;
             $data['of_certi'] = $request->of_certi;
-        }
         $data['of_status'] = 0;
         $data['user_role'] = $request->user_role;
         $data['of_tok'] = str_random(50);
@@ -216,6 +168,7 @@ class OfController extends Controller
         DB::table('tbl_organisme_formation')->insert($data);
         Session::put('message', "l'organisme ".$data['name']." a été ajouté avec succes");
         return redirect('/all-of');
+
     }
 
 
@@ -224,11 +177,7 @@ class OfController extends Controller
     {
         $this->AdminAuthCheck();
         request()->validate([
-
             'of_formation' => ['required'],
-            'of_date_debut' => ['required'],
-            'of_date_fin' => ['required'],
-            'of_time' => ['required'],
             'of_certi' => ['required'],
         ]);
 
@@ -240,11 +189,7 @@ class OfController extends Controller
         $data['of_adresse'] = $request->of_adresse;
         $data['of_phone'] = $request->of_phone;
         $data['of_etat'] = $request->of_etat;
-        $data['of_time'] = $request->of_time;
-
-        $data['of_date_debut'] = $request->of_date_debut;
         $data['of_date_ad'] = $request->of_date_ad;
-        $data['of_date_fin'] = $request->of_date_fin;
 
         $data['of_formation'] = $request->of_formation;
         $data['of_certi'] = $request->of_certi;

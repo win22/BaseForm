@@ -233,32 +233,6 @@
                         </ul>
                     </div>
                 </li>
-                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                <li class="nav-item {{ request()->is('all-even','add-even')? 'active' : '' }}">
-                    <a class="nav-link {{ request()->is('all-even','add-even')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic8" aria-expanded="false" aria-controls="ui-basic8">
-                        <i class="fa fa-calendar-o userI"></i>
-                        <p class="menu-title">Évenements</p>
-                    </a>
-                    <div class="collapse {{ request()->is('all-even','add-even')? 'show' : '' }}" id="ui-basic8">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item {{ request()->is('all-even')? 'active' : '' }} ">
-                                <a class="nav-link" href="{{URL::to('/all-even')}}">
-                                    <i class="material-icons">view_list</i>
-                                    <span class="text-white">Listes des évenements</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item {{ request()->is('add-even')? 'active' : '' }}">
-                                <a class="nav-link" href="{{URL::to('/add-even')}}">
-                                    <i class="material-icons">playlist_add</i>
-                                    <span class="text-white">Ajouter un  évenement</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </li>
-                @endif
 
             </ul>
         </div>

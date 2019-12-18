@@ -38,20 +38,7 @@
                         </button>
                     </div>
                 </form>
-                <div class="row">
-                    <form action="/searchOfA">
-                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher les Organismes Agrées " type="submit" class="btn btn-success btn-sm">
-                            Agrée
-                            <div class="ripple-container"></div>
-                        </button>
-                    </form> &nbsp;
-                    <form action="/searchOfN">
-                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher les Organismes qui ne sont pas Agrées" type="submit" class="btn btn-warning btn-sm">
-                            Non Agrée
-                            <div class="ripple-container"></div>
-                        </button>
-                    </form>
-                </div>
+
 
             </div>
         </div>

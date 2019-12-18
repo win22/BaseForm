@@ -55,8 +55,6 @@ Route::post('/save-of', 'OfController@save_of');
 Route::post('/save-agree', 'OfController@save_agre');
 
 Route::get('/searchOf', 'OfController@search');
-Route::get('/searchOfA', 'OfController@searchA');
-Route::get('/searchOfN', 'OfController@searchN');
 
 Route::get('/all-of', 'OfController@all_of');
 Route::get('/excel', 'OfController@excel');
@@ -146,15 +144,7 @@ Route::get('/edit-formt/{formt_id}', 'FormationController@edit_formt');
 Route::post('/update-formt/{formt_id}', 'FormationController@update_formt');
 Route::get('/details-formt/{formt_id}', 'FormationController@detail_formt');
 
-//Route pour la gestion des événements
-Route::get('/add-even', 'EvenementController@index');
-Route::post('/save-even', 'EvenementController@save_even');
-Route::get('/all-even',  'EvenementController@all_even');
-Route::get('/searchEven', 'EvenementController@search');
-Route::get('/delete-even/{even_id}', 'EvenementController@delete_even');
-Route::get('/edit-even/{even_id}', 'EvenementController@edit_even');
-Route::post('/update-even/{even_id}', 'EvenementController@update_even');
-Route::get('/details-even/{even_id}', 'EvenementController@detail_even');
+
 
 
 //Route pour la gestion des stagiares
