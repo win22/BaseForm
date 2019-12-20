@@ -29,8 +29,42 @@ class EuController extends Controller
         $search = $request->get('search');
         $all_eu_info = DB::table('tbl_entreprise_utilisatrices')
             ->where('name', 'like', '%'.$search.'%')
-            ->orWhere('eu_etat', 'like', '%'.$search.'%')
-            ->orWhere('eu_ei', 'like', '%'.$search.'%')
+            ->orderByDesc('eu_id')
+            ->paginate(5);
+        $nb= $all_eu_info->count();
+        return view('eu.all_eu', ['all_eu_info' => $all_eu_info ])
+            ->with(['nb' => $nb]);
+    }
+
+    public  function  searchA()
+    {
+        $this->AdminAuthCheck();
+        $all_eu_info = DB::table('tbl_entreprise_utilisatrices')
+            ->where('eu_etat' , 'agrée')
+            ->orderByDesc('eu_id')
+            ->paginate(5);
+        $nb= $all_eu_info->count();
+        return view('eu.all_eu', ['all_eu_info' => $all_eu_info ])
+            ->with(['nb' => $nb]);
+    }
+
+    public  function  searchN()
+    {
+        $this->AdminAuthCheck();
+        $all_eu_info = DB::table('tbl_entreprise_utilisatrices')
+            ->where('eu_etat' , 'Normal')
+            ->orderByDesc('eu_id')
+            ->paginate(5);
+        $nb= $all_eu_info->count();
+        return view('eu.all_eu', ['all_eu_info' => $all_eu_info ])
+            ->with(['nb' => $nb]);
+    }
+
+    public  function  searchE()
+    {
+        $this->AdminAuthCheck();
+        $all_eu_info = DB::table('tbl_entreprise_utilisatrices')
+            ->where('eu_etat' , 'En démarche')
             ->orderByDesc('eu_id')
             ->paginate(5);
         $nb= $all_eu_info->count();
@@ -117,7 +151,7 @@ class EuController extends Controller
             'eu_contactDe' => ['required'],
             'eu_efectif' => ['required'],
         ]);
-        if($request->eu_etat == 'certifie')
+        if($request->eu_etat == 'agrée')
         {
             request()->validate([
                 'eu_date_debut' => ['required'],
@@ -135,20 +169,30 @@ class EuController extends Controller
         $data['eu_phone'] = $request->eu_phone;
         $data['eu_efectif'] = $request->eu_efectif;
         $data['eu_date_ad'] = $request->eu_date_ad;
-        $data['eu_date_fin'] = $request->eu_date_fin;
-        $data['eu_date_debut'] = $request->eu_date_debut;
-        $data['eu_time'] = $request->eu_time;
+
         $data['eu_etat'] = $request->eu_etat;
-        $data['eu_ei'] = $request->eu_ei;
+        if($request->eu_etat == 'agrée')
+        {
+            $data['eu_date_fin'] = $request->eu_date_fin;
+            $data['eu_date_debut'] = $request->eu_date_debut;
+            $data['eu_time'] = $request->eu_time;
+        }
+        else{
+            $data['eu_date_fin'] = null;
+            $data['eu_date_debut'] = null;
+            $data['eu_time'] = null;
+        }
+
         $data['eu_secteurA'] = $request->eu_secteurA;
         $data['eu_contactDe'] = $request->eu_contactDe;
         $data['eu_nameDi'] = $request->eu_nameDi;
-        $data['user_role'] = $request->user_role;
+        $data['user_role'] = 1;
         $data['eu_status'] = 0;
 
         DB::table('tbl_entreprise_utilisatrices')->insert($data);
-        Session::put('message', "Un mail a été envoyé a ".$data['name']." !");
+        Session::put('message', "Vous avez ajouté une nouvelle entreprise utilisatrice !");
         return redirect('/all-eu');
+
 
 
 
@@ -189,7 +233,7 @@ class EuController extends Controller
             'eu_contactDe' => ['required'],
             'eu_efectif' => ['required'],
         ]);
-        if($request->eu_etat == 'certifie')
+        if($request->eu_etat == 'agrée')
         {
             request()->validate([
                 'eu_date_debut' => ['required'],
@@ -207,15 +251,23 @@ class EuController extends Controller
         $data['eu_phone'] = $request->eu_phone;
         $data['eu_efectif'] = $request->eu_efectif;
         $data['eu_date_ad'] = $request->eu_date_ad;
-        $data['eu_date_fin'] = $request->eu_date_fin;
-        $data['eu_date_debut'] = $request->eu_date_debut;
-        $data['eu_time'] = $request->eu_time;
         $data['eu_etat'] = $request->eu_etat;
-        $data['eu_ei'] = $request->eu_ei;
+        if($request->eu_etat == 'agrée')
+        {
+            $data['eu_date_fin'] = $request->eu_date_fin;
+            $data['eu_date_debut'] = $request->eu_date_debut;
+            $data['eu_time'] = $request->eu_time;
+        }
+        else{
+            $data['eu_date_fin'] = null;
+            $data['eu_date_debut'] = null;
+            $data['eu_time'] = null;
+        }
+
         $data['eu_secteurA'] = $request->eu_secteurA;
         $data['eu_contactDe'] = $request->eu_contactDe;
         $data['eu_nameDi'] = $request->eu_nameDi;
-        $data['user_role'] = $request->user_role;
+        $data['user_role'] = 1;
 
         DB::table('tbl_entreprise_utilisatrices')
             ->where('eu_id', $eu_id)
@@ -224,11 +276,8 @@ class EuController extends Controller
         Session::put('message', "l'EU ".$data['name']." a eté modifié avec Succes !");
         return redirect('/all-eu');
 
+
     }
-
-
-
-
 
 
 //permet de verifier si l'eu est connecté

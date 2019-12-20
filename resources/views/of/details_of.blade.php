@@ -91,7 +91,7 @@
                                 </p>
                             </div>
                             <div class="col-md-5">
-                                <p class="card-title">
+                                <p class="card-title text-info">
                                     <span style="font-family: 'Manjari Bold'"> {{ strftime("%d %B %Y", strtotime($of_info->of_date_ad)) }}</span>
                                 </p>
                             </div>
@@ -306,7 +306,6 @@
                         <thead class=" text-danger">
 
                         <th class="text-center">Formation</th>
-                       
                         <th class="text-center">État</th>
                         @if( Session::get('admin_role')==1)
                         <th class="text-center">Status</th>

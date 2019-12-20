@@ -26,7 +26,6 @@ class CreateTblEntrepriseUtilisatricesTable extends Migration
             $table->string('eu_date_fin', 90)->nullable();
             $table->string('eu_date_ad', 90)->nullable();
             $table->string('eu_date_debut', 90)->nullable();
-            $table->string('eu_ei', 90)->nullable();
             $table->string('eu_contactDe' , 60);
             $table->string('eu_nameDi' , 60);
             $table->string('user_role', 2);

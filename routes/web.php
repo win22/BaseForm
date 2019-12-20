@@ -85,7 +85,9 @@ Route::get('/detail-eu/{eu_id}', 'EuController@detail_eu');
 Route::get('/edit-eu/{eu_id}', 'EuController@edit_eu');
 Route::get('/delete-eu/{eu_id}', 'EuController@delete_eu');
 Route::post('/update-eu/{eu_id}', 'EuController@update_eu');
-
+Route::get('/searchEUA', 'EuController@searchA');
+Route::get('/searchEUN', 'EuController@searchN');
+Route::get('/searchEUE', 'EuController@searchE');
 
 //Route Pour les entreprise Intervenantes
 Route::get('/add-ei', 'EiController@index');
@@ -101,18 +103,6 @@ Route::get('/delete-ei/{ei_id}', 'EiController@delete_ei');
 Route::post('/update-ei/{ei_id}', 'EiController@update_ei');
 Route::get('/detail-ei/{ei_id}', 'EiController@detail_ei');
 
-//Route pour les intervenants
-Route::get('/add-itv', 'ItvController@index');
-Route::post('/save-itv', 'ItvController@save_itv');
-
-Route::get('/all-itv', 'ItvController@all_itv');
-Route::get('/searchItv', 'ItvController@search');
-Route::get('/unactive-itv/{itv_id}', 'ItvController@unactive_itv');
-Route::get('/active-itv/{itv_id}', 'ItvController@active_itv');
-Route::get('/edit-itv/{itv_id}', 'ItvController@edit_itv');
-Route::get('/delete-itv/{itv_id}', 'ItvController@delete_itv');
-Route::post('/update-itv/{itv_id}', 'ItvController@update_itv');
-Route::get('/details-itv/{itv_id}', 'ItvController@detail_itv');
 
 //Route pour la gestion des formateurs
 Route::get('/add-form', 'FormateurController@index');

@@ -135,30 +135,7 @@
                         </ul>
                     </div>
                 </li>
-                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                <li class="nav-item {{ request()->is('all-itv','add-itv')? 'active' : '' }}">
-                    <a class="nav-link {{ request()->is('all-itv','add-itv')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic5" aria-expanded="false" aria-controls="ui-basic5">
-                        <i class="fa fa-user userI"></i>
-                        <p class="menu-title">Intervenants</p>
-                    </a>
-                    <div class="collapse {{ request()->is('all-itv','add-itv')? 'show' : '' }}" id="ui-basic5">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item {{ request()->is('all-itv')? 'active' : '' }} ">
-                                <a class="nav-link" href="{{URL::to('/all-itv')}}">
-                                    <i class="material-icons">view_list</i>
-                                    <span class="text-white">Listes des intervenants</span>
-                                </a>
-                            </li>
-                            <li class="nav-item {{ request()->is('add-itv')? 'active' : '' }}">
-                                <a class="nav-link" href="{{URL::to('/add-itv')}}">
-                                    <i class="material-icons">playlist_add</i>
-                                    <span class="text-white">Ajouter un intervenant</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                @endif
+
                 @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
                 <li class="nav-item {{ request()->is('all-form','add-form')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-form','add-form')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic6" aria-expanded="false" aria-controls="ui-basic6">
@@ -718,20 +695,20 @@
                 var select = $(this).attr("id");
                 var value = $(this).val();
 
-                console.log(select);
-                console.log(value);
                 if (value == 'agrée') {
                    $(".forma").hide().slideDown("slow");
                 };
                 if (value == 'non') {
                     $(".forma").hide().slideUp("slow");
-                    $('.clean').change(function () {
-                        if($(this).val() != '')
-                        {
-                            var vale = $(this).val() ;
-                            console.log(vale);
-                        }
-                    });
+
+                };
+                if (value == 'Normal') {
+                    $(".forma").hide().slideUp("slow");
+
+                };
+                if (value == 'En démarche') {
+                    $(".forma").hide().slideUp("slow");
+
                 };
 
             }

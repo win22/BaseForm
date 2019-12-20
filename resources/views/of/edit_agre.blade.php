@@ -80,27 +80,6 @@
                         </select>
                     </div>
 
-                    <div  class="form-group">
-                        <label class="label">Date de début</label>
-                        <input  value="{{ $of_info->of_date_debut }}" type="date" class="form-control text-success" min="1800-08-13" name="of_date_debut">
-                        @if($errors->has('of_date_debut'))
-                        <small class="form-text text-muted text-danger">{{$errors->first('of_date_debut')}}</small>
-                        @endif
-                    </div>
-                    <div  class="form-group">
-                        <label class="label">Date de fin d'agrément <span  class="text-danger">*</span></label>
-                        <input  value="{{ $of_info->of_date_fin }}" type="date" class="form-control text-danger" min="1800-08-13" name="of_date_fin">
-                        @if($errors->has('of_date_fin'))
-                        <small class="form-text text-muted text-danger">{{$errors->first('of_date_fin')}}</small>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <label class="bmd-label-floating">Durée de l'agrément  </label>
-                        <input value="{{ $of_info->of_time }}" name="of_time" type="text" class="form-control">
-                        @if($errors->has('of_time'))
-                        <small class="form-text text-muted text-danger">{{$errors->first('of_time')}}</small>
-                        @endif
-                    </div>
 
                 </div>
                 <div class="modal-footer">

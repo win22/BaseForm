@@ -107,27 +107,11 @@
                             @if($errors->has('of_formation'))
                             <small class="form-text text-muted text-danger">{{$errors->first('of_formation')}}</small>
                             @endif
+
                         </div>
 
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 ">
-                            <select  class="form-control" name="of_certi">
-                                <option value="">Selection un nombre<span  class="text-danger">*</span> </option>
-                                <option  value="1">Premier agrément</option>
-                                <option  value="2">deuxième agrément</option>
-                                <option  value="3">Troisième agrément</option>
-                                <option  value="4">Quatrième agrément</option>
-                                <option value="5">Cinquème agrément</option>
 
-                            </select>
-                            @if($errors->has('of_certi'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('of_certi')}}</small>
-                            @endif
-                        </div>
-                        <input value="3" name="user_role" type="text" hidden>
-
-                    </div>
                     <a href="/all-of" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
                         Annuler </a>&nbsp;

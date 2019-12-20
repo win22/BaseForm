@@ -32,8 +32,7 @@ class SuperAdminController extends Controller
             ->count();
         $all_ei_count = DB::table('tbl_entreprise_intervenantes')
             ->count();
-        $all_itv_count = DB::table('tbl_intervenants')
-            ->count();
+
         $all_form_count = DB::table('tbl_formateurs')
             ->where('form_certi', 1)
             ->count();
@@ -61,10 +60,7 @@ class SuperAdminController extends Controller
             ->orderByDesc('ei_id')
             ->select('created_at')
             ->first();
-        $all_itv_date = DB::table('tbl_intervenants')
-            ->orderByDesc('itv_id')
-            ->select('created_at')
-            ->first();
+
         $all_form_date = DB::table('tbl_formateurs')
             ->orderByDesc('form_id')
             ->select('created_at')
@@ -83,7 +79,6 @@ class SuperAdminController extends Controller
             ->with('all_of_count', $all_of_count)
             ->with('all_eu_count', $all_eu_count)
             ->with('all_ei_count', $all_ei_count)
-            ->with('all_itv_count', $all_itv_count)
             ->with('all_form_count', $all_form_count)
             ->with('all_formt_count', $all_formt_count)
 
@@ -92,7 +87,6 @@ class SuperAdminController extends Controller
             ->with('all_of_date', $all_of_date)
             ->with('all_eu_date', $all_eu_date)
             ->with('all_ei_date', $all_ei_date)
-            ->with('all_itv_date', $all_itv_date)
             ->with('all_form_date', $all_form_date)
             ->with('all_formt_date', $all_formt_date)
 

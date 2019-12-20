@@ -79,15 +79,12 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <select class="form-control dynamic2" id="of_etat" name="of_etat">
+                            <select class="form-control" id="of_etat" name="of_etat">
                                 @if($of_info->of_etat == 'agrée')
                                 <option class="text-success az" value="{{ $of_info->of_etat }}">Agrée Mase </option>
                                 @else
                                 <option class="text-danger az" value="{{ $of_info->of_etat }}">Non Agrée </option>
                                 @endif
-                                <option value="">État de l'organisme  <span  class="text-danger">*</span> </option>
-                                <option class="text-success" value="agrée">Agrée Mase </option>
-                                <option class="text-danger" value="non">Non Agrée </option>
                             </select>
                             @if($errors->has('of_etat'))
                             <small class="form-text text-muted text-danger">{{$errors->first('of_etat')}}</small>
@@ -102,7 +99,7 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('of_date_ad')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4 forma">
+                        <div class="col-md-4">
                             <select  class="form-control" name="of_formation">
                                 <option value="{{ $of_info->of_formation }}">{{ $of_info->of_formation }}</option>
                                 <option class="text-warning" value="">Formation  <span  class="text-danger">*</span></option>
@@ -118,53 +115,9 @@
                         </div>
 
                     </div>
-                    <div class="row forma">
-                        <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="label">Date de début</label>
-                            <input type="date" value="{{ $of_info->of_date_debut }}" class="form-control text-success" min="1800-08-13" name="of_date_debut">
-                        </div>
-                        @if($errors->has('of_date_debut'))
-                        <small class="form-text text-muted text-danger">{{$errors->first('of_date_debut')}}</small>
-                        @endif
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="label">Date de fin</label>
-                            <input type="date" value="{{ $of_info->of_date_fin }}" class="form-control text-danger" min="1800-08-13" name="of_date_fin">
-                        </div>
-                        @if($errors->has('of_date_fin'))
-                        <small class="form-text text-muted text-danger">{{$errors->first('of_date_fin')}}</small>
-                        @endif
-                    </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Durée </label>
-                                <input  value="{{ $of_info->of_time }}" name="of_time" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('of_time'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('of_time')}}</small>
-                            @endif
-                        </div>
-                    </div>
+
                     <div class="row">
-                        <div class="col-md-4 forma">
-                            <select  class="form-control clean" name="of_certi">
-                                <option class="text-danger" value="{{ $of_info->of_certi }}">{{ $of_info->of_certi }}</option>
-                                <option value="">Selectionner un nombre<span  class="text-danger">*</span> </option>
-                                <option value="1">Première certification</option>
-                                <option value="2">deuxième certification</option>
-                                <option value="3">Troisième certification</option>
-                                <option value="4">Quatrième certification</option>
-                                <option value="5">Cinquième certification</option>
-
-                            </select>
-                            @if($errors->has('of_certi'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('of_certi')}}</small>
-                            @endif
-
                         <input  value="{{ $of_info->of_tok }}" name="of_tok" type="text" hidden>
-                        </div>
                     </div>
 
                     <a href="/all-of" id="md." class="btn btn-danger pull-right">

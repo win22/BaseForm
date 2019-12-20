@@ -122,30 +122,19 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <select  class="form-control " name="eu_etat">
+                            <select  class="form-control dynamic2" name="eu_etat">
                                 <option value="">État <span  class="text-danger">*</span> </option>
-                                <option value="normal">Normal</option>
-                                <option class="text-warning" value="en demarche">En démarche</option>
-                                <option class="text-success" value="certifie">Certifié Mase </option>
+                                <option value="Normal">Normal</option>
+                                <option class="text-warning" value="En démarche">En démarche</option>
+                                <option class="text-success" value="agrée">Certifié Mase </option>
                             </select>
                             @if($errors->has('eu_etat'))
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_etat')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <select  class="form-control " name="eu_ei">
-                                <option value="">Selectionner une Entreprise Intervenante </option>
-                                @foreach($ei_all as $v_ei)
-                                <option class="text-success" value="{{ $v_ei->name  }}">{{ $v_ei->name }} </option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('ei_eu'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('ei_eu')}}</small>
-                            @endif
-                        </div>
 
                     </div>
-                    <div class="row">
+                    <div class="row forma">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Date de début </label>
@@ -174,9 +163,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="row">
-                        <input value="1" name="user_role" type="text" hidden>
-                    </div>
+
                     <a href="/all-eu"  id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
                         Annuler

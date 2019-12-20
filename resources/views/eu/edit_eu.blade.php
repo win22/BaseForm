@@ -122,39 +122,26 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <select  class="form-control " name="eu_etat">
-                                @if($eu_info->eu_etat == 'normal')
-                                <option value="normal">Normal</option>
-                                @elseif($eu_info->eu_etat == 'non_certifie')
-                                <option class="text-warning" value="non_certifie">En démarche</option>
+                            <select  class="form-control dynamic2 " name="eu_etat">
+                                @if($eu_info->eu_etat == 'agrée')
+                                <option value="normal">Certifiée</option>
                                 @else
-                                <option class="text-success" value="certifie">Certifié Mase </option>
+                                <option class="text-success" value="{{ $eu_info->eu_etat }}"> {{ $eu_info->eu_etat }} </option>
                                 @endif
 
                                 <option  value="">Selection un état <span  class="text-warning">*</span> </option>
-                                <option value="normal">Normal</option>
-                                <option class="text-warning" value="non_certifie">En démarche</option>
-                                <option class="text-success" value="certifie">Certifié Mase </option>
+                                <option value="Normal">Normal</option>
+                                <option class="text-warning" value="En démarche">En démarche</option>
+                                <option class="text-success" value="agrée">Certifiée </option>
                             </select>
                             @if($errors->has('eu_etat'))
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_etat')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <select  class="form-control " name="eu_ei">
-                                <option value="{{ $eu_info->eu_ei }}">{{ $eu_info->eu_ei }}</option>
-                                <option class="text-warning" value="">Selectionner une Entreprise Intervenante </option>
-                                @foreach($ei_all as $v_ei)
-                                <option  value="{{ $v_ei->name  }}">{{ $v_ei->name }} </option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('ei_eu'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('ei_eu')}}</small>
-                            @endif
-                        </div>
+
 
                     </div>
-                    <div class="row">
+                    <div class="row forma">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Date de début </label>

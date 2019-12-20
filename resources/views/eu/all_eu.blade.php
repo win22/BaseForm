@@ -32,8 +32,31 @@
                             <div class="ripple-container"></div>
                         </button>
                     </div>
-
                 </form>
+                <div class="row">
+                    <form action="/searchEUN">
+                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher uniquement les entreprises
+                         utilisatrices qui ne sont pas certifieés" type="submit" class="btn btn-warning btn-sm">
+                            Normales
+                            <div class="ripple-container"></div>
+                        </button>
+                    </form>
+                    <form action="/searchEUE">
+                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher uniquement
+                         les entreprises utilisatrices  qui sont en démarche" type="submit" class="btn btn-info btn-sm">
+                            En démarches
+                            <div class="ripple-container"></div>
+                        </button>
+                    </form>
+                    <form action="/searchEUA">
+                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher uniquement les
+                         les entreprises
+                         utilisatrices certifiées " type="submit" class="btn btn-success btn-sm">
+                            Certifiées
+                            <div class="ripple-container"></div>
+                        </button>
+                    </form> &nbsp;
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -45,7 +68,6 @@
                     <th class="text-center">Adresse e-mail</th>
                     <th class="text-center">adresse</th>
                     <th class="text-center">Etat</th>
-                    <th class="text-center">Entreprise Intervenante</th>
                     <th class="text-center">Date d'adhésion</th>
                     @if( Session::get('admin_role')==1)
                     <th class="text-center">Status</th>
@@ -64,32 +86,18 @@
                         <td class="text-center">{{ $v_eu->eu_email }}</td>
                         <td class="text-center">{{ $v_eu->eu_adresse }}</td>
                         <td class="text-center">
-                            @if($v_eu->eu_etat== 'certifie')
+                            @if($v_eu->eu_etat== 'agrée')
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
                             Certifié Mase
                             </span>
-                            @elseif($v_eu->eu_etat== 'non_certifie')
-                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(233,147,2,0.88);">
-                            En démarche
-                        </span>
                             @else
-                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(41,0,23,0.98);">
-                            Normal
-                        </span>
-                            @endif
-                        </td>
-                        <td class="text-center">
-                            @if($v_eu->eu_ei)
-                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,59,128,0.88);">
-                            {{ $v_eu->eu_ei }}
+                            <span style="font-family: 'Manjari Bold'" class="text-info">
+                                 {{ $v_eu->eu_etat }}
                             </span>
-                            @else
-                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(233,50,13,0.88);">
-                              Aucune entreprise
-                        </span>
                             @endif
                         </td>
-                        <td  style="font-family: 'Manjari Bold'" class="center">{{ $v_eu->eu_date_ad }}</td>
+
+                        <td  style="font-family: 'Manjari Bold'" class="center">{{ strftime("%d %B %Y", strtotime($v_eu->eu_date_ad)) }}</td>
                         @if( Session::get('admin_role')==1)
                         <td class="text-center">
                             @if($v_eu->eu_status==1)
