@@ -63,16 +63,16 @@
             </div>
         </div>
     </div>
-    <div  id="alert4"  class="col-lg-3 col-md-6 col-sm-6">
-        <div  class="card card-stats">
-            <div class="card-header card-header-danger card-header-icon">
+    <div id="alert4" class="col-lg-3 col-md-6 col-sm-6">
+        <div   class="card card-stats">
+            <div class="card-header card-header-success card-header-icon">
                 <div class="card-icon">
-                    <i class="fa fa-industry"></i>
+                    <i class="fa fa-graduation-cap"></i>
                 </div>
-                <p class="card-category">Entreprises utilisatrices</p>
-                <a href="/all-eu">
+                <p class="card-category">Formations de Mase</p>
+                <a href="/all-formt">
                     <h3 class="card-title">
-                        {{ $all_eu_count }}
+                        {{ $all_formt_count }}
                     </h3>
                 </a>
 
@@ -80,17 +80,18 @@
             <div class="card-footer">
                 <div class="stats">
                     <i class="material-icons">date_range</i>
-                    @if(($all_eu_count) == null)
-                    Aucune information n'a été trouvée
+                    @if(($all_formt_count) == null)
+                    Aucune information n'a été trouvé
                     @else
                     La dernière insertion a été effectuée le
-                    {{  strftime("%d %B %Y", strtotime( $all_eu_date->created_at)) }}
-                   ( {{ \Carbon\Carbon::parse($all_eu_date->created_at)->diffForHumans() }} )
+                    {{  strftime("%d %B %Y", strtotime( $all_formt_date->created_at)) }}
+                    ( {{ \Carbon\Carbon::parse($all_formt_date->created_at)->diffForHumans() }} )
                     @endif
                 </div>
             </div>
         </div>
     </div>
+
     <div id="alert5"  class="col-lg-3 col-md-6 col-sm-6">
         <div  class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
@@ -122,8 +123,35 @@
     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
 </div>
 <div class="row">
+    <div  id="alert7"  class="col-lg-3 col-md-6 col-sm-6">
+        <div  class="card card-stats">
+            <div class="card-header card-header-danger card-header-icon">
+                <div class="card-icon">
+                    <i class="fa fa-industry"></i>
+                </div>
+                <p class="card-category">Entreprises utilisatrices</p>
+                <a href="/all-eu">
+                    <h3 class="card-title">
+                        {{ $all_eu_count }}
+                    </h3>
+                </a>
 
-    <div id="alert7" class="col-lg-3 col-md-6 col-sm-6">
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">date_range</i>
+                    @if(($all_eu_count) == null)
+                    Aucune information n'a été trouvée
+                    @else
+                    La dernière insertion a été effectuée le
+                    {{  strftime("%d %B %Y", strtotime( $all_eu_date->created_at)) }}
+                    ( {{ \Carbon\Carbon::parse($all_eu_date->created_at)->diffForHumans() }} )
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="alert8" class="col-lg-3 col-md-6 col-sm-6">
         <div   class="card card-stats">
             <div class="card-header card-header-danger card-header-icon">
                 <div class="card-icon">
@@ -153,35 +181,8 @@
     </div>
     @endif
 
-    <div id="alert8" class="col-lg-3 col-md-6 col-sm-6">
-        <div   class="card card-stats">
-            <div class="card-header card-header-success card-header-icon">
-                <div class="card-icon">
-                    <i class="fa fa-graduation-cap"></i>
-                </div>
-                <p class="card-category">Formations de Mase</p>
-                <a href="/all-formt">
-                    <h3 class="card-title">
-                        {{ $all_formt_count }}
-                    </h3>
-                </a>
 
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">date_range</i>
-                    @if(($all_formt_count) == null)
-                    Aucune information n'a été trouvé
-                    @else
-                    La dernière insertion a été effectuée le
-                    {{  strftime("%d %B %Y", strtotime( $all_formt_date->created_at)) }}
-                   ( {{ \Carbon\Carbon::parse($all_formt_date->created_at)->diffForHumans() }} )
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-    <div   id="alert11" class="col-lg-3 col-md-6 col-sm-6">
+    <div   id="alert9" class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
                 <div class="card-icon" href="/all-stag">

@@ -49,7 +49,7 @@
                     <th>Nom</th>
                     <th>Durée</th>
                     <th>Desciption</th>
-                    <th>Type</th>
+                    <th>Nom de l'entreprise </th>
                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                     <th>Date de création</th>
                     @endif
@@ -66,17 +66,8 @@
                         <td class="center" style="font-family:'Manjari Bold'">{{ $v_formt->formt_name }}</td>
                         <td class="center">{{ $v_formt->formt_time }}</td>
                         <td class="center ellipsis">{{ $v_formt->formt_contenu }}</td>
-                        <td class="text-center">
-                            @if($v_formt->formt_type=='agrée')
-                            <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
-                            Certifié MASE
-                        </span>
-                            @else
-                            <span class="label" style="font-family: 'Manjari Bold'; color: red;" >
-                            Non certifié MASE
-                        </span>
-                            @endif
-
+                        <td style="font-family: 'Manjari Bold';" class="text-center text-warning">
+                            {{ $v_formt->formt_structure }}
                         </td>
                         @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                         <td class="center">{{   strftime("%d %B %Y", strtotime( $v_formt->created_at)) }}</td>
@@ -108,9 +99,9 @@
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
                 </p>
-                    @else
-                    <p class="text-center">Aucune information trouvé</p>
-                    @endif
+                @else
+                <p class="text-center">Aucune information trouvé</p>
+                @endif
                 <a href="#">Voir d'autres formations</a>
 
                 {{ $all_formt_info->links() }}

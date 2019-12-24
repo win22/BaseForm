@@ -102,7 +102,7 @@ class EiController extends Controller
             'ei_date_ad' => ['required'],
             'ei_nameDi' => ['required'],
         ]);
-        if($request->eu_etat == 'certifie')
+        if($request->ei_etat == 'agrée')
         {
             request()->validate([
                 'ei_date_debut' => ['required'],
@@ -118,21 +118,31 @@ class EiController extends Controller
         $data['ei_email'] = $request->ei_email;
         $data['ei_adresse'] = $request->ei_adresse;
         $data['ei_phone'] = $request->ei_phone;
-        $data['ei_date_ad'] = $request->ei_date_ad;
-        $data['ei_date_fin'] = $request->ei_date_fin;
-        $data['ei_date_debut'] = $request->ei_date_debut;
-        $data['ei_time'] = $request->ei_time;
-        $data['ei_eu'] = $request->ei_eu;
-        $data['ei_a_eu'] = $request->ei_a_eu;
-        $data['ei_etat'] = $request->ei_etat;
         $data['ei_secteurA'] = $request->ei_secteurA;
         $data['ei_nameDi'] = $request->ei_nameDi;
-        $data['user_role'] = $request->user_role;
+        $data['ei_date_ad'] = $request->ei_date_ad;
+        $data['ei_eu'] = $request->ei_eu;
+        $data['ei_a_eu'] = $request->ei_a_eu;
+        $data['user_role'] = 2;
         $data['ei_status'] = 0;
+
+        $data['ei_etat'] = $request->ei_etat;
+        if($request->ei_etat == 'agrée')
+        {
+            $data['ei_date_fin'] = $request->ei_date_fin;
+            $data['ei_date_debut'] = $request->ei_date_debut;
+            $data['ei_time'] = $request->ei_time;
+        }else
+        {
+            $data['ei_date_fin'] = null;
+            $data['ei_date_debut'] = null;
+            $data['ei_time'] = null;
+        }
 
         DB::table('tbl_entreprise_intervenantes')->insert($data);
         Session::put('message', "Un mail a été envoyé ".$data['name']." !");
         return redirect('/all-ei');
+
     }
 
 
@@ -170,7 +180,7 @@ class EiController extends Controller
             'ei_date_ad' => ['required'],
             'ei_nameDi' => ['required'],
         ]);
-        if($request->eu_etat == 'certifie')
+        if($request->ei_etat == 'agrée')
         {
             request()->validate([
                 'ei_date_debut' => ['required'],
@@ -180,28 +190,36 @@ class EiController extends Controller
 
         }
 
-        $data = array();
         $data['ei_id'] = $request->ei_id;
         $data['name'] = $request->name;
         $data['ei_email'] = $request->ei_email;
         $data['ei_adresse'] = $request->ei_adresse;
         $data['ei_phone'] = $request->ei_phone;
-        $data['ei_date_ad'] = $request->ei_date_ad;
-        $data['ei_date_fin'] = $request->ei_date_fin;
-        $data['ei_date_debut'] = $request->ei_date_debut;
-        $data['ei_time'] = $request->ei_time;
-        $data['ei_eu'] = $request->ei_eu;
-        $data['ei_a_eu'] = $request->ei_a_eu;
-        $data['ei_etat'] = $request->ei_etat;
         $data['ei_secteurA'] = $request->ei_secteurA;
         $data['ei_nameDi'] = $request->ei_nameDi;
-        $data['user_role'] = $request->user_role;
+        $data['ei_date_ad'] = $request->ei_date_ad;
+        $data['ei_eu'] = $request->ei_eu;
+        $data['ei_a_eu'] = $request->ei_a_eu;
+        $data['user_role'] = 2;
+        $data['ei_etat'] = $request->ei_etat;
+        if($request->ei_etat == 'agrée')
+        {
+            $data['ei_date_fin'] = $request->ei_date_fin;
+            $data['ei_date_debut'] = $request->ei_date_debut;
+            $data['ei_time'] = $request->ei_time;
+        }else
+        {
+            $data['ei_date_fin'] = null;
+            $data['ei_date_debut'] = null;
+            $data['ei_time'] = null;
+        }
 
         DB::table('tbl_entreprise_intervenantes')
             ->where('ei_id', $ei_id)
             ->update($data);
         Session::put('message', "l'entreprise ".$data['name']." a eté modifié avec Succes !");
         return redirect('/all-ei');
+
     }
 
 

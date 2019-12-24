@@ -65,7 +65,7 @@
                         <td class="text-center">{{ $v_ei->ei_email }}</td>
                         <td class="text-center">{{ $v_ei->ei_adresse }}</td>
                         <td class="text-center">
-                            @if($v_ei->ei_etat== 'certifie')
+                            @if($v_ei->ei_etat== 'agrée')
                             <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
                             Certifié Mase
                             </span>

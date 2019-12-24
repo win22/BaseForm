@@ -104,14 +104,14 @@
                         </div>
                         <div class="col-md-3">
                             <select  class="form-control " name="ei_etat">
-                                @if($ei_info->ei_etat == 'certifie')
-                                <option class="text-success" value="certifie">Certifié Mase </option>
+                                @if($ei_info->ei_etat == 'agrée')
+                                <option class="text-success" value="agrée">Certifié Mase </option>
                                 @else
-                                <option class="text-warning" value="en demarche">En démarche</option>
+                                <option class="text-warning" value="En démarche">En démarche</option>
                                 @endif
                                 <option value="">État <span  class="text-danger">*</span> </option>
-                                <option class="text-warning" value="en demarche">En démarche</option>
-                                <option class="text-success" value="certifie">Certifié Mase </option>
+                                <option class="text-warning" value="En démarche">En démarche</option>
+                                <option class="text-success" value="agrée">Certifié Mase </option>
                             </select>
                             @if($errors->has('ei_etat'))
                             <small class="form-text text-muted text-danger">{{$errors->first('ei_etat')}}</small>
@@ -119,31 +119,19 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Duré de la certification</label>
-                                <input  value="{{ $ei_info->ei_time }}" name="ei_time" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('ei_time'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('ei_time')}}</small>
-                            @endif
-                        </div>
-
-                        <div class="col-md-6">
-                            <select  class="form-control text-info " name="ei_eu">
+                        <div class="col-md-3">
+                            <select  class="form-control" name="ei_eu">
                                 <option value="{{ $ei_info->ei_eu }}">{{ $ei_info->ei_eu }}</option>
-                                <option value="">Selectionner une Entreprise Utilisatrice </option>
+                                <option class="text-warning" value="">Selectionner une autre Entreprise Utilisatrice </option>
                                 @foreach($eu_all as $v_eu)
-                                <option class="text-success" value="{{ $v_eu->name  }}">{{ $v_eu->name }} </option>
+                                <option  value="{{ $v_eu->name  }}">{{ $v_eu->name }} </option>
                                 @endforeach
                             </select>
                             @if($errors->has('ei_eu'))
                             <small class="form-text text-muted text-danger">{{$errors->first('ei_eu')}}</small>
                             @endif
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-11">
+                        <div class="col-md-9">
                             <div class="form-group">
                                 <label  class="bmd-label-floating text-warning">Autres Entreprise Utilisatrice</label>
                                 <input  value="{{ $ei_info->ei_a_eu }}" name="ei_a_eu" type="text" class="form-control">
@@ -172,11 +160,19 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Duré de la certification</label>
+                            <input  value="{{ $ei_info->ei_time }}" name="ei_time" type="text" class="form-control">
+                        </div>
+                        @if($errors->has('ei_time'))
+                        <small class="form-text text-muted text-danger">{{$errors->first('ei_time')}}</small>
+                        @endif
+                    </div>
 
-                    </div>
-                    <div class="row">
-                        <input value="2" name="user_role" type="text" hidden>
-                    </div>
+
+            </div>
+
                     <a href="/all-ei" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
                         Annuler </a>&nbsp;

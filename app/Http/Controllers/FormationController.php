@@ -13,7 +13,12 @@ class formationController extends Controller
     public function  index()
     {
         $this->AdminAuthCheck();
-        return view('formation.add_formt');
+        $OF = DB::table('tbl_organisme_formation')
+            ->where('of_certi', 1)
+            ->where('of_status', 1)
+            ->get();
+
+        return view('formation.add_formt',  ['OF' => $OF]);
     }
 
     public function  search(Request $request)
@@ -22,6 +27,7 @@ class formationController extends Controller
         $search = $request->get('search');
         $all_formt_info = DB::table('tbl_formations')
             ->where('formt_name', 'like', '%'.$search.'%')
+            ->where ('formt_type', 'agrée' )
             ->orderByDesc('formt_id')
             ->paginate(5);
         $nb= $all_formt_info->count();
@@ -34,11 +40,27 @@ class formationController extends Controller
     {
         $this->AdminAuthCheck();
         $all_formt_info =  DB::table('tbl_formations')
+            ->where ('formt_type', 'agrée' )
             ->orderByDesc('formt_id')
             ->paginate(5);
         $nb= $all_formt_info->count();
 
         return view('formation.all_formt', ['all_formt_info' => $all_formt_info ])
+            ->with(['nb' => $nb]);
+
+    }
+
+    //afficher la liste des formt
+    public function all_formt_n()
+    {
+        $this->AdminAuthCheck();
+        $all_formt_info =  DB::table('tbl_formations')
+            ->where ('formt_type', 'non' )
+            ->orderByDesc('formt_id')
+            ->paginate(5);
+        $nb= $all_formt_info->count();
+
+        return view('formation.all_formt_non', ['all_formt_info' => $all_formt_info ])
             ->with(['nb' => $nb]);
 
     }
@@ -72,6 +94,7 @@ class formationController extends Controller
         $data['formt_contenu'] = $request->formt_contenu;
         $data['formt_time'] = $request->formt_time;
         $data['formt_type'] = $request->formt_type;
+        $data['formt_structure'] = $request->formt_structure;
         $file = $request->file('formt_file');
 
         if ($file){
@@ -125,6 +148,7 @@ class formationController extends Controller
         $data['formt_contenu'] = $request->formt_contenu;
         $data['formt_time'] = $request->formt_time;
         $data['formt_type'] = $request->formt_type;
+        $data['formt_structure'] = $request->formt_structure;
         $file = $request->file('formt_file');
 
         if ($file){

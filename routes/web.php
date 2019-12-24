@@ -75,7 +75,7 @@ Route::post('/update-agre-of/{of_id}', 'OfController@update_agre_of');
 Route::get('/add-eu', 'EuController@index');
 Route::get('/infos', 'EuController@getInfo');
 Route::post('/save-eu', 'EuController@save_eu');
-
+Route::get('/excel-eu', 'EuController@excel');
 Route::get('/all-eu', 'EuController@all_eu');
 Route::get('/searchEu', 'EuController@search');
 Route::get('/unactive-eu/{eu_id}', 'EuController@unactive_eu');
@@ -128,6 +128,7 @@ Route::get('/searchOfN', 'FormateurController@searchN');
 Route::get('/add-formt', 'FormationController@index');
 Route::post('/save-formt', 'FormationController@save_formt');
 Route::get('/all-formt',  'FormationController@all_formt');
+Route::get('/all-formt-N',  'FormationController@all_formt_n');
 Route::get('/searchFormt', 'FormationController@search');
 Route::get('/delete-formt/{formt_id}', 'FormationController@delete_formt');
 Route::get('/edit-formt/{formt_id}', 'FormationController@edit_formt');

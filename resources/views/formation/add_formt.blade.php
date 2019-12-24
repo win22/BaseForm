@@ -1,7 +1,8 @@
 @extends('admin_layout')
 @section('contenu')
 
-@if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+@if( Session::get('admin_role')==1 || Session::get('admin_role')==2
+|| Session::get('admin_role')== 3)
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
 <div id="alert" class="alert alert-success alert-with-icon col-md-4 right">
@@ -56,8 +57,10 @@
                         <div class="col-md-4">
                         <select  class="form-control" name="formt_type">
                             <option value="">Type de formation <span  class="text-danger">*</span> </option>
-                            <option class="text-success" value="certifie">Certifiée Mase </option>
-                            <option class="text-danger" value="non certifie">Non certifiée </option>
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                            <option class="text-success" value="agrée">Certifiée Mase </option>
+                            @endif
+                            <option class="text-danger" value="non">Non certifiée </option>
                         </select>
                         @if($errors->has('formt_type'))
                         <small class="form-text text-muted text-danger">{{$errors->first('formt_type')}}</small>
@@ -65,7 +68,7 @@
                          </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-8">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Description de la formation <span  class="text-danger">*</span></label>
                                 <textarea  value="{{ old('formt_contenu') }}" name="formt_contenu" type="text" class="form-control form-control-plaintext"></textarea>
@@ -74,6 +77,29 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('formt_contenu')}}</small>
                             @endif
                         </div>
+                        <div class="col-md-4">
+                            <div  class="form-group">
+                                <select  class="form-control" name="formt_structure">
+                                    <option class="text-warning" value="">Selectionner une structure</option>
+                                    @if( Session::get('admin_role')==1 || Session::get('admin_role')==2 )
+                                    @foreach($OF as $orga_form)
+                                    <option value="{{ $orga_form->name }}">{{ $orga_form->name }}</option>
+                                    @endforeach
+                                    @else
+
+
+                                    @if( Session::get('admin_structure'))
+                                    <option value="{{  Session::get('admin_structure') }}">{{  Session::get('admin_structure') }}</option>
+                                    @else
+                                    <option value="">Aucune information trouvée</option>
+                                    @endif
+
+                                    @endif
+
+                                </select>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-4">

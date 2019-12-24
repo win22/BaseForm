@@ -9,18 +9,17 @@ use App\Http\Requests;
 use Illuminate\View\View;
 use Session;
 Use Mail;
+use Excel;
+
 session_start();
 class EuController extends Controller
 {
     public function index()
     {
         $this->AdminAuthCheck();
-        $ei_all = DB::table('tbl_entreprise_intervenantes')
-            ->where('ei_status', 1)
-            ->get();
 
-        return view('eu.add_eu')
-            ->with('ei_all', $ei_all);
+        return view('eu.add_eu');
+
     }
 
     public  function  search(Request $request)
@@ -278,6 +277,45 @@ class EuController extends Controller
 
 
     }
+
+    //Extraire les données vers excel
+    public  function excel()
+    {
+        $data = DB::table('tbl_entreprise_utilisatrices')
+            ->orderByDesc('eu_id')
+            ->get()
+            ->toArray();
+        $data_array[] = array("Nom de l'entreprise ", 'Adresse',
+            'Email', 'Téléphone', "Secteur d'Activité", "Contact pour la demande","Nom du Directeur",
+            'Effectif', "Date d'adhesion",
+            'Durée', 'Etat', 'Début de la certification', "Fin de la certification", 'Status' );
+
+        foreach ( $data as $da)
+        {
+            $data_array[] = array( "Nom de l'entreprise " => $da->name,
+                'Adresse'  => $da->eu_adresse,
+                'Email'  => $da->eu_email,
+                'Téléphone'  => $da->eu_phone,
+                "Secteur d'Activité"  => $da->eu_secteurA,
+                'Contact pour la demande' => $da->eu_contactDe,
+                'Nom du Directeur' => $da->eu_nameDi,
+                "Date d'adhesion"  => $da->eu_date_ad ,
+                'Durée '  => $da->eu_time ,
+                "Etat"  => $da->eu_etat ,
+                'Début de la certification'  => $da->eu_efectif ,
+                'Fin de la certification'  => $da->eu_efectif,
+                'Status'  => $da->eu_status);
+        }
+        Excel::create('Entreprises_Utilisatrices', function ($excel)use ($data_array)
+        {
+            $excel->setTitle('Entreprises_Utilisatrices');
+            $excel->sheet('Entreprises_Utilisatrices',function ($sheet) use ($data_array){
+                $sheet->fromArray($data_array, null, 'A1', false, false);
+            });
+        })->download('xlsx');
+
+    }
+
 
 
 //permet de verifier si l'eu est connecté

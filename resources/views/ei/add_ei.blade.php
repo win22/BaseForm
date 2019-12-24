@@ -103,10 +103,10 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <select  class="form-control " name="ei_etat">
+                            <select  class="form-control dynamic2 " name="ei_etat">
                                 <option value="">État <span  class="text-danger">*</span> </option>
-                                <option class="text-warning" value="en demarche">En démarche</option>
-                                <option class="text-success" value="certifie">Certifié Mase </option>
+                                <option class="text-warning" value="En démarche">En démarche</option>
+                                <option class="text-success" value="agrée">Certifié Mase </option>
                             </select>
                             @if($errors->has('ei_etat'))
                             <small class="form-text text-muted text-danger">{{$errors->first('ei_etat')}}</small>
@@ -114,30 +114,18 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Duré de la certification</label>
-                                <input  value="{{ old('ei_time') }}" name="ei_time" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('ei_time'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('ei_time')}}</small>
-                            @endif
-                        </div>
-
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <select  class="form-control text-info " name="ei_eu">
                                 <option value="">Entreprise Utilisatrice Principale </option>
                                @foreach($eu_all as $v_eu)
-                                <option class="text-success" value="{{ $v_eu->name  }}">{{ $v_eu->name }} </option>
+                                <option value="{{ $v_eu->name  }}">{{ $v_eu->name }} </option>
                                 @endforeach
                             </select>
                             @if($errors->has('ei_eu'))
                             <small class="form-text text-muted text-danger">{{$errors->first('ei_eu')}}</small>
                             @endif
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-11">
+                        <div class="col-md-9">
                             <div class="form-group">
                                 <label  class="bmd-label-floating text-warning">Autres Entreprise Utilisatrice</label>
                                 <input  value="{{ old('ei_a_eu') }}" name="ei_a_eu" type="text" class="form-control">
@@ -148,6 +136,9 @@
                         </div>
                     </div>
                     <div class="row">
+
+                    </div>
+                    <div class="row  forma">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Date de début </label>
@@ -166,11 +157,18 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Duré de la certification</label>
+                                <input  value="{{ old('ei_time') }}" name="ei_time" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('ei_time'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('ei_time')}}</small>
+                            @endif
+                        </div>
 
                     </div>
-                    <div class="row">
-                        <input value="2" name="user_role" type="text" hidden>
-                    </div>
+
                     <a href="/all-ei" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
                         Annuler </a>&nbsp;

@@ -151,6 +151,13 @@
                 <p  id="total_records">
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
+                <form action="/excel-eu">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <i class="fa fa-share"></i>&nbsp;
+                        Exporter vers excel
+                        <div class="ripple-container"></div>
+                    </button>
+                </form>
                 </p>
                 @else
                 <p class="text-center">Aucune information trouvé</p>

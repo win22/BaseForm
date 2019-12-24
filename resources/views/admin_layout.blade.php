@@ -186,20 +186,26 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item {{ request()->is('all-formt','add-formt')? 'active' : '' }}">
-                    <a class="nav-link {{ request()->is('all-formt','add-formt')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic7" aria-expanded="false" aria-controls="ui-basic7">
+                <li class="nav-item {{ request()->is('all-formt','add-formt', 'all-formt-N')? 'active' : '' }}">
+                    <a class="nav-link {{ request()->is('all-formt','all-formt-N','add-formt')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic7" aria-expanded="false" aria-controls="ui-basic7">
                         <i class="fa fa-graduation-cap of"></i>
                         <p class="menu-title">Formations</p>
                     </a>
-                    <div class="collapse {{ request()->is('all-formt','add-formt')? 'show' : '' }}" id="ui-basic7">
+                    <div class="collapse {{ request()->is('all-formt','all-formt-N','add-formt')? 'show' : '' }}" id="ui-basic7">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item {{ request()->is('all-formt')? 'active' : '' }} ">
                                 <a class="nav-link" href="{{URL::to('/all-formt')}}">
                                     <i class="material-icons">view_list</i>
-                                    <span class="text-white">Listes des formations</span>
+                                    <span class="text-white">Formations certifiées Mase</span>
                                 </a>
                             </li>
-                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                            <li class="nav-item {{ request()->is('all-formt-N')? 'active' : '' }} ">
+                                <a class="nav-link" href="{{URL::to('/all-formt-N')}}">
+                                    <i class="material-icons">view_list</i>
+                                    <span class="text-white">Autres formations</span>
+                                </a>
+                            </li>
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('admin_role') == 3 )
                             <li class="nav-item {{ request()->is('add-formt')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-formt')}}">
                                     <i class="material-icons">playlist_add</i>

@@ -22,7 +22,6 @@ class AdminController extends Controller
             ->get();
         $OF = DB::table('tbl_organisme_formation')
             ->orWhere('of_certi', 1)
-            ->orWhere('of_certi', 0)
             ->get();
         $EI = DB::table('tbl_entreprise_intervenantes')
             ->get();
@@ -43,10 +42,12 @@ class AdminController extends Controller
                 ->where($select, $value)
                 ->groupBy($dependent)
                 ->get();
+
             $data2 = DB::table('tbl_organisme_formation')
             ->where($select, $value)
             ->groupBy($dependent)
             ->get();
+
             $data3 = DB::table('tbl_entreprise_intervenantes')
             ->where($select, $value)
             ->groupBy($dependent)
@@ -54,6 +55,7 @@ class AdminController extends Controller
 
 
             $output = '<option value="">Select '.ucfirst($dependent).'</option>';
+
             foreach ($data as $row)
             {
                 $text = 'Entreprise utilisatrice';
