@@ -111,7 +111,7 @@
                     @else
                     <p class="text-center">Aucune information trouvé</p>
                     @endif
-                <a href="#">Voir d'autres formations</a>
+                <a class="text-warning" href="/all-formt-N">Voir d'autres formations...</a>
 
                 {{ $all_formt_info->links() }}
             </div>

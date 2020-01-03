@@ -175,7 +175,8 @@
                                     <span class="text-white">Listes des apprenants</span>
                                 </a>
                             </li>
-                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
+                            @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
+                            || Session::get('user_role')== 3)
                             <li class="nav-item {{ request()->is('add-stag')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-stag')}}">
                                     <i class="material-icons">playlist_add</i>
@@ -205,7 +206,7 @@
                                     <span class="text-white">Autres formations</span>
                                 </a>
                             </li>
-                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('admin_role') == 3 )
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3 )
                             <li class="nav-item {{ request()->is('add-formt')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-formt')}}">
                                     <i class="material-icons">playlist_add</i>

@@ -95,7 +95,7 @@
                            </div>
                            <div class="col-md-8">
                                <p class="card-title">
-                                   <span style="font-family: 'Manjari Bold'"> {{ $formt_info->created_at }}</span>
+                                   <span style="font-family: 'Manjari Bold'"> {{ strftime("%d %B %Y", strtotime( $formt_info->created_at ))}}</span>
                                </p>
                            </div>
                        </div>
@@ -128,7 +128,8 @@
                </div>
 
 
-                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                @if( Session::get('admin_role')==1 || Session::get('admin_role')==2 || Session::get('user_role')==3
+                && Session::get('admin_structure')== $formt_info->formt_structure)
                 <div class="row">
                     <div class="col-md-12">
                         <a href="{{ URL::to('/edit-formt/'.

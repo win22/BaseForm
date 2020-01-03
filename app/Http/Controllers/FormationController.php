@@ -35,6 +35,20 @@ class formationController extends Controller
             ->with(['nb' => $nb]);
     }
 
+    public function  search2(Request $request)
+    {
+        $this->AdminAuthCheck();
+        $search = $request->get('search');
+        $all_formt_info = DB::table('tbl_formations')
+            ->where('formt_structure', 'like', '%'.$search.'%')
+            ->where ('formt_type', 'non' )
+            ->orderByDesc('formt_id')
+            ->paginate(5);
+        $nb= $all_formt_info->count();
+        return view('formation.all_formt_non', ['all_formt_info' => $all_formt_info ])
+            ->with(['nb' => $nb]);
+    }
+
     //afficher la liste des formt
     public function all_formt()
     {
@@ -126,7 +140,16 @@ class formationController extends Controller
             ->where('formt_id', $formt_id)
             ->first();
 
-        $formt_info = view('formation.edit_formt')->with('formt_info', $formt_info);
+        $OF = DB::table('tbl_organisme_formation')
+            ->where('of_certi', 1)
+            ->where('of_status', 1)
+            ->get();
+
+
+
+        $formt_info = view('formation.edit_formt')
+            ->with('formt_info', $formt_info)
+            ->with('OF', $OF);
         return View('admin_layout')
             ->with('formations.all_formt', $formt_info);
 

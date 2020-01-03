@@ -7,8 +7,8 @@
         <div class="card">
             <div class="card-header card-header-info row">
                 <div class="col-md-6">
-                <h4 class="card-title">Utilisatadminr <i class="fa fa-user"></i></h4>
-                <p class="card-category">Afficher les détails d'un utilisatadminr</p>
+                <h4 class="card-title">Utilisateur <i class="fa fa-user"></i></h4>
+                <p class="card-category">Afficher les détails d'un utilisateur</p>
                 </div>
 
                 <div class="col-md-6">

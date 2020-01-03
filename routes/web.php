@@ -130,6 +130,7 @@ Route::post('/save-formt', 'FormationController@save_formt');
 Route::get('/all-formt',  'FormationController@all_formt');
 Route::get('/all-formt-N',  'FormationController@all_formt_n');
 Route::get('/searchFormt', 'FormationController@search');
+Route::get('/searchFormt-N', 'FormationController@search2');
 Route::get('/delete-formt/{formt_id}', 'FormationController@delete_formt');
 Route::get('/edit-formt/{formt_id}', 'FormationController@edit_formt');
 Route::post('/update-formt/{formt_id}', 'FormationController@update_formt');

@@ -26,7 +26,7 @@
             </div>
 
             <div class="col-md-4">
-                <form class="navbar-form" action="/searchFormt">
+                <form class="navbar-form" action="/searchFormt-N">
                     <div class="input-group">
                         <div class="form-group">
                             <label class="bmd-label-floating text-white">Rechercher</label>
@@ -66,7 +66,7 @@
                         <td class="center" style="font-family:'Manjari Bold'">{{ $v_formt->formt_name }}</td>
                         <td class="center">{{ $v_formt->formt_time }}</td>
                         <td class="center ellipsis">{{ $v_formt->formt_contenu }}</td>
-                        <td style="font-family: 'Manjari Bold';" class="text-center text-warning">
+                        <td style="font-family: 'Manjari Bold';" class="text-center text-success">
                             {{ $v_formt->formt_structure }}
                         </td>
                         @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
@@ -77,17 +77,18 @@
                                  $v_formt->formt_id)}}">
                                 <i class="material-icons">visibility</i>
                             </a>
-                            @if( Session::get('admin_role')==1 || Session::get('admin_role')==2 )
+                            @if( Session::get('admin_role')==1 || Session::get('admin_role')==2 || Session::get('user_role')==3
+                            && Session::get('admin_structure')== $v_formt->formt_structure)
+
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-formt/'.
                                  $v_formt->formt_id)}}">
                                 <i class="material-icons">edit</i>
                             </a>
-                            @if( Session::get('admin_role')==1)
+
                             <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-formt/'.
                                  $v_formt->formt_id)}}" id="delete">
                                 <i class="material-icons">close</i>
                             </a>
-                            @endif
                             @endif
                         </td>
                     </tr>
@@ -102,7 +103,7 @@
                 @else
                 <p class="text-center">Aucune information trouvé</p>
                 @endif
-                <a href="#">Voir d'autres formations</a>
+                <a class="text-warning" href="/all-formt">Voir d'autres formations...</a>
 
                 {{ $all_formt_info->links() }}
             </div>
