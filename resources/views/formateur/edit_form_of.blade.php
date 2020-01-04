@@ -1,7 +1,7 @@
 @extends('admin_layout')
 @section('contenu')
 @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
-|| Session::get('admin_role')== 3
+|| Session::get('user_role')== 3
 && Session::get('admin_structure')== $form_info->form_of
 && $form_info->form_etat == 'non'
 )
@@ -11,8 +11,8 @@
         @csrf
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" style="font-family: 'Manjari Bold'" id="exampleModalLabel"> Modifier</h5>
+                <div style="background-color: red" class="modal-header">
+                    <h5 class="modal-title text-white" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Formulaire de modification</h5>
                 </div>
                 <div class="modal-body">
                     <div hidden class="form-group">
@@ -74,21 +74,9 @@
                             <option  value="5">Cinquieme formation</option>
                         </select>
                     </div>
-                    <div  class="form-group">
+                    <div  class="form-group " hidden>
                         <select  class="form-control " name="form_etat">
-                            @if($form_info->form_etat == 'agrée')
-                            <option class="text-success" value="{{ $form_info->form_etat }}">Agréé par Mase </option>
-                            @else
-                            <option class="text-danger" value="{{ $form_info->form_etat }}">Non agréé  </option>
-                            @endif
-
-                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                            <option value="">Selectionner un autre <span  class="text-danger"></span> </option>
-                            <option class="text-success" value="agrée">agrée par Mase</option>
-                            <option class="text-danger" value="non">Non agréé </option>
-                            @endif
-
-
+                            <option class="text-danger" value="{{ $form_info->form_etat }}">{{ $form_info->form_etat }}</option>
                         </select>
                     </div>
                     <div  class="form-group">

@@ -52,17 +52,53 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('form_prenom')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Adresse <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('form_adresse') }}" name="form_adresse" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('form_adresse'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('form_adresse')}}</small>
+                        <div class="col-md-2">
+                            <select  class="form-control " name="form_sexe">
+                                <option  class="text-warning" value="">Sexe <span  class="text-danger">*</span> </option>
+                                <option value="1">Homme</option>
+                                <option value="2">Femme </option>
+                            </select>
+                            @if($errors->has('form_sexe'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_sexe')}}</small>
                             @endif
                         </div>
-                    </div>
 
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select  class="form-control " name="form_type_piece">
+                                <option class="text-warning" value="">Type Piece <span  class="text-danger">*</span> </option>
+                                <option value="Carte National d'identité">Carte national d'identité</option>
+                                <option value="Passeport">Passeport</option>
+                            </select>
+                            @if($errors->has('form_type_piece'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_type_piece')}}</small>
+                            @endif
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Numéro de la piece <span  class="text-danger">*</span></label>
+                                <input  value="{{ old('form_num_piece') }}" name="form_num_piece" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('form_num_piece'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_num_piece')}}</small>
+                            @endif
+                        </div>
+                        <div class="col-md-2">
+                            <select  class="form-control " name="form_situa">
+                                <option  class="text-warning" value="">Situation matrimoniale <span  class="text-danger">*</span> </option>
+                                <option value="Marié(e)">Marié(e)</option>
+                                <option value="Divorcé(e)">Divorcé(e)</option>
+                                <option value="Fiancé(e)">Fiancé(e)</option>
+                                <option value="Célibataire">Célibataire</option>
+                            </select>
+                            @if($errors->has('form_situa'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_situa')}}</small>
+                            @endif
+                        </div>
+
+                    </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -83,14 +119,13 @@
                             @endif
                         </div>
                         <div class="col-md-4">
-                                <select  class="form-control " name="form_sexe">
-                                    <option value="">Sexe <span  class="text-danger">*</span> </option>
-                                    <option value="1">Homme</option>
-                                    <option value="2">Femme </option>
-                                </select>
-                                @if($errors->has('form_sexe'))
-                                <small class="form-text text-muted text-danger">{{$errors->first('form_sexe')}}</small>
-                                @endif
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Adresse <span  class="text-danger">*</span></label>
+                                <input  value="{{ old('form_adresse') }}" name="form_adresse" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('form_adresse'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_adresse')}}</small>
+                            @endif
                         </div>
                     </div>
 

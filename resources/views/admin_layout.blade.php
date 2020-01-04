@@ -541,7 +541,7 @@
     jQuery(function ($) {
         var alert = $('#affiche');
         if(alert.length > 0){
-            alert.hide().slideDown(730).delay(2800).fadeOut(600);
+            alert.hide().slideDown(730).delay(3800).fadeOut(600);
 
         }
     })
@@ -550,7 +550,7 @@
     jQuery(function ($) {
         var alert = $('#alert');
         if(alert.length > 0){
-            alert.hide().slideDown(730).delay(2800).fadeOut(600);
+            alert.hide().slideDown(730).delay(3850).fadeOut(600);
 
         }
     })
@@ -730,3 +730,5 @@
 </body>
 
 </html>
+
+

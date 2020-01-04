@@ -102,7 +102,8 @@ Route::get('/edit-details/{ei_id}', 'EiController@detail_ei');
 Route::get('/delete-ei/{ei_id}', 'EiController@delete_ei');
 Route::post('/update-ei/{ei_id}', 'EiController@update_ei');
 Route::get('/detail-ei/{ei_id}', 'EiController@detail_ei');
-
+Route::get('/searchEIE', 'EiController@searchN');
+Route::get('/searchEIA', 'EiController@searchE');
 
 //Route pour la gestion des formateurs
 Route::get('/add-form', 'FormateurController@index');
@@ -161,3 +162,6 @@ Route::get('/valide-stag/{stag_id}', 'StagiaireController@stag_valide');
 Route::get('/unvalide-stag/{stag_id}', 'StagiaireController@stag_unvalide');
 Route::get('/searchStgA', 'StagiaireController@searchA');
 Route::get('/searchStgN', 'StagiaireController@searchN');
+
+
+

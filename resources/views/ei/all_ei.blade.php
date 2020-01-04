@@ -39,6 +39,24 @@
                     </div>
 
                 </form>
+                <div class="row">
+
+                    <form action="/searchEIE">
+                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher uniquement
+                         les Entreprises Intervenantes  qui sont en démarches" type="submit" class="btn btn-warning btn-sm">
+                            En démarches
+                            <div class="ripple-container"></div>
+                        </button>
+                    </form>
+                    <form action="/searchEIA">
+                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher uniquement les
+                         les Entreprises
+                      Intervenantes certifiées " type="submit" class="btn btn-success btn-sm">
+                            Certifiées
+                            <div class="ripple-container"></div>
+                        </button>
+                    </form> &nbsp;
+                </div>
             </div>
         </div>
         <div class="card-body">

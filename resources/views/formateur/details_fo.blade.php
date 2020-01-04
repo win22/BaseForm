@@ -54,16 +54,63 @@
                                 </p>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-4">
                                 <p class="card-title">
-                                <li class="fa fa-envelope" style="color: #046b76!important;"></li>&nbsp;
-                                Adresse e-mail :
+                                <li class="fa fa-intersex" style="color: #046b76!important;"></li>&nbsp;
+                                Sexe :
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                @if($form_info->form_sexe == 1)
+                                <p class="card-title">
+                                    <span style="font-family: 'Manjari Bold'">Homme</span>
+                                </p>
+                                @else
+                                <p class="card-title">
+                                    <span style="font-family: 'Manjari Bold'">Femme</span>
+                                </p>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="card-title">
+                                <li class="fa fa-address-card" style="color: #046b76!important;"></li>&nbsp;
+                                Type de Piece :
                                 </p>
                             </div>
                             <div class="col-md-6">
                                 <p class="card-title">
-                                    <span style="font-family: 'Manjari Bold'"> {{ $form_info->form_email }}</span>
+                                    <span style="font-family: 'Manjari Bold'"> {{ $form_info->form_type_piece }}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="card-title">
+                                <li class="fa fa-edit" style="color: #046b76!important;"></li>&nbsp;
+                                Numero de la piece :
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-title">
+                                    <span style="font-family: 'Manjari Bold'"> {{ $form_info->form_num_piece }}</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="card-title">
+                                <li class="fa fa-intersex" style="color: #046b76!important;"></li>&nbsp;
+                                Situation matrimoniale  :
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-title">
+                                    <span style="font-family: 'Manjari Bold'"> {{ $form_info->form_situa }}</span>
                                 </p>
                             </div>
                         </div>
@@ -98,22 +145,17 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <p class="card-title">
-                                <li class="fa fa-intersex" style="color: #046b76!important;"></li>&nbsp;
-                                Sexe :
+                                <li class="fa fa-envelope" style="color: #046b76!important;"></li>&nbsp;
+                                Adresse e-mail :
                                 </p>
                             </div>
                             <div class="col-md-6">
-                                @if($form_info->form_sexe == 1)
                                 <p class="card-title">
-                                    <span style="font-family: 'Manjari Bold'">Homme</span>
+                                    <span style="font-family: 'Manjari Bold'"> {{ $form_info->form_email }}</span>
                                 </p>
-                                @else
-                                <p class="card-title">
-                                    <span style="font-family: 'Manjari Bold'">Femme</span>
-                                </p>
-                                @endif
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-4">
                                 <p class="card-title">
@@ -242,7 +284,7 @@
 
 
                 @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
-                || Session::get('admin_role')== 3
+                || Session::get('user_role')== 3
                 && Session::get('admin_structure')== $form_info->form_of
                 && $form_info->form_etat =='non'
                 )
@@ -281,13 +323,13 @@
         </div>
     </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade small" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form  action="{{ url('/save-form_of')}}" method="post" >
             @csrf
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Nouvelle formation pour <span class="text-warning">{{ $form_info->form_name }}</span></h5>
+                    <div class="modal-header" style="background: #00acc1">
+                        <h5 class="modal-title text-white" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Nouvelle formation pour <span class="text-white">{{$form_info->form_prenom }} {{ $form_info->form_name }}</span></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -298,11 +340,7 @@
                                 <option class="text-success" value="{{ $form_info->form_token }}">{{ $form_info->form_token }}</option>
                             </select>
                         </div>
-                        <div hidden class="form-group">
-                            <select  class="form-control" name="form_etat">
-                                <option class="text-success" value="{{ $form_info->form_etat }}">{{ $form_info->form_etat }}</option>
-                            </select>
-                        </div>
+
                         <div hidden class="form-group">
                             <select  class="form-control" name="form_name">
                                 <option class="text-success" value="{{ $form_info->form_name }}">{{ $form_info->form_name }}</option>
@@ -395,12 +433,14 @@
         </form>
     </div>
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg small" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Autres formation de <span class="text-warning">{{ $form_info->form_name }}</span></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal-header" style="background-color: #064b44 !important;">
+                <h5 class="modal-title text-white" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Autres formations de <span class="text-warning">
+                        {{ $form_info->form_prenom }}
+                        {{ $form_info->form_name }}</span></h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -413,10 +453,8 @@
                         <th>Début de la formation </th>
                         <th>Fin de la formation </th>
                         <th>État </th>
-                        @if( Session::get('admin_role')==1)
-                        <th>Status </th>
-                        @endif
-                        <th></th>
+
+                        <th>Actions</th>
                         </thead>
                         <tbody class="text-center">
                         @foreach ( $all_form_info as $v_form)
@@ -426,8 +464,8 @@
                             <td class="center">{{  strftime("%d %B %Y", strtotime($v_form->form_date_fin)) }}</td>
                             <td class="text-center">
                                 @if($v_form->form_etat=='agrée')
-                                <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
-                            Agréé par Mase <i class="fa fa-certificate"></i>
+                                <span class="label" style="font-family: 'Manjari Bold'; color: rgba(5,175,90,0.88);">
+                             Agréé
                         </span>
                                 @else
                                 <span class="label" style="font-family: 'Manjari Bold'; color: rgba(233,50,13,0.88);">
@@ -435,30 +473,19 @@
                         </span>
                                 @endif
                             </td>
-                            @if( Session::get('admin_role')==1)
-                            <td class="text-center">
-                                @if($v_form->form_status==1)
-                                <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
-                            Activé
-                        </span>
-                                @else
-                                <span class="label" style="font-family: 'Manjari Bold'; color: rgba(233,32,3,0.88);">
-                            Desactivé
-                        </span>
-                                @endif
-                            </td>
-                            @endif
                             <td class="td-actions">
 
                                 @if( Session::get('admin_role')==1)
-                                @if($v_form->form_status==1)
-                                <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-form/'.
-                        $v_form->form_id)}}">
+                                @if($v_form->form_etat=='agrée')
+                                <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Retirer l'agrément " href="{{ URL::to('/unvalide-form/'.
+                              $v_form->form_id)}}">
                                     <i class="material-icons">thumb_down_alt</i>
                                 </a>
                                 @else
-                                <a class="btn btn-success btn-link btn-sm"  rel="tooltip" title="Activer" href="{{ URL::to('/active-form/'.
-                        $v_form->form_id)}}">
+                                <a class="btn btn-success btn-link btn-sm"  rel="tooltip" title="Agrée "
+                                   href="{{ URL::to('/valide-form/'.
+                              $v_form->form_id)}}"
+                                >
                                     <i class="material-icons">thumb_up</i>
                                 </a>
                                 @endif
@@ -475,6 +502,8 @@
                                  $v_form->form_id)}}" id="delete">
                                     <i class="material-icons">close</i>
                                 </a>
+                                @else
+                                <img  style=" height: 60px; width: 70px; border-radius: 15px;" src="{{URL::to('image/cer.png')}}" />
                                 @endif
                             </td>
                         </tr>
@@ -497,7 +526,6 @@
         </div>
     </div>
 </div>
-
 
 @endif
 @endsection

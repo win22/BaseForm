@@ -291,11 +291,11 @@
         </div>
     </form>
 </div>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg small" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Autres agréments de <span class="text-warning">{{ $of_info->name }}</span></h5>
+            <div class="modal-header" style="background-color: #064b44 !important;">
+                <h5 class="modal-title text-white" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Autres agréments pour <span class="text-warning">{{ $of_info->name }}</span></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -29,7 +29,6 @@ class EiController extends Controller
         $search = $request->get('search');
         $all_ei_info = DB::table('tbl_entreprise_intervenantes')
             ->where('name', 'like', '%'.$search.'%')
-            ->orWhere('ei_etat', 'like', '%'.$search.'%')
             ->orWhere('ei_eu', 'like', '%'.$search.'%')
             ->orderByDesc('ei_id')
             ->paginate(5);
@@ -37,6 +36,31 @@ class EiController extends Controller
         return view('ei.all_ei', ['all_ei_info' => $all_ei_info ])
             ->with(['nb' => $nb]);
     }
+
+    public  function  searchN()
+    {
+        $this->AdminAuthCheck();
+        $all_ei_info = DB::table('tbl_entreprise_intervenantes')
+            ->where('ei_etat' , 'En démarche')
+            ->orderByDesc('ei_id')
+            ->paginate(5);
+        $nb= $all_ei_info->count();
+        return view('ei.all_ei', ['all_ei_info' => $all_ei_info ])
+            ->with(['nb' => $nb]);
+    }
+
+    public  function  searchE()
+    {
+        $this->AdminAuthCheck();
+        $all_ei_info = DB::table('tbl_entreprise_intervenantes')
+            ->where('ei_etat' , 'agrée')
+            ->orderByDesc('ei_id')
+            ->paginate(5);
+        $nb= $all_ei_info->count();
+        return view('ei.all_ei', ['all_ei_info' => $all_ei_info ])
+            ->with(['nb' => $nb]);
+    }
+
 
     //afficher une entreprise intervenante
     public function all_ei()

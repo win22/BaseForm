@@ -1,7 +1,7 @@
 @extends('admin_layout')
 @section('contenu')
 @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
-|| Session::get('admin_role')== 3
+|| Session::get('user_role')== 3
 && Session::get('admin_structure')== $form_info->form_of
 && $form_info->form_etat == 'non' &&  $form_info->form_certi == 1
 )
@@ -55,15 +55,60 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('form_prenom')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Adresse <span  class="text-danger">*</span></label>
-                                <input  value="{{ $form_info->form_adresse }}" name="form_adresse" type="text" class="form-control">
-                            </div>
-                            @if($errors->has('form_adresse'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('form_adresse')}}</small>
+
+                        <div class="col-md-2">
+                            <select  class="form-control " name="form_sexe">
+                                @if($form_info->form_sexe == 1)
+                                <option value="{{ $form_info->form_sexe }}">Homme </option>
+                                @else
+                                <option value="{{ $form_info->form_sexe }}">Homme </option>
+                                @endif
+                                <option value="">Sexe <span  class="text-danger">*</span> </option>
+                                <option value="1">Homme</option>
+                                <option value="2">Femme </option>
+                            </select>
+                            @if($errors->has('form_sexe'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_sexe')}}</small>
                             @endif
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select  class="form-control " name="form_type_piece">
+                                <option value="{{ $form_info->form_type_piece }}"> {{ $form_info->form_type_piece }}</option>
+                                <option class="text-warning" value="">Type Piece <span  class="text-danger">*</span> </option>
+                                <option value="Carte National d'identité">Carte national d'identité</option>
+                                <option value="Passeport">Passeport</option>
+                            </select>
+                            @if($errors->has('form_type_piece'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_type_piece')}}</small>
+                            @endif
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Numéro de la piece <span  class="text-danger">*</span></label>
+                                <input  value="{{  $form_info->form_num_piece }}" name="form_num_piece" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('form_num_piece'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_num_piece')}}</small>
+                            @endif
+                        </div>
+                        <div class="col-md-2">
+                            <select  class="form-control " name="form_situa">
+                                <option value="{{ $form_info->form_situa }}"> {{ $form_info->form_situa }}</option>
+                                <option  class="text-warning" value="">Situation matrimoniale <span  class="text-danger">*</span> </option>
+                                <option value="Marié(e)">Marié(e)</option>
+                                <option value="Divorcé(e)">Divorcé(e)</option>
+                                <option value="Fiancé(e)">Fiancé(e)</option>
+                                <option value="Célibataire">Célibataire</option>
+                            </select>
+                            @if($errors->has('form_situa'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_situa')}}</small>
+                            @endif
+                        </div>
+
                     </div>
 
                     <div class="row">
@@ -86,18 +131,12 @@
                             @endif
                         </div>
                         <div class="col-md-4">
-                            <select  class="form-control " name="form_sexe">
-                                @if($form_info->form_sexe == 1)
-                                <option value="{{ $form_info->form_sexe }}">Homme </option>
-                                @else
-                                <option value="{{ $form_info->form_sexe }}">Homme </option>
-                                @endif
-                                <option value="">Sexe <span  class="text-danger">*</span> </option>
-                                <option value="1">Homme</option>
-                                <option value="2">Femme </option>
-                            </select>
-                            @if($errors->has('form_sexe'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('form_sexe')}}</small>
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Adresse <span  class="text-danger">*</span></label>
+                                <input  value="{{ $form_info->form_adresse }}" name="form_adresse" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('form_adresse'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_adresse')}}</small>
                             @endif
                         </div>
                     </div>

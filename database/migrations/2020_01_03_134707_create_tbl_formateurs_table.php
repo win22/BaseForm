@@ -25,6 +25,9 @@ class CreateTblFormateursTable extends Migration
             $table->string('form_status', 1);
             $table->string('form_formation', 80);
             $table->string('form_of', 60)->nullable();
+            $table->string('form_situa', 60)->nullable();
+            $table->string('form_num_piece', 60)->nullable();
+            $table->string('form_type_piece', 60)->nullable();
             $table->string('form_token', 60)->nullable();
             $table->string('form_certi', 2)->nullable();
             $table->string('form_date_debut', 60)->nullable();

@@ -60,6 +60,7 @@
                 <table class="table table-hover">
                     <thead class="text-center text-danger">
 
+                    <th class="text-center">Photo</th>
                     <th>Nom</th>
                     <th>Téléphone </th>
                     <th>Organisme de formation </th>
@@ -74,6 +75,8 @@
                     <tbody class="text-center">
                     @foreach ( $all_form_info as $v_form)
                     <tr>
+                        <td class="text-center"><img src="{{ URL::to($v_form->form_image) }}"
+                                                     style=" height: 40px; width: 40px; border-radius: 15px;">
                         </td>
                         <td  style="font-family: 'Manjari Bold'">{{ $v_form->form_name }}</td>
                         <td class="center">{{ $v_form->form_phone }}</td>
@@ -143,6 +146,7 @@
                                  $v_form->form_token)}}" id="delete">
                                 <i class="material-icons">close</i>
                             </a>
+
                             @endif
                         </td>
                     </tr>

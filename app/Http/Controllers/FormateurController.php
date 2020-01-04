@@ -39,12 +39,25 @@ class FormateurController extends Controller
     {
         $this->AdminAuthCheck();
         $search = $request->get('search');
-        $all_form_info = DB::table('tbl_formateurs')
-            ->where('form_name', 'like', '%'.$search.'%')
-            ->orWhere('form_of', 'like', '%'.$search.'%')
-            ->orderByDesc('form_id')
-            ->paginate(5);
-        $nb= $all_form_info->count();
+        if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') ==1 || Session::get('user_role') ==2 )
+        {
+            $all_form_info = DB::table('tbl_formateurs')
+                ->where('form_of', 'like', '%'.$search.'%')
+                ->where('form_certi', 1)
+                ->orderByDesc('form_id')
+                ->paginate(5);
+            $nb= $all_form_info->count();
+        }else
+        {
+            $all_form_info = DB::table('tbl_formateurs')
+                ->where('form_name', 'like', '%'.$search.'%')
+                ->where('form_certi', 1)
+                ->where('form_of', Session::get('admin_structure'))
+                ->orderByDesc('form_id')
+                ->paginate(5);
+            $nb= $all_form_info->count();
+        }
+
         return view('formateur.all_fo', ['all_form_info' => $all_form_info ])
             ->with(['nb' => $nb]);
     }
@@ -52,26 +65,47 @@ class FormateurController extends Controller
     public  function  searchA()
     {
         $this->AdminAuthCheck();
-
-        $all_form_info = DB::table('tbl_formateurs')
-            ->where('form_etat' , 'agrée')
-            ->where('form_certi' , '1')
-            ->orderByDesc('form_id')
-            ->paginate(5);
-        $nb= $all_form_info->count();
+        if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') ==1 || Session::get('user_role') ==2 ) {
+            $all_form_info = DB::table('tbl_formateurs')
+                ->where('form_etat', 'agrée')
+                ->where('form_certi', '1')
+                ->orderByDesc('form_id')
+                ->paginate(5);
+            $nb = $all_form_info->count();
+        }
+        else
+        {
+            $all_form_info = DB::table('tbl_formateurs')
+                ->where('form_of', Session::get('admin_structure'))
+                ->where('form_etat', 'agrée')
+                ->where('form_certi', '1')
+                ->orderByDesc('form_id')
+                ->paginate(5);
+            $nb = $all_form_info->count();
+        }
         return view('formateur.all_fo', ['all_form_info' => $all_form_info ])
             ->with(['nb' => $nb]);
     }
     public  function  searchN()
     {
         $this->AdminAuthCheck();
-
-        $all_form_info = DB::table('tbl_formateurs')
-            ->where('form_etat' , 'non')
-            ->where('form_certi' , '1')
-            ->orderByDesc('form_id')
-            ->paginate(5);
-        $nb= $all_form_info->count();
+        if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') ==1 || Session::get('user_role') ==2 ) {
+            $all_form_info = DB::table('tbl_formateurs')
+                ->where('form_etat', 'non')
+                ->where('form_certi', '1')
+                ->orderByDesc('form_id')
+                ->paginate(5);
+            $nb = $all_form_info->count();
+        }else
+        {
+            $all_form_info = DB::table('tbl_formateurs')
+                ->where('form_of', Session::get('admin_structure'))
+                ->where('form_etat', 'non')
+                ->where('form_certi', '1')
+                ->orderByDesc('form_id')
+                ->paginate(5);
+            $nb = $all_form_info->count();
+        }
         return view('formateur.all_fo', ['all_form_info' => $all_form_info ])
             ->with(['nb' => $nb]);
     }
@@ -81,11 +115,23 @@ class FormateurController extends Controller
     {
 
         $this->AdminAuthCheck();
-        $all_form_info =  DB::table('tbl_formateurs')
-            ->where('form_certi' , 1)
-            ->orderByDesc('form_id')
-            ->paginate(5);
-        $nb= $all_form_info->count();
+        if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') ==1 || Session::get('user_role') ==2 )
+        {
+            $all_form_info =  DB::table('tbl_formateurs')
+                ->where('form_certi', 1)
+                ->orderByDesc('form_id')
+                ->paginate(5);
+            $nb= $all_form_info->count();
+        }
+        else{
+
+            $all_form_info =  DB::table('tbl_formateurs')
+                ->where('form_of',  Session::get('admin_structure') )
+                ->where('form_certi', 1)
+                ->orderByDesc('form_id')
+                ->paginate(5);
+            $nb= $all_form_info->count();
+        }
 
         return view('formateur.all_fo', ['all_form_info' => $all_form_info ])
             ->with(['nb' => $nb]);
@@ -98,7 +144,7 @@ class FormateurController extends Controller
         DB::table('tbl_formateurs')
             ->where('form_id',$form_id)
             ->update(['form_etat'=> 'agrée']);
-        Session::put('message', 'Un formateur  a été agréé ');
+        Session::put('message', 'Un agrément a été attribué à ce formateur  ');
         return back();
     }
 
@@ -108,7 +154,7 @@ class FormateurController extends Controller
         DB::table('tbl_formateurs')
             ->where('form_id',$form_id)
             ->update(['form_etat'=>'non']);
-        Session::put('message',  "Vous avez retiré l'agrément à ce formateur");
+        Session::put('message',  "Vous avez retiré un agrément à ce formateur");
         return back();
     }
 
@@ -169,8 +215,12 @@ class FormateurController extends Controller
             'form_email' => ['required', 'unique:tbl_formateurs', 'email', 'max: 191'],
             'form_phone' => ['required','max: 60'],
             'form_etat' => ['required', 'max: 10'],
+            'form_of' => ['required', 'max: 90'],
+            'form_type_piece' => ['required', 'max: 60'],
+            'form_num_piece' => ['required', 'max: 60'],
+            'form_situa' => ['required', 'max: 60'],
             'form_of' => [ 'max: 60'],
-            'form_formation' => [ 'max: 60'],
+            'form_formation' => [ 'required', 'max: 60'],
         ]);
 
         if($request->form_etat == 'agrée')
@@ -181,11 +231,16 @@ class FormateurController extends Controller
             ]);
         }
 
-
         $data = array();
         $data['form_id'] = $request->form_id;
         $data['form_name'] = $request->form_name;
         $data['form_prenom'] = $request->form_prenom;
+        $data['form_sexe'] = $request->form_sexe;
+
+        $data['form_type_piece'] = $request->form_type_piece;
+        $data['form_num_piece'] = $request->form_num_piece;
+        $data['form_situa'] = $request->form_situa;
+
         $data['form_adresse'] = $request->form_adresse;
         $data['form_email'] = $request->form_email;
         $data['form_phone'] = $request->form_phone;
@@ -200,7 +255,7 @@ class FormateurController extends Controller
             $data['form_date_debut'] = $request->form_date_debut;
             $data['form_date_fin'] = $request->form_date_fin;
         }
-        $data['form_sexe'] = $request->form_sexe;
+
         $data['form_of'] = $request->form_of;
         $data['form_formation'] = $request->form_formation;
         $data['form_status'] =  0;
@@ -223,8 +278,10 @@ class FormateurController extends Controller
         }
 
         DB::table('tbl_formateurs')->insert($data);
-        Session::put('message', "le formateur " . $data['form_name'] . " a été crée avec succès !");
+        Session::put('message', "Le formateur " . $data['form_prenom'] . " " . $data['form_name']. " de l'organisme 
+        de formation ". $data['form_of']. " a été Ajouter avec succès !");
         return redirect('/all-form');
+
 
     }
 
@@ -297,11 +354,15 @@ class FormateurController extends Controller
             'form_prenom' => ['required','max: 60'],
             'form_adresse' => ['required', 'max: 60'],
             'form_sexe' => ['required','max: 1'],
-            'form_email' => ['required', 'max: 191'],
+            'form_email' => ['required', 'email', 'max: 191'],
             'form_phone' => ['required','max: 60'],
             'form_etat' => ['required', 'max: 10'],
+            'form_of' => ['required', 'max: 90'],
+            'form_type_piece' => ['required', 'max: 60'],
+            'form_num_piece' => ['required', 'max: 60'],
+            'form_situa' => ['required', 'max: 60'],
             'form_of' => [ 'max: 60'],
-            'form_formation' => [ 'max: 60'],
+            'form_formation' => [ 'required', 'max: 60'],
         ]);
 
         if($request->form_etat == 'agrée')
@@ -312,15 +373,21 @@ class FormateurController extends Controller
             ]);
         }
 
-
         $data = array();
         $data['form_id'] = $request->form_id;
         $data['form_name'] = $request->form_name;
         $data['form_prenom'] = $request->form_prenom;
+        $data['form_sexe'] = $request->form_sexe;
+
+        $data['form_type_piece'] = $request->form_type_piece;
+        $data['form_num_piece'] = $request->form_num_piece;
+        $data['form_situa'] = $request->form_situa;
+
         $data['form_adresse'] = $request->form_adresse;
         $data['form_email'] = $request->form_email;
         $data['form_phone'] = $request->form_phone;
         $data['form_etat'] = $request->form_etat;
+
         if($request->form_etat == 'non')
         {
             $data['form_date_debut'] = null;
@@ -330,10 +397,10 @@ class FormateurController extends Controller
             $data['form_date_debut'] = $request->form_date_debut;
             $data['form_date_fin'] = $request->form_date_fin;
         }
-        $data['form_sexe'] = $request->form_sexe;
+
         $data['form_of'] = $request->form_of;
         $data['form_formation'] = $request->form_formation;
-        $data['form_status'] =  $request->form_status;
+        $data['form_status'] =  0;
         $data['form_certi'] =  1;
         $data['form_token'] =  $request->form_token;
         $image = $request->file('form_image');
@@ -356,9 +423,11 @@ class FormateurController extends Controller
         $data2['form_email'] = $request->form_email;
         $data2['form_adresse'] = $request->form_adresse;
         $data2['form_phone'] = $request->form_phone;
+        $data2['form_type_piece'] = $request->form_type_piece;
+        $data2['form_num_piece'] = $request->form_num_piece;
+        $data2['form_situa'] = $request->form_situa;
         $data2['form_token'] = $request->form_token;
         $data2['form_of'] = $request->form_of;
-
 
         DB::table('tbl_formateurs')
             ->where('form_id', $form_id)
@@ -369,11 +438,8 @@ class FormateurController extends Controller
             ->where('form_token', $request->form_token )
             ->update($data2);
 
-
         Session::put('message', " ".$data['form_name']." a eté modifié avec Succes !");
         return redirect('/all-form');
-
-
 
     }
 
@@ -467,13 +533,12 @@ class FormateurController extends Controller
     public function saveNewforma(Request $request)
     {
         $this->AdminAuthCheck();
-        if($request->form_etat == 'agrée')
-        {
+
             request()->validate([
-                'form_date_debut' => ['required'],
-                'form_date_fin' => ['required'],
+                'form_certi' => ['required'],
+                'form_formation' => ['required'],
             ]);
-        }
+
 
         $data = array();
         $data['form_id'] = $request->form_id;
@@ -482,16 +547,9 @@ class FormateurController extends Controller
         $data['form_adresse'] = $request->form_adresse;
         $data['form_email'] = $request->form_email;
         $data['form_phone'] = $request->form_phone;
-        $data['form_etat'] = $request->form_etat;
-        if($request->form_etat == 'non')
-        {
-            $data['form_date_debut'] = null;
-            $data['form_date_fin'] = null;
-        }else
-        {
+        $data['form_etat'] = 'non';
             $data['form_date_debut'] = $request->form_date_debut;
             $data['form_date_fin'] = $request->form_date_fin;
-        }
         $data['form_sexe'] = $request->form_sexe;
         $data['form_of'] = $request->form_of;
         $data['form_certi'] = $request->form_certi;

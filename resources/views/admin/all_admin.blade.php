@@ -46,7 +46,7 @@
                 <table class="table table-hover">
                     <thead class=" text-danger">
 
-                    <th class="text-center">image</th>
+                    <th class="text-center">Photo</th>
                     <th class="text-center">Nom</th>
                     <th class="text-center">Adresse e-mail</th>
                     <th class="text-center">Structure</th>

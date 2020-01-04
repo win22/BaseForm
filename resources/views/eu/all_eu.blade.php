@@ -43,7 +43,7 @@
                     </form>
                     <form action="/searchEUE">
                         <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher uniquement
-                         les entreprises utilisatrices  qui sont en démarche" type="submit" class="btn btn-info btn-sm">
+                         les entreprises utilisatrices  qui sont en démarches" type="submit" class="btn btn-info btn-sm">
                             En démarches
                             <div class="ripple-container"></div>
                         </button>
