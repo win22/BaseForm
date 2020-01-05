@@ -20,7 +20,7 @@ class CreateTblFormateursTable extends Migration
             $table->string('form_adresse', 60);
             $table->string('form_phone', 60);
             $table->string('form_email', 191);
-            $table->string('form_sexe', 1);
+            $table->string('form_sexe', 10);
             $table->string('form_etat', 30);
             $table->string('form_status', 1);
             $table->string('form_formation', 80);
@@ -30,6 +30,8 @@ class CreateTblFormateursTable extends Migration
             $table->string('form_type_piece', 60)->nullable();
             $table->string('form_token', 60)->nullable();
             $table->string('form_certi', 2)->nullable();
+            $table->string('form_date_naiss', 60)->nullable();
+            $table->string('form_lieu_naiss', 90)->nullable();
             $table->string('form_date_debut', 60)->nullable();
             $table->string('form_date_fin', 60)->nullable();
             $table->string('form_image', 60)->nullable();

@@ -211,7 +211,10 @@ class FormateurController extends Controller
             'form_name' => ['required', 'max: 60'],
             'form_prenom' => ['required','max: 60'],
             'form_adresse' => ['required', 'max: 60'],
-            'form_sexe' => ['required','max: 1'],
+            'form_date_naiss' => ['required', 'max: 60'],
+            'form_lieu_naiss' => ['required', 'max: 90'],
+            'form_adresse' => ['required', 'max: 60'],
+            'form_sexe' => ['required','max: 10'],
             'form_email' => ['required', 'unique:tbl_formateurs', 'email', 'max: 191'],
             'form_phone' => ['required','max: 60'],
             'form_etat' => ['required', 'max: 10'],
@@ -236,7 +239,8 @@ class FormateurController extends Controller
         $data['form_name'] = $request->form_name;
         $data['form_prenom'] = $request->form_prenom;
         $data['form_sexe'] = $request->form_sexe;
-
+        $data['form_date_naiss'] = $request->form_date_naiss;
+        $data['form_lieu_naiss'] = $request->form_lieu_naiss;
         $data['form_type_piece'] = $request->form_type_piece;
         $data['form_num_piece'] = $request->form_num_piece;
         $data['form_situa'] = $request->form_situa;
@@ -245,6 +249,7 @@ class FormateurController extends Controller
         $data['form_email'] = $request->form_email;
         $data['form_phone'] = $request->form_phone;
         $data['form_etat'] = $request->form_etat;
+
 
         if($request->form_etat == 'non')
         {
@@ -353,7 +358,10 @@ class FormateurController extends Controller
             'form_name' => ['required', 'max: 60'],
             'form_prenom' => ['required','max: 60'],
             'form_adresse' => ['required', 'max: 60'],
-            'form_sexe' => ['required','max: 1'],
+            'form_date_naiss' => ['required', 'max: 60'],
+            'form_lieu_naiss' => ['required', 'max: 90'],
+            'form_adresse' => ['required', 'max: 60'],
+            'form_sexe' => ['required','max: 10'],
             'form_email' => ['required', 'email', 'max: 191'],
             'form_phone' => ['required','max: 60'],
             'form_etat' => ['required', 'max: 10'],
@@ -386,6 +394,8 @@ class FormateurController extends Controller
         $data['form_adresse'] = $request->form_adresse;
         $data['form_email'] = $request->form_email;
         $data['form_phone'] = $request->form_phone;
+        $data['form_date_naiss'] = $request->form_date_naiss;
+        $data['form_lieu_naiss'] = $request->form_lieu_naiss;
         $data['form_etat'] = $request->form_etat;
 
         if($request->form_etat == 'non')
@@ -423,6 +433,8 @@ class FormateurController extends Controller
         $data2['form_email'] = $request->form_email;
         $data2['form_adresse'] = $request->form_adresse;
         $data2['form_phone'] = $request->form_phone;
+        $data2['form_date_naiss'] = $request->form_date_naiss;
+        $data2['form_lieu_naiss'] = $request->form_lieu_naiss;
         $data2['form_type_piece'] = $request->form_type_piece;
         $data2['form_num_piece'] = $request->form_num_piece;
         $data2['form_situa'] = $request->form_situa;
@@ -552,6 +564,8 @@ class FormateurController extends Controller
             $data['form_date_fin'] = $request->form_date_fin;
         $data['form_sexe'] = $request->form_sexe;
         $data['form_of'] = $request->form_of;
+        $data['form_date_naiss'] = $request->form_date_naiss;
+        $data['form_lieu_naiss'] = $request->form_lieu_naiss;
         $data['form_certi'] = $request->form_certi;
         $data['form_formation'] = $request->form_formation;
         $data['form_token'] = $request->form_token;

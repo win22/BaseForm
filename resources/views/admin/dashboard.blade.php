@@ -212,6 +212,122 @@
 </div>
 
 
+<div class="row">
+    <div class="col-lg-6 col-md-12">
+        <div class="card">
+            <div class="card-header card-header-info">
+                <h4 class="card-title">Formateurs </h4>
+                @if(Session::get('admin_role') ==1 || Session::get('admin_role') ==2 )
+                <marquee>
+                    <p class="card-category">
+                        @if(($all_form_count) == null)
+                        Aucune information n'a été trouvé
+                        @else
+                        Un nouveau formateur a été ajouté le <strong style="color: rgb(255,168,6)">
+                            {{  strftime("%d %B %Y", strtotime( $all_form_date->created_at)) }}
+                            ( {{ \Carbon\Carbon::parse($all_form_date->created_at)->diffForHumans() }} )
+                            Par l'entreprise {{ $all_form_of->form_of }}
+                        </strong>
+                        @endif
+                    </p>
+                </marquee>
 
+                @else
+                Liste des formateurs les plus ressents
+                @endif
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover">
+                    <thead class="text-warning">
+                    <th>Photo</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Entreprise </th>
+                    <th></th>
+                    </thead>
+                    <tbody>
+                    @foreach ( $all_form_info as $v_form)
+                    <tr>
+                        <td><img src="{{ URL::to($v_form->form_image) }}"
+                                                     style=" height: 40px; width: 40px; border-radius: 15px;">
+                        </td>
+                        <td  style="font-family: 'Manjari Bold'">{{ $v_form->form_name }}</td>
+                        <td>{{ $v_form->form_prenom }}</td>
+                        <td>{{ $v_form->form_of }}
+                            <td>
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-form/'.
+                        $v_form->form_token)}}">
+                                <i class="material-icons">visibility</i>
+                            </a>
+                        </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                <p  id="total_records">
+                    @if($nb>0)
+                    Total des informations : <span id="total_records">{{ $nb }}</span>
+                </p>
+                @else
+                <p class="text-center">Aucune information trouvé</p>
+                @endif
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12">
+        <div class="card">
+            <div class="card-header card-header-warning">
+                <h4 class="card-title">Apprenants  </h4>
+                <p class="card-category">
+                    @if(($all_stag_count) == null)
+                    Aucune information n'a été trouvé
+                    @else
+                    Un nouveau apprenant a été ajouté le <strong class="text-warning">
+                        {{  strftime("%d %B %Y", strtotime( $all_stag_date->created_at)) }}
+                        ( {{ \Carbon\Carbon::parse($all_stag_date->created_at)->diffForHumans() }} )
+                        Par l'entreprise {{ $all_stag_structure->satg_structure }}
+                    </strong>
+                    @endif
+                </p>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover">
+                    <thead class="text-warning">
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Prénom</th>
+                    <th>Entreprise</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Dakota Rice</td>
+                        <td>$36,738</td>
+                        <td>Niger</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Minerva Hooper</td>
+                        <td>$23,789</td>
+                        <td>Curaçao</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Sage Rodriguez</td>
+                        <td>$56,142</td>
+                        <td>Netherlands</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Philip Chaney</td>
+                        <td>$38,735</td>
+                        <td>Korea, South</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

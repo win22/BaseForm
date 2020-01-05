@@ -55,24 +55,38 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('form_prenom')}}</small>
                             @endif
                         </div>
-
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="label">Date de naissance <span  class="text-danger">*</span></label>
+                                <input type="date" value="{{  $form_info->form_date_naiss }}" class="form-control text-info"  name="form_date_naiss">
+                                @if($errors->has('form_date_naiss'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('form_date_naiss')}}</small>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Lieu de Naissance <span  class="text-danger">*</span></label>
+                                <input  value="{{  $form_info->form_lieu_naiss }}" name="form_lieu_naiss" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('form_lieu_naiss'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('form_lieu_naiss')}}</small>
+                            @endif
+                        </div>
                         <div class="col-md-2">
                             <select  class="form-control " name="form_sexe">
-                                @if($form_info->form_sexe == 1)
-                                <option value="{{ $form_info->form_sexe }}">Homme </option>
-                                @else
-                                <option value="{{ $form_info->form_sexe }}">Homme </option>
-                                @endif
-                                <option value="">Sexe <span  class="text-danger">*</span> </option>
-                                <option value="1">Homme</option>
-                                <option value="2">Femme </option>
+                                <option  value="{{  $form_info->form_sexe }}"> {{ $form_info->form_sexe }}</option>
+                                <option  class="text-warning" value="">Sexe <span  class="text-danger">*</span> </option>
+                                <option value="Homme">Homme</option>
+                                <option value="Femme">Femme </option>
                             </select>
                             @if($errors->has('form_sexe'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_sexe')}}</small>
                             @endif
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-4">
                             <select  class="form-control " name="form_type_piece">

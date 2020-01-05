@@ -62,18 +62,50 @@ class SuperAdminController extends Controller
             ->first();
 
         $all_form_date = DB::table('tbl_formateurs')
+            ->where('form_certi', 1)
             ->orderByDesc('form_id')
             ->select('created_at')
             ->first();
+        $all_form_of = DB::table('tbl_formateurs')
+            ->where('form_certi', 1)
+            ->orderByDesc('form_id')
+            ->select('form_of')
+            ->first();
+
         $all_formt_date = DB::table('tbl_formations')
             ->orderByDesc('formt_id')
             ->select('created_at')
             ->first();
 
         $all_stag_date = DB::table('tbl_stagiaires')
+            ->where('stag_certi', 1)
             ->orderByDesc('stag_id')
             ->select('created_at')
             ->first();
+
+        $all_stag_structure = DB::table('tbl_stagiaires')
+            ->orderByDesc('stag_id')
+            ->select('stag_structure')
+            ->first();
+
+        if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') ==1 || Session::get('user_role') ==2 )
+        {
+            $all_form_info =  DB::table('tbl_formateurs')
+                ->where('form_certi', 1)
+                ->orderByDesc('form_id')
+                ->paginate(5);
+            $nb= $all_form_info->count();
+        }
+        else{
+
+            $all_form_info =  DB::table('tbl_formateurs')
+                ->where('form_of',  Session::get('admin_structure') )
+                ->where('form_certi', 1)
+                ->limit(5)
+                ->orderByDesc('form_id')
+                ->get();
+            $nb= $all_form_info->count();
+        }
 
         return view('admin.dashboard', ['all_admin_count' => $all_admin_count ])
             ->with('all_of_count', $all_of_count)
@@ -88,10 +120,15 @@ class SuperAdminController extends Controller
             ->with('all_eu_date', $all_eu_date)
             ->with('all_ei_date', $all_ei_date)
             ->with('all_form_date', $all_form_date)
+            ->with('all_form_of', $all_form_of)
             ->with('all_formt_date', $all_formt_date)
 
             ->with('all_stag_date', $all_stag_date)
-            ->with('all_admin_date', $all_admin_date);
+            ->with('all_stag_structure', $all_stag_structure)
+            ->with('all_admin_date', $all_admin_date)
+
+            ->with('all_form_info', $all_form_info)
+            ->with('nb', $nb);
     }
 
 

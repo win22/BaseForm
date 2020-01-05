@@ -63,15 +63,41 @@
                                 </p>
                             </div>
                             <div class="col-md-6">
-                                @if($form_info->form_sexe == 1)
+
                                 <p class="card-title">
-                                    <span style="font-family: 'Manjari Bold'">Homme</span>
+                                    <span style="font-family: 'Manjari Bold'">{{ $form_info->form_sexe }}</span>
                                 </p>
-                                @else
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
                                 <p class="card-title">
-                                    <span style="font-family: 'Manjari Bold'">Femme</span>
+                                <li class="fa fa-calendar" style="color: #046b76!important;"></li>&nbsp;
+                                Date de Naissance :
                                 </p>
-                                @endif
+                            </div>
+                            <div class="col-md-6">
+
+                                <p class="card-title">
+                                    <span class="text-info" style="font-family: 'Manjari Bold'">{{strftime("%d %B %Y", strtotime( $form_info->form_date_naiss  ))}}</span>
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="card-title">
+                                <li class="fa fa-map-o" style="color: #046b76!important;"></li>&nbsp;
+                                Lieu de naissance :
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+
+                                <p class="card-title">
+                                    <span style="font-family: 'Manjari Bold'">{{ $form_info->form_lieu_naiss }}</span>
+                                </p>
+
                             </div>
                         </div>
                         <div class="row">
@@ -368,11 +394,7 @@
                         </div>
                         <div hidden class="form-group">
                             <select  class="form-control" name="form_sexe">
-                                @if($form_info->form_sexe == 1)
-                                <option value="{{ $form_info->form_sexe }}">Homme </option>
-                                @else
-                                <option value="{{ $form_info->form_sexe }}">Femme </option>
-                                @endif
+                                <option value="{{ $form_info->form_sexe }}">{{ $form_info->form_sexe }} </option>
                             </select>
                         </div>
                         <div hidden class="form-group">

@@ -217,6 +217,12 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">
+                        <i class="fa fa-sign-out EU"></i>
+                        <p>Déconnexion</p>
+                    </a>
+                </li>
 
             </ul>
         </div>
