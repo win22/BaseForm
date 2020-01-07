@@ -1,7 +1,7 @@
 @extends('admin_layout')
 @section('contenu')
 @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
-|| Session::get('admin_role')== 3
+|| Session::get('user_role')== 3
 && Session::get('admin_structure')== $stag_info->stag_structure &&  $stag_info->stag_etat == 'non' )
 
 <p class="alert">{{ $message = Session::get('message')}}</p>
@@ -27,9 +27,9 @@
     @endif
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header card-header-info">
+            <div class="card-header card-header-danger" style="font-family: 'Manjari'">
                 <h4 class="card-title">Stagiaire   <i class="fa fa-asl-interpreting"></i> </h4>
-                <p class="card-category">Modifiert un stagiaire</p>
+                <p class="card-category text-white">Modification des informations du Stagiaire {{ $stag_info->stag_prenom }} {{ $stag_info->stag_name }}</p>
             </div>
             <div class="card-body">
                 <form enctype="multipart/form-data" action="{{ url('/update-stag',$stag_info->stag_id)}}" method="post">
@@ -53,19 +53,87 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('stag_prenom')}}</small>
                             @endif
                         </div>
+
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Adresse e-mail <span  class="text-danger">*</span></label>
-                                <input  value="{{ $stag_info->stag_email }}" name="stag_email" type="email" class="form-control">
+                                <label class="label">Date de naissance <span  class="text-danger">*</span></label>
+                                <input value="{{ $stag_info->stag_date_naiss }}" type="date" class="form-control text-info"  name="stag_date_naiss">
+                                @if($errors->has('stag_date_naiss'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('stag_date_naiss')}}</small>
+                                @endif
                             </div>
-                            @if($errors->has('stag_email'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('stag_email')}}</small>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Lieu de Naissance <span  class="text-danger">*</span></label>
+                                <input  value="{{ $stag_info->stag_lieu_naiss }}" name="stag_lieu_naiss" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('stag_lieu_naiss'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_lieu_naiss')}}</small>
+                            @endif
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Sexe <span  class="text-danger">*</span></label>
+                            <select  class="form-control " name="stag_sexe">
+                                <option   value="{{ $stag_info->stag_sexe }}">{{ $stag_info->stag_sexe }}  </option>
+                                <option  class="text-warning" value="">Ou selectionnez une catégorie <span  class="text-danger">*</span> </option>
+                                <option value="Homme">Homme</option>
+                                <option value="Femme">Femme </option>
+                            </select>
+                            </div>
+                            @if($errors->has('stag_sexe'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_sexe')}}</small>
                             @endif
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-4">
+                           <div class="form-group bmd-form-group is-filled">
+                            <label class="bmd-label-floating">Type de piece <span  class="text-danger">*</span></label>
+                            <select  class="form-control " name="stag_type_piece">
+                                <option class="text-warning" value="{{ $stag_info->stag_type_piece }}">{{ $stag_info->stag_type_piece }}</option>
+                                <option class="text-danger" value="">Selectionnez une autre catégorie </option>
+                                <option value="Carte National d'identité">Carte national d'identité</option>
+                                <option value="Passeport">Passeport</option>
+                            </select>
 
+                            @if($errors->has('stag_type_piece'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_type_piece')}}</small>
+                            @endif
+                           </div>
+                        </div>
 
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Numéro de la piece <span  class="text-danger">*</span></label>
+                                <input  value="{{ $stag_info->stag_num_piece }}" name="stag_num_piece" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('stag_num_piece'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_num_piece')}}</small>
+                            @endif
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Situation matrimonial <span  class="text-danger">*</span></label>
+                            <select  class="form-control " name="stag_situa">
+                                <option  class="text-warning" value="{{  $stag_info->stag_situa }}">{{ $stag_info->stag_situa }} <span  class="text-danger">*</span> </option>
+                                <option  class="text-danger" value="">Selectionnez une autre catégorie </option>
+                                <option value="Marié(e)">Marié(e)</option>
+                                <option value="Divorcé(e)">Divorcé(e)</option>
+                                <option value="Fiancé(e)">Fiancé(e)</option>
+                                <option value="Célibataire">Célibataire</option>
+                            </select>
+                            @if($errors->has('stag_situa'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_situa')}}</small>
+                            @endif
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Téléphone <span  class="text-danger">*</span></label>
@@ -77,6 +145,15 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label class="bmd-label-floating">Adresse e-mail <span  class="text-danger">*</span></label>
+                                <input  value="{{ $stag_info->stag_email }}" name="stag_email" type="email" class="form-control">
+                            </div>
+                            @if($errors->has('stag_email'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_email')}}</small>
+                            @endif
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label class="bmd-label-floating">Adresse <span  class="text-danger">*</span></label>
                                 <input  value="{{ $stag_info->stag_adresse }}" name="stag_adresse" type="text" class="form-control">
                             </div>
@@ -84,28 +161,15 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('stag_adresse')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            <select  class="form-control " name="stag_sexe">
-                                @if($stag_info->stag_sexe == 1)
-                                <option value="{{ $stag_info->stag_sexe }}">Homme </option>
-                                @else
-                                <option value="{{ $stag_info->stag_sexe }}">Femme </option>
-                                @endif
-                                <option class="text-warning" value="">Selectionner un sexe <span  class="text-danger">*</span> </option>
-                                <option value="1">Homme</option>
-                                <option value="2">Femme</option>
-                            </select>
-                            @if($errors->has('stag_sexe'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('stag_sexe')}}</small>
-                            @endif
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="form-group">
+                            <div class="form-group  bmd-form-group is-filled">
+                                    <label class="bmd-label-floating">Structure  <span  class="text-danger">*</span></label>
                                 <select class="form-control "  name="stag_structure">
                                     <option class="text-warning" value="{{ $stag_info->stag_structure }}">{{ $stag_info->stag_structure }}</option>
-                                    <option class="text-warning" value="">Selectionner une structure <span  class="text-danger">*</span> </option>
+                                    <option class="text-danger" value="">Selectionner une autre catégorie <span  class="text-danger">*</span> </option>
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                                     @foreach($OF_all as $v_of)
                                     <option value="{{ $v_of->name }}" >
@@ -120,10 +184,11 @@
                             @endif
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group">
+                            <div class="form-group  bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Formation  <span  class="text-danger">*</span></label>
                                 <select  class="form-control " name="stag_formation">
                                     <option class="text-warning" value="{{ $stag_info->stag_formation }}">{{ $stag_info->stag_formation }}</option>
-                                    <option class="text-warning" value="">Selectionner une formation <span  class="text-danger">*</span> </option>
+                                    <option class="text-danger" value="">Selectionner une autre categorie <span  class="text-danger">*</span> </option>
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                                     @foreach($FORMT_all as $v_formt)
                                     <option value="{{ $v_formt->formt_name }}" >
@@ -144,10 +209,11 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group">
+                            <div class="form-group  bmd-form-group is-filled">
+                                <label class="bmd-label-floating">Formateur  <span  class="text-danger">*</span></label>
                                 <select  class="form-control " name="stag_formateur">
                                     <option class="text-warning" value="{{ $stag_info->stag_formateur }}">{{ $stag_info->stag_formateur }}</option>
-                                    <option class="text-warning" value="">Selectionner un formateur <span  class="text-danger">*</span>  </option>
+                                    <option class="text-danger" value="">Selectionner un autre formateur <span  class="text-danger">*</span>  </option>
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                                     @foreach($FORM_all as $v_form)
                                     <option value="{{ $v_form->form_name }}" >
@@ -190,8 +256,9 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group">
-                                <select  class="form-control " name="stag_etat">
+                            <div class="form-group  bmd-form-group is-filled">
+                                <label class="bmd-label-floating">État <span  class="text-danger">*</span></label>
+                                <select  class="form-control dynamic2 " name="stag_etat">
                                     @if($stag_info->stag_etat == 'agrée')
                                     <option class="text-success" value="{{ $stag_info->stag_etat }}">Certifié Mase </option>
                                     @else
@@ -199,7 +266,7 @@
                                     @endif
 
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                                    <option value="">Etat du Stagiaire <span  class="text-danger">*</span> </option>
+                                    <option value="">Selectionner une autre catégorie <span  class="text-danger">*</span> </option>
                                     <option class="text-success" value="agrée">Certfié </option>
                                     <option  class="text-danger" value="non">Non certifié </option>
                                     @endif
@@ -213,6 +280,19 @@
 
                     </div>
 
+                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Durée de la certification <span  class="text-danger">*</span> </label>
+                                <input  value="{{ $stag_info->stag_time }}" name="stag_time" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('stag_time'))
+                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('stag_time')}}</small>
+                            @endif
+                        </div>
+                    </div>
+                    @endif
                     <div class="row">
                         <div class="col-md-4">
                             <div>

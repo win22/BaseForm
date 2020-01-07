@@ -79,6 +79,76 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <p class="card-title">
+                                <li class="fa fa-calendar" style="color: #046b76!important;"></li>&nbsp;
+                                Date de Naissance :
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+
+                                <p class="card-title">
+                                    <span class="text-info" style="font-family: 'Manjari Bold'">{{strftime("%d %B %Y", strtotime( $stag_info->stag_date_naiss  ))}}</span>
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="card-title">
+                                <li class="fa fa-map-o" style="color: #046b76!important;"></li>&nbsp;
+                                Lieu de naissance :
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+
+                                <p class="card-title">
+                                    <span style="font-family: 'Manjari Bold'">{{ $stag_info->stag_lieu_naiss }}</span>
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="card-title">
+                                <li class="fa fa-address-card" style="color: #046b76!important;"></li>&nbsp;
+                                Type de Piece :
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-title">
+                                    <span style="font-family: 'Manjari Bold'"> {{ $stag_info->stag_type_piece }}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="card-title">
+                                <li class="fa fa-edit" style="color: #046b76!important;"></li>&nbsp;
+                                Numero de la piece :
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-title">
+                                    <span style="font-family: 'Manjari Bold'"> {{ $stag_info->stag_num_piece }}</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="card-title">
+                                <li class="fa fa-intersex" style="color: #046b76!important;"></li>&nbsp;
+                                Situation matrimoniale  :
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-title">
+                                    <span style="font-family: 'Manjari Bold'"> {{ $stag_info->stag_situa }}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="card-title">
                                 <li class="fa fa-envelope" style="color: #046b76!important;"></li>&nbsp;
                                 Adresse e-mail :
                                 </p>
@@ -222,6 +292,21 @@
                                 </p>
                             </div>
                         </div>
+                        @if($stag_info->stag_time)
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="card-title">
+                                <li class="fa fa-clock-o" style="color: #046b76!important;"></li>&nbsp;
+                                 Durée de la certification :
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-title">
+                                    <span style="font-family: 'Manjari Bold'"> {{ $stag_info->stag_time}}</span>
+                                </p>
+                            </div>
+                        </div>
+                        @endif
                         <div class="row">
 
                             <div class="col-md-12">
@@ -251,13 +336,13 @@
 
 
                 @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
-                || Session::get('admin_role')== 3
+                || Session::get('user_role')== 3
                 && Session::get('admin_structure')== $stag_info->stag_structure &&  $stag_info->stag_etat == 'non' )
                 <div class="row">
                     <div class="col-md-12">
                         @if( Session::get('admin_role')==1 )
                         @if($stag_info->stag_etat == 'agrée')
-                        <a href="{{ URL::to('/unvalide-stag/'.
+                        <a  id="delete"href="{{ URL::to('/unvalide-stag/'.
                               $stag_info->stag_id)}}"id="md." class="btn btn-sm btn-danger pull-right">
                             <i class="material-icons">thumb_down_alt</i>
                             Non certifié </a>&nbsp;
@@ -292,8 +377,8 @@
         @csrf
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Nouvelle formation pour <span class="text-warning">{{ $stag_info->stag_name }}</span></h5>
+                <div class="modal-header" style="background: #00acc1">
+                    <h5 class="modal-title text-white" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Nouvelle formation pour <span class="text-white">{{ $stag_info->stag_name }}</span></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -330,6 +415,31 @@
                         </select>
                     </div>
                     <div hidden class="form-group">
+                        <select  class="form-control" name="stag_situa">
+                            <option class="text-success" value="{{ $stag_info->stag_situa }}">{{ $stag_info->stag_situa }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
+                        <select  class="form-control" name="stag_lieu_naiss">
+                            <option class="text-success" value="{{ $stag_info->stag_lieu_naiss }}">{{ $stag_info->stag_lieu_naiss }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
+                        <select  class="form-control" name="stag_date_naiss">
+                            <option class="text-success" value="{{ $stag_info->stag_date_naiss }}">{{ $stag_info->stag_date_naiss }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
+                        <select  class="form-control" name="stag_type_piece">
+                            <option class="text-success" value="{{ $stag_info->stag_type_piece }}">{{ $stag_info->stag_type_piece }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
+                        <select  class="form-control" name="stag_num_piece">
+                            <option class="text-success" value="{{ $stag_info->stag_num_piece }}">{{ $stag_info->stag_num_piece }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
                         <select  class="form-control" name="stag_email">
                             <option class="text-success" value="{{ $stag_info->stag_email }}">{{ $stag_info->stag_email }}</option>
                         </select>
@@ -352,6 +462,27 @@
                         <select  class="form-control" name="stag_formateur">
                             <option class="text-success" value="{{ $stag_info->stag_formateur }}">{{ $stag_info->stag_formateur }}</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <select  class="form-control " name="stag_formateur">
+                            <option class="text-warning" value="">Selectionner un formateur <span  class="text-danger">*</span></option>
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                            @foreach($FORM_all_stag as $v_form)
+                            <option value="{{ $v_form->form_name }}" >
+                                {{ $v_form->form_name }}
+                            </option>
+                            @endforeach
+                            @else
+                            @foreach($FORM_stag as $v_form)
+                            <option value="{{ $v_form->form_name }}" >
+                                {{ $v_form->form_name }}
+                            </option>
+                            @endforeach
+                            @endif
+                        </select>
+                        @if($errors->has('stag_formateur'))
+                        <small class="form-text text-muted text-danger">{{$errors->first('stag_formateur')}}</small>
+                        @endif
                     </div>
 
                     <div  class="form-group">
@@ -380,7 +511,15 @@
                             @endif
                         </select>
                     </div>
-
+                    @if(Session::get('admin_role') ==1 || Session::get('admin_role') == 2)
+                    <div  class="form-group">
+                        <select  class="form-control dynamic2" name="stag_certi">
+                            <option  value="">Etat <span  class="text-danger">*</span></option>
+                            <option  class="text-success" value="agrée">Certifié </option>
+                            <option  class="text-danger" value="non">Non certifié</option>
+                        </select>
+                    </div>
+                    @endif
                     <div  class="form-group">
                         <label class="label">Début de la formation <span  class="text-danger">*</span></label>
                         <input type="date" class="form-control text-success" min="1800-08-13" name="stag_date_debut">
@@ -396,6 +535,14 @@
                         @endif
                     </div>
 
+                    <div class="form-group forma">
+                        <label class="bmd-label-floating">Durée de la certification <span  class="text-danger">*</span> </label>
+                        <input  value="{{ old('stag_time') }}" name="stag_time" type="text" class="form-control">
+                        @if($errors->has('stag_time'))
+                        <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('stag_time')}}</small>
+                        @endif
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-sm btn-info">Enregistrer </button>
@@ -407,10 +554,13 @@
 </div>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-open modal-lg small">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Autres formation de <span class="text-warning">{{ $stag_info->stag_name }}</span></h5>
+            <div class="modal-header" style="background-color: #064b44 !important;">
+                <h5 class="modal-title text-white" style="font-family: 'Manjari Bold'" id="exampleModalLabel">
+                    Autres formation de <span class="text-warning">{{ $stag_info->stag_prenom }}</span>
+                    <span class="text-warning">{{ $stag_info->stag_name }}</span>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -421,18 +571,18 @@
                         <thead class="text-center text-danger">
 
                         <th>Formation </th>
+                        <th>Nom du Formateur</th>
                         <th>Début de la formation </th>
                         <th>Fin de la formation </th>
                         <th>État </th>
-                        @if( Session::get('admin_role')==1)
-                        <th>Status </th>
-                        @endif
+
                         <th></th>
                         </thead>
                         <tbody class="text-center">
                         @foreach ( $all_stag_info as $v_stag)
                         <tr>
                             <td  style="font-family: 'Manjari Bold'">{{ $v_stag->stag_formation }}</td>
+                            <td class="text-info" style="font-family: 'Manjari Bold'">{{ $v_stag->stag_formateur }}</td>
                             <td class="center">{{  strftime("%d %B %Y", strtotime($v_stag->stag_date_debut)) }}</td>
                             <td class="center">{{  strftime("%d %B %Y", strtotime($v_stag->stag_date_fin)) }}</td>
                             <td class="text-center">
@@ -446,19 +596,7 @@
                         </span>
                                 @endif
                             </td>
-                            @if( Session::get('admin_role')==1)
-                            <td class="text-center">
-                                @if($v_stag->stag_status==1)
-                                <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
-                            Activé
-                        </span>
-                                @else
-                                <span class="label" style="font-family: 'Manjari Bold'; color: rgba(233,32,3,0.88);">
-                            Desactivé
-                        </span>
-                                @endif
-                            </td>
-                            @endif
+
                             <td class="td-actions">
 
                                 @if( Session::get('admin_role')==1)

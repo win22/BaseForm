@@ -51,19 +51,74 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('stag_prenom')}}</small>
                             @endif
                         </div>
+
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Adresse e-mail <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('stag_email') }}" name="stag_email" type="email" class="form-control">
+                                <label class="label">Date de naissance <span  class="text-danger">*</span></label>
+                                <input type="date" class="form-control text-info"  name="stag_date_naiss">
+                                @if($errors->has('stag_date_naiss'))
+                                <small class="form-text text-muted text-danger">{{$errors->first('stag_date_naiss')}}</small>
+                                @endif
                             </div>
-                            @if($errors->has('stag_email'))
-                            <small class="form-text text-muted text-danger">{{$errors->first('stag_email')}}</small>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Lieu de Naissance <span  class="text-danger">*</span></label>
+                                <input  value="{{ old('stag_lieu_naiss') }}" name="stag_lieu_naiss" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('stag_lieu_naiss'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_lieu_naiss')}}</small>
+                            @endif
+                        </div>
+                        <div class="col-md-2">
+                            <select  class="form-control " name="stag_sexe">
+                                <option  class="text-warning" value="">Sexe <span  class="text-danger">*</span> </option>
+                                <option value="Homme">Homme</option>
+                                <option value="Femme">Femme </option>
+                            </select>
+                            @if($errors->has('stag_sexe'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_sexe')}}</small>
                             @endif
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-4">
+                            <select  class="form-control " name="stag_type_piece">
+                                <option class="text-warning" value="">Type Piece <span  class="text-danger">*</span> </option>
+                                <option value="Carte National d'identité">Carte national d'identité</option>
+                                <option value="Passeport">Passeport</option>
+                            </select>
+                            @if($errors->has('stag_type_piece'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_type_piece')}}</small>
+                            @endif
+                        </div>
 
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Numéro de la piece <span  class="text-danger">*</span></label>
+                                <input  value="{{ old('stag_num_piece') }}" name="stag_num_piece" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('stag_num_piece'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_num_piece')}}</small>
+                            @endif
+                        </div>
+                        <div class="col-md-2">
+                            <select  class="form-control " name="stag_situa">
+                                <option  class="text-warning" value="">Situation matrimoniale <span  class="text-danger">*</span> </option>
+                                <option value="Marié(e)">Marié(e)</option>
+                                <option value="Divorcé(e)">Divorcé(e)</option>
+                                <option value="Fiancé(e)">Fiancé(e)</option>
+                                <option value="Célibataire">Célibataire</option>
+                            </select>
+                            @if($errors->has('stag_situa'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_situa')}}</small>
+                            @endif
+                        </div>
 
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Téléphone <span  class="text-danger">*</span></label>
@@ -75,6 +130,15 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label class="bmd-label-floating">Adresse e-mail <span  class="text-danger">*</span></label>
+                                <input  value="{{ old('stag_email') }}" name="stag_email" type="email" class="form-control">
+                            </div>
+                            @if($errors->has('stag_email'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_email')}}</small>
+                            @endif
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label class="bmd-label-floating">Adresse <span  class="text-danger">*</span></label>
                                 <input  value="{{ old('stag_adresse') }}" name="stag_adresse" type="text" class="form-control">
                             </div>
@@ -82,16 +146,7 @@
                             <small class="form-text text-muted text-danger">{{$errors->first('stag_adresse')}}</small>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                                <select  class="form-control " name="stag_sexe">
-                                    <option value="">Sexe <span  class="text-danger">*</span> </option>
-                                    <option value="1">Homme</option>
-                                    <option value="2">Femme</option>
-                                </select>
-                                @if($errors->has('stag_sexe'))
-                                <small class="form-text text-muted text-danger">{{$errors->first('stag_sexe')}}</small>
-                                @endif
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-4">
@@ -187,9 +242,9 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <select  class="form-control" name="stag_etat">
+                                <select  class="form-control dynamic2" name="stag_etat">
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                                     <option value="">Etat du Stagiaire <span  class="text-danger">*</span> </option>
                                     <option class="text-success" value="agrée">Certfié </option>
@@ -202,6 +257,17 @@
                             </div>
                         </div>
 
+                    </div>
+                    <div class="row forma">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="bmd-label-floating">Durée de la certification <span  class="text-danger">*</span> </label>
+                                <input  value="{{ old('stag_time') }}" name="stag_time" type="text" class="form-control">
+                            </div>
+                            @if($errors->has('stag_time'))
+                            <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('stag_time')}}</small>
+                            @endif
+                        </div>
                     </div>
 
                     <div class="row">

@@ -29,9 +29,9 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header card-header-info">
+            <div class="card-header card-header-danger" style="font-family: 'Manjari Bold'">
                 <h4 class="card-title">Utilisateurs  <i class="material-icons oraI">supervised_user_circle</i></h4>
-                <p class="card-category">Modifier un Utilisateur</p>
+                <p class="card-category text-white">Modification des informations de l'utilisateur  {{ $admin_info->admin_structure }}</p>
             </div>
             <div class="card-body">
                 <form enctype="multipart/form-data" action="{{ url('/update-admin',$admin_info->admin_id)}}" method="post">

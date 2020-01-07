@@ -27,9 +27,9 @@
     @endif
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header card-header-info">
+            <div class="card-header card-header-danger">
                 <h4 class="card-title">Organisme de formation <i class="material-icons greenI">bubble_chart</i></h4>
-                <p class="card-category">Modifier une organisme de formation</p>
+                <p class="card-category">Modification des informations de l'organisme de formation {{ $of_info->name }}</p>
             </div>
             <div class="card-body">
                 <form enctype="multipart/form-data" action="{{ url('/update-of',$of_info->of_id)}}" method="post">

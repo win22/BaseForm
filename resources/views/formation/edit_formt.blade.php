@@ -25,7 +25,7 @@
     @endif
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header card-header-info">
+            <div class="card-header card-header-red">
                 <h4 class="card-title"> Formation <i class="fa fa-graduation-cap"></i> &nbsp;</h4>
                 <p class="card-category">Modifier une Formation</p>
             </div>

@@ -29,9 +29,9 @@
     @endif
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header card-header-info">
+            <div class="card-header card-header-danger"  style="font-family: 'Manjari'">
                 <h4 class="card-title">Formateurs</h4>
-                <p class="card-category">Modifier un formateur</p>
+                <p class="card-category text-white">Modification des information du formateur {{ $form_info->form_prenom }} {{ $form_info->form_name }} </p>
             </div>
             <div class="card-body">
                 <form action="{{ url('/update-form',$form_info->form_id) }}" method="post">

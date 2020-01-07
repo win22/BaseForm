@@ -52,11 +52,22 @@
                     </div>
                     <div hidden class="form-group">
                         <select  class="form-control" name="form_sexe">
-                            @if($form_info->form_sexe == 1)
-                            <option value="{{ $form_info->form_sexe }}">Homme </option>
-                            @else
-                            <option value="{{ $form_info->form_sexe }}">Femme </option>
-                            @endif
+                            <option value="{{ $form_info->form_sexe }}"> {{  $form_info->form_sexe }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
+                        <select  class="form-control" name="form_date_naiss">
+                            <option value="{{ $form_info->form_date_naiss }}"> {{  $form_info->form_date_naiss }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
+                        <select  class="form-control" name="form_lieu_naiss">
+                            <option value="{{ $form_info->form_lieu_naiss }}"> {{  $form_info->form_lieu_naiss }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
+                        <select  class="form-control" name="form_situa">
+                            <option value="{{ $form_info->form_situa }}"> {{  $form_info->form_situa }}</option>
                         </select>
                     </div>
                     <div hidden class="form-group">

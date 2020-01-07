@@ -61,13 +61,26 @@ class StagiaireController extends Controller
     {
         $this->adminAuthCheck();
         $search = $request->get('search');
-        $all_stag_info = DB::table('tbl_stagiaires')
-            ->where('stag_name', 'like', '%'.$search.'%')
-           ->where('stag_certi', 1)
-            ->orderByDesc('stag_id')
-            ->paginate(5);
+        if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') ==1 || Session::get('user_role') ==2 )
+        {
+            $all_stag_info = DB::table('tbl_stagiaires')
+                ->where('stag_structure', 'like', '%'.$search.'%')
+                ->where('stag_certi', 1)
+                ->orderByDesc('stag_id')
+                ->paginate(5);
 
-        $nb= $all_stag_info->count();
+            $nb= $all_stag_info->count();
+        }
+        else{
+            $all_stag_info = DB::table('tbl_stagiaires')
+                ->where('stag_name', 'like', '%'.$search.'%')
+                ->where('stag_certi', 1)
+                ->where('stag_structure', Sesssion::get('admin_structure'))
+                ->orderByDesc('stag_id')
+                ->paginate(5);
+
+            $nb= $all_stag_info->count();
+        }
 
         return view('stagiaire.all_stag', ['all_stag_info' => $all_stag_info ])
             ->with(['nb' => $nb]);
@@ -76,27 +89,52 @@ class StagiaireController extends Controller
     public  function  searchA()
     {
         $this->AdminAuthCheck();
+        if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') ==1 || Session::get('user_role') ==2 ) {
+            $all_stag_info = DB::table('tbl_stagiaires')
+                ->where('stag_etat', 'agrée')
+                ->where('stag_certi', '1')
+                ->orderByDesc('stag_id')
+                ->paginate(5);
+            $nb = $all_stag_info->count();
+        }
+        else
+            {
+                $all_stag_info = DB::table('tbl_stagiaires')
+                    ->where('stag_structure', Sesssion::get('admin_structure'))
+                    ->where('stag_etat', 'agrée')
+                    ->where('stag_certi', '1')
+                    ->orderByDesc('stag_id')
+                    ->paginate(5);
+                $nb = $all_stag_info->count();
+            }
 
-        $all_stag_info = DB::table('tbl_stagiaires')
-            ->where('stag_etat' , 'agrée')
-            ->where('stag_certi' , '1')
-            ->orderByDesc('stag_id')
-            ->paginate(5);
-        $nb= $all_stag_info->count();
         return view('stagiaire.all_stag', ['all_stag_info' => $all_stag_info ])
             ->with(['nb' => $nb]);
+
     }
+
 
     public  function  searchN()
     {
         $this->AdminAuthCheck();
-
-        $all_stag_info = DB::table('tbl_stagiaires')
-            ->where('stag_etat' , 'non')
-            ->where('stag_certi' , '1')
-            ->orderByDesc('stag_id')
-            ->paginate(5);
-        $nb= $all_stag_info->count();
+        if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') ==1 || Session::get('user_role') ==2 ) {
+            $all_stag_info = DB::table('tbl_stagiaires')
+                ->where('stag_etat', 'non')
+                ->where('stag_certi', '1')
+                ->orderByDesc('stag_id')
+                ->paginate(5);
+            $nb = $all_stag_info->count();
+        }
+        else
+        {
+            $all_stag_info = DB::table('tbl_stagiaires')
+                ->where('stag_structure', Sesssion::get('admin_structure'))
+                ->where('stag_etat', 'non')
+                ->where('stag_certi', '1')
+                ->orderByDesc('stag_id')
+                ->paginate(5);
+            $nb = $all_stag_info->count();
+        }
         return view('stagiaire.all_stag', ['all_stag_info' => $all_stag_info ])
             ->with(['nb' => $nb]);
     }
@@ -106,13 +144,22 @@ class StagiaireController extends Controller
     public function all_stag()
     {
         $this->adminAuthCheck();
-        $all_stag_info =  DB::table('tbl_stagiaires')
-            ->where('stag_certi' , 1)
-            ->orderByDesc('stag_id')
-            ->paginate(5);
-
-        $nb= $all_stag_info->count();
-
+        if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') ==1 || Session::get('user_role') ==2 ) {
+            $all_stag_info = DB::table('tbl_stagiaires')
+                ->where('stag_certi', 1)
+                ->orderByDesc('stag_id')
+                ->paginate(5);
+            $nb = $all_stag_info->count();
+        }
+        else
+        {
+            $all_stag_info = DB::table('tbl_stagiaires')
+                ->where('stag_structure', Session::get('admin_structure'))
+                ->where('stag_certi', 1)
+                ->orderByDesc('stag_id')
+                ->paginate(5);
+            $nb = $all_stag_info->count();
+        }
         return view('stagiaire.all_stag', ['all_stag_info' => $all_stag_info ])
             ->with(['nb' => $nb]);
 
@@ -123,7 +170,7 @@ class StagiaireController extends Controller
         $this->adminAuthCheck();
         DB::table('tbl_stagiaires')
             ->where('stag_id',$stag_id)
-            ->update(['stag_etat'=> 'certifie']);
+            ->update(['stag_etat'=> 'agrée']);
 
         $data = DB::table('tbl_stagiaires')
             ->where('stag_id',$stag_id)
@@ -132,18 +179,18 @@ class StagiaireController extends Controller
         $test = array();
         $test['stag_email']= $data->stag_email;
         $test['stag_name']= $data->stag_name;
+        $test['stag_prenom']= $data->stag_prenom;
         $test['stag_formation']= $data->stag_formation;
 
 
-        Mail::send('mail.mailStag', $test , function ($message) use ($test){
-            $message->to($test['stag_email']);
-            $message->from('mailtrapmail@gmail.com');
-            $message->subject('Félicitaion !!! ');
-
-        });
-        Session::put('message', 'Un mail a été envoyé a '.$test['stag_name']);
+//     Mail::send('mail.mailStag', $test , function ($message) use ($test){
+//            $message->to($test['stag_email']);
+//            $message->from('mailtrapmail@gmail.com');
+//            $message->subject('Félicitaion !!! ');
+//        });
+        Session::put('message', "Vous avez certifié l'apprenant ".$test['stag_prenom']. " " . $test['stag_name']. "
+        un message d'accusé de reception lui a été envoyé par mail ");
         return back();
-
     }
 
     public  function  stag_unvalide($stag_id)
@@ -151,8 +198,8 @@ class StagiaireController extends Controller
         $this->adminAuthCheck();
         DB::table('tbl_stagiaires')
             ->where('stag_id',$stag_id)
-            ->update(['stag_etat'=>'non certifie']);
-        Session::put('message', 'Un apprenant  a été désactivé ');
+            ->update(['stag_etat'=>'non']);
+        Session::put('message', "Vous avez retiré une certifiaction à cette apprénant ");
         return back();
     }
 
@@ -214,14 +261,26 @@ class StagiaireController extends Controller
             'stag_phone' => ['required', 'max:90'],
             'stag_prenom' => ['required', 'max:90'],
             'stag_name' => ['required', 'max:90'],
-            'stag_sexe' => ['required', 'max:2'],
+            'stag_sexe' => ['required', 'max:10'],
+            'stag_type_piece' => ['required', 'max:90'],
+            'stag_num_piece' => ['required', 'max:90'],
             'stag_adresse' => ['required', 'max:90'],
             'stag_formation' => ['required', 'max:90'],
             'stag_formateur' => ['required', 'max:90'],
             'stag_date_debut' => ['required'],
             'stag_date_fin' => ['required'],
+            'stag_date_naiss' => ['required'],
+            'stag_lieu_naiss' => ['required'],
+            'stag_situa' => ['required'],
+            'stag_etat' => ['required'],
 
         ]);
+        if($request->stag_etat == 'agrée')
+        {
+           request()->validate([
+           'stag_time' => ['required', 'max:90']
+           ]);
+        }
 
         $data = array();
         $data['stag_id'] = $request->stag_id;
@@ -236,11 +295,24 @@ class StagiaireController extends Controller
         $data['stag_date_fin'] = $request->stag_date_fin;
         $data['stag_prenom'] = $request->stag_prenom;
         $data['stag_adresse'] = $request->stag_adresse;
+        $data['stag_date_naiss'] = $request->stag_date_naiss;
+        $data['stag_lieu_naiss'] = $request->stag_lieu_naiss;
+        $data['stag_situa'] = $request->stag_situa;
+        $data['stag_type_piece'] = $request->stag_type_piece;
+        $data['stag_num_piece'] = $request->stag_num_piece;
         $data['stag_formation'] = $request->stag_formation;
         $data['stag_status'] = 0;
         $data['stag_certi'] =  1;
         $data['stag_token'] =  str_random(40);
         $data['stag_etat'] = $request->stag_etat;
+        if($request->stag_etat == 'agrée')
+        {
+            $data['stag_time'] = $request->stag_time;
+        }
+        else
+        {
+            $data['stag_time'] = null;
+        }
 
         $image = $request->file('stag_image');
         if ($image){
@@ -264,6 +336,7 @@ class StagiaireController extends Controller
 
 
 
+
     }
 
     public function saveNewforma(Request $request)
@@ -271,9 +344,17 @@ class StagiaireController extends Controller
         $this->adminAuthCheck();
         request()->validate([
             'stag_certi' => ['required', 'max:90'],
+            'stag_formation' => ['required', 'max:90'],
+            'stag_formateur' => ['required', 'max:90'],
             'stag_date_debut' => ['required'],
             'stag_date_fin' => ['required'],
         ]);
+        if($request->stag_etat == 'agrée')
+        {
+            request()->validate([
+                'stag_time' => ['required', 'max:90']
+            ]);
+        }
 
         $data = array();
         $data['stag_id'] = $request->stag_id;
@@ -288,19 +369,28 @@ class StagiaireController extends Controller
         $data['stag_date_fin'] = $request->stag_date_fin;
         $data['stag_prenom'] = $request->stag_prenom;
         $data['stag_adresse'] = $request->stag_adresse;
+        $data['stag_date_naiss'] = $request->stag_date_naiss;
+        $data['stag_lieu_naiss'] = $request->stag_lieu_naiss;
+        $data['stag_situa'] = $request->stag_situa;
+        $data['stag_type_piece'] = $request->stag_type_piece;
+        $data['stag_num_piece'] = $request->stag_num_piece;
         $data['stag_formation'] = $request->stag_formation;
         $data['stag_status'] =  0;
         $data['stag_certi'] =   $request->stag_certi;
         $data['stag_token'] =  $request->stag_token;
         $data['stag_etat'] = $request->stag_etat;
-
+        if($request->stag_etat == 'agrée')
+        {
+            $data['stag_time'] = $request->stag_time;
+        }
+        else
+        {
+            $data['stag_time'] = null;
+        }
 
         DB::table('tbl_stagiaires')->insert($data);
-        Session::put('message', "Une nouvelle formation a été ajouté à l'apprenant ".$data['stag_prenom']);
+        Session::put('message', "Une nouvelle formation a été ajoutée à l'apprenant ".$data['stag_prenom']. " " .$data['stag_name']);
         return redirect('/details-stag/'.$request->stag_token);
-
-
-
     }
 
 
@@ -355,6 +445,16 @@ class StagiaireController extends Controller
             ->get();
 
         $FORM_all = DB::table('tbl_formateurs')
+            ->where('form_status', 1)
+            ->where('form_certi',1)
+            ->where('form_etat', 'agrée')
+            ->get();
+
+        $FORM_stag = DB::table('tbl_formateurs')
+            ->where('form_of', Session::get('admin_structure'))
+            ->where('form_status', 1)
+            ->where('form_certi',1)
+            ->where('form_etat', 'agrée')
             ->get();
 
         $FORMT_spc = DB::table('tbl_organisme_formation')
@@ -377,6 +477,7 @@ class StagiaireController extends Controller
             ->with('OF_all', $OF_all)
             ->with('FORM_all', $FORM_all)
             ->with('FORM', $FORM)
+            ->with('FORM_stag', $FORM_stag)
             ->with('FORMT_spc', $FORMT_spc)
             ->with('FORMT_all', $FORMT_all);
         return View('admin_layout')
@@ -392,14 +493,26 @@ class StagiaireController extends Controller
             'stag_phone' => ['required', 'max:90'],
             'stag_prenom' => ['required', 'max:90'],
             'stag_name' => ['required', 'max:90'],
-            'stag_sexe' => ['required', 'max:2'],
+            'stag_sexe' => ['required', 'max:10'],
             'stag_adresse' => ['required', 'max:90'],
             'stag_formation' => ['required', 'max:90'],
             'stag_date_debut' => ['required', 'max:90'],
             'stag_date_fin' => ['required', 'max:90'],
             'stag_formateur' => ['required', 'max:90'],
+            'stag_type_piece' => ['required', 'max:90'],
+            'stag_num_piece' => ['required', 'max:90'],
+            'stag_date_naiss' => ['required', 'max:90'],
+            'stag_lieu_naiss' => ['required', 'max:90'],
+            'stag_situa' => ['required', 'max:90'],
 
         ]);
+        if($request->stag_etat == 'agrée')
+        {
+            request()->validate([
+                'stag_time' => ['required', 'max:90']
+            ]);
+        }
+
         $data = array();
         $data['stag_id'] = $request->stag_id;
         $data['stag_email'] = $request->stag_email;
@@ -412,9 +525,23 @@ class StagiaireController extends Controller
         $data['stag_date_fin'] = $request->stag_date_fin;
         $data['stag_prenom'] = $request->stag_prenom;
         $data['stag_adresse'] = $request->stag_adresse;
+        $data['stag_date_naiss'] = $request->stag_date_naiss;
+        $data['stag_lieu_naiss'] = $request->stag_lieu_naiss;
+        $data['stag_situa'] = $request->stag_situa;
+        $data['stag_type_piece'] = $request->stag_type_piece;
+        $data['stag_num_piece'] = $request->stag_num_piece;
         $data['stag_certi'] = 1;
         $data['stag_status'] = $request->stag_status;
         $data['stag_etat'] = $request->stag_etat;
+        $data['stag_token'] = $request->stag_token;
+        if($request->stag_etat == 'agrée')
+        {
+            $data['stag_time'] = $request->stag_time;
+        }
+        else
+        {
+            $data['stag_time'] = null;
+        }
 
         $image = $request->file('stag_image');
         if ($image){
@@ -440,6 +567,13 @@ class StagiaireController extends Controller
         $data2['stag_structure'] = $request->stag_structure;
         $data2['stag_formateur'] = $request->stag_formateur;
         $data2['stag_sexe'] = $request->stag_sexe;
+        $data2['stag_date_naiss'] = $request->stag_date_naiss;
+        $data2['stag_lieu_naiss'] = $request->stag_lieu_naiss;
+        $data2['stag_time'] = $request->stag_time;
+        $data2['stag_situa'] = $request->stag_situa;
+        $data2['stag_type_piece'] = $request->stag_type_piece;
+        $data2['stag_num_piece'] = $request->stag_num_piece;
+
 
         DB::table('tbl_stagiaires')
             ->where('stag_id', $stag_id)
@@ -450,8 +584,9 @@ class StagiaireController extends Controller
             ->where('stag_token', $request->stag_token )
             ->update($data2);
 
-        Session::put('message', "l'apprenant  ".$data['stag_prenom']." a eté modifié avec succès !");
-        return redirect('/all-stag');
+        Session::put('message', "l'apprenant  ".$data['stag_prenom']. " ".$data['stag_name']." a eté modifié avec succès !");
+        return redirect('/details-stag/'.$request->stag_token);
+
 
     }
 
@@ -460,11 +595,20 @@ class StagiaireController extends Controller
         $this->adminAuthCheck();
         request()->validate([
             'stag_formation' => ['required', 'max:90'],
+            'stag_etat' => ['required', 'max:90'],
+            'stag_formateur' => ['required', 'max:90'],
             'stag_date_debut' => ['required', 'max:90'],
             'stag_date_fin' => ['required', 'max:90'],
             'stag_certi' => ['required', 'max:90'],
 
         ]);
+        if($request->stag_etat == 'agrée')
+        {
+            request()->validate([
+                'stag_time' => ['required', 'max:90']
+            ]);
+        }
+
         $data = array();
         $data['stag_id'] = $request->stag_id;
         $data['stag_email'] = $request->stag_email;
@@ -481,6 +625,21 @@ class StagiaireController extends Controller
         $data['stag_certi'] = $request->stag_certi;
         $data['stag_status'] = $request->stag_status;
         $data['stag_etat'] = $request->stag_etat;
+        $data['stag_date_naiss'] = $request->stag_date_naiss;
+        $data['stag_lieu_naiss'] = $request->stag_lieu_naiss;
+        $data['stag_situa'] = $request->stag_situa;
+        $data['stag_type_piece'] = $request->stag_type_piece;
+        $data['stag_time'] = $request->stag_time;
+        $data['stag_etat'] = $request->stag_etat;
+        $data['stag_num_piece'] = $request->stag_num_piece;
+        if($request->stag_etat == 'agrée')
+        {
+            $data['stag_time'] = $request->stag_time;
+        }
+        else
+        {
+            $data['stag_time'] = null;
+        }
 
         DB::table('tbl_stagiaires')
             ->where('stag_id', $stag_id)
@@ -500,6 +659,19 @@ class StagiaireController extends Controller
         $stag_info = DB::table('tbl_stagiaires')
             ->where('stag_token', $stag_token)
             ->first();
+
+        $FORM_all_stag = DB::table('tbl_formateurs')
+            ->where('form_status', 1)
+            ->where('form_certi',1)
+            ->where('form_etat', 'agrée')
+            ->get();
+
+        $FORM_stag = DB::table('tbl_formateurs')
+            ->where('form_of', Session::get('admin_structure'))
+            ->where('form_status', 1)
+            ->where('form_certi',1)
+            ->where('form_etat', 'agrée')
+            ->get();
 
         $OF_all = DB::table('tbl_organisme_formation')
             ->where('of_certi', 1)
@@ -523,6 +695,8 @@ class StagiaireController extends Controller
             ->with('stag_info', $stag_info)
             ->with('FORMT_all', $FORMT_all)
             ->with('FORM', $FORM)
+            ->with('FORM_all_stag', $FORM_all_stag)
+            ->with('FORM_stag', $FORM_stag)
             ->with('OF_all', $OF_all)
             ->with('nb', $nb)
             ->with('all_stag_info', $all_stag_info);

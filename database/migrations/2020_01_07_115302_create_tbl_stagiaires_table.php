@@ -23,9 +23,15 @@ class CreateTblStagiairesTable extends Migration
             $table->string('stag_structure', 90);
             $table->string('stag_formation', 90);
             $table->string('stag_formateur', 90);
-            $table->string('stag_sexe', 2);
+            $table->string('stag_sexe', 10);
             $table->string('stag_date_debut', 90);
             $table->string('stag_date_fin', 90);
+            $table->string('stag_date_naiss', 90);
+            $table->string('stag_lieu_naiss', 90);
+            $table->string('stag_situa', 90);
+            $table->string('stag_time', 90)->nullable();
+            $table->string('stag_type_piece', 90);
+            $table->string('stag_num_piece', 90);
             $table->string('stag_status', 2)->nullable();
             $table->string('stag_certi', 2)->nullable();
             $table->string('stag_etat', 20)->nullable();

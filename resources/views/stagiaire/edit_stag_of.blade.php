@@ -1,7 +1,7 @@
 @extends('admin_layout')
 @section('contenu')
 @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
-|| Session::get('admin_role')== 3
+|| Session::get('user_role')== 3
 && Session::get('admin_structure')== $stag_info->stag_structure
 && $stag_info->stag_etat == 'non'
 )
@@ -12,8 +12,8 @@
         @csrf
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Modifier</h5>
+                <div class="modal-header" style="background-color: red">
+                    <h5 class="modal-title text-white" style="font-family: 'Manjari Bold'" id="exampleModalLabel">Modifier</h5>
                 </div>
                 <div class="modal-body">
                     <div hidden class="form-group">
@@ -70,11 +70,31 @@
                             <option class="text-success" value="{{ $stag_info->stag_structure }}">{{ $stag_info->stag_structure }}</option>
                         </select>
                     </div>
-                    <div hidden class="form-group">
-                        <select  class="form-control" name="stag_formateur">
-                            <option class="text-success" value="{{ $stag_info->stag_formateur }}">{{ $stag_info->stag_formateur }}</option>
-                        </select>
-                    </div>
+
+                        <div class="form-group  bmd-form-group is-filled">
+                            <label class="bmd-label-floating">Formateur  <span  class="text-danger">*</span></label>
+                            <select  class="form-control " name="stag_formateur">
+                                <option class="text-warning" value="{{ $stag_info->stag_formateur }}">{{ $stag_info->stag_formateur }}</option>
+                                <option class="text-danger" value="">Selectionner un autre formateur <span  class="text-danger">*</span>  </option>
+                                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                                @foreach($FORM_all as $v_form)
+                                <option value="{{ $v_form->form_name }}" >
+                                    {{ $v_form->form_name }}
+                                </option>
+                                @endforeach
+                                @else
+                                @foreach($FORM_stag as $v_form)
+                                <option value="{{ $v_form->form_name }}" >
+                                    {{ $v_form->form_name }}
+                                </option>
+                                @endforeach
+                                @endif
+                            </select>
+                            @if($errors->has('stag_formateur'))
+                            <small class="form-text text-muted text-danger">{{$errors->first('stag_formateur')}}</small>
+                            @endif
+                        </div>
+
 
                     <div  class="form-group">
                         <select  class="form-control" name="stag_certi">

@@ -223,7 +223,7 @@
                         @if(($all_form_count) == null)
                         Aucune information n'a été trouvé
                         @else
-                        Un nouveau formateur a été ajouté le <strong style="color: rgb(255,168,6)">
+                        Un nouveau formateur a été ajouté le <strong class="text-white">
                             {{  strftime("%d %B %Y", strtotime( $all_form_date->created_at)) }}
                             ( {{ \Carbon\Carbon::parse($all_form_date->created_at)->diffForHumans() }} )
                             Par l'entreprise {{ $all_form_of->form_of }}
@@ -233,7 +233,7 @@
                 </marquee>
 
                 @else
-                Liste des formateurs les plus ressents
+                Liste des formateurs les plus récents
                 @endif
             </div>
             <div class="card-body table-responsive">
@@ -278,17 +278,25 @@
         <div class="card">
             <div class="card-header card-header-warning">
                 <h4 class="card-title">Apprenants  </h4>
-                <p class="card-category">
-                    @if(($all_stag_count) == null)
-                    Aucune information n'a été trouvé
-                    @else
-                    Un nouveau apprenant a été ajouté le <strong class="text-warning">
-                        {{  strftime("%d %B %Y", strtotime( $all_stag_date->created_at)) }}
-                        ( {{ \Carbon\Carbon::parse($all_stag_date->created_at)->diffForHumans() }} )
-                        Par l'entreprise {{ $all_stag_structure->satg_structure }}
-                    </strong>
-                    @endif
+                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                <marquee>
+                    <p class="card-category">
+                        @if(($all_stag_count) == null)
+                        Aucune information n'a été trouvé
+                        @else
+                        Un nouveau apprenant a été ajouté le <strong class="text-white">
+                            {{  strftime("%d %B %Y", strtotime( $all_stag_date->created_at)) }}
+                            ( {{ \Carbon\Carbon::parse($all_stag_date->created_at)->diffForHumans() }} )
+                            Par l'entreprise {{ $all_stag_structure->stag_structure }}
+                        </strong>
+                        @endif
+                    </p>
+                </marquee>
+                @else
+                <p class="card-title">
+                    Listes des Apprénants nouvellement ajouté
                 </p>
+                @endif
             </div>
             <div class="card-body table-responsive">
                 <table class="table table-hover">

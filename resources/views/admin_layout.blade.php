@@ -233,11 +233,10 @@
             <div class="container-fluid">
                 <div class="navbar-wrapper">
 
-                    @if( Session::get('admin_structure'))
                     <a class="navbar-brand" style="font-family: 'Manjari'; font-size: small" href="#pablo">
-                        Nom de votre structure :
-                        <span style="font-family: 'Manjari Bold'; color: #0d704d">{{  Session::get('admin_structure') }}</span></a>
-                    @endif
+                        Bienvenue dans l'application Base Form de Mase Sénégal
+                       </a>
+
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sr-only">Toggle navigation</span>

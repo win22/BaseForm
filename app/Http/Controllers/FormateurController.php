@@ -458,13 +458,11 @@ class FormateurController extends Controller
     public  function  update_form2(Request $request, $form_id)
     {
         $this->AdminAuthCheck();
-        if($request->form_etat == 'agrée')
-        {
+
             request()->validate([
-                'form_date_debut' => ['required'],
-                'form_date_fin' => ['required'],
+
             ]);
-        }
+
 
 
         $data = array();
@@ -474,16 +472,14 @@ class FormateurController extends Controller
         $data['form_adresse'] = $request->form_adresse;
         $data['form_email'] = $request->form_email;
         $data['form_phone'] = $request->form_phone;
+        $data['form_date_naiss'] = $request->form_date_naiss;
+        $data['form_lieu_naiss'] = $request->form_lieu_naiss;
+        $data['form_situa'] = $request->form_situa;
         $data['form_etat'] = $request->form_etat;
-        if($request->form_etat == 'non')
-        {
-            $data['form_date_debut'] = null;
-            $data['form_date_fin'] = null;
-        }else
-        {
+
             $data['form_date_debut'] = $request->form_date_debut;
             $data['form_date_fin'] = $request->form_date_fin;
-        }
+
         $data['form_sexe'] = $request->form_sexe;
         $data['form_of'] = $request->form_of;
         $data['form_formation'] = $request->form_formation;

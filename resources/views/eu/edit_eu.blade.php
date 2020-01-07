@@ -24,9 +24,9 @@
     @endif
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header card-header-info">
+            <div class="card-header card-header-danger">
                 <h4 class="card-title">Entreprise Utilisatrice  <i class="fa fa-industry"></i></h4>
-                <p class="card-category">Modifier une entreprise utilisatrice </p>
+                <p class="card-category">Modification des information de l'entreprise {{ $eu_info->name }} </p>
             </div>
             <div class="card-body">
                 <form enctype="multipart/form-data" action="{{ url('/update-eu',$eu_info->eu_id)}}" method="post">
@@ -122,7 +122,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <select  class="form-control dynamic2 " name="eu_etat">
+                            <select  class="form-control " name="eu_etat">
                                 @if($eu_info->eu_etat == 'agrée')
                                 <option value="normal">Certifiée</option>
                                 @else
@@ -141,7 +141,7 @@
 
 
                     </div>
-                    <div class="row forma">
+                    <div class="row ">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Date de début </label>

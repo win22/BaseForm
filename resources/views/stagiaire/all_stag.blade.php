@@ -124,7 +124,7 @@
                                 <i class="material-icons">visibility</i>
                             </a>
                             @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
-                            || Session::get('admin_role')== 3
+                            || Session::get('user_role')== 3
                             && Session::get('admin_structure')== $v_stag->stag_structure &&  $v_stag->stag_etat == 'non'   )
 
                             <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-stag/'.

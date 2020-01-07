@@ -25,9 +25,9 @@
     @endif
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header card-header-info">
+            <div class="card-header card-header-danger">
                 <h4 class="card-title">Entreprise Intervenante   <i class="fa fa-crop redI"></i></h4>
-                <p class="card-category">Modifier une entreprise intervenante </p>
+                <p class="card-category">Modification des informations de l'entreprise {{ $ei_info->name }} </p>
             </div>
             <div class="card-body">
                 <form enctype="multipart/form-data" action="{{ url('/update-ei',$ei_info->ei_id)}}" method="post">
