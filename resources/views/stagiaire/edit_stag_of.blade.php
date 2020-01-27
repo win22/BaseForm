@@ -26,11 +26,7 @@
                             <option class="text-success" value="{{ $stag_info->stag_status }}">{{$stag_info->stag_status }}</option>
                         </select>
                     </div>
-                    <div hidden class="form-group">
-                        <select  class="form-control" name="stag_etat">
-                            <option class="text-success" value="{{ $stag_info->stag_etat }}">{{ $stag_info->stag_etat }}</option>
-                        </select>
-                    </div>
+
                     <div hidden class="form-group">
                         <select  class="form-control" name="stag_name">
                             <option class="text-success" value="{{ $stag_info->stag_name }}">{{$stag_info->stag_name }}</option>
@@ -58,16 +54,37 @@
                     </div>
                     <div hidden class="form-group">
                         <select  class="form-control" name="stag_sexe">
-                            @if($stag_info->stag_sexe == 1)
-                            <option value="{{ $stag_info->stag_sexe }}">Homme </option>
-                            @else
-                            <option value="{{ $stag_info->stag_sexe }}">Femme </option>
-                            @endif
+                            <option value="{{ $stag_info->stag_sexe }}">{{  $stag_info->stag_sexe }} </option>
                         </select>
                     </div>
                     <div hidden class="form-group">
                         <select  class="form-control" name="stag_structure">
                             <option class="text-success" value="{{ $stag_info->stag_structure }}">{{ $stag_info->stag_structure }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
+                        <select  class="form-control" name="stag_situa">
+                            <option class="text-success" value="{{ $stag_info->stag_situa }}">{{ $stag_info->stag_situa }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
+                        <select  class="form-control" name="stag_lieu_naiss">
+                            <option class="text-success" value="{{ $stag_info->stag_lieu_naiss }}">{{ $stag_info->stag_lieu_naiss }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
+                        <select  class="form-control" name="stag_date_naiss">
+                            <option class="text-success" value="{{ $stag_info->stag_date_naiss }}">{{ $stag_info->stag_date_naiss }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
+                        <select  class="form-control" name="stag_type_piece">
+                            <option class="text-success" value="{{ $stag_info->stag_type_piece }}">{{ $stag_info->stag_type_piece }}</option>
+                        </select>
+                    </div>
+                    <div hidden class="form-group">
+                        <select  class="form-control" name="stag_num_piece">
+                            <option class="text-success" value="{{ $stag_info->stag_num_piece }}">{{ $stag_info->stag_num_piece }}</option>
                         </select>
                     </div>
 
@@ -96,7 +113,8 @@
                         </div>
 
 
-                    <div  class="form-group">
+                    <div class="form-group  bmd-form-group is-filled">
+                        <label class="bmd-label-floating">Nombre de certification  <span  class="text-danger">*</span></label>
                         <select  class="form-control" name="stag_certi">
                             <option class="text-success" value="{{ $stag_info->stag_certi }}">{{$stag_info->stag_certi }}</option>
                             <option   class="text-warning" value="">Ou</option>
@@ -107,6 +125,8 @@
                         </select>
                     </div>
                     <div  class="form-group">
+                        <div class="form-group  bmd-form-group is-filled">
+                            <label class="bmd-label-floating">Formation  <span  class="text-danger">*</span></label>
                         <select  class="form-control" name="stag_formation">
                             <option class="text-success" value="{{ $stag_info->stag_formation }}">{{$stag_info->stag_formation }}</option>
                             <option class="text-warning" value="">Selectionner une autre  formation <span  class="text-danger">*</span></option>
@@ -125,7 +145,23 @@
                             @endif
                         </select>
                     </div>
+                    @if(Session::get('admin_role') ==1 || Session::get('admin_role') == 2)
+                        <div class="form-group  bmd-form-group is-filled">
+                            <label class="bmd-label-floating">État  <span  class="text-danger">*</span></label>
+                        <select  class="form-control dynamic2 " name="stag_etat">
+                            @if($stag_info->stag_etat == 'agrée')
+                            <option class="text-success" value="{{ $stag_info->stag_etat }}">Certifié Mase </option>
+                            @else
+                            <option style="color: red!important;" class="text-danger" value="{{ $stag_info->stag_etat }}">Non Certifié  </option>
 
+                            <option value="">Selectionner une autre catégorie <span  class="text-danger">*</span> </option>
+                            <option class="text-success" value="agrée">Certfié </option>
+                            <option  class="text-danger" value="non">Non certifié </option>
+                           @endif
+
+                        </select>
+                    </div>
+                    @endif
                     <div  class="form-group">
                         <label class="label">Début de la formation <span  class="text-danger">*</span></label>
                         <input value="{{ $stag_info->stag_date_debut }}" type="date" class="form-control text-success" min="1800-08-13" name="stag_date_debut">
@@ -140,8 +176,19 @@
                         <small class="form-text text-muted text-danger">{{$errors->first('stag_date_fin')}}</small>
                         @endif
                     </div>
+                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                        <div class="form-group  bmd-form-group is-filled">
+                            <label class="bmd-label-floating">Durée de la certification  <span  class="text-danger">*</span></label>
+                        <label class="bmd-label-floating">Durée de la certification <span  class="text-danger">*</span> </label>
+                        <input  value="{{ $stag_info->stag_time }}" name="stag_time" type="text" class="form-control">
+                    </div>
+                    @if($errors->has('stag_time'))
+                    <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('stag_time')}}</small>
+                    @endif
 
+                    @endif
                 </div>
+
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-sm btn-info">Enregistrer </button>
                     <a href="{{ URL::to('/details-stag/'.

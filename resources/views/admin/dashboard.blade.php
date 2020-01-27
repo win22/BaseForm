@@ -41,7 +41,7 @@
                 <div class="card-icon">
                     <i class="material-icons">bubble_chart</i>
                 </div>
-                <p class="card-category">Organismes de formations</p>
+                <p class="card-category">Org. de formations</p>
                 <a href="/all-of">
                     <h3 class="card-title">
                         {{ $all_of_count }}
@@ -253,7 +253,7 @@
                         </td>
                         <td  style="font-family: 'Manjari Bold'">{{ $v_form->form_name }}</td>
                         <td>{{ $v_form->form_prenom }}</td>
-                        <td>{{ $v_form->form_of }}
+                        <td class="text-danger">{{ $v_form->form_of }}
                             <td>
                             <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-form/'.
                         $v_form->form_token)}}">
@@ -264,13 +264,6 @@
                     @endforeach
                     </tbody>
                 </table>
-                <p  id="total_records">
-                    @if($nb>0)
-                    Total des informations : <span id="total_records">{{ $nb }}</span>
-                </p>
-                @else
-                <p class="text-center">Aucune information trouvé</p>
-                @endif
             </div>
         </div>
     </div>
@@ -302,35 +295,28 @@
                 <table class="table table-hover">
                     <thead class="text-warning">
                     <th>Photo</th>
-                    <th>Name</th>
+                    <th>Nom</th>
                     <th>Prénom</th>
-                    <th>Entreprise</th>
+                    <th>Entreprise </th>
+                    <th></th>
                     </thead>
                     <tbody>
+                    @foreach ( $all_stag_info as $v_stag)
                     <tr>
-                        <td>1</td>
-                        <td>Dakota Rice</td>
-                        <td>$36,738</td>
-                        <td>Niger</td>
+                        <td><img src="{{ URL::to($v_stag->stag_image) }}"
+                                 style=" height: 40px; width: 40px; border-radius: 15px;">
+                        </td>
+                        <td  style="font-family: 'Manjari Bold'">{{ $v_stag->stag_name }}</td>
+                        <td>{{ $v_stag->stag_prenom }}</td>
+                        <td class="text-danger">{{ $v_stag->stag_structure }}
+                        <td>
+                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/details-stag/'.
+                        $v_stag->stag_token)}}">
+                                <i class="material-icons">visibility</i>
+                            </a>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Minerva Hooper</td>
-                        <td>$23,789</td>
-                        <td>Curaçao</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Sage Rodriguez</td>
-                        <td>$56,142</td>
-                        <td>Netherlands</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                    </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

@@ -115,7 +115,7 @@
                         </div>
 
                     </div>
-
+                    <input hidden name="user_role" value="{{ $of_info->user_role }}">
                     <div class="row">
                         <input  value="{{ $of_info->of_tok }}" name="of_tok" type="text" hidden>
                     </div>

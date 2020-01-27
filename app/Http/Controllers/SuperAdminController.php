@@ -71,6 +71,10 @@ class SuperAdminController extends Controller
             ->orderByDesc('form_id')
             ->select('form_of')
             ->first();
+        $all_formt_of = DB::table('tbl_formations')
+            ->orderByDesc('formt_id')
+            ->select('formt_structure')
+            ->first();
 
         $all_formt_date = DB::table('tbl_formations')
             ->orderByDesc('formt_id')
@@ -107,6 +111,36 @@ class SuperAdminController extends Controller
             $nb= $all_form_info->count();
         }
 
+        if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') ==1 || Session::get('user_role') ==2 )
+        {
+            $all_stag_info =  DB::table('tbl_stagiaires')
+                ->where('stag_certi', 1)
+                ->orderByDesc('stag_id')
+                ->paginate(5);
+            $nb= $all_stag_info->count();
+        }
+        else{
+
+            $all_stag_info =  DB::table('tbl_stagiaires')
+                ->where('stag_structure',  Session::get('admin_structure') )
+                ->where('stag_certi', 1)
+                ->limit(5)
+                ->orderByDesc('stag_id')
+                ->get();
+            $nb= $all_stag_info->count();
+        }
+
+
+
+            $all_formt_info =  DB::table('tbl_formations')
+                ->where('formt_type', 'agrée')
+                ->orderByDesc('formt_id')
+                ->paginate(5);
+            $nb= $all_formt_info->count();
+
+
+
+
         return view('admin.dashboard', ['all_admin_count' => $all_admin_count ])
             ->with('all_of_count', $all_of_count)
             ->with('all_eu_count', $all_eu_count)
@@ -121,6 +155,7 @@ class SuperAdminController extends Controller
             ->with('all_ei_date', $all_ei_date)
             ->with('all_form_date', $all_form_date)
             ->with('all_form_of', $all_form_of)
+            ->with('all_formt_of', $all_formt_of)
             ->with('all_formt_date', $all_formt_date)
 
             ->with('all_stag_date', $all_stag_date)
@@ -128,7 +163,11 @@ class SuperAdminController extends Controller
             ->with('all_admin_date', $all_admin_date)
 
             ->with('all_form_info', $all_form_info)
-            ->with('nb', $nb);
+            ->with('nb', $nb)
+            ->with('all_stag_info', $all_stag_info)
+            ->with('nb', $nb)
+        ->with('all_formt_info', $all_formt_info)
+        ->with('nb', $nb);
     }
 
 

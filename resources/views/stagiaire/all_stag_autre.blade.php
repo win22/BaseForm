@@ -21,14 +21,14 @@
         <div class="row card-header card-header-info">
             <div class="col-md-8">
                 <h4 class="card-title ">Stagiaires   <i class="fa fa-asl-interpreting"></i></h4>
-                <p class="card-admin">Liste des stagiaires</p>
+                <p class="card-admin">Liste des autres stagiaires</p>
             </div>
 
             <div class="col-md-4">
-                <form class="navbar-form" action="/searchStag">
+                <form class="navbar-form" action="/searchStagOf">
                     <div class="input-group">
                         <div class="form-group">
-                            <label class="bmd-label-floating text-white">Rechercher</label>
+                            <label class="bmd-label-floating text-white">Rechercher par structure</label>
                             <input  name="search" type="text" class="form-control text-white">
                         </div>
                         <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -38,13 +38,13 @@
                     </div>
                 </form>
                 <div class="row">
-                    <form action="/searchStgA">
+                    <form action="/searchStagA">
                         <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher les apprenants certifiés " type="submit" class="btn btn-success btn-sm">
                             Certifié
                             <div class="ripple-container"></div>
                         </button>
                     </form> &nbsp;
-                    <form action="/searchStgN">
+                    <form action="/searchStagN">
                         <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher les apprenants qui ne sont pas certifiés" type="submit" class="btn btn-warning btn-sm">
                             Non certifié
                             <div class="ripple-container"></div>
@@ -91,7 +91,7 @@
                         </span>
                             @endif
                         </td>
-                        <td style="font-family: 'Manjari Bold'" class="text-center">{{ $v_stag->stag_structure }}</td>
+                        <td style="font-family: 'Manjari Bold'" class="text-center text-danger">{{ $v_stag->stag_structure }}</td>
                         @if( Session::get('admin_role')==1 || Session::get('admin_role')==2 )
                         <td class="text-center">
                             @if($v_stag->stag_status==1)
@@ -133,14 +133,14 @@
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
                 </p>
-                     @else
+                @else
                 <p class="text-center">Aucune information n'a été trouvée</p>
-                     @endif
-                @if(Session::get('user_role') == 3)
-                <a class="text-danger" href="/all-stag-N">Voir les autres apprénants...</a>
                 @endif
+                <a class="text-danger" href="/all-stag">Retour</a>
 
                 {{ $all_stag_info->links() }}
+
+
             </div>
         </div>
     </div>

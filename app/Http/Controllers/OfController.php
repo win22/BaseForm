@@ -260,6 +260,7 @@ class OfController extends Controller
 
         $this->AdminAuthCheck();
         $data = array();
+        $data3 = array();
         $data['of_id'] = $request->of_id;
         $data['name'] = $request->name;
         $data['of_email'] = $request->of_email;
@@ -278,6 +279,7 @@ class OfController extends Controller
         $data2['of_date_ad'] = $request->of_date_ad;
         $data2['of_tok'] = $request->of_tok;
 
+        $date3['admin_structure'] = $request->of_name;
 
 
 
@@ -290,8 +292,14 @@ class OfController extends Controller
             ->where('of_tok', $request->of_tok )
             ->update($data2);
 
+//        $test = DB::table('tbl_admin')
+//            ->where('admin_structure', $request->of_name)
+//            ->select('admin_structure')
+//            ->get();
+
             Session::put('message', "l'OF ".$data['name']." a eté modifiée avec Succès !");
             return redirect('/all-of');
+
 
     }
 

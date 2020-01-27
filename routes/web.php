@@ -145,6 +145,7 @@ Route::get('/add-stag', 'StagiaireController@index');
 Route::post('/save-stag', 'StagiaireController@save_stag');
 Route::post('/save-stag-fo', 'StagiaireController@saveNewforma');
 
+Route::get('/all-stag-N',  'StagiaireController@all_stag_n');
 Route::get('/all-stag',  'StagiaireController@all_stag');
 Route::get('/details-stag/{stag_token}', 'StagiaireController@detail_stag');
 Route::get('/searchStag', 'StagiaireController@search');
@@ -163,5 +164,8 @@ Route::get('/unvalide-stag/{stag_id}', 'StagiaireController@stag_unvalide');
 Route::get('/searchStgA', 'StagiaireController@searchA');
 Route::get('/searchStgN', 'StagiaireController@searchN');
 
+Route::get('/searchStagA', 'StagiaireController@searchAN');
+Route::get('/searchStagN', 'StagiaireController@searchNA');
+Route::get('/searchStagOf', 'StagiaireController@searchOf');
 
 

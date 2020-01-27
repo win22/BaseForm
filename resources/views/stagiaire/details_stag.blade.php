@@ -513,7 +513,7 @@
                     </div>
                     @if(Session::get('admin_role') ==1 || Session::get('admin_role') == 2)
                     <div  class="form-group">
-                        <select  class="form-control dynamic2" name="stag_certi">
+                        <select  class="form-control dynamic2" name="stag_etat">
                             <option  value="">Etat <span  class="text-danger">*</span></option>
                             <option  class="text-success" value="agrée">Certifié </option>
                             <option  class="text-danger" value="non">Non certifié</option>
@@ -588,7 +588,7 @@
                             <td class="text-center">
                                 @if($v_stag->stag_etat=='agrée')
                                 <span class="label" style="font-family: 'Manjari Bold'; color: rgba(0,128,0,0.88);">
-                            Certifié Mase <i class="fa fa-certificate"></i>
+                            Certifié Mase
                         </span>
                                 @else
                                 <span class="label" style="font-family: 'Manjari Bold'; color: rgba(233,50,13,0.88);">
@@ -598,22 +598,8 @@
                             </td>
 
                             <td class="td-actions">
-
-                                @if( Session::get('admin_role')==1)
-                                @if($v_stag->stag_status==1)
-                                <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-stag/'.
-                        $v_stag->stag_id)}}">
-                                    <i class="material-icons">thumb_down_alt</i>
-                                </a>
-                                @else
-                                <a class="btn btn-success btn-link btn-sm"  rel="tooltip" title="Activer" href="{{ URL::to('/active-stag/'.
-                        $v_stag->stag_id)}}">
-                                    <i class="material-icons">thumb_up</i>
-                                </a>
-                                @endif
-                                @endif
                                 @if( Session::get('admin_role')==1 || Session::get('admin_role')==2
-                                || Session::get('admin_role')== 3
+                                || Session::get('user_role')== 3
                                 && Session::get('admin_structure')== $v_stag->stag_structure
                                 && $v_stag->stag_etat == 'non' )
                                 <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-stag2/'.
@@ -624,6 +610,8 @@
                                  $v_stag->stag_id)}}" id="delete">
                                     <i class="material-icons">close</i>
                                 </a>
+                                @else
+                                <img  style=" height: 60px; width: 70px; border-radius: 15px;" src="{{URL::to('image/cer.png')}}" />
                                 @endif
                             </td>
                         </tr>

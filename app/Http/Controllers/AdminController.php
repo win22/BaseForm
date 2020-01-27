@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 use DB;
 use App\Http\Requests;
 use Illuminate\View\View;
@@ -167,7 +168,7 @@ class AdminController extends Controller
             request()->validate([
                 'admin_image' => ['image']
             ]);
-            $image_name = str_random(20);
+            $image_name = str_random(6);
             $text = strtolower($image->getClientOriginalExtension());
             $image_full_name =$image_name.'.'.$text;
             $upload_path = 'image/';
@@ -177,6 +178,11 @@ class AdminController extends Controller
                 $data['admin_image'] = $image_url;
             }
         }
+        if($request->admin_image == null)
+        {
+            $admin['admin_image'] = 'image/user.svg';
+        }
+        
 //        $pass = array();
 //        $pass['test'] = $request->admin_password;
   //      $data = array('data'=> $data, 'pass'=>$pass);
@@ -184,7 +190,7 @@ class AdminController extends Controller
 
         Mail::send('mail.activation', $data, function ($message) use ($data){
             $message->to($data['admin_email']);
-            $message->from('mailtrapmail@gmail.com');
+            $message->from('baseformsenegal@gmail.com');
             $message->subject('Activation de  votre Compte ');
 
         });
@@ -287,7 +293,7 @@ class AdminController extends Controller
             'password_confirmation' => ['required'],
         ]);
         $data = array();
-        $data['admin_password'] = md5($request->password);
+        $data['admin_password'] = hash::make($request->password);
         $data['admin_status'] = 1;
         $data['token'] = null;
         DB::table('tbl_admin')
@@ -338,7 +344,7 @@ class AdminController extends Controller
             'password_confirmation' => ['required'],
         ]);
         $data = array();
-        $data['admin_password'] = md5($request->password);
+        $data['admin_password'] = hash::make($request->password);
         $data['admin_status'] = 1;
         $data['token'] = null;
         DB::table('tbl_admin')
@@ -390,12 +396,12 @@ class AdminController extends Controller
             'user_role' => [ 'max:2'],
             'admin_phone' => ['required', 'max:60'],
             'admin_prenom' => ['required', 'max:30'],
-            'admin_password' => ['max:120', 'min:5'],
+            'admin_password' => ['max:16', 'min:5'],
         ]);
         $data = array();
         $data['admin_id'] = $request->admin_id;
         $data['admin_email'] = $request->admin_email;
-//        $data['admin_password'] = md5($request->admin_password);
+//        $data['admin_password'] = hash::make($request->admin_password);
         $data['admin_role'] = $request->admin_role;
         $data['admin_structure'] = $request->admin_structure;
         $data['admin_phone'] = $request->admin_phone;
@@ -407,7 +413,7 @@ class AdminController extends Controller
             request()->validate([
                 'admin_image' => ['image']
             ]);
-            $image_name = str_random(20);
+            $image_name = str_random(6);
             $text = strtolower($image->getClientOriginalExtension());
             $image_full_name =$image_name.'.'.$text;
             $upload_path = 'image/';
@@ -449,7 +455,7 @@ class AdminController extends Controller
         ]);
         $data = array();
         $data['admin_id'] = $request->admin_id;
-        $data['admin_password'] = md5($request->password);
+        $data['admin_password'] = hash::make($request->password);
         DB::table('tbl_admin')
             ->where('admin_id', $admin_id)
             ->update($data);
