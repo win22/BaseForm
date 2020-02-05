@@ -21,7 +21,7 @@
         <div class="row card-header card-header-info">
             <div class="col-md-8">
                 <h4 class="card-title ">Formation  <i class="fa fa-graduation-cap"></i></h4>
-                <p class="card-form">les formations certifiées Mase </p>
+                <p class="card-form">Autres formations </p>
 
             </div>
 

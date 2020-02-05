@@ -85,7 +85,7 @@
                 </div>
                 <ul class="auth-footer">
                 </ul>
-                    <p  class="footer-text text-center">&copy; 2019 | design by <a  target="_blank" href="http://nataalagency.com/">Nataal Agency</a>. Tous les droits sont réservés.</p>
+                    <p  class="footer-text text-center">&copy; 2019 | by <a  target="_blank" href="http://nataalagency.com/">Nataal Agency</a>. Tous les droits sont réservés.</p>
             </div>
         </div>
     </div>

@@ -98,7 +98,7 @@ class SuperAdminController extends Controller
                 ->where('form_certi', 1)
                 ->orderByDesc('form_id')
                 ->paginate(5);
-            $nb= $all_form_info->count();
+            $nb_form= $all_form_info->count();
         }
         else{
 
@@ -108,7 +108,7 @@ class SuperAdminController extends Controller
                 ->limit(5)
                 ->orderByDesc('form_id')
                 ->get();
-            $nb= $all_form_info->count();
+            $nb_form= $all_form_info->count();
         }
 
         if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') ==1 || Session::get('user_role') ==2 )
@@ -117,7 +117,7 @@ class SuperAdminController extends Controller
                 ->where('stag_certi', 1)
                 ->orderByDesc('stag_id')
                 ->paginate(5);
-            $nb= $all_stag_info->count();
+            $nb_stag= $all_stag_info->count();
         }
         else{
 
@@ -127,7 +127,7 @@ class SuperAdminController extends Controller
                 ->limit(5)
                 ->orderByDesc('stag_id')
                 ->get();
-            $nb= $all_stag_info->count();
+            $nb_stag= $all_stag_info->count();
         }
 
 
@@ -136,7 +136,7 @@ class SuperAdminController extends Controller
                 ->where('formt_type', 'agrée')
                 ->orderByDesc('formt_id')
                 ->paginate(5);
-            $nb= $all_formt_info->count();
+            $nb_formt= $all_formt_info->count();
 
 
 
@@ -163,11 +163,11 @@ class SuperAdminController extends Controller
             ->with('all_admin_date', $all_admin_date)
 
             ->with('all_form_info', $all_form_info)
-            ->with('nb', $nb)
+            ->with('nb_form', $nb_form)
             ->with('all_stag_info', $all_stag_info)
-            ->with('nb', $nb)
+            ->with('nb_stag', $nb_stag)
         ->with('all_formt_info', $all_formt_info)
-        ->with('nb', $nb);
+        ->with('nb_formt', $nb_formt);
     }
 
 

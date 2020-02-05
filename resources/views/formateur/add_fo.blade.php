@@ -37,7 +37,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Nom <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('form_name') }}" name="form_name" type="text" class="form-control">
+                                <input required value="{{ old('form_name') }}" name="form_name" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_name'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_name')}}</small>
@@ -46,7 +46,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Prenom <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('form_prenom') }}" name="form_prenom" type="text" class="form-control">
+                                <input  required value="{{ old('form_prenom') }}" name="form_prenom" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_prenom'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_prenom')}}</small>
@@ -58,7 +58,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Date de naissance <span  class="text-danger">*</span></label>
-                                <input type="date" class="form-control text-info"  name="form_date_naiss">
+                                <input required type="date" class="form-control text-info"  name="form_date_naiss">
                                 @if($errors->has('form_date_naiss'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_date_naiss')}}</small>
                                 @endif
@@ -67,7 +67,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Lieu de Naissance <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('form_lieu_naiss') }}" name="form_lieu_naiss" type="text" class="form-control">
+                                <input required value="{{ old('form_lieu_naiss') }}" name="form_lieu_naiss" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_lieu_naiss'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_lieu_naiss')}}</small>
@@ -99,7 +99,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Numéro de la piece <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('form_num_piece') }}" name="form_num_piece" type="text" class="form-control">
+                                <input required  value="{{ old('form_num_piece') }}" name="form_num_piece" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_num_piece'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_num_piece')}}</small>
@@ -123,7 +123,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Téléphone <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('form_phone') }}" name="form_phone" type="text" class="form-control">
+                                <input  required value="{{ old('form_phone') }}" name="form_phone" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_phone'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_phone')}}</small>
@@ -132,7 +132,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">adresse e-mail <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('form_email') }}" name="form_email" type="text" class="form-control">
+                                <input required  value="{{ old('form_email') }}" name="form_email" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_email'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_email')}}</small>
@@ -141,7 +141,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Adresse <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('form_adresse') }}" name="form_adresse" type="text" class="form-control">
+                                <input required value="{{ old('form_adresse') }}" name="form_adresse" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_adresse'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_adresse')}}</small>
@@ -217,7 +217,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Début de la formation <span  class="text-danger">*</span></label>
-                                <input type="date" class="form-control text-success" name="form_date_debut">
+                                <input required type="date" class="form-control text-success" name="form_date_debut">
                                 @if($errors->has('form_date_debut'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_date_debut')}}</small>
                                 @endif
@@ -227,7 +227,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Fin de la formation <span  class="text-danger">*</span></label>
-                                <input type="date" class="form-control text-danger"  name="form_date_fin">
+                                <input required type="date" class="form-control text-danger"  name="form_date_fin">
                                 @if($errors->has('form_date_fin'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_date_fin')}}</small>
                                 @endif

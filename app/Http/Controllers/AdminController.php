@@ -85,7 +85,7 @@ class AdminController extends Controller
                 ->orWhere('admin_structure', 'like', '%'.$search.'%')
                 ->orWhere('admin_status', 'like', '%'.$search.'%')
                 ->orderByDesc('admin_id')
-                ->paginate(5);
+                ->paginate(10);
         $nb= $all_admin_info->count();
         return view('admin.all_admin', ['all_admin_info' => $all_admin_info ])
             ->with(['nb' => $nb]);
@@ -98,7 +98,7 @@ class AdminController extends Controller
         $this->AdminAuthCheck();
         $all_admin_info =  DB::table('tbl_admin')
             ->orderByDesc('admin_id')
-            ->paginate(5);
+            ->paginate(10);
         $nb= $all_admin_info->count();
 
         return view('admin.all_admin', ['all_admin_info' => $all_admin_info ])
@@ -163,6 +163,7 @@ class AdminController extends Controller
         $data['admin_status'] = $request->admin_status;
         $data['user_role'] = $request->user_role;
         $data['token'] = str_random(30);
+        $default_image = 'image/user.svg';
         $image = $request->file('admin_image');
         if ($image){
             request()->validate([
@@ -178,15 +179,10 @@ class AdminController extends Controller
                 $data['admin_image'] = $image_url;
             }
         }
-        if($request->admin_image == null)
+        else
         {
-            $admin['admin_image'] = 'image/user.svg';
+            $data['admin_image'] =$default_image;
         }
-        
-//        $pass = array();
-//        $pass['test'] = $request->admin_password;
-  //      $data = array('data'=> $data, 'pass'=>$pass);
-
 
         Mail::send('mail.activation', $data, function ($message) use ($data){
             $message->to($data['admin_email']);

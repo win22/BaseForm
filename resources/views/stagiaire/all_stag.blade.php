@@ -20,8 +20,8 @@
     <div class="card">
         <div class="row card-header card-header-info">
             <div class="col-md-8">
-                <h4 class="card-title ">Stagiaires   <i class="fa fa-asl-interpreting"></i></h4>
-                <p class="card-admin">Liste des stagiaires</p>
+                <h4 class="card-title ">Apprenant <i class="fa fa-asl-interpreting"></i></h4>
+                <p class="card-admin">Liste des apprenants</p>
             </div>
 
             <div class="col-md-4">

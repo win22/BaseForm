@@ -303,7 +303,7 @@
                         <li>
                             <a class="text-danger">
                                 <i class="fa fa-phone"></i>&nbsp;
-                                +221781578366
+                                +221773087466
                             </a>
 
 <!--                            <a href="http://nataalagency.com" target="_blank"> &copy;-->

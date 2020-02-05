@@ -35,7 +35,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Nom <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('admin_prenom') }}" name="admin_prenom" type="text" class="form-control">
+                                <input  required value="{{ old('admin_prenom') }}" name="admin_prenom" type="text" class="form-control">
                             </div>
                             @if($errors->has('admin_prenom'))
                             <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('admin_prenom')}}</small>
@@ -44,7 +44,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Adresse e-mail <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('admin_email') }}" name="admin_email" type="email" class="form-control">
+                                <input required  value="{{ old('admin_email') }}" name="admin_email" type="email" class="form-control">
                             </div>
                             @if($errors->has('admin_email'))
                             <small class="form-text text-muted text-danger">{{$errors->first('admin_email')}}</small>
@@ -134,7 +134,7 @@
                         <div class="col-md-4">
                             <div>
                                 <label class="bmd-label-floating">Image de l'utilisateur</label><br>
-                                <input required accept="image/*" type="file" name="admin_image">
+                                <input accept="image/*" type="file" name="admin_image">
                             </div>
                             @if($errors->has('admin_image'))
                             <small class="form-text text-muted text-danger">{{$errors->first('admin_image')}}</small>

@@ -26,8 +26,8 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-info">
-                <h4 class="card-title">Stagiaire <i class="fa fa-asl-interpreting"></i> </h4>
-                <p class="card-category">Ajouter un stagiaire</p>
+                <h4 class="card-title">Apprenant <i class="fa fa-asl-interpreting"></i> </h4>
+                <p class="card-category">Ajouter un apprenant</p>
             </div>
             <div class="card-body">
                 <form enctype="multipart/form-data" action="{{ url('/save-stag')}}" method="post">
