@@ -34,7 +34,7 @@
                 <p class="card-category text-white">Modification des information du formateur {{ $form_info->form_prenom }} {{ $form_info->form_name }} </p>
             </div>
             <div class="card-body">
-                <form action="{{ url('/update-form',$form_info->form_id) }}" method="post">
+                <form action="{{ url('/update-form',$form_info->form_id) }}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
@@ -248,7 +248,7 @@
                         <div class="col-md-4">
                             <div>
                                 <label class="bmd-label-floating">Selectionner l'image du formateur</label><br>
-                                <input    accept="image/*" type="file" name="form_image">
+                                <input accept="image/*"  type="file" name="form_image">
                             </div>
                             @if($errors->has('form_image'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_image')}}</small>

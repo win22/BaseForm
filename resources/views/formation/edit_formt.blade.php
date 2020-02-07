@@ -30,7 +30,7 @@
                 <p class="card-category">Modifier une Formation</p>
             </div>
             <div class="card-body">
-                <form action="{{ url('/update-formt',$formt_info->formt_id)}}" method="post">
+                <form action="{{ url('/update-formt',$formt_info->formt_id)}}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">

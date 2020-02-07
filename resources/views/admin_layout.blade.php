@@ -136,7 +136,7 @@
                     </div>
                 </li>
 
-                @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
+
                 <li class="nav-item {{ request()->is('all-form','add-form')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-form','add-form')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic6" aria-expanded="false" aria-controls="ui-basic6">
                         <i class="fa fa-users EU"></i>
@@ -150,17 +150,18 @@
                                     <span class="text-white">Listes des Formateurs</span>
                                 </a>
                             </li>
-
+                            @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
                             <li class="nav-item {{ request()->is('add-form')? 'active' : '' }}">
                                 <a class="nav-link" href="{{URL::to('/add-form')}}">
                                     <i class="material-icons">playlist_add</i>
                                     <span class="text-white">Ajouter un Formateur</span>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
-                @endif
+
                 <li class="nav-item {{ request()->is('all-stag','add-stag')? 'active' : '' }}">
                     <a class="nav-link {{ request()->is('all-stag','add-stag')? 'collapsed' : '' }}" data-toggle="collapse" href="#ui-basic11" aria-expanded="false" aria-controls="ui-basic11">
                         <i class="fa fa-asl-interpreting EI"></i>

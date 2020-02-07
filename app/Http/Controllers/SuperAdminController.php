@@ -97,7 +97,7 @@ class SuperAdminController extends Controller
             $all_form_info =  DB::table('tbl_formateurs')
                 ->where('form_certi', 1)
                 ->orderByDesc('form_id')
-                ->paginate(5);
+                ->paginate(10);
             $nb_form= $all_form_info->count();
         }
         else{
@@ -105,7 +105,7 @@ class SuperAdminController extends Controller
             $all_form_info =  DB::table('tbl_formateurs')
                 ->where('form_of',  Session::get('admin_structure') )
                 ->where('form_certi', 1)
-                ->limit(5)
+                ->limit(10)
                 ->orderByDesc('form_id')
                 ->get();
             $nb_form= $all_form_info->count();
@@ -116,7 +116,7 @@ class SuperAdminController extends Controller
             $all_stag_info =  DB::table('tbl_stagiaires')
                 ->where('stag_certi', 1)
                 ->orderByDesc('stag_id')
-                ->paginate(5);
+                ->paginate(10);
             $nb_stag= $all_stag_info->count();
         }
         else{
@@ -124,7 +124,7 @@ class SuperAdminController extends Controller
             $all_stag_info =  DB::table('tbl_stagiaires')
                 ->where('stag_structure',  Session::get('admin_structure') )
                 ->where('stag_certi', 1)
-                ->limit(5)
+                ->limit(10)
                 ->orderByDesc('stag_id')
                 ->get();
             $nb_stag= $all_stag_info->count();
@@ -135,7 +135,7 @@ class SuperAdminController extends Controller
             $all_formt_info =  DB::table('tbl_formations')
                 ->where('formt_type', 'agrée')
                 ->orderByDesc('formt_id')
-                ->paginate(5);
+                ->paginate(10);
             $nb_formt= $all_formt_info->count();
 
 

@@ -10,6 +10,7 @@ use App\Http\Requests;
 use Illuminate\View\View;
 use Session;
 Use Mail;
+use File;
 session_start();
 class StagiaireController extends Controller
 {
@@ -308,6 +309,12 @@ class StagiaireController extends Controller
     public function delete_stag2($stag_token)
     {
         $this->adminAuthCheck();
+        $apprenant = DB::table('tbl_stagiaires')
+            ->whereIn('stag_certi', [0,1,2,3,4,5])
+            ->where('stag_token', $stag_token)
+            ->first();
+        File::delete($apprenant->stag_image);
+
         DB::table('tbl_stagiaires')
             ->whereIn('stag_certi', [0,1,2,3,4,5])
             ->where('stag_token', $stag_token)
@@ -621,6 +628,11 @@ class StagiaireController extends Controller
             $success = $image->move($upload_path,$image_full_name);
             if($success){
                 $data['stag_image'] = $image_url;
+                $apprenant = DB::table('tbl_stagiaires')
+                    ->whereIn('stag_certi', [0,1,2,3,4,5])
+                    ->where('stag_id', $stag_id)
+                    ->first();
+                File::delete($apprenant->stag_image);
             }
         }
         $data2['stag_name'] = $request->stag_name;

@@ -226,7 +226,7 @@
                         Un nouveau formateur a été ajouté le <strong class="text-white">
                             {{  strftime("%d %B %Y", strtotime( $all_form_date->created_at)) }}
                             ( {{ \Carbon\Carbon::parse($all_form_date->created_at)->diffForHumans() }} )
-                            Par l'entreprise {{ $all_form_of->form_of }}
+                            appartenant à l'entreprise {{ $all_form_of->form_of }}
                         </strong>
                         @endif
                     </p>
@@ -280,7 +280,7 @@
                         Un nouveau apprenant a été ajouté le <strong class="text-white">
                             {{  strftime("%d %B %Y", strtotime( $all_stag_date->created_at)) }}
                             ( {{ \Carbon\Carbon::parse($all_stag_date->created_at)->diffForHumans() }} )
-                            Par l'entreprise {{ $all_stag_structure->stag_structure }}
+                            appartenant à l'entreprise {{ $all_stag_structure->stag_structure }}
                         </strong>
                         @endif
                     </p>

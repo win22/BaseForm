@@ -166,7 +166,7 @@
 
                     @if($of_info->of_etat=='agrée')
                     <div class="col-md-3" style="padding-top: 140px; padding-right: 190px">
-                        <img class="img" style="width: 230px; height : 190px; " src="{{URL::to('image/cer.png')}}" />
+                        <img class="img" style="width: 230px; height : 190px; " src="{{URL::to('image/agre.png')}}" />
                     </div>
                     @endif
                 </div>

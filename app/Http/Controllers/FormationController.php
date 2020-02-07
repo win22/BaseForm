@@ -179,16 +179,19 @@ class formationController extends Controller
         $data['formt_structure'] = $request->formt_structure;
         $file = $request->file('formt_file');
         if($file){
-            dump('0');
+            request()->validate([
+               'formt_file' => ['required', 'file']
+            ]);
             $file_full_name = strtolower($file->getClientOriginalName());
-            dump('1');
             $upload_path = 'formation/';
-            dump('2');
             $file_url = $file_full_name;
-            dump('3');
             $success = $file->move($upload_path, $file_full_name);
             if ($success) {
                 $data['formt_file'] = $file_url;
+                $formation = DB::table('tbl_formations')
+                    ->where('formt_id', $formt_id)
+                    ->first();
+                File::delete('formation/' . $formation->formt_file . '');
             }
         }
 

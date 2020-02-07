@@ -1,8 +1,8 @@
 @extends('admin_layout')
 @section('contenu')
 
-
 @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role')== 3)
+
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
 <div id="alert" class="alert alert-success alert-with-icon col-md-4 right">
@@ -31,7 +31,7 @@
                 <p class="card-category">Ajouter un formateur</p>
             </div>
             <div class="card-body">
-                <form  enctype="multipart/form-data" action="{{ url('/save-form')}}" method="post">
+                <form  action="{{ url('/save-form')}}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
@@ -46,7 +46,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Prenom <span  class="text-danger">*</span></label>
-                                <input  required value="{{ old('form_prenom') }}" name="form_prenom" type="text" class="form-control">
+                                <input required value="{{ old('form_prenom') }}" name="form_prenom" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_prenom'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_prenom')}}</small>
@@ -99,7 +99,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Numéro de la piece <span  class="text-danger">*</span></label>
-                                <input required  value="{{ old('form_num_piece') }}" name="form_num_piece" type="text" class="form-control">
+                                <input required value="{{ old('form_num_piece') }}" name="form_num_piece" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_num_piece'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_num_piece')}}</small>
@@ -123,7 +123,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Téléphone <span  class="text-danger">*</span></label>
-                                <input  required value="{{ old('form_phone') }}" name="form_phone" type="text" class="form-control">
+                                <input required value="{{ old('form_phone') }}" name="form_phone" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_phone'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_phone')}}</small>
@@ -132,7 +132,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">adresse e-mail <span  class="text-danger">*</span></label>
-                                <input required  value="{{ old('form_email') }}" name="form_email" type="text" class="form-control">
+                                <input required value="{{ old('form_email') }}" name="form_email" type="text" class="form-control">
                             </div>
                             @if($errors->has('form_email'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_email')}}</small>
@@ -166,7 +166,6 @@
                                         {{ $v_of->name }}
                                     </option>
                                     @endforeach
-
                                     @endif
                                 </select>
                                 @if($errors->has('form_of'))
@@ -217,7 +216,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Début de la formation <span  class="text-danger">*</span></label>
-                                <input required type="date" class="form-control text-success" name="form_date_debut">
+                                <input type="date" class="form-control text-success" name="form_date_debut">
                                 @if($errors->has('form_date_debut'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_date_debut')}}</small>
                                 @endif
@@ -227,7 +226,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Fin de la formation <span  class="text-danger">*</span></label>
-                                <input required type="date" class="form-control text-danger"  name="form_date_fin">
+                                <input type="date" class="form-control text-danger"  name="form_date_fin">
                                 @if($errors->has('form_date_fin'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('form_date_fin')}}</small>
                                 @endif
@@ -239,7 +238,7 @@
                         <div class="col-md-4">
                             <div>
                                 <label class="bmd-label-floating">Selectionner l'image du formateur</label><br>
-                                <input required  accept="image/*" type="file" name="form_image">
+                                <input required accept="image/*" type="file" name="form_image">
                             </div>
                             @if($errors->has('form_image'))
                             <small class="form-text text-muted text-danger">{{$errors->first('form_image')}}</small>
@@ -248,12 +247,11 @@
                         </div>
                     </div>
 
-
                     <a href="/all-form" id="md." class="btn btn-danger pull-right">
                         <i class="material-icons">cancel</i>
                         Annuler </a>&nbsp;
 
-                    <button type="submit" id="md." class="btn btn-success pull-right">
+                    <button type="submit" class="btn btn-success pull-right">
                         <i class="material-icons">check</i>
                         Ajouter </button>
                     <div class="clearfix"></div>

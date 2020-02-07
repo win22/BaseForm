@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('contenu')
-@if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('user_role') == 3)
+@if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 || Session::get('admin_role') == 3)
 <p class="alert">{{ $message = Session::get('message')}}</p>
 @if($message)
 <div id="alert" class="alert alert-success alert-with-icon col-md-4 left">
@@ -301,7 +301,7 @@
                     @if($form_info->form_etat == 'agrée')
                     <div class="col-md-3" style="padding-top: 140px; padding-right: 190px">
                         <div class="col-md-6">
-                            <img class="img" style=" width: 236px; height : 216px; " src="{{URL::to('image/cer.png')}}" />
+                            <img class="img" style=" width: 236px; height : 216px; " src="{{URL::to('image/agre.png')}}" />
                         </div>
                     </div>
                     @endif
