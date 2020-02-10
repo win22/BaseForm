@@ -91,7 +91,7 @@ class formationController extends Controller
         $formation = DB::table('tbl_formations')
             ->where('formt_id', $formt_id)
             ->first();
-        File::delete('formation/' . $formation->formt_file . '');
+        File::delete('formation/'.$formation->formt_file);
 
         DB::table('tbl_formations')
             ->where('formt_id', $formt_id)

@@ -74,7 +74,7 @@
                             @endif
                         </div>
                         <div class="col-md-2">
-                            <select  class="form-control " name="form_sexe">
+                            <select  required class="form-control " name="form_sexe">
                                 <option  class="text-warning" value="">Sexe <span  class="text-danger">*</span> </option>
                                 <option value="Homme">Homme</option>
                                 <option value="Femme">Femme </option>

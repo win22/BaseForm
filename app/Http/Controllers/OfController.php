@@ -9,7 +9,7 @@ use App\Http\Requests;
 use Illuminate\View\View;
 use Session;
 Use Mail;
-use Excel;
+use Maatwebsite\Excel\Facades\Excel;
 
 session_start();
 class OfController extends Controller
@@ -41,26 +41,28 @@ class OfController extends Controller
     public  function excel()
     {
         $data = DB::table('tbl_organisme_formation')
-            ->orWhere('of_certi', 1)
+            ->where('of_certi', 1)
+            ->orderByDesc('of_id')
             ->get()
             ->toArray();
-        $data_array[] = array('name', 'of_adresse', 'of_email', 'of_phone', 'of_formation', 'of_etat');
+        $data_array[] = array('Nom', 'Adresse', 'Email', 'Tél','Date adhésion', 'Formation', 'État');
         foreach ( $data as $da)
         {
-            $data_array[] = array('name' => $da->name,
-                'of_adresse'  => $da->of_adresse,
-                'of_email'  => $da->of_email,
-                'of_phone' => $da->of_phone,
-                'of_formation' => $da->of_formation,
-                'of_etat'  => $da->of_etat);
+            $data_array[] = array('Nom' => $da->name,
+                'Adresse'  => $da->of_adresse,
+                'Email'  => $da->of_email,
+                'Tél' => $da->of_phone,
+                'Date adhésion' => $da->of_date_ad,
+                'Formation' => $da->of_formation,
+                'État'  => $da->of_etat);
         }
-        Excel::create('data', function ($excel)use ($data_array)
+
+        Excel::create('Org_formation', function ($excel)use ($data_array)
         {
-            $excel->setTitle('data');
-            $excel->sheet('data',function ($sheet) use ($data_array){
-               $sheet->fromArray($data_array, null, 'A1', false, false);
-            });
-        })->download('xlsx');
+            $excel->sheet('Org_formation', function($sheet) use($data_array) {
+            $sheet->fromArray($data_array);
+        });
+        })->download('xls');
 
     }
 

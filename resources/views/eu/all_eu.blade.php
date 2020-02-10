@@ -15,7 +15,7 @@
     <div class="card">
         <div class="row card-header card-header-info">
             <div class="col-md-8">
-                <h4 class="card-title ">Entreprises Utilisatrices  <i class="fa fa-industry"></i></h4>
+                <h4 class="card-title ">Entreprises Utilisatrices <i class="fa fa-industry"></i></h4>
                 <p class="card-eu">Listes des entreprises utilisatrice</p>
 
             </div>
@@ -25,7 +25,7 @@
                     <div class="input-group">
                         <div class="form-group">
                             <label class="bmd-label-floating text-white">Rechercher</label>
-                            <input  name="search" type="text" class="form-control text-white">
+                            <input name="search" type="text" class="form-control text-white">
                         </div>
                         <button type="submit" class="btn btn-white btn-round btn-just-icon">
                             <i class="material-icons">search</i>
@@ -35,21 +35,22 @@
                 </form>
                 <div class="row">
                     <form action="/searchEUN">
-                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher uniquement les entreprises
+                        <button rel="tooltip" title="Cliquer sur ce bouton afin d'afficher uniquement les entreprises
                          utilisatrices qui ne sont pas certifieés" type="submit" class="btn btn-warning btn-sm">
                             Normales
                             <div class="ripple-container"></div>
                         </button>
                     </form>
                     <form action="/searchEUE">
-                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher uniquement
-                         les entreprises utilisatrices  qui sont en démarches" type="submit" class="btn btn-info btn-sm">
+                        <button rel="tooltip" title="Cliquer sur ce bouton afin d'afficher uniquement
+                         les entreprises utilisatrices  qui sont en démarches" type="submit"
+                                class="btn btn-info btn-sm">
                             En démarches
                             <div class="ripple-container"></div>
                         </button>
                     </form>
                     <form action="/searchEUA">
-                        <button  rel="tooltip" title="Cliquer sur ce bouton afin d'afficher uniquement les
+                        <button rel="tooltip" title="Cliquer sur ce bouton afin d'afficher uniquement les
                          les entreprises
                          utilisatrices certifiées " type="submit" class="btn btn-success btn-sm">
                             Certifiées
@@ -97,7 +98,9 @@
                             @endif
                         </td>
 
-                        <td  style="font-family: 'Manjari Bold'" class="center">{{ strftime("%d %B %Y", strtotime($v_eu->eu_date_ad)) }}</td>
+                        <td style="font-family: 'Manjari Bold'" class="center">{{ strftime("%d %B %Y",
+                            strtotime($v_eu->eu_date_ad)) }}
+                        </td>
                         @if( Session::get('admin_role')==1)
                         <td class="text-center">
                             @if($v_eu->eu_status==1)
@@ -113,18 +116,18 @@
                         @endif
 
                         <td class="td-actions ">
-                            <a class="btn btn-info btn-link btn-sm"  rel="tooltip" title="Visualiser"  href="{{ URL::to('/detail-eu/'.
+                            <a class="btn btn-info btn-link btn-sm" rel="tooltip" title="Visualiser" href="{{ URL::to('/detail-eu/'.
                         $v_eu->eu_id)}}">
                                 <i class="material-icons">visibility</i>
                             </a>
                             @if( Session::get('admin_role')==1)
                             @if($v_eu->eu_status==1)
-                            <a class="btn btn-primary btn-link btn-sm"  rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-eu/'.
+                            <a class="btn btn-primary btn-link btn-sm" rel="tooltip" title="Désactiver" href="{{ URL::to('/unactive-eu/'.
                         $v_eu->eu_id)}}">
                                 <i class="material-icons">thumb_down_alt</i>
                             </a>
                             @else
-                            <a class="btn btn-success btn-link btn-sm"  rel="tooltip" title="Activer" href="{{ URL::to('/active-eu/'.
+                            <a class="btn btn-success btn-link btn-sm" rel="tooltip" title="Activer" href="{{ URL::to('/active-eu/'.
                         $v_eu->eu_id)}}">
                                 <i class="material-icons">thumb_up</i>
                             </a>
@@ -132,13 +135,13 @@
 
                             @endif
                             @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
-                            <a class="btn btn-warning btn-link btn-sm"  rel="tooltip" title="Modifier"  href="{{ URL::to('/edit-eu/'.
+                            <a class="btn btn-warning btn-link btn-sm" rel="tooltip" title="Modifier" href="{{ URL::to('/edit-eu/'.
                         $v_eu->eu_id)}}">
                                 <i class="material-icons">edit</i>
                             </a>
                             @endif
                             @if( Session::get('admin_role')==1)
-                            <a class="btn btn-danger btn-link btn-sm"  rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-eu/'.
+                            <a class="btn btn-danger btn-link btn-sm" rel="tooltip" title="Supprimer" href="{{ URL::to('/delete-eu/'.
                         $v_eu->eu_id)}}" id="delete">
                                 <i class="material-icons">close</i>
                             </a>
@@ -148,9 +151,10 @@
                     @endforeach
                     </tbody>
                 </table>
-                <p  id="total_records">
+                <p id="total_records">
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
+                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 )
                 <form action="/excel-eu">
                     <button type="submit" class="btn btn-success btn-sm">
                         <i class="fa fa-share"></i>&nbsp;
@@ -158,6 +162,7 @@
                         <div class="ripple-container"></div>
                     </button>
                 </form>
+                @endif
                 </p>
                 @else
                 <p class="text-center">Aucune information trouvé</p>
@@ -168,7 +173,6 @@
     </div>
 
 </div>
-
 
 
 @endsection

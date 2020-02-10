@@ -159,6 +159,15 @@
                 <p  id="total_records">
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
+                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2 )
+                <form action="/excel-ei">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <i class="fa fa-share"></i>&nbsp;
+                        Exporter vers excel
+                        <div class="ripple-container"></div>
+                    </button>
+                </form>
+                @endif
                 </p>
                 @else
                 <p class="text-center">Aucune information trouvé</p>

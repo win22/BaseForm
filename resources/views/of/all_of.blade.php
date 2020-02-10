@@ -130,13 +130,13 @@
                 <p  id="total_records">
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
-                <form action="/excel">
-                    <button type="submit" class="btn btn-success btn-sm">
+                <br/>
+                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                    <a href="/excel" class="btn btn-success btn-sm">
                         <i class="fa fa-share"></i>&nbsp;
                         Exporter vers excel
-                        <div class="ripple-container"></div>
-                    </button>
-                </form>
+                    </a>
+                    @endif
                 </p>
                 @else
                 <p class="text-center">Aucune information n'a été trouvée</p>

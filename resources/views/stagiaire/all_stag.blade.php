@@ -132,6 +132,13 @@
                 <p  id="total_records">
                     @if($nb>0)
                     Total des informations : <span id="total_records">{{ $nb }}</span>
+                    <br/>
+                    @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
+                    <a href="/excel-stag" class="btn btn-success btn-sm">
+                        <i class="fa fa-share"></i>&nbsp;
+                        Exporter vers excel
+                    </a>
+                    @endif
                 </p>
                      @else
                 <p class="text-center">Aucune information n'a été trouvée</p>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 use App\Http\Requests;
+use Maatwebsite\Excel\Facades\Excel;
 use Session;
 Use Mail;
 session_start();
@@ -164,7 +165,7 @@ class EiController extends Controller
         }
 
         DB::table('tbl_entreprise_intervenantes')->insert($data);
-        Session::put('message', "Un mail a été envoyé ".$data['name']." !");
+        Session::put('message', "\"Vous avez ajouté une nouvelle entreprise intervenante !");
         return redirect('/all-ei');
 
     }
@@ -261,6 +262,42 @@ class EiController extends Controller
             ->with('ei.details_ei', $ei_info);
     }
 
+    public  function excel()
+    {
+        $data = DB::table('tbl_entreprise_intervenantes')
+            ->orderByDesc('ei_id')
+            ->get()
+            ->toArray();
+        $data_array[] = array('Nom', 'Adresse', 'Email',
+            "Secteur d'activité","Téléphone", "Durée de la certification", "Etat", "Date de debut", "Date de fin",
+            "Entreprise utilisatrice principal", "Autres entreprises", "Nom du directeur", "Status"
+            );
+        foreach ( $data as $da)
+        {
+            $data_array[] = array('Nom' => $da->name,
+                'Adresse'  => $da->ei_adresse,
+                'Email'  => $da->ei_email,
+                "Secteur d'activité"  => $da->ei_secteurA,
+                'Téléphone'  => $da->ei_phone,
+                "Durée de la certification"  => $da->ei_time,
+                "Etat"  => $da->ei_etat,
+                "Date de debut"  => $da->ei_date_debut,
+                "Date de fin"  => $da->ei_date_fin,
+                "Entreprise utilisatrice principal"  => $da->ei_eu,
+                "Autres entreprises"  => $da->ei_a_eu,
+                "Nom du Directeur" => $da->ei_nameDi,
+                "Status" => $da->ei_status,
+                );
+        }
+
+        Excel::create('Entreprise Intervenantes', function ($excel)use ($data_array)
+        {
+            $excel->sheet('Entreprise Intervenantes', function($sheet) use($data_array) {
+                $sheet->fromArray($data_array);
+            });
+        })->download('xls');
+
+    }
 
 //permet de verifier si l'ei est connecté
     public function AdminAuthCheck()

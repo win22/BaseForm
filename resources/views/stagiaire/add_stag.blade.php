@@ -36,7 +36,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Nom <span  class="text-danger">*</span> </label>
-                                <input  value="{{ old('stag_name') }}" name="stag_name" type="text" class="form-control">
+                                <input required value="{{ old('stag_name') }}" name="stag_name" type="text" class="form-control">
                             </div>
                             @if($errors->has('stag_name'))
                             <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('stag_name')}}</small>
@@ -45,7 +45,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Prenom <span  class="text-danger">*</span> </label>
-                                <input  value="{{ old('stag_prenom') }}" name="stag_prenom" type="text" class="form-control">
+                                <input required value="{{ old('stag_prenom') }}" name="stag_prenom" type="text" class="form-control">
                             </div>
                             @if($errors->has('stag_prenom'))
                             <small class="form-text text-muted text-danger">{{$errors->first('stag_prenom')}}</small>
@@ -57,7 +57,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="label">Date de naissance <span  class="text-danger">*</span></label>
-                                <input type="date" class="form-control text-info"  name="stag_date_naiss">
+                                <input required type="date" class="form-control text-info"  name="stag_date_naiss">
                                 @if($errors->has('stag_date_naiss'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('stag_date_naiss')}}</small>
                                 @endif
@@ -66,14 +66,14 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Lieu de Naissance <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('stag_lieu_naiss') }}" name="stag_lieu_naiss" type="text" class="form-control">
+                                <input required  value="{{ old('stag_lieu_naiss') }}" name="stag_lieu_naiss" type="text" class="form-control">
                             </div>
                             @if($errors->has('stag_lieu_naiss'))
                             <small class="form-text text-muted text-danger">{{$errors->first('stag_lieu_naiss')}}</small>
                             @endif
                         </div>
                         <div class="col-md-2">
-                            <select  class="form-control " name="stag_sexe">
+                            <select required class="form-control " name="stag_sexe">
                                 <option  class="text-warning" value="">Sexe <span  class="text-danger">*</span> </option>
                                 <option value="Homme">Homme</option>
                                 <option value="Femme">Femme </option>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <select  class="form-control " name="stag_type_piece">
+                            <select required class="form-control " name="stag_type_piece">
                                 <option class="text-warning" value="">Type Piece <span  class="text-danger">*</span> </option>
                                 <option value="Carte National d'identité">Carte national d'identité</option>
                                 <option value="Passeport">Passeport</option>
@@ -98,14 +98,14 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Numéro de la piece <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('stag_num_piece') }}" name="stag_num_piece" type="text" class="form-control">
+                                <input required value="{{ old('stag_num_piece') }}" name="stag_num_piece" type="text" class="form-control">
                             </div>
                             @if($errors->has('stag_num_piece'))
                             <small class="form-text text-muted text-danger">{{$errors->first('stag_num_piece')}}</small>
                             @endif
                         </div>
                         <div class="col-md-2">
-                            <select  class="form-control " name="stag_situa">
+                            <select required class="form-control " name="stag_situa">
                                 <option  class="text-warning" value="">Situation matrimoniale <span  class="text-danger">*</span> </option>
                                 <option value="Marié(e)">Marié(e)</option>
                                 <option value="Divorcé(e)">Divorcé(e)</option>
@@ -122,7 +122,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Téléphone <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('stag_phone') }}" name="stag_phone" type="text" class="form-control">
+                                <input required value="{{ old('stag_phone') }}" name="stag_phone" type="text" class="form-control">
                             </div>
                             @if($errors->has('stag_phone'))
                             <small class="form-text text-muted text-danger">{{$errors->first('stag_phone')}}</small>
@@ -131,7 +131,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Adresse e-mail <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('stag_email') }}" name="stag_email" type="email" class="form-control">
+                                <input required value="{{ old('stag_email') }}" name="stag_email" type="email" class="form-control">
                             </div>
                             @if($errors->has('stag_email'))
                             <small class="form-text text-muted text-danger">{{$errors->first('stag_email')}}</small>
@@ -140,7 +140,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Adresse <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('stag_adresse') }}" name="stag_adresse" type="text" class="form-control">
+                                <input required value="{{ old('stag_adresse') }}" name="stag_adresse" type="text" class="form-control">
                             </div>
                             @if($errors->has('stag_adresse'))
                             <small class="form-text text-muted text-danger">{{$errors->first('stag_adresse')}}</small>
@@ -151,7 +151,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <select class="form-control dynamic" id="name" name="stag_structure"
+                                <select required class="form-control dynamic" id="name" name="stag_structure"
                                         data-dependent="of_id">
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                                     <option class="text-warning" value="">Selectionner une structure <span  class="text-danger">*</span></option>
@@ -175,7 +175,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <select  class="form-control " name="stag_formation">
+                                <select required  class="form-control " name="stag_formation">
                                     <option class="text-warning" value="">Selectionner une formation <span  class="text-danger">*</span></option>
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                                     @foreach($FORMT_all as $v_formt)
@@ -198,7 +198,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <select  class="form-control " name="stag_formateur">
+                                <select required class="form-control " name="stag_formateur">
                                     <option class="text-warning" value="">Selectionner un formateur <span  class="text-danger">*</span></option>
                                     @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                                     @foreach($FORM_all as $v_form)

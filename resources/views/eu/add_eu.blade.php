@@ -34,8 +34,8 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Nom</label>
-                                <input  value="{{ old('name') }}" name="name" type="text" class="form-control">
+                                <label class="bmd-label-floating">Nom <span  class="text-danger">*</span> </label>
+                                <input required value="{{ old('name') }}" name="name" type="text" class="form-control">
                             </div>
                             @if($errors->has('name'))
                             <small class="form-text text-muted text-danger">{{$errors->first('name')}}</small>
@@ -44,8 +44,8 @@
 
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Adresse</label>
-                                <input  value="{{ old('eu_adresse') }}" name="eu_adresse" type="text" class="form-control">
+                                <label class="bmd-label-floating">Adresse <span  class="text-danger">*</span> </label>
+                                <input required value="{{ old('eu_adresse') }}" name="eu_adresse" type="text" class="form-control">
                             </div>
                             @if($errors->has('eu_adresse'))
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_adresse')}}</small>
@@ -55,8 +55,8 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Adresse e-mail</label>
-                                <input  value="{{ old('eu_email') }}" name="eu_email" type="email" class="form-control">
+                                <label class="bmd-label-floating">Adresse e-mail <span  class="text-danger">*</span> </label>
+                                <input required value="{{ old('eu_email') }}" name="eu_email" type="email" class="form-control">
                             </div>
                             @if($errors->has('eu_email'))
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_email')}}</small>
@@ -64,8 +64,8 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Téléphone</label>
-                                <input  value="{{ old('eu_phone') }}" name="eu_phone" type="text" class="form-control">
+                                <label class="bmd-label-floating">Téléphone <span  class="text-danger">*</span> </label>
+                                <input required value="{{ old('eu_phone') }}" name="eu_phone" type="text" class="form-control">
                             </div>
                             @if($errors->has('eu_phone'))
                             <small id="emailHelp" class="form-text text-muted text-danger">{{$errors->first('eu_phone')}}</small>
@@ -73,8 +73,8 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Effectif</label>
-                                <input  value="{{ old('eu_efectif') }}" name="eu_efectif" type="text" class="form-control">
+                                <label class="bmd-label-floating">Effectif <span  class="text-danger">*</span> </label>
+                                <input required value="{{ old('eu_efectif') }}" name="eu_efectif" type="text" class="form-control">
                             </div>
                             @if($errors->has('eu_efectif'))
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_efectif')}}</small>
@@ -84,8 +84,8 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Secteur d'Activité</label>
-                                <input  value="{{ old('eu_secteurA') }}" name="eu_secteurA" type="text" class="form-control">
+                                <label class="bmd-label-floating">Secteur d'Activité  <span  class="text-danger">*</span> </label>
+                                <input required value="{{ old('eu_secteurA') }}" name="eu_secteurA" type="text" class="form-control">
                             </div>
                             @if($errors->has('eu_secteurA'))
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_secteurA')}}</small>
@@ -94,7 +94,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Contact Pour la demande</label>
-                                <input  value="{{ old('eu_contactDe') }}" name="eu_contactDe" type="text" class="form-control">
+                                <input required value="{{ old('eu_contactDe') }}" name="eu_contactDe" type="text" class="form-control">
                             </div>
                             @if($errors->has('eu_contactDe'))
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_contactDe')}}</small>
@@ -102,8 +102,8 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Nom du Directeur</label>
-                                <input  value="{{ old('eu_nameDi') }}" name="eu_nameDi" type="text" class="form-control">
+                                <label class="bmd-label-floating">Nom du Directeur <span  class="text-danger">*</span> </label>
+                                <input required value="{{ old('eu_nameDi') }}" name="eu_nameDi" type="text" class="form-control">
                             </div>
                             @if($errors->has('eu_nameDi'))
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_nameDi')}}</small>
@@ -115,14 +115,14 @@
                         <div class="col-md-4">
                             <div class="form-group">
                             <label class="label">Date d'adhésion <span  class="text-danger">*</span></label>
-                            <input type="date" class="form-control text-warning" min="1800-08-13" name="eu_date_ad">
+                            <input required type="date" class="form-control text-warning" min="1800-08-13" name="eu_date_ad">
                             @if($errors->has('eu_date_ad'))
                             <small class="form-text text-muted text-danger">{{$errors->first('eu_date_ad')}}</small>
                             @endif
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <select  class="form-control dynamic2" name="eu_etat">
+                            <select required class="form-control dynamic2" name="eu_etat">
                                 <option value="">État <span  class="text-danger">*</span> </option>
                                 <option value="Normal">Normal</option>
                                 <option class="text-warning" value="En démarche">En démarche</option>

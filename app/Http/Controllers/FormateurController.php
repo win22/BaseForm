@@ -9,6 +9,7 @@ use DB;
 use App\Http\Requests;
 use Session;
 use File;
+use Excel;
 session_start();
 
 class FormateurController extends Controller
@@ -142,7 +143,7 @@ class FormateurController extends Controller
         DB::table('tbl_formateurs')
             ->where('form_id', $form_id)
             ->update(['form_etat' => 'agrée']);
-        Session::put('message', 'Un agrément a été attribué à ce formateur  ');
+        Session::put('message', 'Vous avez agrée ce formateur');
         return back();
     }
 
@@ -578,7 +579,47 @@ class FormateurController extends Controller
     }
 
 
-//permet de verifier si l'form est connecté
+    public  function excel()
+    {
+        $data = DB::table('tbl_formateurs')
+            ->where('form_certi', 1)
+            ->orderByDesc('form_id')
+            ->get()
+            ->toArray();
+        $data_array[] = array("Nom", "Prenom", "Sexe", "Date de naissance", "Lieu de naissance", "Adresse",
+            "Email", "Situation matrimonail", "Téléphone","Entreprise","Formation","Etat", "Date de debut" ,"Date de fin",
+            "Status");
+
+        foreach ( $data as $da)
+        {
+            $data_array[] = array(
+                "Nom" => $da->form_name,
+                "Prenom" => $da->form_prenom,
+                "Sexe" => $da->form_sexe,
+                "Date de naissance" => $da->form_date_naiss,
+                "Lieu de naissance" => $da->form_lieu_naiss,
+                "Adresse" => $da->form_adresse,
+                "Email" => $da->form_email,
+                "Situation matrimoniale" => $da->form_situa,
+                "Téléphone" => $da->form_phone,
+                "Entreprise" => $da->form_of,
+                "Formation Principale" => $da->form_formation,
+                "Etat" => $da->form_etat,
+                "Date de debut" => $da->form_date_debut,
+                "Date de fin" => $da->form_date_fin,
+                "Status" => $da->form_status,
+                );
+        }
+        Excel::create('Formateurs', function ($excel)use ($data_array)
+        {
+            $excel->setTitle('Formateurs');
+            $excel->sheet('Formateurs',function ($sheet) use ($data_array){
+                $sheet->fromArray($data_array, null, 'A1', false, false);
+            });
+        })->download('xls');
+
+    }
+
     public function AdminAuthCheck()
     {
         $admin_id = Session::get('admin_id');

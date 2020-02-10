@@ -37,7 +37,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Nom de la formation <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('formt_name') }}" name="formt_name" type="text" class="form-control">
+                                <input required value="{{ old('formt_name') }}" name="formt_name" type="text" class="form-control">
                                 @if($errors->has('formt_name'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('formt_name')}}</small>
                                 @endif
@@ -47,7 +47,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">durée de la formation <span  class="text-danger">*</span></label>
-                                <input  value="{{ old('formt_time') }}" name="formt_time" type="text" class="form-control">
+                                <input required value="{{ old('formt_time') }}" name="formt_time" type="text" class="form-control">
                                 @if($errors->has('formt_time'))
                                 <small class="form-text text-muted text-danger">{{$errors->first('formt_time')}}</small>
                                 @endif
@@ -55,7 +55,7 @@
 
                         </div>
                         <div class="col-md-4">
-                        <select  class="form-control" name="formt_type">
+                        <select required class="form-control" name="formt_type">
                             <option value="">Type de formation <span  class="text-danger">*</span> </option>
                             @if(Session::get('admin_role') == 1 || Session::get('admin_role') == 2)
                             <option class="text-success" value="agrée">Certifiée Mase </option>
@@ -71,7 +71,7 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Description de la formation <span  class="text-danger">*</span></label>
-                                <textarea  value="{{ old('formt_contenu') }}" name="formt_contenu" type="text" class="form-control form-control-plaintext"></textarea>
+                                <textarea required value="{{ old('formt_contenu') }}" name="formt_contenu" type="text" class="form-control form-control-plaintext"></textarea>
                             </div>
                             @if($errors->has('formt_contenu'))
                             <small class="form-text text-muted text-danger">{{$errors->first('formt_contenu')}}</small>

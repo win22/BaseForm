@@ -92,7 +92,7 @@ Route::get('/searchEUE', 'EuController@searchE');
 //Route Pour les entreprise Intervenantes
 Route::get('/add-ei', 'EiController@index');
 Route::post('/save-ei', 'EiController@save_ei');
-
+Route::get('/excel-ei', 'EiController@excel');
 Route::get('/all-ei', 'EiController@all_ei');
 Route::get('/searchEi', 'EiController@search');
 Route::get('/unactive-ei/{ei_id}', 'EiController@unactive_ei');
@@ -124,6 +124,7 @@ Route::get('/valide-form/{form_id}', 'FormateurController@form_valide');
 Route::get('/unvalide-form/{form_id}', 'FormateurController@form_unvalide');
 Route::get('/searchOfA', 'FormateurController@searchA');
 Route::get('/searchOfN', 'FormateurController@searchN');
+Route::get('/excel-form', 'FormateurController@excel');
 
 //Route pour la gestion des formations
 Route::get('/add-formt', 'FormationController@index');
@@ -138,13 +139,10 @@ Route::post('/update-formt/{formt_id}', 'FormationController@update_formt');
 Route::get('/details-formt/{formt_id}', 'FormationController@detail_formt');
 
 
-
-
 //Route pour la gestion des stagiares
 Route::get('/add-stag', 'StagiaireController@index');
 Route::post('/save-stag', 'StagiaireController@save_stag');
 Route::post('/save-stag-fo', 'StagiaireController@saveNewforma');
-
 Route::get('/all-stag-N',  'StagiaireController@all_stag_n');
 Route::get('/all-stag',  'StagiaireController@all_stag');
 Route::get('/details-stag/{stag_token}', 'StagiaireController@detail_stag');
@@ -158,14 +156,13 @@ Route::post('/update-stag/{stag_id}', 'StagiaireController@update_stag');
 Route::post('/update-stag-fo/{stag_id}', 'StagiaireController@update_stag2');
 Route::get('/unactive-stag/{stag_id}', 'StagiaireController@unactive_stag');
 Route::get('/active-stag/{stag_id}', 'StagiaireController@active_stag');
-
 Route::get('/valide-stag/{stag_id}', 'StagiaireController@stag_valide');
 Route::get('/unvalide-stag/{stag_id}', 'StagiaireController@stag_unvalide');
 Route::get('/searchStgA', 'StagiaireController@searchA');
 Route::get('/searchStgN', 'StagiaireController@searchN');
-
 Route::get('/searchStagA', 'StagiaireController@searchAN');
 Route::get('/searchStagN', 'StagiaireController@searchNA');
 Route::get('/searchStagOf', 'StagiaireController@searchOf');
+Route::get('/excel-stag', 'StagiaireController@excel');
 
 

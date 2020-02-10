@@ -10,7 +10,7 @@ use App\Http\Requests;
 use Illuminate\View\View;
 use Session;
 Use Mail;
-
+use File;
 session_start();
 
 class AdminController extends Controller
@@ -134,6 +134,7 @@ class AdminController extends Controller
     public function delete_admin($admin_id)
     {
         $this->AdminAuthCheck();
+
         DB::table('tbl_admin')
             ->where('admin_id',$admin_id)
             ->delete();
@@ -163,7 +164,7 @@ class AdminController extends Controller
         $data['admin_status'] = $request->admin_status;
         $data['user_role'] = $request->user_role;
         $data['token'] = str_random(30);
-        $default_image = 'image/user.svg';
+        $default_image = 'image/images.png';
         $image = $request->file('admin_image');
         if ($image){
             request()->validate([
@@ -417,6 +418,10 @@ class AdminController extends Controller
             $success = $image->move($upload_path,$image_full_name);
             if($success){
                 $data['admin_image'] = $image_url;
+                $admin = DB::table('tbl_admin')
+                    ->where('admin_id', $admin_id)
+                    ->first();
+                File::delete($admin->admin_image);
             }
         }
         DB::table('tbl_admin')

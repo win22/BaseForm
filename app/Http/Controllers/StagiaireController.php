@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use Session;
 Use Mail;
 use File;
+use Excel;
 session_start();
 class StagiaireController extends Controller
 {
@@ -248,14 +249,7 @@ class StagiaireController extends Controller
         $test['stag_prenom']= $data->stag_prenom;
         $test['stag_formation']= $data->stag_formation;
 
-
-//     Mail::send('mail.mailStag', $test , function ($message) use ($test){
-//            $message->to($test['stag_email']);
-//            $message->from('mailtrapmail@gmail.com');
-//            $message->subject('Félicitaion !!! ');
-//        });
-        Session::put('message', "Vous avez certifié l'apprenant ".$test['stag_prenom']. " " . $test['stag_name']. "
-        un message d'accusé de reception lui a été envoyé par mail ");
+        Session::put('message', "Vous avez certifié l'apprenant ".$test['stag_prenom']. " " . $test['stag_name']. "");
         return back();
     }
 
@@ -783,7 +777,47 @@ class StagiaireController extends Controller
             ->with('stagiaire.details_stag', $stag_info, $OF_all, $FORM, $FORMT_all);
     }
 
-    //permet de verifier si l'utilisateur est connecté
+    public  function excel()
+    {
+        $data = DB::table('tbl_stagiaires')
+            ->where('stag_certi', 1)
+            ->orderByDesc('stag_id')
+            ->get()
+            ->toArray();
+        $data_array[] = array("Nom", "Prenom", "Sexe", "Date de naissance", "Lieu de naissance", "Adresse",
+            "Email", "Situation matrimonail", "Téléphone","Entreprise","Formation","Etat", "Date de debut" ,"Date de fin",
+            "Status");
+
+        foreach ( $data as $da)
+        {
+            $data_array[] = array(
+                "Nom" => $da->stag_name,
+                "Prenom" => $da->stag_prenom,
+                "Sexe" => $da->stag_sexe,
+                "Date de naissance" => $da->stag_date_naiss,
+                "Lieu de naissance" => $da->stag_lieu_naiss,
+                "Adresse" => $da->stag_adresse,
+                "Email" => $da->stag_email,
+                "Situation matrimoniale" => $da->stag_situa,
+                "Téléphone" => $da->stag_phone,
+                "Entreprise" => $da->stag_structure,
+                "Formation Principale" => $da->stag_formation,
+                "Etat" => $da->stag_etat,
+                "Date de debut" => $da->stag_date_debut,
+                "Date de fin" => $da->stag_date_fin,
+                "Status" => $da->stag_status,
+            );
+        }
+        Excel::create('Apprenants', function ($excel)use ($data_array)
+        {
+            $excel->setTitle('Apprenants');
+            $excel->sheet('Apprenants',function ($sheet) use ($data_array){
+                $sheet->fromArray($data_array, null, 'A1', false, false);
+            });
+        })->download('xls');
+
+    }
+
     public function adminAuthCheck()
     {
         $admin_id = Session::get('admin_id');

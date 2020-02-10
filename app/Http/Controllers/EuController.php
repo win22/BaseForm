@@ -299,11 +299,12 @@ class EuController extends Controller
                 "Secteur d'Activité"  => $da->eu_secteurA,
                 'Contact pour la demande' => $da->eu_contactDe,
                 'Nom du Directeur' => $da->eu_nameDi,
+                'Effectif' => $da->eu_efectif,
                 "Date d'adhesion"  => $da->eu_date_ad ,
                 'Durée '  => $da->eu_time ,
                 "Etat"  => $da->eu_etat ,
-                'Début de la certification'  => $da->eu_efectif ,
-                'Fin de la certification'  => $da->eu_efectif,
+                'Début de la certification'  => $da->eu_date_debut ,
+                'Fin de la certification'  => $da->eu_date_fin,
                 'Status'  => $da->eu_status);
         }
         Excel::create('Entreprises_Utilisatrices', function ($excel)use ($data_array)
@@ -312,7 +313,7 @@ class EuController extends Controller
             $excel->sheet('Entreprises_Utilisatrices',function ($sheet) use ($data_array){
                 $sheet->fromArray($data_array, null, 'A1', false, false);
             });
-        })->download('xlsx');
+        })->download('xls');
 
     }
 
